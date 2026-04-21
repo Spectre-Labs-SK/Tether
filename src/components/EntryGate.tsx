@@ -12,15 +12,29 @@ export default function EntryGate({ onEnter }: Props) {
   const [userId, setUserId] = useState<string | null>(null);
 
   useEffect(() => {
-    // TODO: replace with full auth flow once Supabase Auth is configured
-    supabase.auth.getUser().then(({ data }) => {
-      if (data.user) {
-        setUserId(data.user.id);
-        agentLog.architect(`Auth resolved. userId=${data.user.id}`);
-      } else {
-        agentLog.architect(`No authenticated user. Supabase state will be skipped.`);
+    const resolveAuth = async () => {
+      const { data: sessionData } = await supabase.auth.getUser();
+
+      if (sessionData.user) {
+        setUserId(sessionData.user.id);
+        agentLog.architect(`Auth resolved. userId=${sessionData.user.id}`);
+        return;
       }
-    });
+
+      // No session — sign in anonymously for zero-friction entry (SOS users never hit a form)
+      agentLog.architect(`No active session. Initiating anonymous sign-in.`);
+      const { data: anonData, error } = await supabase.auth.signInAnonymously();
+
+      if (anonData.user) {
+        setUserId(anonData.user.id);
+        agentLog.architect(`Anonymous session created. userId=${anonData.user.id}`);
+        agentLog.valkyrie(`Ghost operative online. Identity shielded. You're in the network.`);
+      } else {
+        agentLog.architect(`Anonymous sign-in failed: ${error?.message ?? 'unknown error'}. Proceeding without Supabase.`);
+      }
+    };
+
+    resolveAuth();
   }, []);
 
   const { triggerCrisisMode, isLoading, profile } = useTetherState(userId);
