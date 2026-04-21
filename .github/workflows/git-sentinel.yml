@@ -1,0 +1,21 @@
+name: Git Sentinel Audit
+on:
+  push:
+    branches: [ main, master ]
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # Fetches all history for better diffs
+
+      - name: Run Gemini Audit
+        uses: google/gemini-cli@main
+        with:
+          # This command tells Gemini to summarize the latest changes
+          command: "/summarize-latest-push"
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
