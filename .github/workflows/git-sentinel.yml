@@ -1,4 +1,4 @@
-name: Git Sentinel Audit
+name: Git Sentinel Audit (Free Tier)
 on:
   push:
     branches: [ main, master ]
@@ -10,12 +10,18 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0 # Fetches all history for better diffs
+          fetch-depth: 2 # Sufficient for a push diff
 
-      - name: Run Gemini Audit
-        uses: google/gemini-cli@main
+      - name: Generate GSD Sentinel Report
+        run: |
+          echo "### SENTINEL PUSH AUDIT: $(date)" > SENTINEL_REPORT.md
+          echo "#### Changed Files:" >> SENTINEL_REPORT.md
+          git diff --name-status HEAD^ HEAD >> SENTINEL_REPORT.md
+          echo "#### Commit Message:" >> SENTINEL_REPORT.md
+          git log -1 --pretty=%B >> SENTINEL_REPORT.md
+          
+      - name: Upload Sentinel Artifact
+        uses: actions/upload-artifact@v4
         with:
-          # This command tells Gemini to summarize the latest changes
-          command: "/summarize-latest-push"
-        env:
-          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          name: sentinel-report
+          path: SENTINEL_REPORT.md

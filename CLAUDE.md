@@ -1,53 +1,45 @@
 # TETHER — CLAUDE.md (Context Injector)
 
-**Spectre Labs | Shimmer Framework | v0.0.0**
+**Spectre Labs | Tether Mobile | v0.1.0**
 
 ---
 
 ## WHAT WE ARE BUILDING
 
-Tether is a **React 19 + Three.js** web app built around the "Shimmer Framework" — a dual-mode (MILITARY / ETHER) 3D interface shell. Currently it is the UI foundation for Spectre Labs' broader platform, which will include:
-
-- A character/equipment system ("Valkyrie" — "The Queen" persona with gated PRIME-rarity gear)
-- A mode-switching aesthetic engine (Military dark-slate vs. Ethereal deep-purple)
-- Future features: idea tracking, build journaling, and character progression
-
-The app is in early "Resurrection Phase" — the skeleton is built, the design language is locked, the data models are stubbed.
+Tether is a **React Native (Expo)** application designed as a universal activity tracker. It uses a "Domain-Agnostic" onboarding system to allow users to start tracking workouts, cardio sessions, or even desk-based micro-movements in three taps. The aesthetic is a dark, "military mode" terminal style.
 
 ---
 
-## CURRENT STATE (as of 2026-04-20)
+## CURRENT STATE (as of 2026-04-23)
 
-**Screen 1 — THE BUNKER (calibration gate):**
-- Mono/terminal aesthetic, emerald green on black
-- Static-level range slider (captured, not yet wired to anything)
-- "Initialize_Survive_Protocol" button → gates entry to the War Room
+The application is built around a `NativeStack.Navigator`. The entry point is the `FitnessOnboardingGrid`.
 
-**Screen 2 — THE WAR ROOM:**
-- Full-screen Three.js Canvas behind a 2D HUD overlay
-- `ShimmerCore`: floating distorted metallic sphere (`MeshDistortMaterial`, `Float`)
-- Color shifts with mode: `#1e293b` (MILITARY) / `#6d28d9` (ETHER)
-- "Initiate Shift" button toggles modes
-- Suspense null-fallback prevents 3D crash
+**Screen 1 — `FitnessOnboardingGrid.tsx` (Universal Grid):**
+- A 2-step selection process.
+- **Step 1 (Domain):** A 4-button grid to select a domain: `Iron` (gym), `Road` (cardio), `Mat` (yoga/bodyweight), `Hub` (desk).
+- **Step 2 (Activity):** A list of specific activities within the chosen domain.
+- The "3-taps-to-active" protocol is enforced: Tap Domain -> Tap Activity -> Start Session.
+
+**Active Session Screens:**
+- **`PushDayOnboarding.tsx` (Iron Domain):** A detailed workout logger for a "Push Day". Allows inputting weight/reps, tracks sets, calculates estimated 1RM, and includes "Busy Gym," "Skip," and "Pain" protocols. Syncs data to Supabase.
+- **`RoadSession.tsx` (Road Domain):** A timer for interval or steady-state cardio. Follows a manifest (e.g., Couch-to-5k) and displays current interval type and time remaining.
+- **`MatSession.tsx` (Mat Domain):** A follow-along timer for a yoga flow. Displays the current pose and a countdown, with haptics for transitions.
+- **`HubSession.tsx` (Hub Domain):** A minimal screen for tracking "Up-Time" and "Postural Resets" during a desk session.
 
 ---
 
 ## TECH STACK
 
-| Layer | Tech | Version |
+| Layer | Tech |
 |---|---|---|
-| UI | React | 19.2.5 |
-| Language | TypeScript | ~6.0.2 |
-| 3D | Three.js | 0.184.0 |
-| 3D React | @react-three/fiber | 9.6.0 |
-| 3D Helpers | @react-three/drei | 10.7.7 |
-| Styling | TailwindCSS (Vite plugin) | 4.2.2 |
-| Icons | lucide-react | 1.8.0 |
-| Build | Vite | 8.0.9 |
+| Framework | React Native (Expo) |
+| Language | TypeScript |
+| Navigation | @react-navigation/native-stack |
+| Backend | Supabase |
 
 ---
 
-## FILE MAP
+## FILE MAP (Key Screens)
 
 ```
 src/

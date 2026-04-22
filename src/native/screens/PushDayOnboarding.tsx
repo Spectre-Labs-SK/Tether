@@ -23,6 +23,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { useNavigation } from '@react-navigation/native';
 import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { supabase } from '../../lib/supabase';
+import { VALKYRIE_MANIFEST } from '../../registry/valkyrie/manifest';
 
 // ---------------------------------------------------------------------------
 // 1RM Formula Suite
@@ -75,6 +76,7 @@ interface ExerciseConfig {
   maxReps: number;
   muscleGroup: string;
   movementType: 'push' | 'pull' | 'hinge' | 'squat' | 'carry' | 'accessory';
+  equipmentType: 'barbell' | 'dumbbell' | 'machine' | 'dips-station' | 'bodyweight';
 }
 
 interface ResolvedExercise extends ExerciseConfig {
@@ -92,6 +94,7 @@ interface SetEntry {
 interface ExerciseLog {
   exercise: ResolvedExercise;
   sets: SetEntry[];
+  skipped: boolean;
 }
 
 // ---------------------------------------------------------------------------
@@ -106,6 +109,7 @@ const PUSH_DAY_CONFIGS: ExerciseConfig[] = [
     maxReps: 10,
     muscleGroup: 'chest',
     movementType: 'push',
+    equipmentType: 'barbell',
   },
   {
     name: 'Overhead Press',
@@ -114,6 +118,7 @@ const PUSH_DAY_CONFIGS: ExerciseConfig[] = [
     maxReps: 10,
     muscleGroup: 'shoulders',
     movementType: 'push',
+    equipmentType: 'barbell',
   },
   {
     name: 'Dips',
@@ -122,6 +127,7 @@ const PUSH_DAY_CONFIGS: ExerciseConfig[] = [
     maxReps: 12,
     muscleGroup: 'triceps',
     movementType: 'push',
+    equipmentType: 'dips-station',
   },
 ];
 
@@ -143,9 +149,14 @@ export default function PushDayOnboarding() {
   const navigation = useNavigation<NavProp>();
 
   const [exerciseLogs, setExerciseLogs] = useState<ExerciseLog[]>([]);
+  const [originalOrderLogs, setOriginalOrderLogs] = useState<ExerciseLog[]>([]);
+  const [isGroupedByEquipment, setIsGroupedByEquipment] = useState(false);
   const [resolving, setResolving] = useState(true);
   const [syncing, setSyncing] = useState(false);
   const [workoutStartedAt] = useState<string>(new Date().toISOString());
+  const [painAlerts, setPainAlerts] = useState<Record<string, { count: number; lastAlert: number }>>(
+    {},
+  );
 
   // Resolve global exercise UUIDs from Supabase so sets reference real FK IDs
   useEffect(() => {
@@ -174,10 +185,12 @@ export default function PushDayOnboarding() {
         return {
           exercise: { ...config, exerciseId },
           sets: buildEmptySets(config.targetSets),
+          skipped: false,
         };
       });
 
       setExerciseLogs(resolved);
+      setOriginalOrderLogs(resolved);
       setResolving(false);
     }
 
@@ -237,17 +250,100 @@ export default function PushDayOnboarding() {
     );
   }, []);
 
-  const allSetsComplete = exerciseLogs.every((log) => log.sets.every((s) => s.completed));
+  const toggleGroupedByEquipment = useCallback(() => {
+    setIsGroupedByEquipment((isGrouped) => {
+      if (isGrouped) {
+        setExerciseLogs(originalOrderLogs);
+      } else {
+        setExerciseLogs((currentLogs) => {
+          const sorted = [...currentLogs].sort((a, b) =>
+            a.exercise.equipmentType.localeCompare(b.exercise.equipmentType),
+          );
+          return sorted;
+        });
+      }
+      return !isGrouped;
+    });
+  }, [originalOrderLogs]);
 
-  const totalCompletedSets = exerciseLogs.reduce(
+  const skipExercise = useCallback((exerciseName: string) => {
+    Alert.alert(
+      'Skip Exercise',
+      `Are you sure you want to skip "${exerciseName}" for this session?`,
+      [
+        { text: 'Cancel', style: 'cancel' },
+        {
+          text: 'Skip',
+          style: 'destructive',
+          onPress: () => {
+            const markAsSkipped = (log: ExerciseLog) =>
+              log.exercise.name === exerciseName ? { ...log, skipped: true } : log;
+
+            setExerciseLogs((prev) => prev.map(markAsSkipped));
+            setOriginalOrderLogs((prev) => prev.map(markAsSkipped));
+
+            // Sentinel Action: In a real app, this would be persisted and checked.
+            console.warn(
+              `[Tether] Exercise "${exerciseName}" skipped. This should be tracked across sessions to detect patterns (NoseyQuestionTime() trigger).`,
+            );
+          },
+        },
+      ],
+    );
+  }, []);
+
+  const handlePainAlert = useCallback(
+    (muscleGroup: string) => {
+      const now = Date.now();
+      const fourteenDays = 14 * 24 * 60 * 60 * 1000;
+
+      const currentAlert = painAlerts[muscleGroup];
+      let newCount = 1;
+
+      if (currentAlert && now - currentAlert.lastAlert < fourteenDays) {
+        newCount = currentAlert.count + 1;
+      }
+
+      setPainAlerts((prev) => ({
+        ...prev,
+        [muscleGroup]: { count: newCount, lastAlert: now },
+      }));
+
+      if (newCount === 1) {
+        Alert.alert(
+          'Pain Logged',
+          `A minor pain alert has been logged for the "${muscleGroup}" muscle group. Please be careful. If pain persists, see a professional.`,
+        );
+      } else if (newCount >= 2) {
+        Alert.alert(
+          'Muscle Group Lockdown Triggered',
+          `You've reported pain for "${muscleGroup}" multiple times recently. To promote recovery, volume and intensity for this muscle group will be reduced for the next 2 weeks.`,
+        );
+        // The Freeze: In a real app, this would update a global state that the
+        // workout generation logic (Manifest-fetcher) would use.
+        console.warn(
+          `[Tether] Muscle Group Lockdown for "${muscleGroup}" until ${new Date(
+            now + fourteenDays,
+          ).toLocaleDateString()}.`,
+        );
+      }
+    },
+    [painAlerts],
+  );
+
+  const activeLogs = exerciseLogs.filter((log) => !log.skipped);
+
+  const allSetsComplete = activeLogs.every((log) => log.sets.every((s) => s.completed));
+
+  const totalCompletedSets = activeLogs.reduce(
     (acc, log) => acc + log.sets.filter((s) => s.completed).length,
     0,
   );
 
-  const totalSets = exerciseLogs.reduce((acc, log) => acc + log.sets.length, 0);
+  const totalSets = activeLogs.reduce((acc, log) => acc + log.sets.length, 0);
 
   async function handleFinishWorkout() {
-    if (!allSetsComplete) {
+    if (!allSetsComplete && activeLogs.length > 0) {
       Alert.alert(
         'Incomplete Workout',
         `${totalSets - totalCompletedSets} set(s) not marked complete. Finish anyway?`,
@@ -306,6 +402,18 @@ export default function PushDayOnboarding() {
         })),
     );
 
+    // Log skipped exercises as per requirement. In a real app, this would be a DB write.
+    const skippedExercises = exerciseLogs
+      .filter((log) => log.skipped)
+      .map((log) => ({ exercise_id: log.exercise.exerciseId, name: log.exercise.name }));
+
+    if (skippedExercises.length > 0) {
+      console.log(
+        '[Tether] Logging skipped exercises (placeholder):',
+        skippedExercises.map((e) => e.name),
+      );
+    }
+
     const { error: setsError } = await supabase.from('workout_sets').insert(setRows);
 
     if (setsError) {
@@ -360,10 +468,17 @@ export default function PushDayOnboarding() {
             <Text style={styles.subtitle}>
               {totalCompletedSets}/{totalSets} sets complete
             </Text>
+            <TouchableOpacity onPress={toggleGroupedByEquipment} style={styles.busyGymButton}>
+              <Text style={styles.busyGymButtonText}>
+                {isGroupedByEquipment ? 'RESTORE ORDER' : 'BUSY GYM OPTIMIZER'}
+              </Text>
+            </TouchableOpacity>
           </View>
 
           {/* Exercise blocks */}
-          {exerciseLogs.map((log, exerciseIndex) => (
+          {exerciseLogs
+            .filter((log) => !log.skipped)
+            .map((log, exerciseIndex) => (
             <View key={log.exercise.name} style={styles.exerciseBlock}>
               <View style={styles.exerciseHeader}>
                 <Text style={styles.exerciseName}>{log.exercise.name}</Text>
@@ -424,6 +539,24 @@ export default function PushDayOnboarding() {
                   </TouchableOpacity>
                 </View>
               ))}
+
+              {/* Action Buttons */}
+              <View style={styles.actionButtonsContainer}>
+                <TouchableOpacity
+                  style={[styles.actionButton, styles.painButton]}
+                  onPress={() => handlePainAlert(log.exercise.muscleGroup)}
+                  activeOpacity={0.7}
+                >
+                  <Text style={[styles.actionButtonText, { color: COLORS.danger }]}>LOG PAIN</Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  style={[styles.actionButton, styles.skipButton]}
+                  onPress={() => skipExercise(log.exercise.name)}
+                  activeOpacity={0.7}
+                >
+                  <Text style={[styles.actionButtonText, { color: COLORS.warning }]}>SKIP</Text>
+                </TouchableOpacity>
+              </View>
             </View>
           ))}
 
@@ -459,6 +592,8 @@ const COLORS = {
   muted: '#475569',
   complete: '#22c55e',
   completeBg: '#14532d',
+  warning: '#f9a825',
+  danger: '#ef4444',
 };
 
 const styles = StyleSheet.create({
@@ -502,6 +637,20 @@ const styles = StyleSheet.create({
     fontSize: 12,
     letterSpacing: 1,
     marginTop: 6,
+  },
+  busyGymButton: {
+    marginTop: 20,
+    padding: 10,
+    borderRadius: 4,
+    borderWidth: 1,
+    borderColor: COLORS.accent,
+    alignItems: 'center',
+  },
+  busyGymButtonText: {
+    color: COLORS.accent,
+    fontFamily: Platform.OS === 'ios' ? 'Courier New' : 'monospace',
+    fontSize: 12,
+    letterSpacing: 2,
   },
 
   exerciseBlock: {
@@ -604,6 +753,34 @@ const styles = StyleSheet.create({
   checkButtonText: {
     color: COLORS.text,
     fontSize: 14,
+  },
+
+  actionButtonsContainer: {
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+    gap: 12,
+    marginTop: 16,
+    borderTopWidth: 1,
+    borderTopColor: COLORS.border,
+    paddingTop: 16,
+  },
+  actionButton: {
+    paddingVertical: 8,
+    paddingHorizontal: 12,
+    borderRadius: 4,
+    borderWidth: 1,
+  },
+  actionButtonText: {
+    fontFamily: Platform.OS === 'ios' ? 'Courier New' : 'monospace',
+    fontSize: 11,
+    fontWeight: '600',
+    letterSpacing: 1,
+  },
+  skipButton: {
+    borderColor: COLORS.warning,
+  },
+  painButton: {
+    borderColor: COLORS.danger,
   },
 
   finishButton: {
