@@ -9,35 +9,61 @@ type Props = {
 };
 
 export default function EntryGate({ onEnter }: Props) {
-  const [userId, setUserId] = useState<string | null>(null);
+  const [userId, setUserId]         = useState<string | null>(null);
+  const [authReady, setAuthReady]   = useState(false);
 
   useEffect(() => {
-    const resolveAuth = async () => {
-      const { data: sessionData } = await supabase.auth.getUser();
-
-      if (sessionData.user) {
-        setUserId(sessionData.user.id);
-        agentLog.architect(`Auth resolved. userId=${sessionData.user.id}`);
-        return;
+    // onAuthStateChange fires INITIAL_SESSION immediately on subscribe — handles restoration
+    // of existing anonymous sessions from localStorage without a network round-trip.
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
+      if (session?.user) {
+        setUserId(session.user.id);
+        if (event === 'INITIAL_SESSION') {
+          agentLog.architect(`Session restored. userId=${session.user.id}`);
+        } else if (event === 'SIGNED_IN') {
+          agentLog.architect(`Signed in. userId=${session.user.id}`);
+          if ((session.user as { is_anonymous?: boolean }).is_anonymous) {
+            agentLog.valkyrie(`Ghost operative online. Identity shielded. You're in the network.`);
+          }
+        }
+        setAuthReady(true);
+      } else if (event === 'SIGNED_OUT') {
+        setUserId(null);
+        setAuthReady(true);
       }
+      // INITIAL_SESSION with no session → boot() handles anonymous sign-in below
+    });
 
-      // No session — sign in anonymously for zero-friction entry (SOS users never hit a form)
+    const boot = async () => {
+      const { data: { session } } = await supabase.auth.getSession();
+      if (session?.user) return; // onAuthStateChange already resolved it
+
+      // Genuinely no session — zero-friction anonymous sign-in for SOS users
       agentLog.architect(`No active session. Initiating anonymous sign-in.`);
-      const { data: anonData, error } = await supabase.auth.signInAnonymously();
+      const { data, error } = await supabase.auth.signInAnonymously();
 
-      if (anonData.user) {
-        setUserId(anonData.user.id);
-        agentLog.architect(`Anonymous session created. userId=${anonData.user.id}`);
-        agentLog.valkyrie(`Ghost operative online. Identity shielded. You're in the network.`);
-      } else {
-        agentLog.architect(`Anonymous sign-in failed: ${error?.message ?? 'unknown error'}. Proceeding without Supabase.`);
+      if (!data.user) {
+        // Auth completely unavailable — proceed untracked (Bitch-Weight guard will flag this)
+        agentLog.architect(`Anonymous sign-in failed: ${error?.message ?? 'unknown error'}. Proceeding untracked.`);
+        setAuthReady(true);
       }
+      // On success: onAuthStateChange fires SIGNED_IN → sets userId + authReady
     };
 
-    resolveAuth();
+    boot();
+    return () => subscription.unsubscribe();
   }, []);
 
-  const { triggerCrisisMode, isLoading, profile } = useTetherState(userId);
+  const { triggerCrisisMode, isLoading, isUntracked, profile } = useTetherState(userId);
+
+  // B-000 KILL SWITCH — Feu Follet Charter compliance.
+  // Surfaces supabase.auth.signOut() to the user; wipes anonymous session and resets state.
+  const handleReset = async () => {
+    agentLog.architect(`Kill switch activated. Clearing anonymous session.`);
+    await supabase.auth.signOut();
+    setUserId(null);
+    agentLog.valkyrie(`Ghost offline. Session cleared. Identity released from network.`);
+  };
 
   const handleSOS = async () => {
     agentLog.architect(`SOS button activated.`);
@@ -51,6 +77,17 @@ export default function EntryGate({ onEnter }: Props) {
     agentLog.valkyrie(`${VALKYRIE_MANIFEST.title} approves. Full experience loading.`);
     onEnter('chill');
   };
+
+  // Hold gate until auth attempt resolves so userId is stable before useTetherState runs
+  if (!authReady) {
+    return (
+      <div className="w-full h-screen flex items-center justify-center bg-black font-mono">
+        <p className="text-[10px] tracking-[0.4em] uppercase text-slate-700 animate-pulse">
+          Initializing_Protocol...
+        </p>
+      </div>
+    );
+  }
 
   return (
     <div className="w-full h-screen flex overflow-hidden font-mono">
@@ -85,6 +122,11 @@ export default function EntryGate({ onEnter }: Props) {
           {profile && (
             <p className="mt-3 text-[10px] text-slate-700 text-center">
               handle: {profile.random_handle}
+            </p>
+          )}
+          {isUntracked && (
+            <p className="mt-3 text-[10px] text-yellow-800 text-center tracking-widest uppercase">
+              Untracked session — handle not registered
             </p>
           )}
         </div>
@@ -127,6 +169,18 @@ export default function EntryGate({ onEnter }: Props) {
           <p className="mt-4 text-[10px] text-slate-700 text-center tracking-widest uppercase">
             Tap above to activate crisis mode
           </p>
+
+          {/* B-000 KILL SWITCH — Feu Follet Charter compliance */}
+          <button
+            onClick={handleReset}
+            className="
+              mt-6 w-full text-[10px] tracking-[0.3em] uppercase
+              text-slate-800 hover:text-slate-500 transition-colors
+              py-2 text-center
+            "
+          >
+            Reset / Clear Session
+          </button>
         </div>
       </div>
 

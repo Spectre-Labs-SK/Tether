@@ -133,13 +133,13 @@ import EntryGate from './components/EntryGate';
 
 ## KNOWN GAPS / NEXT BUILD TARGETS
 
-1. `staticLevel` slider is captured but does nothing — wire to `distort` prop on `MeshDistortMaterial`
-2. `lucide-react` icons (Shield, Sparkles, Brain, Zap) imported but never rendered
-3. `App.css` is vestigial — safe to delete
-4. `TETHER_BUILD_JOURNAL.md` doesn't exist yet (referenced in AGENT.md)
-5. `DEPENDENCIES.docx` doesn't exist yet (referenced in AGENT.md)
-6. ShimmerCore is inline in App.tsx — extract as complexity grows
-7. Supabase Auth flow not yet configured — EntryGate uses `supabase.auth.getUser()` with graceful fallback
+1. **(From Audit)** Implement a user-accessible "kill switch" for the SOS/anonymous mode to fully comply with the Feu Follet Charter.
+2. `staticLevel` slider is captured but does nothing — wire to `distort` prop on `MeshDistortMaterial`.
+3. `lucide-react` icons (Shield, Sparkles, Brain, Zap) imported but never rendered.
+4. `App.css` is vestigial — safe to delete.
+5. `DEPENDENCIES.docx` doesn't exist yet (referenced in AGENT.md).
+6. ShimmerCore is inline in `App.tsx` — extract as complexity grows.
+7. Supabase Auth flow not yet configured — `EntryGate` uses `supabase.auth.getUser()` with graceful fallback.
 
 ---
 
