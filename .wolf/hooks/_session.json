@@ -1,0 +1,18 @@
+{
+  "session_id": "session-2026-04-22-0916",
+  "started": "2026-04-22T15:16:29.037Z",
+  "files_read": {
+    "/Users/cjsander/.claude/get-shit-done/references/questioning.md": {
+      "count": 1,
+      "tokens": 0,
+      "first_read": "2026-04-22T15:16:41.322Z"
+    }
+  },
+  "files_written": [],
+  "edit_counts": {},
+  "anatomy_hits": 0,
+  "anatomy_misses": 1,
+  "repeated_reads_warned": 0,
+  "cerebrum_warnings": 0,
+  "stop_count": 1
+}

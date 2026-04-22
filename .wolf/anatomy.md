@@ -1,7 +1,7 @@
 # anatomy.md
 
-> Auto-maintained by OpenWolf. Last scanned: 2026-04-22T14:09:09.632Z
-> Files: 46 tracked | Anatomy hits: 0 | Misses: 0
+> Auto-maintained by OpenWolf. Last scanned: 2026-04-22T15:13:56.106Z
+> Files: 53 tracked | Anatomy hits: 0 | Misses: 0
 
 ## ./
 
@@ -17,7 +17,7 @@
 - `package.json` — Node.js package manifest (~270 tok)
 - `README.md` — Project documentation (~607 tok)
 - `TETHER_BUILD_JOURNAL.md` — TETHER BUILD JOURNAL (~2732 tok)
-- `tsconfig.app.json` (~177 tok)
+- `tsconfig.app.json` (~185 tok)
 - `tsconfig.json` — TypeScript configuration (~34 tok)
 - `tsconfig.node.json` (~169 tok)
 - `vite.config.ts` — Vite build configuration (~72 tok)
@@ -39,11 +39,21 @@
 
 - `git-sentinel.yml` — CI: Git Sentinel Audit (Free Tier) (~230 tok)
 
+## .planning/codebase/
+
+- `ARCHITECTURE.md` — Architecture (~2615 tok)
+- `CONCERNS.md` — Codebase Concerns (~4145 tok)
+- `CONVENTIONS.md` — Coding Conventions (~2212 tok)
+- `INTEGRATIONS.md` — External Integrations (~1213 tok)
+- `STACK.md` — Technology Stack (~987 tok)
+- `STRUCTURE.md` — Codebase Structure (~2794 tok)
+- `TESTING.md` — Testing Patterns (~1501 tok)
+
 ## src/
 
 - `# SPECTRE LABS: AGENT PROTOCOLS.md` — SPECTRE LABS: AGENT PROTOCOLS (~1100 tok)
 - `App.css` — Styles: 8 rules, 6 media queries (~826 tok)
-- `App.tsx` — ShimmerCore — renders chart — uses useState (~1183 tok)
+- `App.tsx` — ShimmerCore (~1274 tok)
 - `index.css` — Styles: 2 rules (~119 tok)
 - `main.tsx` (~66 tok)
 
@@ -55,7 +65,7 @@
 ## src/hooks/
 
 - `useJointOps.ts` — Exports JointOpsReturn, useJointOps (~2394 tok)
-- `useTetherState.ts` — Exports UIConfig, BitchWeightFlag, TrickyCardioGate, TetherStateReturn, useTetherState (~2849 tok)
+- `useTetherState.ts` — Exports UIConfig, BitchWeightFlag, TrickyCardioGate, TetherStateReturn, useTetherState (~3066 tok)
 
 ## src/lib/
 
@@ -64,11 +74,11 @@
 
 ## src/native/screens/
 
-- `FitnessOnboardingGrid.tsx` — Assuming a root stack navigator setup (~1680 tok)
+- `FitnessOnboardingGrid.tsx` — Assuming a root stack navigator setup (~1706 tok)
 - `HubSession.tsx` — COLORS — uses useState, useEffect (~989 tok)
 - `manifest.ts` — Exports Domain, Activity, IRON_ACTIVITIES, RoadActivityType + 8 more (~1106 tok)
 - `MatSession.tsx` — Define a simple yoga flow manifest locally. (~1328 tok)
-- `PushDayOnboarding.tsx` — SPECTRE LABS — TETHER MOBILE (~7056 tok)
+- `PushDayOnboarding.tsx` — SPECTRE LABS — TETHER MOBILE (~7145 tok)
 - `RoadSession.tsx` — Assuming RootStackParamList is shared or defined here (~1574 tok)
 
 ## src/registry/valkyrie/

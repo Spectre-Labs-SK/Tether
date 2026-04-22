@@ -11,7 +11,11 @@
 ## Key Learnings
 
 - **Project:** tether
-- **Description:** This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+- **Description:** React Native (Expo) universal activity tracker with a Vite web shell — dual codebase in one repo.
+- **Architecture split:** `src/native/` is Expo/RN only — excluded from `tsconfig.app.json` via `"exclude": ["src/native"]`. The Vite web build never touches it; the native build needs its own tsconfig/metro config.
+- **shimmer_mode flow:** Driven via navigation params `FitnessOnboardingGrid → PushDayOnboarding({ shimmerMode })` → persisted in `workouts.shimmer_mode` on sync. Type: `ShimmerMode` from `src/registry/valkyrie/houses.ts`.
+- **useTetherState pattern:** All profile state mutations follow DB-first → then `setProfile(data)`. Never optimistic-update local state before Supabase confirms.
+- **staticLevel slider:** Controls `MeshDistortMaterial distort` prop on ShimmerCore. Range 0–100, passed as `staticLevel / 100`. Initial value 40 (matches original hardcoded 0.4).
 
 ## Do-Not-Repeat
 

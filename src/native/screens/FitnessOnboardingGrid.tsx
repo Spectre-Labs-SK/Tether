@@ -4,11 +4,12 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { useNavigation } from '@react-navigation/native';
 import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { DOMAINS, Domain, Activity } from '../../core/manifest';
+import type { ShimmerMode } from '../../registry/valkyrie/houses';
 
 // Assuming a root stack navigator setup
 export type RootStackParamList = {
   FitnessOnboardingGrid: undefined;
-  PushDayOnboarding: undefined; // From previous context
+  PushDayOnboarding: { shimmerMode?: ShimmerMode };
   RoadSession: { activityId: string };
   MatSession: { activityId: string };
   HubSession: undefined;
@@ -51,7 +52,7 @@ export default function FitnessOnboardingGrid() {
     switch (activity.domain) {
       case 'Iron':
         if (activity.id === 'push') {
-          navigation.navigate('PushDayOnboarding');
+          navigation.navigate('PushDayOnboarding', { shimmerMode: 'MILITARY' });
         } else {
           Alert.alert('Coming Soon', `${activity.name} workouts are under construction.`);
         }

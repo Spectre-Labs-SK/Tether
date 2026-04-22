@@ -20,8 +20,9 @@ import {
   Platform,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useRoute, RouteProp } from '@react-navigation/native';
 import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import type { ShimmerMode } from '../../registry/valkyrie/houses';
 import { supabase } from '../../lib/supabase';
 import { VALKYRIE_MANIFEST } from '../../registry/valkyrie/manifest';
 
@@ -63,11 +64,12 @@ export function calculate1RM(weightKg: number, reps: number): number {
 // ---------------------------------------------------------------------------
 
 export type RootStackParamList = {
-  PushDayOnboarding: undefined;
+  PushDayOnboarding: { shimmerMode?: ShimmerMode };
   WorkoutSummary: { workoutId: string };
 };
 
 type NavProp = NativeStackNavigationProp<RootStackParamList, 'PushDayOnboarding'>;
+type PushDayRouteProp = RouteProp<RootStackParamList, 'PushDayOnboarding'>;
 
 interface ExerciseConfig {
   name: string;
@@ -147,6 +149,8 @@ function buildEmptySets(targetSets: number): SetEntry[] {
 
 export default function PushDayOnboarding() {
   const navigation = useNavigation<NavProp>();
+  const route = useRoute<PushDayRouteProp>();
+  const shimmerMode: ShimmerMode = route.params?.shimmerMode ?? 'MILITARY';
 
   const [exerciseLogs, setExerciseLogs] = useState<ExerciseLog[]>([]);
   const [originalOrderLogs, setOriginalOrderLogs] = useState<ExerciseLog[]>([]);
@@ -374,7 +378,7 @@ export default function PushDayOnboarding() {
       .insert({
         profile_id: user.id,
         name: 'Push Day',
-        shimmer_mode: 'MILITARY',
+        shimmer_mode: shimmerMode,
         started_at: workoutStartedAt,
         finished_at: new Date().toISOString(),
       })
@@ -463,7 +467,7 @@ export default function PushDayOnboarding() {
         >
           {/* Header */}
           <View style={styles.header}>
-            <Text style={styles.modeTag}>MILITARY MODE</Text>
+            <Text style={styles.modeTag}>{shimmerMode} MODE</Text>
             <Text style={styles.title}>PUSH DAY</Text>
             <Text style={styles.subtitle}>
               {totalCompletedSets}/{totalSets} sets complete

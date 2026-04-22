@@ -6,14 +6,14 @@ import EntryGate from './components/EntryGate';
 
 type AppMode = 'gate' | 'chill' | 'sos';
 
-const ShimmerCore = ({ mode }: { mode: 'MILITARY' | 'ETHER' }) => (
+const ShimmerCore = ({ mode, distort }: { mode: 'MILITARY' | 'ETHER'; distort: number }) => (
   <group>
     <Float speed={2} rotationIntensity={0.5} floatIntensity={1}>
       <mesh scale={1.5}>
         <sphereGeometry args={[1, 64, 64]} />
         <MeshDistortMaterial
           color={mode === 'MILITARY' ? '#1e293b' : '#6d28d9'}
-          distort={0.4}
+          distort={distort}
           speed={2}
           metalness={0.8}
         />
@@ -25,6 +25,7 @@ const ShimmerCore = ({ mode }: { mode: 'MILITARY' | 'ETHER' }) => (
 function WarRoom() {
   const [mode, setMode] = useState<'MILITARY' | 'ETHER'>('MILITARY');
   const [isCalibrated, setIsCalibrated] = useState(false);
+  const [staticLevel, setStaticLevel] = useState(40);
 
   return (
     <div className="w-full h-screen bg-black overflow-hidden text-white">
@@ -35,7 +36,14 @@ function WarRoom() {
             <h1 className="text-xl font-black mb-8 tracking-widest uppercase italic">Synapse_Calibration</h1>
             <p className="text-[10px] mb-10 text-emerald-800 font-bold uppercase italic tracking-tighter">Bunker_B12 // Reality_Sync_Required</p>
             <div className="space-y-10">
-              <input type="range" className="w-full accent-emerald-500" />
+              <input
+                type="range"
+                min={0}
+                max={100}
+                value={staticLevel}
+                onChange={(e) => setStaticLevel(Number(e.target.value))}
+                className="w-full accent-emerald-500"
+              />
               <button
                 onClick={() => setIsCalibrated(true)}
                 className="w-full bg-emerald-500 text-black font-black py-5 uppercase tracking-[0.4em] text-xs"
@@ -52,7 +60,7 @@ function WarRoom() {
               <ambientLight intensity={1} />
               <pointLight position={[10, 10, 10]} />
               <Suspense fallback={null}>
-                <ShimmerCore mode={mode} />
+                <ShimmerCore mode={mode} distort={staticLevel / 100} />
               </Suspense>
             </Canvas>
           </div>

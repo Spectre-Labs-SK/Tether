@@ -30,6 +30,8 @@ export type TetherStateReturn = {
   isUntracked: boolean;
   triggerCrisisMode: () => Promise<void>;
   exitCrisisMode: () => Promise<void>;
+  // completeOnboarding: DB write first, then local state — prevents UI advancing before persistence confirmed
+  completeOnboarding: () => Promise<void>;
   // bitchweights: flags any exercise where 1RM delta < 2% over 6 weeks → force AMRAP
   bitchweights: () => Promise<BitchWeightFlag[]>;
   // trickycardio: gates lifting until >= 5 min at >= 120 bpm within the last 45 min
@@ -154,6 +156,25 @@ export function useTetherState(userId: string | null): TetherStateReturn {
     }
   };
 
+  const completeOnboarding = async () => {
+    if (!userId || !profile) return;
+    agentLog.architect(`Completing onboarding for ${profile.random_handle}`);
+
+    const { data, error } = await supabase
+      .from('profiles')
+      .update({ onboarding_pending: false })
+      .eq('id', userId)
+      .select()
+      .single();
+
+    if (!error && data) {
+      setProfile(data);
+      agentLog.valkyrie(`Onboarding complete. Full protocol active. The Queen sees your commitment.`);
+    } else {
+      agentLog.architect(`ERROR completing onboarding: ${error?.message}`);
+    }
+  };
+
   // Scans one_rm_history for exercises where progress < 2% over the past 6 weeks.
   // Those exercises are flagged force_amrap: true — prescribed sets become AMRAP.
   const bitchweights = useCallback(async (): Promise<BitchWeightFlag[]> => {
@@ -257,5 +278,5 @@ export function useTetherState(userId: string | null): TetherStateReturn {
     return { liftingGated: !cleared, minutesAtThreshold, requiredMinutes: REQUIRED_CARDIO_MINUTES, thresholdBpm: CARDIO_THRESHOLD_BPM };
   }, [userId]);
 
-  return { profile, uiConfig, isLoading, isUntracked, triggerCrisisMode, exitCrisisMode, bitchweights, trickycardio };
+  return { profile, uiConfig, isLoading, isUntracked, triggerCrisisMode, exitCrisisMode, completeOnboarding, bitchweights, trickycardio };
 }
