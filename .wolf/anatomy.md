@@ -1,7 +1,7 @@
 # anatomy.md
 
-> Auto-maintained by OpenWolf. Last scanned: 2026-04-22T15:13:56.106Z
-> Files: 53 tracked | Anatomy hits: 0 | Misses: 0
+> Auto-maintained by OpenWolf. Last scanned: 2026-04-22T19:27:55.125Z
+> Files: 60 tracked | Anatomy hits: 0 | Misses: 0
 
 ## ./
 
@@ -33,38 +33,50 @@
 
 ## .claude/skills/paperclip/
 
-- `SKILL.md` — Paperclip â 8M+ Biomedical Papers (~2902 tok)
+- `SKILL.md` — Paperclip â 8M+ Biomedical Papers (~2902 tok)
 
 ## .github/workflows/
 
 - `git-sentinel.yml` — CI: Git Sentinel Audit (Free Tier) (~230 tok)
 
+## .planning/
+
+- `config.json` (~122 tok)
+
 ## .planning/codebase/
 
-- `ARCHITECTURE.md` — Architecture (~2615 tok)
-- `CONCERNS.md` — Codebase Concerns (~4145 tok)
-- `CONVENTIONS.md` — Coding Conventions (~2212 tok)
-- `INTEGRATIONS.md` — External Integrations (~1213 tok)
-- `STACK.md` — Technology Stack (~987 tok)
-- `STRUCTURE.md` — Codebase Structure (~2794 tok)
-- `TESTING.md` — Testing Patterns (~1501 tok)
+- `ARCHITECTURE.md` — Architecture (~860 tok)
+- `CONCERNS.md` — Technical Concerns (~1216 tok)
+- `CONVENTIONS.md` — Conventions (~716 tok)
+- `INTEGRATIONS.md` — Integrations (~622 tok)
+- `STACK.md` — Tech Stack (~400 tok)
+- `STRUCTURE.md` — File Structure (~1152 tok)
+- `TESTING.md` — Testing (~446 tok)
+
+## .planning/phases/01-pattern-observer-threejs/
+
+- `01-01-PLAN.md` — Wave 1: Create src/stores/patternStore.ts (Zustand ShimmerTarget store) + rewrite src/components/ShimmerCore.tsx as canonical zero-prop store-driven component with useFrame lerp (~2872 tok)
+- `01-02-PLAN.md` — Wave 2: Create src/hooks/usePatternObserver.ts (nine-state signal-to-ShimmerTarget mapping) + rewire src/App.tsx (delete inline ShimmerCore, remove staticLevel slider, thread appMode, mount observer) (~4475 tok)
+- `01-03-PLAN.md` — Wave 3: npm install zustand@5.0.12 + npm run lint + npm run build validation (~1652 tok)
+- `01-RESEARCH.md` — Phase 01: PatternObserver + Three.js State Mirroring — Research (~6923 tok)
 
 ## src/
 
 - `# SPECTRE LABS: AGENT PROTOCOLS.md` — SPECTRE LABS: AGENT PROTOCOLS (~1100 tok)
 - `App.css` — Styles: 8 rules, 6 media queries (~826 tok)
-- `App.tsx` — ShimmerCore (~1274 tok)
+- `App.tsx` — ShimmerCore; PENDING REWRITE in 01-02: inline ShimmerCore deleted, staticLevel removed, appMode threaded to WarRoom+SOSShell, usePatternObserver mounted (~1274 tok)
 - `index.css` — Styles: 2 rules (~119 tok)
 - `main.tsx` (~66 tok)
 
 ## src/components/
 
 - `EntryGate.tsx` — EntryGate — renders chart — uses useState, useEffect (~2048 tok)
-- `ShimmerCore.tsx` — ShimmerCore (~211 tok)
+- `ShimmerCore.tsx` — PENDING REWRITE in 01-01: becomes canonical zero-prop store-driven sphere; reads usePatternStore in useFrame; exports function ShimmerCore() with no parameters (~211 tok now, ~600 tok after rewrite)
 
 ## src/hooks/
 
 - `useJointOps.ts` — Exports JointOpsReturn, useJointOps (~2394 tok)
+- `usePatternObserver.ts` — [TO BE CREATED in 01-02] Exports PatternSignals type, usePatternObserver hook — maps 9 app signals (appMode, shimmerMode, isCrisisMode, selectedDomain, liftingGated, bitchweightCount) to ShimmerTarget via Zustand setTarget (~400 tok)
 - `useTetherState.ts` — Exports UIConfig, BitchWeightFlag, TrickyCardioGate, TetherStateReturn, useTetherState (~3066 tok)
 
 ## src/lib/
@@ -85,6 +97,10 @@
 
 - `houses.ts` — Exports RoninHouseId, RoninTier, ShimmerMode, RoninHouseColors + 3 more (~385 tok)
 - `manifest.ts` — Exports ValkyriePart, MovementType, EquipmentType, ValkyrieExercise, VALKYRIE_MANIFEST (~591 tok)
+
+## src/stores/
+
+- `patternStore.ts` — [TO BE CREATED in 01-01] Exports ShimmerTarget (type), DEFAULTS (const), usePatternStore (Zustand store) — Zustand bridge between React state and Three.js render loop; DEFAULTS = gate/idle state (#1e293b, distort 0.15, metalness 0.9) (~300 tok)
 
 ## supabase/functions/calculate-1rm/
 
