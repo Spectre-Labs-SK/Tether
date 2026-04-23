@@ -1,1 +1,4 @@
-"Before every task, read CONTEXT_MAP.md and SESSION_STATE.json. After every task, update SESSION_STATE.json with your last command and SKILLS.md if you performed a repetitive procedure."
+All work must follow the GSD workflow (RESEARCH -> SPEC -> PLAN -> EXECUTE -> VERIFY).
+Before starting: Read CONTEXT_MAP.md and SESSION_STATE.json.
+After finishing: Update CLAUD.md and the 8-file master manifest.
+Priority: BUG FIXES > APK Stability > Features.
