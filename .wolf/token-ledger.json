@@ -2,14 +2,14 @@
   "version": 1,
   "created_at": "2026-04-22T14:09:09.590Z",
   "lifetime": {
-    "total_tokens_estimated": 263469,
-    "total_reads": 185,
-    "total_writes": 134,
-    "total_sessions": 2,
-    "anatomy_hits": 160,
-    "anatomy_misses": 25,
-    "repeated_reads_blocked": 213,
-    "estimated_savings_vs_bare_cli": 501615
+    "total_tokens_estimated": 428686,
+    "total_reads": 249,
+    "total_writes": 164,
+    "total_sessions": 5,
+    "anatomy_hits": 218,
+    "anatomy_misses": 31,
+    "repeated_reads_blocked": 244,
+    "estimated_savings_vs_bare_cli": 565624
   },
   "sessions": [
     {
@@ -1941,6 +1941,591 @@
         "writes_count": 0,
         "repeated_reads_blocked": 0,
         "anatomy_lookups": 0
+      }
+    },
+    {
+      "id": "session-2026-04-22-1222",
+      "started": "2026-04-22T18:22:14.289Z",
+      "ended": "2026-04-22T19:16:00.602Z",
+      "reads": [
+        {
+          "file": "/Users/cjsander/Spectre_Labs/Tether/package.json",
+          "tokens_estimated": 270,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/cjsander/Spectre_Labs/Tether/vite.config.ts",
+          "tokens_estimated": 72,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/cjsander/Spectre_Labs/Tether/src/App.tsx",
+          "tokens_estimated": 1274,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/cjsander/Spectre_Labs/Tether/src/lib/supabase.ts",
+          "tokens_estimated": 582,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/cjsander/Spectre_Labs/Tether/src/hooks/useTetherState.ts",
+          "tokens_estimated": 3066,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/cjsander/Spectre_Labs/Tether/src/hooks/useJointOps.ts",
+          "tokens_estimated": 2394,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/cjsander/Spectre_Labs/Tether/src/native/screens/manifest.ts",
+          "tokens_estimated": 1106,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/cjsander/Spectre_Labs/Tether/src/components/EntryGate.tsx",
+          "tokens_estimated": 2048,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/cjsander/Spectre_Labs/Tether/src/native/screens/PushDayOnboarding.tsx",
+          "tokens_estimated": 7145,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/cjsander/Spectre_Labs/Tether/src/registry/valkyrie/houses.ts",
+          "tokens_estimated": 385,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/cjsander/Spectre_Labs/Tether/.planning/codebase/STACK.md",
+          "tokens_estimated": 987,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/cjsander/Spectre_Labs/Tether/.planning/codebase/INTEGRATIONS.md",
+          "tokens_estimated": 1213,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/cjsander/Spectre_Labs/Tether/.planning/codebase/ARCHITECTURE.md",
+          "tokens_estimated": 2615,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/cjsander/Spectre_Labs/Tether/.planning/codebase/STRUCTURE.md",
+          "tokens_estimated": 2794,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/cjsander/Spectre_Labs/Tether/.planning/codebase/CONVENTIONS.md",
+          "tokens_estimated": 2212,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/cjsander/Spectre_Labs/Tether/.planning/codebase/TESTING.md",
+          "tokens_estimated": 1501,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/cjsander/Spectre_Labs/Tether/.planning/codebase/CONCERNS.md",
+          "tokens_estimated": 4145,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        }
+      ],
+      "writes": [
+        {
+          "file": "/Users/cjsander/Spectre_Labs/Tether/.planning/codebase/STACK.md",
+          "tokens_estimated": 457,
+          "action": "create"
+        },
+        {
+          "file": "/Users/cjsander/Spectre_Labs/Tether/.planning/codebase/INTEGRATIONS.md",
+          "tokens_estimated": 711,
+          "action": "create"
+        },
+        {
+          "file": "/Users/cjsander/Spectre_Labs/Tether/.planning/codebase/ARCHITECTURE.md",
+          "tokens_estimated": 983,
+          "action": "create"
+        },
+        {
+          "file": "/Users/cjsander/Spectre_Labs/Tether/.planning/codebase/STRUCTURE.md",
+          "tokens_estimated": 1317,
+          "action": "create"
+        },
+        {
+          "file": "/Users/cjsander/Spectre_Labs/Tether/.planning/codebase/CONVENTIONS.md",
+          "tokens_estimated": 819,
+          "action": "create"
+        },
+        {
+          "file": "/Users/cjsander/Spectre_Labs/Tether/.planning/codebase/TESTING.md",
+          "tokens_estimated": 510,
+          "action": "create"
+        },
+        {
+          "file": "/Users/cjsander/Spectre_Labs/Tether/.planning/codebase/CONCERNS.md",
+          "tokens_estimated": 1390,
+          "action": "create"
+        }
+      ],
+      "totals": {
+        "input_tokens_estimated": 33809,
+        "output_tokens_estimated": 6187,
+        "reads_count": 17,
+        "writes_count": 7,
+        "repeated_reads_blocked": 1,
+        "anatomy_lookups": 17
+      }
+    },
+    {
+      "id": "session-2026-04-22-1222",
+      "started": "2026-04-22T18:22:14.289Z",
+      "ended": "2026-04-22T19:17:21.740Z",
+      "reads": [
+        {
+          "file": "/Users/cjsander/Spectre_Labs/Tether/package.json",
+          "tokens_estimated": 270,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/cjsander/Spectre_Labs/Tether/vite.config.ts",
+          "tokens_estimated": 72,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/cjsander/Spectre_Labs/Tether/src/App.tsx",
+          "tokens_estimated": 1274,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/cjsander/Spectre_Labs/Tether/src/lib/supabase.ts",
+          "tokens_estimated": 582,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/cjsander/Spectre_Labs/Tether/src/hooks/useTetherState.ts",
+          "tokens_estimated": 3066,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/cjsander/Spectre_Labs/Tether/src/hooks/useJointOps.ts",
+          "tokens_estimated": 2394,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/cjsander/Spectre_Labs/Tether/src/native/screens/manifest.ts",
+          "tokens_estimated": 1106,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/cjsander/Spectre_Labs/Tether/src/components/EntryGate.tsx",
+          "tokens_estimated": 2048,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/cjsander/Spectre_Labs/Tether/src/native/screens/PushDayOnboarding.tsx",
+          "tokens_estimated": 7145,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/cjsander/Spectre_Labs/Tether/src/registry/valkyrie/houses.ts",
+          "tokens_estimated": 385,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/cjsander/Spectre_Labs/Tether/.planning/codebase/STACK.md",
+          "tokens_estimated": 987,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/cjsander/Spectre_Labs/Tether/.planning/codebase/INTEGRATIONS.md",
+          "tokens_estimated": 1213,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/cjsander/Spectre_Labs/Tether/.planning/codebase/ARCHITECTURE.md",
+          "tokens_estimated": 2615,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/cjsander/Spectre_Labs/Tether/.planning/codebase/STRUCTURE.md",
+          "tokens_estimated": 2794,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/cjsander/Spectre_Labs/Tether/.planning/codebase/CONVENTIONS.md",
+          "tokens_estimated": 2212,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/cjsander/Spectre_Labs/Tether/.planning/codebase/TESTING.md",
+          "tokens_estimated": 1501,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/cjsander/Spectre_Labs/Tether/.planning/codebase/CONCERNS.md",
+          "tokens_estimated": 4145,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/cjsander/.claude/get-shit-done/workflows/new-project.md",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/cjsander/.claude/get-shit-done/references/questioning.md",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        }
+      ],
+      "writes": [
+        {
+          "file": "/Users/cjsander/Spectre_Labs/Tether/.planning/codebase/STACK.md",
+          "tokens_estimated": 457,
+          "action": "create"
+        },
+        {
+          "file": "/Users/cjsander/Spectre_Labs/Tether/.planning/codebase/INTEGRATIONS.md",
+          "tokens_estimated": 711,
+          "action": "create"
+        },
+        {
+          "file": "/Users/cjsander/Spectre_Labs/Tether/.planning/codebase/ARCHITECTURE.md",
+          "tokens_estimated": 983,
+          "action": "create"
+        },
+        {
+          "file": "/Users/cjsander/Spectre_Labs/Tether/.planning/codebase/STRUCTURE.md",
+          "tokens_estimated": 1317,
+          "action": "create"
+        },
+        {
+          "file": "/Users/cjsander/Spectre_Labs/Tether/.planning/codebase/CONVENTIONS.md",
+          "tokens_estimated": 819,
+          "action": "create"
+        },
+        {
+          "file": "/Users/cjsander/Spectre_Labs/Tether/.planning/codebase/TESTING.md",
+          "tokens_estimated": 510,
+          "action": "create"
+        },
+        {
+          "file": "/Users/cjsander/Spectre_Labs/Tether/.planning/codebase/CONCERNS.md",
+          "tokens_estimated": 1390,
+          "action": "create"
+        }
+      ],
+      "totals": {
+        "input_tokens_estimated": 33809,
+        "output_tokens_estimated": 6187,
+        "reads_count": 19,
+        "writes_count": 7,
+        "repeated_reads_blocked": 1,
+        "anatomy_lookups": 17
+      }
+    },
+    {
+      "id": "session-2026-04-22-1222",
+      "started": "2026-04-22T18:22:14.289Z",
+      "ended": "2026-04-22T19:38:26.276Z",
+      "reads": [
+        {
+          "file": "/Users/cjsander/Spectre_Labs/Tether/package.json",
+          "tokens_estimated": 270,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/cjsander/Spectre_Labs/Tether/vite.config.ts",
+          "tokens_estimated": 72,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/cjsander/Spectre_Labs/Tether/src/App.tsx",
+          "tokens_estimated": 1274,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/cjsander/Spectre_Labs/Tether/src/lib/supabase.ts",
+          "tokens_estimated": 582,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/cjsander/Spectre_Labs/Tether/src/hooks/useTetherState.ts",
+          "tokens_estimated": 3066,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/cjsander/Spectre_Labs/Tether/src/hooks/useJointOps.ts",
+          "tokens_estimated": 2394,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/cjsander/Spectre_Labs/Tether/src/native/screens/manifest.ts",
+          "tokens_estimated": 1106,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/cjsander/Spectre_Labs/Tether/src/components/EntryGate.tsx",
+          "tokens_estimated": 2048,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/cjsander/Spectre_Labs/Tether/src/native/screens/PushDayOnboarding.tsx",
+          "tokens_estimated": 7145,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/cjsander/Spectre_Labs/Tether/src/registry/valkyrie/houses.ts",
+          "tokens_estimated": 385,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/cjsander/Spectre_Labs/Tether/.planning/codebase/STACK.md",
+          "tokens_estimated": 400,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/cjsander/Spectre_Labs/Tether/.planning/codebase/INTEGRATIONS.md",
+          "tokens_estimated": 1213,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/cjsander/Spectre_Labs/Tether/.planning/codebase/ARCHITECTURE.md",
+          "tokens_estimated": 860,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/cjsander/Spectre_Labs/Tether/.planning/codebase/STRUCTURE.md",
+          "tokens_estimated": 2794,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/cjsander/Spectre_Labs/Tether/.planning/codebase/CONVENTIONS.md",
+          "tokens_estimated": 716,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/cjsander/Spectre_Labs/Tether/.planning/codebase/TESTING.md",
+          "tokens_estimated": 1501,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/cjsander/Spectre_Labs/Tether/.planning/codebase/CONCERNS.md",
+          "tokens_estimated": 1216,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/cjsander/.claude/get-shit-done/workflows/new-project.md",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/cjsander/.claude/get-shit-done/references/questioning.md",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/cjsander/.claude/get-shit-done/workflows/plan-phase.md",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/cjsander/Spectre_Labs/Tether/src/components/ShimmerCore.tsx",
+          "tokens_estimated": 0,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/cjsander/Spectre_Labs/Tether/.planning/config.json",
+          "tokens_estimated": 122,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/cjsander/Spectre_Labs/Tether/.planning/phases/01-pattern-observer-threejs/01-RESEARCH.md",
+          "tokens_estimated": 6923,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/cjsander/.claude/get-shit-done/references/gates.md",
+          "tokens_estimated": 0,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/cjsander/Spectre_Labs/Tether/.planning/phases/01-pattern-observer-threejs/01-01-PLAN.md",
+          "tokens_estimated": 3047,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/cjsander/Spectre_Labs/Tether/.planning/phases/01-pattern-observer-threejs/01-02-PLAN.md",
+          "tokens_estimated": 5248,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/cjsander/Spectre_Labs/Tether/.planning/phases/01-pattern-observer-threejs/01-03-PLAN.md",
+          "tokens_estimated": 2422,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "/Users/cjsander/Spectre_Labs/Tether/.planning/phases/01-pattern-observer-threejs/01-REQUIREMENTS.md",
+          "tokens_estimated": 1711,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        }
+      ],
+      "writes": [
+        {
+          "file": "/Users/cjsander/Spectre_Labs/Tether/.planning/codebase/STACK.md",
+          "tokens_estimated": 457,
+          "action": "create"
+        },
+        {
+          "file": "/Users/cjsander/Spectre_Labs/Tether/.planning/codebase/INTEGRATIONS.md",
+          "tokens_estimated": 711,
+          "action": "create"
+        },
+        {
+          "file": "/Users/cjsander/Spectre_Labs/Tether/.planning/codebase/ARCHITECTURE.md",
+          "tokens_estimated": 983,
+          "action": "create"
+        },
+        {
+          "file": "/Users/cjsander/Spectre_Labs/Tether/.planning/codebase/STRUCTURE.md",
+          "tokens_estimated": 1317,
+          "action": "create"
+        },
+        {
+          "file": "/Users/cjsander/Spectre_Labs/Tether/.planning/codebase/CONVENTIONS.md",
+          "tokens_estimated": 819,
+          "action": "create"
+        },
+        {
+          "file": "/Users/cjsander/Spectre_Labs/Tether/.planning/codebase/TESTING.md",
+          "tokens_estimated": 510,
+          "action": "create"
+        },
+        {
+          "file": "/Users/cjsander/Spectre_Labs/Tether/.planning/codebase/CONCERNS.md",
+          "tokens_estimated": 1390,
+          "action": "create"
+        },
+        {
+          "file": "/Users/cjsander/Spectre_Labs/Tether/.planning/config.json",
+          "tokens_estimated": 122,
+          "action": "create"
+        },
+        {
+          "file": "/Users/cjsander/Spectre_Labs/Tether/.planning/phases/01-pattern-observer-threejs/01-RESEARCH.md",
+          "tokens_estimated": 7912,
+          "action": "create"
+        },
+        {
+          "file": "/Users/cjsander/Spectre_Labs/Tether/.planning/phases/01-pattern-observer-threejs/01-01-PLAN.md",
+          "tokens_estimated": 3283,
+          "action": "create"
+        },
+        {
+          "file": "/Users/cjsander/Spectre_Labs/Tether/.planning/phases/01-pattern-observer-threejs/01-02-PLAN.md",
+          "tokens_estimated": 5114,
+          "action": "create"
+        },
+        {
+          "file": "/Users/cjsander/Spectre_Labs/Tether/.planning/phases/01-pattern-observer-threejs/01-03-PLAN.md",
+          "tokens_estimated": 1888,
+          "action": "create"
+        },
+        {
+          "file": "/Users/cjsander/Spectre_Labs/Tether/.planning/phases/01-pattern-observer-threejs/01-REQUIREMENTS.md",
+          "tokens_estimated": 1956,
+          "action": "create"
+        },
+        {
+          "file": "/Users/cjsander/Spectre_Labs/Tether/.planning/phases/01-pattern-observer-threejs/01-01-PLAN.md",
+          "tokens_estimated": 3482,
+          "action": "create"
+        },
+        {
+          "file": "/Users/cjsander/Spectre_Labs/Tether/.planning/phases/01-pattern-observer-threejs/01-02-PLAN.md",
+          "tokens_estimated": 5998,
+          "action": "create"
+        },
+        {
+          "file": "/Users/cjsander/Spectre_Labs/Tether/.planning/phases/01-pattern-observer-threejs/01-03-PLAN.md",
+          "tokens_estimated": 2768,
+          "action": "create"
+        }
+      ],
+      "totals": {
+        "input_tokens_estimated": 46515,
+        "output_tokens_estimated": 38710,
+        "reads_count": 28,
+        "writes_count": 16,
+        "repeated_reads_blocked": 29,
+        "anatomy_lookups": 24
       }
     }
   ],

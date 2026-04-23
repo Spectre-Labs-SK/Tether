@@ -1,115 +1,66 @@
-# External Integrations
+# Integrations
 
-**Analysis Date:** 2026-04-22
+## External Services
 
-## APIs & External Services
+### Supabase (Primary BaaS)
+- **Role**: Auth, PostgreSQL database, Edge Functions
+- **Client**: `@supabase/supabase-js` v2.104.0
+- **Initialized in**: `src/lib/supabase.ts`
+- **Auth mode**: Anonymous sign-in (`signInAnonymously()`) — zero-friction SOS flow; sessions persist via localStorage
+- **Auth state management**: `supabase.auth.onAuthStateChange` + `supabase.auth.getSession()` in `EntryGate.tsx`
 
-**Backend-as-a-Service:**
-- Supabase - Primary backend; handles database, auth, Edge Functions, and Row Level Security
-  - SDK/Client: `@supabase/supabase-js` ^2.104.0
-  - Client init: `src/lib/supabase.ts` — `createClient(supabaseUrl, supabaseAnonKey)`
-  - Auth env var: `VITE_SUPABASE_ANON_KEY`
-  - URL env var: `VITE_SUPABASE_URL`
+### Supabase Edge Functions
+Two deployed functions under `supabase/functions/`:
 
-## Data Storage
+| Function | Path | Purpose |
+|---|---|---|
+| calculate-1rm | supabase/functions/calculate-1rm/ | Server-side 1RM calculation |
+| sync-workout | supabase/functions/sync-workout/ | Workout session persistence |
 
-**Databases:**
-- PostgreSQL via Supabase (managed)
-  - Connection: `VITE_SUPABASE_URL` (client) / `SUPABASE_URL` (Edge Functions)
-  - Client: `@supabase/supabase-js` (no ORM — direct table queries via `.from().select()` pattern)
-  - Schema managed via versioned migrations in `supabase/migrations/`
+## Auth
 
-**Schema overview (4 migrations):**
+- **Provider**: Supabase Anonymous Auth
+- **Flow**: Boot → check session → if none, `signInAnonymously()` → SIGNED_IN event → userId resolved
+- **Kill switch**: `supabase.auth.signOut()` exposed as "Reset / Clear Session" in EntryGate (Feu Follet Charter compliance, labeled B-000)
+- **No OAuth, no email/password auth** configured yet
 
-| Migration | Tables |
-|-----------|--------|
-| `01_initial_schema.sql` | `profiles`, `life_sectors` |
-| `02_fitness_schema.sql` | `workouts`, `exercises`, `workout_sets`, `one_rm_history` |
-| `03_joint_ops_schema.sql` | `joint_ops`, `op_members`, `op_checkpoints` |
-| `04_hr_clash_schema.sql` | `hr_readings`, `op_hr_sync`; adds `clash_state` column to `joint_ops` |
+## Database Tables
 
-All tables use:
-- UUID primary keys via `gen_random_uuid()` (pgcrypto extension)
-- `updated_at` auto-update triggers (shared `update_updated_at()` function from migration 01)
-- Row Level Security (RLS) enforced on all tables
+Managed via SQL migrations in `supabase/migrations/`:
 
-**File Storage:**
-- Not configured — local/device storage only for native layer (no Supabase Storage buckets detected)
+| Table | Migration | Purpose |
+|---|---|---|
+| profiles | 01 | User profiles with random handle + crisis_mode flag |
+| life_sectors | 01 | Finance/health/work/groceries sector scores |
+| workouts | 02 | Workout session records |
+| exercises | 02 | Exercise definitions |
+| workout_sets | 02 | Individual set logs (weight, reps) |
+| one_rm_history | 02 | 1RM progression tracking |
+| joint_ops | 03 | Collaborative mission layer |
+| op_members | 03 | Op membership (commander/operative/observer) |
+| op_checkpoints | 03 | Op task list with priority/status |
+| hr_readings | 04 | Per-profile heart rate log |
+| op_hr_sync | 04 | Shared operative HR snapshots within a joint op |
 
-**Caching:**
-- None — no Redis, in-memory cache layer, or client-side persistence beyond React state
+## Environment Variables
 
-## Authentication & Identity
+| Variable | Used In | Status |
+|---|---|---|
+| VITE_SUPABASE_URL | src/lib/supabase.ts | **MISSING — no .env.local file** |
+| VITE_SUPABASE_ANON_KEY | src/lib/supabase.ts | **MISSING — no .env.local file** |
 
-**Auth Provider:**
-- Supabase Auth (built-in)
-  - Implementation: Anonymous sign-in (`supabase.auth.signInAnonymously()`) in `src/components/EntryGate.tsx`
-  - Session detection: `supabase.auth.getSession()` on mount
-  - Auth state listener: `supabase.auth.onAuthStateChange()` subscription in `EntryGate.tsx`
-  - Sign out: `supabase.auth.signOut()` exposed via kill-switch in `EntryGate.tsx`
-  - Native layer: `supabase.auth.getUser()` used in `src/native/screens/PushDayOnboarding.tsx` (line 367) to retrieve current user before syncing workout
+## SDK Initialization
 
-**Auth strategy:** Anonymous-first — users get a session immediately without registration. Profile row created in `profiles` table linked to `auth.uid()`. RLS policies use `auth.uid()` throughout.
+```ts
+// src/lib/supabase.ts
+import { createClient } from '@supabase/supabase-js';
+const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
+const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
+export const supabase = createClient(supabaseUrl, supabaseAnonKey);
+```
 
-**Kill switch:** `EntryGate.tsx` surfaces a sign-out call per the Feu Follet Charter requirement (anonymous session wipe + state reset).
+Client is imported directly in components/hooks — no provider pattern.
 
-## Supabase Edge Functions
+## Analytics / Monitoring
 
-**calculate-1rm:**
-- Location: `supabase/functions/calculate-1rm/index.ts`
-- Runtime: Deno (`deno.land/std@0.208.0`)
-- Endpoint: `POST /functions/v1/calculate-1rm`
-- Purpose: Stateless 1RM calculation (Epley, Brzycki, Lander formulas + consensus average)
-- Auth: None required (no RLS bypass)
-- Called from: Not yet invoked from client — logic mirrored inline in `sync-workout`
-
-**sync-workout:**
-- Location: `supabase/functions/sync-workout/index.ts`
-- Runtime: Deno (`deno.land/std@0.208.0`); imports Supabase client via `https://esm.sh/@supabase/supabase-js@2`
-- Endpoint: `POST /functions/v1/sync-workout`
-- Purpose: After workout session, aggregates completed sets, computes consensus 1RM, upserts `one_rm_history` only when a new personal record is set
-- Auth: Requires `Authorization: Bearer <token>` header; verifies workout ownership before any writes
-- Service role: Uses `SUPABASE_SERVICE_ROLE_KEY` to bypass RLS for aggregation reads (with explicit ownership guard)
-- Called from: `src/native/screens/PushDayOnboarding.tsx` via `supabase.functions.invoke('sync-workout', { body, headers })` (line 430)
-
-## Monitoring & Observability
-
-**Error Tracking:**
-- None — no Sentry, Datadog, or similar integration detected
-
-**Logs:**
-- Custom `agentLog` utility in `src/lib/agentLog.ts` — formats console output with `[Agent_Architect]` / `[Agent_Valkyrie]` prefixes for dev-time tracing
-- Used in: `src/hooks/useTetherState.ts`, `src/hooks/useJointOps.ts`, `src/components/EntryGate.tsx`
-
-## CI/CD & Deployment
-
-**Hosting:**
-- Not configured — no Vercel, Netlify, or deployment manifests detected
-
-**CI Pipeline:**
-- `.github/workflows/git-sentinel.yml` — Git Sentinel Audit (free tier); runs on GitHub Actions
-
-## Environment Configuration
-
-**Required env vars (web client):**
-- `VITE_SUPABASE_URL` — Supabase project URL
-- `VITE_SUPABASE_ANON_KEY` — Supabase anon/public key
-
-**Required env vars (Edge Functions — set automatically by Supabase platform):**
-- `SUPABASE_URL`
-- `SUPABASE_SERVICE_ROLE_KEY`
-
-**Secrets location:**
-- `.env.local` (not committed — not found in repo); no `.env.example` present
-
-## Webhooks & Callbacks
-
-**Incoming:**
-- None detected
-
-**Outgoing:**
-- None detected — `supabase.functions.invoke()` is a direct HTTP call from client, not a webhook
-
----
-
-*Integration audit: 2026-04-22*
+None configured.

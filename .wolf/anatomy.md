@@ -1,6 +1,6 @@
 # anatomy.md
 
-> Auto-maintained by OpenWolf. Last scanned: 2026-04-22T19:27:55.125Z
+> Auto-maintained by OpenWolf. Last scanned: 2026-04-22T19:36:28.896Z
 > Files: 60 tracked | Anatomy hits: 0 | Misses: 0
 
 ## ./
@@ -55,9 +55,10 @@
 
 ## .planning/phases/01-pattern-observer-threejs/
 
-- `01-01-PLAN.md` — Wave 1: Create src/stores/patternStore.ts (Zustand ShimmerTarget store) + rewrite src/components/ShimmerCore.tsx as canonical zero-prop store-driven component with useFrame lerp (~2872 tok)
-- `01-02-PLAN.md` — Wave 2: Create src/hooks/usePatternObserver.ts (nine-state signal-to-ShimmerTarget mapping) + rewire src/App.tsx (delete inline ShimmerCore, remove staticLevel slider, thread appMode, mount observer) (~4475 tok)
-- `01-03-PLAN.md` — Wave 3: npm install zustand@5.0.12 + npm run lint + npm run build validation (~1652 tok)
+- `01-01-PLAN.md` — Trust Boundaries (~3047 tok)
+- `01-02-PLAN.md` — stub: ShimmerCore, usePatternObserver (~5248 tok)
+- `01-03-PLAN.md` — State Management Exception: Zustand for R3F Bridge Pattern (~2422 tok)
+- `01-REQUIREMENTS.md` — Phase 01 — Pattern Observer & Three.js State Mirroring (~1711 tok)
 - `01-RESEARCH.md` — Phase 01: PatternObserver + Three.js State Mirroring — Research (~6923 tok)
 
 ## src/
@@ -71,7 +72,6 @@
 ## src/components/
 
 - `EntryGate.tsx` — EntryGate — renders chart — uses useState, useEffect (~2048 tok)
-- `ShimmerCore.tsx` — PENDING REWRITE in 01-01: becomes canonical zero-prop store-driven sphere; reads usePatternStore in useFrame; exports function ShimmerCore() with no parameters (~211 tok now, ~600 tok after rewrite)
 
 ## src/hooks/
 

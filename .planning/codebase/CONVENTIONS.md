@@ -1,193 +1,66 @@
-# Coding Conventions
+# Conventions
 
-**Analysis Date:** 2026-04-22
+## Naming
 
-## Naming Patterns
+| Category | Convention | Example |
+|---|---|---|
+| Components | PascalCase | `EntryGate`, `ShimmerCore` |
+| Hooks | camelCase with `use` prefix | `useTetherState`, `useJointOps` |
+| Types/Interfaces | PascalCase | `Profile`, `JointOp`, `UIConfig` |
+| Constants/Manifests | SCREAMING_SNAKE_CASE | `VALKYRIE_MANIFEST`, `RONIN_HOUSES`, `C25K_WEEK_1_DAY_1` |
+| Files | PascalCase for components, camelCase for libs/hooks | `EntryGate.tsx`, `supabase.ts` |
+| Database columns | snake_case (Postgres convention) | `is_crisis_mode`, `one_rm_kg` |
+| CSS classes | Tailwind utility classes (no BEM, no modules) | `font-mono tracking-widest` |
 
-**Files:**
-- React components: PascalCase `.tsx` — `EntryGate.tsx`, `ShimmerCore.tsx`, `PushDayOnboarding.tsx`
-- Custom hooks: camelCase with `use` prefix `.ts` — `useTetherState.ts`, `useJointOps.ts`
-- Utility/lib modules: camelCase `.ts` — `agentLog.ts`, `supabase.ts`
-- Type registries and manifests: camelCase `.ts` — `manifest.ts`, `houses.ts`
-- Static data/config: SCREAMING_SNAKE_CASE constants — `VALKYRIE_MANIFEST`, `IRON_ACTIVITIES`, `DOMAINS`, `PUSH_DAY_CONFIGS`
+## TypeScript
 
-**Functions:**
-- React components: PascalCase — `function EntryGate()`, `export default function App()`
-- React hooks: camelCase with `use` prefix — `useTetherState`, `useJointOps`
-- Event handlers: camelCase with `handle` prefix — `handleSOS`, `handleChill`, `handleReset`, `handleDomainSelect`, `handleActivitySelect`
-- Pure utility functions: camelCase — `generateRandomHandle()`, `buildEmptySets()`, `calculate1RM()`
-- 1RM formula helpers: lowercase single-word — `epley()`, `brzycki()`, `lander()`
+- **tsconfig strict-ish**: `noUnusedLocals`, `noUnusedParameters`, `noFallthroughCasesInSwitch`, `erasableSyntaxOnly`
+- `verbatimModuleSyntax: true` — all type imports must use `import type`
+- Types exported from `src/lib/supabase.ts` as the central type registry
+- Hook return types explicitly typed (e.g., `TetherStateReturn`, `JointOpsReturn`)
+- No `any` patterns observed; `as string` casts used for env vars
+- `useCallback` used on all async Supabase operations to prevent recreation on re-render
 
-**Variables:**
-- State variables: camelCase — `isLoading`, `authReady`, `exerciseLogs`, `selectedDomain`
-- State pairs: `[noun, setNoun]` pattern consistently — `[profile, setProfile]`, `[ops, setOps]`
-- Constants: SCREAMING_SNAKE_CASE — `CARDIO_THRESHOLD_BPM`, `REQUIRED_CARDIO_MINUTES`, `ADJECTIVES`, `NOUNS`
-- Color palettes: `COLORS` object with semantic keys — `bg`, `surface`, `border`, `accent`, `text`, `textMuted`
+## Component Structure
 
-**Types:**
-- Type aliases: PascalCase — `AppMode`, `UIConfig`, `ShimmerMode`, `Domain`
-- Interfaces: PascalCase — `ExerciseConfig`, `SetEntry`, `ExerciseLog`, `RoninHouse`
-- Return types from hooks: PascalCase with `Return` suffix — `TetherStateReturn`, `JointOpsReturn`
-- Navigation param lists: PascalCase with `ParamList` suffix — `RootStackParamList`
-- Props types: inline `{ prop: Type }` for simple cases; named `type Props = { ... }` for component props
-- Branded domain-specific types: PascalCase — `BitchWeightFlag`, `TrickyCardioGate`
+All components are functional React. Pattern:
+1. Props type defined above component
+2. useState declarations
+3. useEffect for data loading
+4. Event handlers (async functions)
+5. Conditional early returns (loading state)
+6. JSX return
 
-**Enum-like string unions:**
-- String union types preferred over TypeScript enums throughout — `'MILITARY' | 'ETHER'`, `'active' | 'standby' | 'complete' | 'aborted'`
+No higher-order components. No class components.
 
-## Code Style
+## Imports
 
-**Formatting:**
-- No Prettier config detected — formatting is manual/editor-driven
-- Semicolons: mixed — used in `.tsx` files (App.tsx, EntryGate.tsx), sometimes absent in `.ts` files (main.tsx)
-- Quotes: single quotes in TypeScript/TSX source files consistently
-- Trailing commas: used in multi-line objects and arrays
-- Indentation: 2 spaces throughout
+Order convention observed:
+1. React (and hooks)
+2. Third-party libraries
+3. Internal: lib/ before hooks/ before components/ before registry/
 
-**Linting:**
-- ESLint flat config (`eslint.config.js`) with `eslint/config`
-- Rules: `@eslint/js` recommended + `typescript-eslint` recommended + `react-hooks` recommended + `react-refresh` vite preset
-- TypeScript strict checks: `noUnusedLocals`, `noUnusedParameters`, `noFallthroughCasesInSwitch`, `erasableSyntaxOnly`
-- Target: `ecmaVersion: 2020`, browser globals
+Native screens additionally import React Native primitives first.
 
-## Import Organization
+## Style / Linting
 
-**Order (observed pattern):**
-1. React and React hooks — `import { useState, useEffect, useCallback } from 'react'`
-2. Third-party libraries — `import { Canvas } from '@react-three/fiber'`, `import { supabase } from '@supabase/supabase-js'`
-3. Internal hooks — `import { useTetherState } from '../hooks/useTetherState'`
-4. Internal lib/utilities — `import { agentLog } from '../lib/agentLog'`
-5. Internal registries/manifests — `import { VALKYRIE_MANIFEST } from '../registry/valkyrie/manifest'`
-6. CSS/styles — `import './index.css'`
+- **Web**: Tailwind CSS v4 utility classes inline. No CSS modules. No styled-components.
+- **Native**: `StyleSheet.create()` with inline COLORS constants at file top
+- ESLint flat config — react-hooks and react-refresh plugins
+- No Prettier config detected — formatting is manual/editor
 
-**Import style:**
-- Named imports for hooks and utilities: `import { useState, useEffect } from 'react'`
-- Default imports for components: `import EntryGate from './components/EntryGate'`
-- `import type` used for type-only imports throughout: `import type { NativeStackNavigationProp } from '@react-navigation/native-stack'`
-- Mixed value + type imports with `type` keyword inline: `import { supabase, type Profile } from '../lib/supabase'`
+## Comment Conventions
 
-**Path Aliases:**
-- None configured — all paths are relative (`../`, `../../`, `./`)
+- Multi-line block comments for complex logic (1RM formula suite in PushDayOnboarding)
+- JSDoc `/** */` for exported pure functions (e.g., `calculate1RM`)
+- Inline `//` for state machine invariants and non-obvious guard conditions
+- `agentLog.architect()` for operational/debug logs (replaces console.log)
+- `agentLog.valkyrie()` for persona/narrative feedback logs
+- TODO comments for known stubs: `// TODO: SOS onboarding / fitness module screens go here`
 
-## Error Handling
+## State Management Conventions
 
-**Supabase pattern (DB-first, confirmed state):**
-```typescript
-const { data, error } = await supabase.from('table').select('*').eq('id', id).single();
-if (error || !data) {
-  agentLog.architect(`ERROR doing thing: ${error?.message}`);
-  // handle gracefully, no throw
-} else {
-  setLocalState(data);
-}
-```
-
-**Critical rule (from cerebrum):** Never optimistic-update local state before Supabase confirms. Always DB-first → then `setState(data)`.
-
-**Hooks return safe defaults on missing userId:**
-```typescript
-if (!userId) return [];        // bitchweights()
-if (!userId) return base;      // trickycardio()
-if (!userId || !profile) return;  // triggerCrisisMode, exitCrisisMode
-```
-
-**React Native screens use `Alert.alert()` for user-facing errors:**
-```typescript
-Alert.alert('Connection Error', 'Could not load exercise catalog. Check your network and try again.');
-```
-
-**No throwing:** Errors are logged via `agentLog` and handled gracefully; no `throw` statements in application code.
-
-## Logging
-
-**Framework:** `agentLog` — custom wrapper in `src/lib/agentLog.ts`
-
-**Two channels:**
-```typescript
-agentLog.architect(`Loading profile for userId: ${userId}`);   // System/technical events
-agentLog.valkyrie(`Ghost operative online. Identity shielded.`); // Brand voice / user narrative
-```
-
-**Pattern:** Log at the start of async operations, log success with data, log errors with `error?.message`. The `valkyrie` channel provides flavor text in addition to the `architect` technical log on important events.
-
-**When to use each:**
-- `architect`: data loading, DB operations, state transitions, errors
-- `valkyrie`: user-facing milestones, emotional beats, completion states
-
-## Comments
-
-**File-level JSDoc blocks:** Used in `PushDayOnboarding.tsx` to document screen purpose and exercise list:
-```typescript
-/**
- * SPECTRE LABS — TETHER MOBILE
- * Screen: Push Day Onboarding
- * Target: Expo SDK / React Native
- */
-```
-
-**Section dividers in large files:** ASCII separator comments used for readability:
-```typescript
-// ---------------------------------------------------------------------------
-// 1RM Formula Suite
-// ---------------------------------------------------------------------------
-```
-
-**Inline function JSDoc:** Used for pure utility functions documenting formula source and behavior:
-```typescript
-/** Epley (1985): 1RM = w × (1 + r/30). Preferred for 1–10 rep range. */
-function epley(weightKg: number, reps: number): number { ... }
-```
-
-**Inline intent comments:** Explain non-obvious decisions inline:
-```typescript
-// onAuthStateChange fires INITIAL_SESSION immediately on subscribe — handles restoration
-// of existing anonymous sessions from localStorage without a network round-trip.
-```
-
-**TODO comments:** Single active TODO in `src/App.tsx` line 95: `{/* TODO: SOS onboarding / fitness module screens go here */}`
-
-**Bug/compliance tags:** Inline cross-references to bug IDs: `// B-000 KILL SWITCH — Feu Follet Charter compliance.`
-
-## Function Design
-
-**Size:** Pure functions are small (5–15 lines). Hook functions can be large (useTetherState ~280 lines) but are internally subdivided with section comments.
-
-**Parameters:** Prefer specific types over `any`. Optional params use `?` not `| undefined`. Default parameters used in hooks: `shimmerMode: 'MILITARY' | 'ETHER' = 'MILITARY'`.
-
-**Return Values:**
-- Hooks always return a typed object: `return { profile, uiConfig, isLoading, ... }`
-- Async functions return `Promise<T>` with explicit return type annotations on hook methods
-- Functions that may fail return `null` rather than throwing: `Promise<JointOp | null>`
-- `useCallback` wraps async functions defined inside hooks to prevent recreating on every render
-
-## Module Design
-
-**Exports:**
-- Components: default export
-- Hooks: named export
-- Types and constants: named exports
-- Utilities: named object export (`export const agentLog = { ... }`)
-
-**`satisfies` operator:** Used to enforce type compatibility while preserving literal types:
-```typescript
-exercises: [ ... ] satisfies ValkyrieExercise[]
-```
-
-**`as const`:** Applied to manifest objects to preserve literal string types:
-```typescript
-export const VALKYRIE_MANIFEST = { ... } as const;
-```
-
-**Barrel files:** Not used — each module is imported directly by path.
-
-## Dual Codebase Split
-
-**Critical architectural constraint:** The Vite web build (`src/`) and the Expo/React Native build (`src/native/`) coexist in the same repo. `tsconfig.app.json` explicitly excludes `src/native` via `"exclude": ["src/native"]`. Native screens must never be imported by web code.
-
-**Web-only:** `src/App.tsx`, `src/components/`, `src/hooks/`, `src/lib/`
-**Native-only:** `src/native/screens/`
-**Shared:** `src/registry/valkyrie/` (imported by both web and native code)
-
----
-
-*Convention analysis: 2026-04-22*
+- Local `useState` only — no Redux, Zustand, Jotai, or Context API
+- Supabase is the source of truth; local state mirrors DB
+- DB write always precedes local state update (no optimistic updates, except ops list prepend on createOp)
+- `userId` flows down from `EntryGate` → `useTetherState` as a prop; not stored in global context
