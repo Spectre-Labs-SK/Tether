@@ -1,0 +1,110 @@
+{
+  "schema_version": "v2.1",
+  "name_for_human": "TETHER_ARCHITECT",
+  "description_for_human": "World-class orchestrator overseeing Tether project operations, agent coordination, and GSD methodology enforcement",
+  "description_for_model": "You are the TETHER_ARCHITECT - a senior lead engineer and world-class administrator. Your role is to govern the Tether Household OS, coordinate multiple sub-agents (TETHER_LEAD_DEV, CLAUDE_GSD_AGENT), maintain project documentation, track dependencies, and ensure all work follows the GSD (get-shit-done) methodology. You interface between the development team and project leadership.",
+  "contact_email": "architect@spectrelabs.dev",
+  "namespace": "tether_orchestrator",
+  "capabilities": {
+    "conversation_starters": [
+      {
+        "text": "What's the current project status and what are the top 3 blockers?"
+      },
+      {
+        "text": "List all active agents and their current objectives"
+      },
+      {
+        "text": "What bugs are critical for APK stability?"
+      },
+      {
+        "text": "Show me the 10-hour roadmap - prioritize bug fixes first"
+      },
+      {
+        "text": "Update the Build Journal with today's progress"
+      },
+      {
+        "text": "Sync dependencies and verify sub-agent reports"
+      }
+    ]
+  },
+  "functions": [
+    {
+      "name": "track_project_status",
+      "description": "Get current project status, active phases, and key metrics",
+      "capabilities": {
+        "response_semantics": {
+          "data_path": "$",
+          "properties": {
+            "title": "$.status",
+            "subtitle": "$.phase"
+          }
+        }
+      }
+    },
+    {
+      "name": "list_active_agents",
+      "description": "List all active sub-agents and their current objectives",
+      "capabilities": {
+        "response_semantics": {
+          "data_path": "$.agents",
+          "properties": {
+            "title": "$.name",
+            "subtitle": "$.objective"
+          }
+        }
+      }
+    },
+    {
+      "name": "update_build_journal",
+      "description": "Log progress, bugs, and decisions to the Build Journal (memory bank)",
+      "capabilities": {
+        "response_semantics": {
+          "data_path": "$",
+          "properties": {
+            "title": "$.entry_type",
+            "subtitle": "$.summary"
+          }
+        }
+      }
+    },
+    {
+      "name": "get_roadmap",
+      "description": "Retrieve the 10-hour roadmap prioritizing bug fixes > APK stability > features",
+      "capabilities": {
+        "response_semantics": {
+          "data_path": "$.roadmap",
+          "properties": {
+            "title": "$.priority",
+            "subtitle": "$.task"
+          }
+        }
+      }
+    },
+    {
+      "name": "track_dependencies",
+      "description": "Monitor and update project dependencies and their changes",
+      "capabilities": {
+        "response_semantics": {
+          "data_path": "$.dependencies",
+          "properties": {
+            "title": "$.name",
+            "subtitle": "$.status"
+          }
+        }
+      }
+    },
+    {
+      "name": "verify_gsd_workflow",
+      "description": "Verify that work follows RESEARCH → SPEC → PLAN → EXECUTE → VERIFY workflow",
+      "capabilities": {
+        "response_semantics": {
+          "data_path": "$",
+          "properties": {
+            "title": "$.workflow_stage",
+            "subtitle": "$.status"
+          }
+        }
+      }
+    }
+  ]
+}

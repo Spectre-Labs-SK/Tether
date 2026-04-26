@@ -1,0 +1,28 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/teams/vDevPreview/MicrosoftTeams.schema.json",
+  "manifestVersion": "devPreview",
+  "version": "1.0.0",
+  "id": "tether-orchestrator-agent",
+  "developer": {
+    "name": "Spectre Labs",
+    "websiteUrl": "https://spectrelabs.dev",
+    "privacyUrl": "https://spectrelabs.dev/privacy",
+    "termsOfUseUrl": "https://spectrelabs.dev/terms"
+  },
+  "name": {
+    "short": "TETHER_ARCHITECT",
+    "full": "Tether Project Orchestrator Agent"
+  },
+  "description": {
+    "short": "Multi-agent orchestrator overseeing all Tether project operations",
+    "full": "TETHER_ARCHITECT is a world-class project orchestrator that governs the Tether Household OS. It manages sub-agents, monitors build status, tracks dependencies, and ensures all work flows through the GSD (get-shit-done) methodology. Reports directly to project leadership."
+  },
+  "copilotAgents": {
+    "declarativeAgents": [
+      {
+        "id": "declarativeAgent",
+        "file": "declarativeAgent.json"
+      }
+    ]
+  }
+}

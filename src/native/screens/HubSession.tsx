@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, Vibration } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useNavigation } from '@react-navigation/native';
+import { supabase } from '../../lib/supabase';
 
 const COLORS = {
   bg: '#0f172a',
@@ -33,9 +34,23 @@ export default function HubSession() {
     Vibration.vibrate(100); // Simple haptic feedback
   };
 
-  const handleEndSession = () => {
+  const handleEndSession = async () => {
     setIsActive(false);
-    // In a real app, we would save the session data here.
+    // Persist session data to Supabase
+    try {
+      const { data: { user } } = await supabase.auth.getUser();
+      if (user) {
+        const { error } = await supabase.from('hub_sessions').insert({
+          profile_id: user.id,
+          up_time_seconds: upTime,
+          postural_resets: posturalResets,
+          completed_at: new Date().toISOString(),
+        });
+        if (error) console.error('[HubSession] Save error:', error.message);
+      }
+    } catch (err) {
+      console.error('[HubSession] Session save failed:', err);
+    }
     navigation.goBack();
   };
 

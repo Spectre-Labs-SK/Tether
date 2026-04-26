@@ -279,17 +279,27 @@ export default function PushDayOnboarding() {
         {
           text: 'Skip',
           style: 'destructive',
-          onPress: () => {
+          onPress: async () => {
             const markAsSkipped = (log: ExerciseLog) =>
               log.exercise.name === exerciseName ? { ...log, skipped: true } : log;
 
             setExerciseLogs((prev) => prev.map(markAsSkipped));
             setOriginalOrderLogs((prev) => prev.map(markAsSkipped));
 
-            // Sentinel Action: In a real app, this would be persisted and checked.
-            console.warn(
-              `[Tether] Exercise "${exerciseName}" skipped. This should be tracked across sessions to detect patterns (NoseyQuestionTime() trigger).`,
-            );
+            // Persist skip action for pattern detection
+            try {
+              const { data: { user } } = await supabase.auth.getUser();
+              if (user) {
+                const { error } = await supabase.from('exercise_skips').insert({
+                  profile_id: user.id,
+                  exercise_name: exerciseName,
+                  skipped_at: new Date().toISOString(),
+                });
+                if (error) console.error('[PushDay] Skip tracking error:', error.message);
+              }
+            } catch (err) {
+              console.error('[PushDay] Failed to track skip:', err);
+            }
           },
         },
       ],
@@ -297,7 +307,7 @@ export default function PushDayOnboarding() {
   }, []);
 
   const handlePainAlert = useCallback(
-    (muscleGroup: string) => {
+    async (muscleGroup: string) => {
       const now = Date.now();
       const fourteenDays = 14 * 24 * 60 * 60 * 1000;
 
@@ -323,12 +333,24 @@ export default function PushDayOnboarding() {
           'Muscle Group Lockdown Triggered',
           `You've reported pain for "${muscleGroup}" multiple times recently. To promote recovery, volume and intensity for this muscle group will be reduced for the next 2 weeks.`,
         );
-        // The Freeze: In a real app, this would update a global state that the
-        // workout generation logic (Manifest-fetcher) would use.
+        // The Freeze: Persist muscle group lockdown for manifest generation
+        const lockdownUntil = new Date(now + fourteenDays);
+        try {
+          const { data: { user } } = await supabase.auth.getUser();
+          if (user) {
+            const { error } = await supabase.from('muscle_group_freezes').insert({
+              profile_id: user.id,
+              muscle_group: muscleGroup,
+              locked_until: lockdownUntil.toISOString(),
+              created_at: new Date(now).toISOString(),
+            });
+            if (error) console.error('[PushDay] Freeze tracking error:', error.message);
+          }
+        } catch (err) {
+          console.error('[PushDay] Failed to persist freeze:', err);
+        }
         console.warn(
-          `[Tether] Muscle Group Lockdown for "${muscleGroup}" until ${new Date(
-            now + fourteenDays,
-          ).toLocaleDateString()}.`,
+          `[Tether] Muscle Group Lockdown for "${muscleGroup}" until ${lockdownUntil.toLocaleDateString()}.`,
         );
       }
     },
@@ -412,10 +434,23 @@ export default function PushDayOnboarding() {
       .map((log) => ({ exercise_id: log.exercise.exerciseId, name: log.exercise.name }));
 
     if (skippedExercises.length > 0) {
-      console.log(
-        '[Tether] Logging skipped exercises (placeholder):',
-        skippedExercises.map((e) => e.name),
-      );
+      try {
+        const { data: { user } } = await supabase.auth.getUser();
+        if (user) {
+          const rows = skippedExercises.map((e) => ({
+            profile_id: user.id,
+            exercise_id: e.exercise_id,
+            exercise_name: e.name,
+            skipped_at: new Date().toISOString(),
+          }));
+          const { error } = await supabase.from('exercise_skips').insert(rows);
+          if (error) console.error('[PushDay] Skipped exercises insert error:', error.message);
+        } else {
+          console.log('[PushDay] No user session; skipped exercises:', skippedExercises.map((e) => e.name));
+        }
+      } catch (err) {
+        console.error('[PushDay] Failed to persist skipped exercises:', err);
+      }
     }
 
     const { error: setsError } = await supabase.from('workout_sets').insert(setRows);

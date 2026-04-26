@@ -1,90 +1,56 @@
-import { useState, Suspense } from 'react';
-import { Canvas } from '@react-three/fiber';
-import { MeshDistortMaterial, Float } from '@react-three/drei';
+import { useState, useRef, useEffect } from 'react';
 import './index.css';
 import EntryGate from './components/EntryGate';
+import WarRoom from './components/WarRoom';
 
 type AppMode = 'gate' | 'chill' | 'sos';
 
-const ShimmerCore = ({ mode, distort }: { mode: 'MILITARY' | 'ETHER'; distort: number }) => (
-  <group>
-    <Float speed={2} rotationIntensity={0.5} floatIntensity={1}>
-      <mesh scale={1.5}>
-        <sphereGeometry args={[1, 64, 64]} />
-        <MeshDistortMaterial
-          color={mode === 'MILITARY' ? '#1e293b' : '#6d28d9'}
-          distort={distort}
-          speed={2}
-          metalness={0.8}
-        />
-      </mesh>
-    </Float>
-  </group>
-);
-
-function WarRoom() {
-  const [mode, setMode] = useState<'MILITARY' | 'ETHER'>('MILITARY');
-  const [isCalibrated, setIsCalibrated] = useState(false);
-  const [staticLevel, setStaticLevel] = useState(40);
-
-  return (
-    <div className="w-full h-screen bg-black overflow-hidden text-white">
-      <div className="noise-overlay" />
-      {!isCalibrated ? (
-        <main className="relative z-10 h-full flex flex-col items-center justify-center p-6 font-mono text-emerald-500">
-          <div className="w-full max-w-xl border border-emerald-950 p-10 bg-black shadow-[0_0_50px_-12px_rgba(16,185,129,0.2)]">
-            <h1 className="text-xl font-black mb-8 tracking-widest uppercase italic">Synapse_Calibration</h1>
-            <p className="text-[10px] mb-10 text-emerald-800 font-bold uppercase italic tracking-tighter">Bunker_B12 // Reality_Sync_Required</p>
-            <div className="space-y-10">
-              <input
-                type="range"
-                min={0}
-                max={100}
-                value={staticLevel}
-                onChange={(e) => setStaticLevel(Number(e.target.value))}
-                className="w-full accent-emerald-500"
-              />
-              <button
-                onClick={() => setIsCalibrated(true)}
-                className="w-full bg-emerald-500 text-black font-black py-5 uppercase tracking-[0.4em] text-xs"
-              >
-                Initialize_Survive_Protocol
-              </button>
-            </div>
-          </div>
-        </main>
-      ) : (
-        <main className={`relative h-full transition-colors duration-1000 ${mode === 'MILITARY' ? 'bg-[#0a0a0b]' : 'bg-[#0f071a]'}`}>
-          <div className="absolute inset-0 z-0 h-full w-full">
-            <Canvas camera={{ position: [0, 0, 5] }}>
-              <ambientLight intensity={1} />
-              <pointLight position={[10, 10, 10]} />
-              <Suspense fallback={null}>
-                <ShimmerCore mode={mode} distort={staticLevel / 100} />
-              </Suspense>
-            </Canvas>
-          </div>
-          <div className="relative z-10 h-full flex flex-col justify-between p-12 pointer-events-none">
-            <h1 className="text-2xl font-black tracking-[0.4em] uppercase opacity-50">Spectre Labs</h1>
-            <h2 className="text-8xl font-black italic uppercase tracking-tighter">{mode === 'MILITARY' ? 'Shadow' : 'Ethereal'}</h2>
-            <button
-              onClick={() => setMode(mode === 'MILITARY' ? 'ETHER' : 'MILITARY')}
-              className="pointer-events-auto w-fit bg-white text-black px-10 py-5 font-black uppercase"
-            >
-              Initiate Shift
-            </button>
-          </div>
-        </main>
-      )}
-    </div>
-  );
-}
+const BREATHE_PHASES: { label: string; seconds: number; color: string }[] = [
+  { label: 'INHALE', seconds: 4, color: '#4ade80' },
+  { label: 'HOLD',   seconds: 4, color: '#f472b6' },
+  { label: 'EXHALE', seconds: 6, color: '#60a5fa' },
+  { label: 'HOLD',   seconds: 2, color: '#a78bfa' },
+];
 
 function SOSShell() {
+  const [sessionSeconds, setSessionSeconds] = useState(0);
+  const [isRunning, setIsRunning]           = useState(false);
+  const [phaseIndex, setPhaseIndex]         = useState(0);
+  const [phaseElapsed, setPhaseElapsed]     = useState(0);
+  const tickRef = useRef<ReturnType<typeof setInterval> | null>(null);
+
+  useEffect(() => {
+    if (!isRunning) {
+      if (tickRef.current) clearInterval(tickRef.current);
+      return;
+    }
+    tickRef.current = setInterval(() => {
+      setSessionSeconds(s => s + 1);
+      setPhaseElapsed(prev => {
+        const phase = BREATHE_PHASES[phaseIndex];
+        if (prev + 1 >= phase.seconds) {
+          setPhaseIndex(i => (i + 1) % BREATHE_PHASES.length);
+          return 0;
+        }
+        return prev + 1;
+      });
+    }, 1000);
+    return () => { if (tickRef.current) clearInterval(tickRef.current); };
+  }, [isRunning, phaseIndex]);
+
+  const currentPhase = BREATHE_PHASES[phaseIndex];
+  const phaseProgress = currentPhase.seconds - phaseElapsed;
+
+  const formatTime = (s: number) => {
+    const m   = Math.floor(s / 60).toString().padStart(2, '0');
+    const sec = (s % 60).toString().padStart(2, '0');
+    return `${m}:${sec}`;
+  };
+
   return (
     <div className="w-full h-screen bg-black flex flex-col items-center justify-center font-mono text-[#4ade80]">
       <div className="noise-overlay" />
-      <div className="relative z-10 text-center space-y-4 p-12 max-w-md">
+      <div className="relative z-10 text-center space-y-6 p-12 max-w-md w-full">
         <p className="text-[10px] tracking-[0.4em] uppercase text-[#f472b6]">SOS / Crisis Mode Active</p>
         <h1 className="text-5xl font-black italic uppercase tracking-tighter text-white">
           We've<br />Got You
@@ -92,22 +58,62 @@ function SOSShell() {
         <p className="text-sm text-[#4ade80] leading-relaxed">
           Minimalist mode is active. No noise. Just the essentials.
         </p>
-        {/* TODO: SOS onboarding / fitness module screens go here */}
+
+        {isRunning ? (
+          <div className="space-y-6">
+            <div
+              className="text-4xl font-black tracking-widest uppercase transition-colors duration-500"
+              style={{ color: currentPhase.color }}
+            >
+              {currentPhase.label}
+            </div>
+            <div className="text-6xl font-black tabular-nums" style={{ color: currentPhase.color }}>
+              {phaseProgress}
+            </div>
+            <p className="text-[10px] tracking-[0.3em] uppercase text-slate-600">
+              Session: {formatTime(sessionSeconds)}
+            </p>
+            <button
+              onClick={() => setIsRunning(false)}
+              className="w-full border border-slate-800 py-3 text-[10px] tracking-[0.3em] uppercase text-slate-600 hover:text-slate-400 transition-colors"
+            >
+              Pause
+            </button>
+          </div>
+        ) : (
+          <button
+            onClick={() => setIsRunning(true)}
+            className="w-full bg-[#4ade80] text-black font-black py-5 uppercase tracking-[0.3em] text-xs hover:bg-white transition-colors"
+          >
+            {sessionSeconds > 0 ? 'Resume Breathing' : 'Begin Breathing Exercise'}
+          </button>
+        )}
       </div>
     </div>
   );
 }
 
 export default function App() {
-  const [appMode, setAppMode] = useState<AppMode>('gate');
+  const [appMode, setAppMode]   = useState<AppMode>('gate');
+  const [userId, setUserId]     = useState<string | null>(null);
+
+  const handleEnter = (mode: 'chill' | 'sos', uid: string | null) => {
+    setUserId(uid);
+    setAppMode(mode);
+  };
+
+  const handleSignOut = () => {
+    setUserId(null);
+    setAppMode('gate');
+  };
 
   if (appMode === 'gate') {
-    return <EntryGate onEnter={(mode) => setAppMode(mode)} />;
+    return <EntryGate onEnter={handleEnter} />;
   }
 
   if (appMode === 'sos') {
     return <SOSShell />;
   }
 
-  return <WarRoom />;
+  return <WarRoom userId={userId} onSignOut={handleSignOut} />;
 }

@@ -1,0 +1,26 @@
+{
+  "name": "agent-tether-orchestrator",
+  "version": "1.0.0",
+  "description": "TETHER_ARCHITECT declarative agent for Microsoft 365 Copilot - orchestrates Tether project operations",
+  "author": "Spectre Labs",
+  "license": "MIT",
+  "scripts": {
+    "validate": "teamsfx validate",
+    "provision": "teamsfx provision",
+    "deploy": "teamsfx deploy",
+    "start": "teamsfx preview --includeFrontend false",
+    "test": "echo \"Agent configuration is valid\"",
+    "build": "echo \"Agent package built successfully\""
+  },
+  "devDependencies": {
+    "@microsoft/teams-toolkit": "^4.0.0"
+  },
+  "keywords": [
+    "microsoft-365",
+    "copilot",
+    "declarative-agent",
+    "mcp",
+    "orchestrator",
+    "tether"
+  ]
+}

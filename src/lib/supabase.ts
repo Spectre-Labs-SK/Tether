@@ -1,17 +1,31 @@
-// requires: npm install @supabase/supabase-js
-// requires: VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY in .env.local
 import { createClient } from '@supabase/supabase-js';
 
-const supabaseUrl = import.meta.env.VITE_SUPABASE_URL as string;
-const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY as string;
+// Falls back to placeholder values when .env.local is absent so createClient
+// doesn't throw at module init. Auth calls will fail gracefully (EntryGate
+// handles this via its error path → setAuthReady(true) without userId).
+const supabaseUrl = (import.meta.env.VITE_SUPABASE_URL as string) ?? 'https://placeholder.supabase.co';
+const supabaseAnonKey = (import.meta.env.VITE_SUPABASE_ANON_KEY as string) ?? 'placeholder-anon-key';
 
 export const supabase = createClient(supabaseUrl, supabaseAnonKey);
+
+// Upgrades an anonymous session to a permanent identity.
+// Uses updateUser (not signOut+signIn) so the existing UUID is preserved —
+// all profile data, joint ops, and history stay intact.
+export async function upgradeAnonymousUser(email: string, password: string) {
+  return supabase.auth.updateUser({ email, password });
+}
+
+// Signs in a returning operative on a new device.
+export async function signInWithEmailPassword(email: string, password: string) {
+  return supabase.auth.signInWithPassword({ email, password });
+}
 
 export type Profile = {
   id: string;
   random_handle: string;
   is_crisis_mode: boolean;
   onboarding_pending: boolean;
+  is_registered: boolean;
   created_at: string;
   updated_at: string;
 };

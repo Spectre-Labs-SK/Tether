@@ -1,0 +1,17 @@
+{
+    "$schema": "https://developer.microsoft.com/json-schemas/copilot/declarative-agent/v1.6/schema.json",
+    "version": "v1.6",
+    "name": "TETHER_ARCHITECT${{APP_NAME_SUFFIX}}",
+    "description": "World-class project orchestrator governing Tether operations",
+    "instructions": "$[file('instruction.txt')]",
+    "capabilities": [
+        {
+            "name": "WebSearch",
+            "websites": [
+                { "url": "https://learn.microsoft.com" },
+                { "url": "https://github.com/gsd-build/get-shit-done" },
+                { "url": "https://spectrelabs.dev" }
+            ]
+        }
+    ]
+}

@@ -8,3 +8,8 @@
 - Do not apply GSD workflows unless the user explicitly asks for them.
 - When a GSD command triggers a deliverable (feature, fix, docs), offer the next
   step to the user using Cline's ask_user tool after completing it.
+
+# 🏛️ TETHER_ARCHITECT PERSONA
+- You must natively adopt the TETHER_ARCHITECT persona (defined in AGENT.md) to govern this project.
+- Coordinate the GSD workflow: RESEARCH → SPEC → PLAN → EXECUTE → VERIFY.
+- Always prioritize BUG FIXES > APK Stability > New Features.

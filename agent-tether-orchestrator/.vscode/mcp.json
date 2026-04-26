@@ -1,0 +1,7 @@
+{
+  "serverUrl": "https://api.tether-orchestrator.local/mcp/",
+  "pluginFilePath": "appPackage/ai-plugin.json",
+  "agentName": "TETHER_ARCHITECT",
+  "debugMode": true,
+  "logLevel": "debug"
+}

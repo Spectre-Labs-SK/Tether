@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, Alert } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRoute, useNavigation, RouteProp } from '@react-navigation/native';
-import { C25K_WEEK_1_DAY_1, Interval } from '../../core/manifest';
+import { C25K_WEEK_1_DAY_1, Interval } from './manifest';
 
 // Assuming RootStackParamList is shared or defined here
 import { RootStackParamList } from './FitnessOnboardingGrid';
@@ -32,24 +32,38 @@ export default function RoadSession() {
   const [totalTime, setTotalTime] = useState(0);
 
   useEffect(() => {
-    if (activityId.includes('interval')) {
-      const intervals = C25K_WEEK_1_DAY_1;
-      setManifest(intervals);
-      const firstDuration = intervals[0]?.durationMinutes * 60 || 0;
-      setTimeRemaining(firstDuration);
-      setTotalTime(intervals.reduce((sum, i) => sum + i.durationMinutes * 60, 0));
-    } else {
-      // Handle Steady State
-      const steadyStateManifest: Interval[] = [
-        { type: 'warmup', durationMinutes: 5 },
-        { type: 'work', durationMinutes: 30, intensity: 'medium' },
-        { type: 'cooldown', durationMinutes: 5 },
-      ];
-      setManifest(steadyStateManifest);
-      const firstDuration = steadyStateManifest[0]?.durationMinutes * 60 || 0;
-      setTimeRemaining(firstDuration);
-      setTotalTime(steadyStateManifest.reduce((sum, i) => sum + i.durationMinutes * 60, 0));
-    }
+    const loadManifest = async () => {
+      try {
+        let intervals: Interval[] = [];
+        
+        if (activityId.includes('interval')) {
+          intervals = C25K_WEEK_1_DAY_1;
+        } else {
+          // Steady State manifest
+          intervals = [
+            { type: 'warmup', durationMinutes: 5 },
+            { type: 'work', durationMinutes: 30, intensity: 'medium' },
+            { type: 'cooldown', durationMinutes: 5 },
+          ];
+        }
+        
+        setManifest(intervals);
+        const firstDuration = intervals[0]?.durationMinutes * 60 || 0;
+        setTimeRemaining(firstDuration);
+        setTotalTime(intervals.reduce((sum, i) => sum + i.durationMinutes * 60, 0));
+      } catch (err) {
+        console.error('[RoadSession] Failed to load manifest:', err);
+        // Fallback to steady state
+        const fallback = [
+          { type: 'warmup', durationMinutes: 5 },
+          { type: 'work', durationMinutes: 30, intensity: 'medium' },
+          { type: 'cooldown', durationMinutes: 5 },
+        ];
+        setManifest(fallback);
+      }
+    };
+    
+    loadManifest();
   }, [activityId]);
 
   useEffect(() => {
