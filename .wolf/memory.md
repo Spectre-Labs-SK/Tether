@@ -135,3 +135,25 @@
 | 01:13 | Edited src/components/WarRoom.tsx | added optional chaining | ~263 |
 | 01:13 | Edited src/components/WarRoom.tsx | CSS: color | ~256 |
 | 01:13 | Edited src/components/WarRoom.tsx | expanded (+8 lines) | ~174 |
+
+## Session: 2026-04-26 (Night Build Phase 2)
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+| 02:00 | Created src/components/fitness/FitnessOnboardingGrid.tsx | new | 3-taps-to-active web port; Iron AI gates wired; session timer; AMRAP briefing | ~4092 |
+| 02:05 | Rewrote src/components/WarRoom.tsx | updated | Valkyrie gear loadout + onboarding overlay (z-30) + full useTetherState destructure | ~4303 |
+| 02:06 | Appended TETHER_BUILD_JOURNAL.md | updated | Night Build Phase 2 entry; B-007 logged | ~700 |
+| 02:07 | Updated .wolf/anatomy.md | updated | FitnessOnboardingGrid + WarRoom descriptions corrected | ~70 |
+| 02:07 | tsc -b --noEmit | all files | 0 errors | — |
+| 10:21 | Session end: 6 writes across 2 files (FitnessOnboardingGrid.tsx, WarRoom.tsx) | 10 reads | ~15820 tok |
+| 10:26 | Session end: 6 writes across 2 files (FitnessOnboardingGrid.tsx, WarRoom.tsx) | 11 reads | ~15820 tok |
+
+## Session: 2026-04-26 10:26
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+
+## Session: 2026-04-26 13:17
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|

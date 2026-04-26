@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import { agentLog } from "../../lib/agentLog";
 import type { BitchWeightFlag, TrickyCardioGate } from "../../hooks/useTetherState";
+import PushDaySession from "./PushDaySession";
 
 type Domain = "Iron" | "Road" | "Mat" | "Hub";
 
@@ -66,7 +67,7 @@ const DOMAIN_REGISTRY: DomainDef[] = [
   },
 ];
 
-type Step = "domain" | "activity" | "checking" | "cardio-gate" | "amrap-briefing" | "session-active";
+type Step = "domain" | "activity" | "checking" | "cardio-gate" | "amrap-briefing" | "time-check" | "session-active";
 
 type Props = {
   trickycardio: () => Promise<TrickyCardioGate>;
@@ -82,6 +83,8 @@ export default function FitnessOnboardingGrid({ trickycardio, bitchweights, onCo
   const [amrapFlags, setAmrapFlags]             = useState<BitchWeightFlag[]>([]);
   const [sessionSeconds, setSessionSeconds]     = useState(0);
   const [isEnding, setIsEnding]                 = useState(false);
+  const [hardStop, setHardStop]                 = useState<string>("");
+  const [compressionStatus, setCompressionStatus] = useState<string | null>(null);
   const tickRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
   useEffect(() => {
@@ -89,9 +92,31 @@ export default function FitnessOnboardingGrid({ trickycardio, bitchweights, onCo
       if (tickRef.current) clearInterval(tickRef.current);
       return;
     }
-    tickRef.current = setInterval(() => setSessionSeconds(s => s + 1), 1000);
+    tickRef.current = setInterval(() => {
+      setSessionSeconds(s => {
+        const next = s + 1;
+        if (hardStop && next % 10 === 0) {
+           const now = new Date();
+           const [hsHours, hsMinutes] = hardStop.split(':').map(Number);
+           const stopDate = new Date();
+           stopDate.setHours(hsHours, hsMinutes, 0, 0);
+           if (stopDate < now) stopDate.setDate(stopDate.getDate() + 1);
+           const minsRemaining = Math.floor((stopDate.getTime() - now.getTime()) / 60000);
+           if (minsRemaining <= 15 && minsRemaining > 5) {
+             setCompressionStatus("VOLUME REDUCTION: FINAL SETS TRUNCATED");
+           } else if (minsRemaining <= 5 && minsRemaining > 0) {
+             setCompressionStatus("CRITICAL: 5 MIN TO EXTRACTION. INITIATE COOL DOWN.");
+           } else if (minsRemaining <= 0) {
+             setCompressionStatus("EXTRACTION TIME REACHED. TERMINATE PROTOCOL.");
+           } else {
+             setCompressionStatus(null);
+           }
+        }
+        return next;
+      });
+    }, 1000);
     return () => { if (tickRef.current) clearInterval(tickRef.current); };
-  }, [step]);
+  }, [step, hardStop]);
 
   const formatTime = (s: number) => {
     const m = Math.floor(s / 60).toString().padStart(2, "0");
@@ -105,7 +130,7 @@ export default function FitnessOnboardingGrid({ trickycardio, bitchweights, onCo
     if (domain.name === "Hub") {
       agentLog.valkyrie("Hub domain engaged. Desk protocol active.");
       setSelectedActivity(domain.activities[0]);
-      setStep("session-active");
+      setStep("time-check");
     } else {
       setStep("activity");
     }
@@ -132,11 +157,11 @@ export default function FitnessOnboardingGrid({ trickycardio, bitchweights, onCo
         setStep("amrap-briefing");
       } else {
         agentLog.valkyrie("All systems clear. Session authorized. Begin.");
-        setStep("session-active");
+        setStep("time-check");
       }
     } else {
       agentLog.valkyrie(`${activity.domain} domain cleared. Session authorized.`);
-      setStep("session-active");
+      setStep("time-check");
     }
   };
 
@@ -148,6 +173,8 @@ export default function FitnessOnboardingGrid({ trickycardio, bitchweights, onCo
     setAmrapFlags([]);
     setSessionSeconds(0);
     setIsEnding(false);
+    setHardStop("");
+    setCompressionStatus(null);
   };
 
   // TAP 3: End Session
@@ -338,10 +365,50 @@ export default function FitnessOnboardingGrid({ trickycardio, bitchweights, onCo
             "Stagnation detected. AMRAP mode engaged. No more comfortable sets." — Valkyrie
           </p>
           <button
-            onClick={() => setStep("session-active")}
+            onClick={() => setStep("time-check")}
             className="w-full bg-yellow-600 text-black font-black py-4 uppercase tracking-[0.3em] text-xs hover:bg-yellow-400 transition-colors"
           >
-            ACKNOWLEDGED — BEGIN SESSION
+            ACKNOWLEDGED — CONTINUE
+          </button>
+        </div>
+      </div>
+    );
+  }
+
+  // RENDER: Time Check (Hard Stop)
+  if (step === "time-check") {
+    return (
+      <div className="w-full h-full flex flex-col items-center justify-center p-8 font-mono">
+        <div className="w-full max-w-sm border border-slate-800 bg-[#0f172a] p-8">
+          <p className="text-[10px] tracking-[0.4em] uppercase text-emerald-600 mb-4 animate-pulse">
+            TIME // EXTRACTION_PROTOCOL
+          </p>
+          <h2 className="text-xl font-black uppercase tracking-tight text-white mb-4">
+            Hard Stop Time
+          </h2>
+          <p className="text-[10px] text-slate-500 leading-relaxed mb-6">
+            Enter your extraction time (e.g. 18:30 or 06:30 PM). Leave blank for open-ended protocol.
+            The AI will dynamically compress rest periods or truncate volume to ensure you hit your extraction window.
+          </p>
+          <input
+            type="time"
+            value={hardStop}
+            onChange={(e) => setHardStop(e.target.value)}
+            className="w-full bg-black border border-slate-700 px-4 py-4 text-white font-mono text-center mb-6 focus:outline-none focus:border-emerald-700"
+          />
+          <button
+            onClick={() => {
+              if (hardStop) {
+                agentLog.architect(`Hard stop set for ${hardStop}. Compressing protocol.`);
+                agentLog.valkyrie(`Extraction locked at ${hardStop}. Adjusting volume and rests. Keep moving.`);
+              } else {
+                agentLog.valkyrie(`Open-ended protocol authorized. Execute at will.`);
+              }
+              setStep("session-active");
+            }}
+            className="w-full bg-emerald-600 text-black font-black py-4 uppercase tracking-[0.3em] text-xs hover:bg-emerald-400 transition-colors"
+          >
+            ENGAGE PROTOCOL
           </button>
         </div>
       </div>
@@ -349,6 +416,18 @@ export default function FitnessOnboardingGrid({ trickycardio, bitchweights, onCo
   }
 
   // RENDER: Session Active
+  if (selectedActivity?.id === "push") {
+    return (
+      <PushDaySession
+        hardStop={hardStop}
+        compressionStatus={compressionStatus}
+        sessionSeconds={sessionSeconds}
+        formatTime={formatTime}
+        onComplete={handleEndSession}
+      />
+    );
+  }
+
   return (
     <div className="w-full h-full flex flex-col items-center justify-center p-8 font-mono text-center">
       <div className="space-y-8 w-full max-w-xs">
@@ -369,6 +448,23 @@ export default function FitnessOnboardingGrid({ trickycardio, bitchweights, onCo
             <p className="text-[9px] tracking-[0.3em] uppercase text-yellow-800">
               AMRAP ACTIVE — {amrapFlags.length} LIFT{amrapFlags.length > 1 ? "S" : ""} FLAGGED
             </p>
+          </div>
+        )}
+
+        {hardStop && (
+          <div className="border border-emerald-950 px-6 py-3">
+            <p className="text-[9px] tracking-[0.3em] uppercase text-emerald-800">
+              EXTRACTION TIME: {hardStop}
+            </p>
+            {compressionStatus && (
+              <p className={`text-[9px] tracking-[0.2em] mt-2 font-black ${
+                compressionStatus.includes("CRITICAL") || compressionStatus.includes("TERMINATE") 
+                  ? "text-red-600 animate-pulse" 
+                  : "text-yellow-600"
+              }`}>
+                &gt; {compressionStatus}
+              </p>
+            )}
           </div>
         )}
 

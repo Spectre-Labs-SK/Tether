@@ -2,14 +2,14 @@
   "version": 1,
   "created_at": "2026-04-22T14:09:09.590Z",
   "lifetime": {
-    "total_tokens_estimated": 438565,
-    "total_reads": 256,
-    "total_writes": 170,
-    "total_sessions": 12,
-    "anatomy_hits": 218,
-    "anatomy_misses": 38,
-    "repeated_reads_blocked": 246,
-    "estimated_savings_vs_bare_cli": 565624
+    "total_tokens_estimated": 470205,
+    "total_reads": 277,
+    "total_writes": 182,
+    "total_sessions": 14,
+    "anatomy_hits": 224,
+    "anatomy_misses": 53,
+    "repeated_reads_blocked": 270,
+    "estimated_savings_vs_bare_cli": 628466
   },
   "sessions": [
     {
@@ -2615,6 +2615,226 @@
         "writes_count": 6,
         "repeated_reads_blocked": 2,
         "anatomy_lookups": 0
+      }
+    },
+    {
+      "id": "session-2026-04-26-0107",
+      "started": "2026-04-26T08:07:46.339Z",
+      "ended": "2026-04-26T17:21:55.952Z",
+      "reads": [
+        {
+          "file": "C:/Users/Windows 11 Pro/Desktop/Spectre_Labs/Feu_Follet/Tether_Safe/FITNESS_ENGINE_PROTOCOL.md",
+          "tokens_estimated": 0,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "C:/Users/Windows 11 Pro/Desktop/Spectre_Labs/Feu_Follet/Tether_Safe/src/App.tsx",
+          "tokens_estimated": 1195,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "C:/Users/Windows 11 Pro/Desktop/Spectre_Labs/Feu_Follet/Tether_Safe/src/components/WarRoom.tsx",
+          "tokens_estimated": 4303,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "C:/Users/Windows 11 Pro/Desktop/Spectre_Labs/Feu_Follet/Tether_Safe/src/hooks/useTetherState.ts",
+          "tokens_estimated": 0,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "C:/Users/Windows 11 Pro/Desktop/Spectre_Labs/Feu_Follet/Tether_Safe/src/registry/valkyrie/manifest.ts",
+          "tokens_estimated": 0,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "C:/Users/Windows 11 Pro/Desktop/Spectre_Labs/Feu_Follet/Tether_Safe/src/registry/valkyrie/houses.ts",
+          "tokens_estimated": 0,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "C:/Users/Windows 11 Pro/Desktop/Spectre_Labs/Feu_Follet/Tether_Safe/src/lib/agentLog.ts",
+          "tokens_estimated": 0,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "C:/Users/Windows 11 Pro/Desktop/Spectre_Labs/Feu_Follet/Tether_Safe/TETHER_BUILD_JOURNAL.md",
+          "tokens_estimated": 5255,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "C:/Users/Windows 11 Pro/Desktop/Spectre_Labs/Feu_Follet/Tether_Safe/src/native/screens/FitnessOnboardingGrid.tsx",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "C:/Users/Windows 11 Pro/Desktop/Spectre_Labs/Feu_Follet/Tether_Safe/src/native/screens/manifest.ts",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        }
+      ],
+      "writes": [
+        {
+          "file": "C:/Users/Windows 11 Pro/Desktop/Spectre_Labs/Feu_Follet/Tether_Safe/src/components/fitness/FitnessOnboardingGrid.tsx",
+          "tokens_estimated": 4092,
+          "action": "create"
+        },
+        {
+          "file": "C:/Users/Windows 11 Pro/Desktop/Spectre_Labs/Feu_Follet/Tether_Safe/src/components/WarRoom.tsx",
+          "tokens_estimated": 128,
+          "action": "edit"
+        },
+        {
+          "file": "C:/Users/Windows 11 Pro/Desktop/Spectre_Labs/Feu_Follet/Tether_Safe/src/components/WarRoom.tsx",
+          "tokens_estimated": 154,
+          "action": "edit"
+        },
+        {
+          "file": "C:/Users/Windows 11 Pro/Desktop/Spectre_Labs/Feu_Follet/Tether_Safe/src/components/WarRoom.tsx",
+          "tokens_estimated": 263,
+          "action": "edit"
+        },
+        {
+          "file": "C:/Users/Windows 11 Pro/Desktop/Spectre_Labs/Feu_Follet/Tether_Safe/src/components/WarRoom.tsx",
+          "tokens_estimated": 256,
+          "action": "edit"
+        },
+        {
+          "file": "C:/Users/Windows 11 Pro/Desktop/Spectre_Labs/Feu_Follet/Tether_Safe/src/components/WarRoom.tsx",
+          "tokens_estimated": 174,
+          "action": "edit"
+        }
+      ],
+      "totals": {
+        "input_tokens_estimated": 10753,
+        "output_tokens_estimated": 5067,
+        "reads_count": 10,
+        "writes_count": 6,
+        "repeated_reads_blocked": 12,
+        "anatomy_lookups": 3
+      }
+    },
+    {
+      "id": "session-2026-04-26-0107",
+      "started": "2026-04-26T08:07:46.339Z",
+      "ended": "2026-04-26T17:26:23.157Z",
+      "reads": [
+        {
+          "file": "C:/Users/Windows 11 Pro/Desktop/Spectre_Labs/Feu_Follet/Tether_Safe/FITNESS_ENGINE_PROTOCOL.md",
+          "tokens_estimated": 0,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "C:/Users/Windows 11 Pro/Desktop/Spectre_Labs/Feu_Follet/Tether_Safe/src/App.tsx",
+          "tokens_estimated": 1195,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "C:/Users/Windows 11 Pro/Desktop/Spectre_Labs/Feu_Follet/Tether_Safe/src/components/WarRoom.tsx",
+          "tokens_estimated": 4303,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "C:/Users/Windows 11 Pro/Desktop/Spectre_Labs/Feu_Follet/Tether_Safe/src/hooks/useTetherState.ts",
+          "tokens_estimated": 0,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "C:/Users/Windows 11 Pro/Desktop/Spectre_Labs/Feu_Follet/Tether_Safe/src/registry/valkyrie/manifest.ts",
+          "tokens_estimated": 0,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "C:/Users/Windows 11 Pro/Desktop/Spectre_Labs/Feu_Follet/Tether_Safe/src/registry/valkyrie/houses.ts",
+          "tokens_estimated": 0,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "C:/Users/Windows 11 Pro/Desktop/Spectre_Labs/Feu_Follet/Tether_Safe/src/lib/agentLog.ts",
+          "tokens_estimated": 0,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "C:/Users/Windows 11 Pro/Desktop/Spectre_Labs/Feu_Follet/Tether_Safe/TETHER_BUILD_JOURNAL.md",
+          "tokens_estimated": 5255,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "C:/Users/Windows 11 Pro/Desktop/Spectre_Labs/Feu_Follet/Tether_Safe/src/native/screens/FitnessOnboardingGrid.tsx",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "C:/Users/Windows 11 Pro/Desktop/Spectre_Labs/Feu_Follet/Tether_Safe/src/native/screens/manifest.ts",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "C:/Users/Windows 11 Pro/.claude/get-shit-done/workflows/cleanup.md",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        }
+      ],
+      "writes": [
+        {
+          "file": "C:/Users/Windows 11 Pro/Desktop/Spectre_Labs/Feu_Follet/Tether_Safe/src/components/fitness/FitnessOnboardingGrid.tsx",
+          "tokens_estimated": 4092,
+          "action": "create"
+        },
+        {
+          "file": "C:/Users/Windows 11 Pro/Desktop/Spectre_Labs/Feu_Follet/Tether_Safe/src/components/WarRoom.tsx",
+          "tokens_estimated": 128,
+          "action": "edit"
+        },
+        {
+          "file": "C:/Users/Windows 11 Pro/Desktop/Spectre_Labs/Feu_Follet/Tether_Safe/src/components/WarRoom.tsx",
+          "tokens_estimated": 154,
+          "action": "edit"
+        },
+        {
+          "file": "C:/Users/Windows 11 Pro/Desktop/Spectre_Labs/Feu_Follet/Tether_Safe/src/components/WarRoom.tsx",
+          "tokens_estimated": 263,
+          "action": "edit"
+        },
+        {
+          "file": "C:/Users/Windows 11 Pro/Desktop/Spectre_Labs/Feu_Follet/Tether_Safe/src/components/WarRoom.tsx",
+          "tokens_estimated": 256,
+          "action": "edit"
+        },
+        {
+          "file": "C:/Users/Windows 11 Pro/Desktop/Spectre_Labs/Feu_Follet/Tether_Safe/src/components/WarRoom.tsx",
+          "tokens_estimated": 174,
+          "action": "edit"
+        }
+      ],
+      "totals": {
+        "input_tokens_estimated": 10753,
+        "output_tokens_estimated": 5067,
+        "reads_count": 11,
+        "writes_count": 6,
+        "repeated_reads_blocked": 12,
+        "anatomy_lookups": 3
       }
     }
   ],

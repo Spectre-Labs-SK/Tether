@@ -10,6 +10,11 @@
 
 ## Key Learnings
 
+- **FitnessOnboardingGrid web port:** Cannot import from `src/native/screens/` in the Vite build (excluded via tsconfig). Domain/Activity data must be replicated locally in web components.
+- **AI gate order (Iron domain):** Always `trickycardio()` first (hard block — no cardio = no access), then `bitchweights()` (soft block — AMRAP mode, user can proceed after acknowledgement).
+- **Onboarding overlay z-stack:** Identity upgrade modal is `z-20`; onboarding overlay must be `z-30` to sit above it. Canvas is `z-0`, UI overlay is `z-10`.
+- **completeOnboarding() prop type:** FitnessOnboardingGrid accepts `onComplete: () => Promise<void>` — pass `completeOnboarding` directly from `useTetherState` (signatures match). DB-first pattern: profile state updates after Supabase confirms, causing the overlay to unmount automatically.
+- **Valkyrie gear loadout:** MILITARY mode → `Shadow Visor [ELITE]` + `Carbon Thruster [COMMON]`; ETHER mode → `Shimmer Crown [PRIME]` + `Ethereal Flight-Span [PRIME]`. Computed from `VALKYRIE_MANIFEST.gear.helmets/wings[0|1]` by index — safe with `as const`.
 - **Project:** tether
 - **Description:** React Native (Expo) universal activity tracker with a Vite web shell — dual codebase in one repo.
 - **Architecture split:** `src/native/` is Expo/RN only — excluded from `tsconfig.app.json` via `"exclude": ["src/native"]`. The Vite web build never touches it; the native build needs its own tsconfig/metro config.

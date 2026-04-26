@@ -17,4 +17,4 @@ TETHER_BUILD_JOURNAL.md, CLAUD.md, DEPENDENCIES.docx, CODE_CHEAT_SHEET,
 CONTEXT_MAP.md, TECH_DEBT_SHADOW.log, SESSION_STATE.json, and SKILLS.md.
 
 ## REPORTING
-End every session with an "Architect Sync Report" for the Lead Architect to review during the 17:00 sync.
+End every session with an "Architect Sync Report" for the Lead Architect to review during the 20:00 sync.

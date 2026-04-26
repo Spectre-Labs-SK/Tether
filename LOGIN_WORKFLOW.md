@@ -57,3 +57,4 @@ Currently, `handleReset()` exists in the SOS menu. We need a proper "Sign Out" b
 ## 5. ARCHITECTURAL GUARDRAILS
 - **Do NOT wipe the `userId` during the upgrade.** Supabase's `updateUser` allows you to add an email to an anonymous user without generating a new UUID. This is critical to prevent orphaned data.
 - Maintain the Spectre Labs aesthetic. Login forms should not look like standard web forms; they should look like terminal prompts or encrypted key exchanges.
+

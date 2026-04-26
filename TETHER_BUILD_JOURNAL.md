@@ -416,12 +416,40 @@ The vestigial React Native `FitnessOnboardingGrid` has been fully ported to Vite
 
 | Severity | ID | Description | Status |
 |---|---|---|---|
-| 🟢 NEW | B-007 | `FitnessOnboardingGrid` session data not yet synced to Supabase `workouts` table | OPEN |
+| 🟢 NEW | B-007 | `FitnessOnboardingGrid` session data not yet synced to Supabase `workouts` table | CLOSED |
 | 🟢 LOW | B-006 | `supabase/migrations/05_identity_upgrade.sql` needs manual apply | OPEN |
-| 🟢 LOW | B-003 | `App.css` vestigial — safe to delete | OPEN (requires manual `rm`) |
+| 🟢 LOW | B-003 | `App.css` vestigial — safe to delete | CLOSED |
 
 **B-007 note:** The session active timer is live and `completeOnboarding()` fires correctly, but actual workout set data (reps/weight) is not being written to Supabase — that requires the full `PushDayOnboarding` web port. Logged for next build cycle.
 
 ---
 
 **AUDIT ME**
+
+---
+
+### 2026-04-26: EXTRACTION PROTOCOL (Hard Stop)
+
+**TRIGGER:** Manual
+**AUDIT:** COMPLETED
+
+#### Feature: AI Hard Stop Integration (`FitnessOnboardingGrid.tsx`)
+- **UI State Added:** `time-check` step inserted before `session-active`.
+- **Functionality:** Users can now optionally enter an extraction time (e.g., "18:30"). 
+- **AI Feedback Loop:** The `session-active` timer ticks every 10 seconds to check against the extraction time.
+  - `<= 15 min remaining`: "VOLUME REDUCTION: FINAL SETS TRUNCATED"
+  - `<= 5 min remaining`: "CRITICAL: 5 MIN TO EXTRACTION. INITIATE COOL DOWN."
+  - `<= 0 min`: "EXTRACTION TIME REACHED. TERMINATE PROTOCOL."
+- **Feu Follet Compliance:** Compliant. No persistent data or PII collected by the time-check.
+
+---
+
+### 2026-04-26: PushDayOnboarding Web Port (LEAD_DEV Handoff)
+
+**TRIGGER:** Claude Token Exhaustion (Handoff to LEAD_DEV)
+**AUDIT:** COMPLETED
+
+#### Features & Fixes:
+- **B-007 (CLOSED):** `PushDaySession.tsx` created as a native Vite port of the React Native component. It integrates the Epley/Brzycki/Lander 1RM algorithms, tracks `workouts` and `workout_sets` via Supabase, supports Skip tracking, and implements Muscle Group Lockdowns (Pain Logging).
+- **Web Wiring:** `FitnessOnboardingGrid.tsx` now actively routes the Push Day selection into the new `PushDaySession.tsx` interface, preserving the Time-Check hard stop features and propagating them down as props.
+- **B-003 (CLOSED):** `src/App.css` permanently removed via terminal command.
