@@ -1,5 +1,7 @@
 # Tech Stack
 
+**Last Mapped:** 2026-04-25
+
 ## Languages
 
 - **TypeScript** ~6.0.2 — strict-ish config (noUnusedLocals, noUnusedParameters, erasableSyntaxOnly)
@@ -8,7 +10,7 @@
 ## Frameworks
 
 - **React** 19.2.5 — functional components, hooks-only, no class components
-- **React Native** (referenced via src/native/ imports) — NOT part of the Vite build; no Expo SDK installed
+- **React Native** (referenced via `src/native/` imports) — NOT part of the Vite build; no Expo SDK installed
 
 ## Key Libraries
 
@@ -31,7 +33,7 @@
 
 ## Linting
 
-- **ESLint** ^9.39.4 with flat config (eslint.config.js)
+- **ESLint** ^9.39.4 with flat config (`eslint.config.js`)
 - **typescript-eslint** ^8.58.2
 - **eslint-plugin-react-hooks** ^7.1.1
 - **eslint-plugin-react-refresh** ^0.5.2
@@ -39,8 +41,8 @@
 ## Runtime
 
 - **Browser** — primary target (Vite SPA)
-- **React Native / Expo** — intended secondary target; src/native/ screens exist but Expo SDK is NOT installed and src/native is excluded from tsconfig compilation
+- **React Native / Expo** — intended secondary target; `src/native/` screens exist but Expo SDK is NOT installed and `src/native` is excluded from tsconfig compilation
 
 ## Package Manager
 
-- **npm** (package-lock.json present)
+- **npm** (`package-lock.json` present)

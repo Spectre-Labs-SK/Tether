@@ -1,5 +1,7 @@
 # File Structure
 
+**Last Mapped:** 2026-04-25
+
 ## Directory Tree
 
 ```
@@ -63,13 +65,13 @@ Tether/
 
 | File | Tokens | Role |
 |---|---|---|
-| src/App.tsx | ~1274 | Root; owns appMode; contains ShimmerCore inline duplicate |
-| src/components/EntryGate.tsx | ~2048 | Auth + entry UX; owns userId state |
-| src/hooks/useTetherState.ts | ~3066 | Core state hook; profile, crisis mode, fitness gates |
-| src/hooks/useJointOps.ts | ~2394 | Collaborative layer hook |
-| src/lib/supabase.ts | ~582 | Supabase client + 8 exported types |
-| src/native/screens/PushDayOnboarding.tsx | ~7145 | Most complex screen; 3-formula 1RM engine |
-| src/registry/valkyrie/manifest.ts | ~591 | Gear/equipment data used in EntryGate display |
+| `src/App.tsx` | ~1274 | Root; owns appMode; contains ShimmerCore inline duplicate |
+| `src/components/EntryGate.tsx` | ~2048 | Auth + entry UX; owns userId state |
+| `src/hooks/useTetherState.ts` | ~3066 | Core state hook; profile, crisis mode, fitness gates |
+| `src/hooks/useJointOps.ts` | ~2394 | Collaborative layer hook |
+| `src/lib/supabase.ts` | ~582 | Supabase client + 8 exported types |
+| `src/native/screens/PushDayOnboarding.tsx` | ~7145 | Most complex screen; 3-formula 1RM engine |
+| `src/registry/valkyrie/manifest.ts` | ~591 | Gear/equipment data used in EntryGate display |
 
 ## Screens
 

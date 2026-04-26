@@ -1,5 +1,7 @@
 # Integrations
 
+**Last Mapped:** 2026-04-25
+
 ## External Services
 
 ### Supabase (Primary BaaS)
@@ -14,13 +16,11 @@ Two deployed functions under `supabase/functions/`:
 
 | Function | Path | Purpose |
 |---|---|---|
-| calculate-1rm | supabase/functions/calculate-1rm/ | Server-side 1RM calculation |
-| sync-workout | supabase/functions/sync-workout/ | Workout session persistence |
+| calculate-1rm | `supabase/functions/calculate-1rm/` | Server-side 1RM calculation |
+| sync-workout | `supabase/functions/sync-workout/` | Workout session persistence |
 
 ## Auth
 
 - **Provider**: Supabase Anonymous Auth
 - **Flow**: Boot → check session → if none, `signInAnonymously()` → SIGNED_IN event → userId resolved
 - **Kill switch**: `supabase.auth.signOut()` exposed as "Reset / Clear Session"
-
-

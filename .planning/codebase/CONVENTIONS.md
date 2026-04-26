@@ -1,5 +1,7 @@
 # Conventions
 
+**Last Mapped:** 2026-04-25
+
 ## Naming
 
 | Category | Convention | Example |
@@ -51,7 +53,7 @@ Native screens additionally import React Native primitives first.
 
 ## Comment Conventions
 
-- Multi-line block comments for complex logic (1RM formula suite in PushDayOnboarding)
+- Multi-line block comments for complex logic (1RM formula suite in `PushDayOnboarding`)
 - JSDoc `/** */` for exported pure functions (e.g., `calculate1RM`)
 - Inline `//` for state machine invariants and non-obvious guard conditions
 - `agentLog.architect()` for operational/debug logs (replaces console.log)

@@ -1,5 +1,7 @@
 # Architecture
 
+**Last Mapped:** 2026-04-25
+
 ## Pattern
 
 **React SPA with mode-based routing.** No router library — `App.tsx` holds a top-level `appMode` state (`'gate' | 'chill' | 'sos'`) and conditionally renders one of three shells:

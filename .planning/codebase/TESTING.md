@@ -1,12 +1,14 @@
 # Testing
 
+**Last Mapped:** 2026-04-25
+
 ## Framework
 
 **None.** No test framework is installed or configured.
 
-- No Jest, Vitest, Mocha, or Playwright in package.json
-- No `test` script in package.json
-- No jest.config.js, vitest.config.ts, or playwright.config.ts
+- No Jest, Vitest, Mocha, or Playwright in `package.json`
+- No `test` script in `package.json`
+- No `jest.config.js`, `vitest.config.ts`, or `playwright.config.ts`
 
 ## Test Files
 

@@ -1,5 +1,7 @@
 # Technical Concerns
 
+**Last Mapped:** 2026-04-25
+
 ## Critical (Blockers)
 
 ### C-001: No .env.local — Supabase will crash on boot
