@@ -346,3 +346,82 @@ The attempt to deploy TETHER_ARCHITECT as a Declarative Agent via Microsoft Team
 **ACTION TAKEN:**
 - `TETHER_ARCHITECT` persona and rules have been directly injected into the local `AGENT.md` and `.clinerules`.
 - The local VS Code AI assistants will now adopt the Architect persona natively, bypassing Microsoft's ecosystem entirely while still retaining full GSD orchestration capabilities.
+
+---
+
+### 2026-04-26: Night Build Phase 2 — AI Fitness Engine & Valkyrie Onboarding
+
+**TRIGGER:** `FITNESS_ENGINE_PROTOCOL.md` — Manual build command with `--dangerously-skip-permissions`
+**AGENT:** Claude Sonnet 4.6 (Claude Code)
+**AUDIT:** `tsc -b --noEmit` clean — 0 errors
+
+---
+
+#### Step 1 — FitnessOnboardingGrid.tsx (Web Port): IMPLEMENTED ✅
+
+**File:** `src/components/fitness/FitnessOnboardingGrid.tsx` (new file, 15.8 KB)
+
+The vestigial React Native `FitnessOnboardingGrid` has been fully ported to Vite/DOM with zero RN imports.
+
+- **Zero-native policy enforced:** Domain/Activity data replicated locally (cannot import from `src/native/` — excluded from `tsconfig.app.json`). No `react-native`, `SafeAreaView`, `StyleSheet`, or `useNavigation` imports.
+- **3-Taps-to-Active protocol:**
+  - Tap 1: Domain grid — `[Fe] IRON`, `[//] ROAD`, `[~~] MAT`, `[::]  HUB` — 2×2 terminal-style buttons with per-domain accent borders and hover radial glow
+  - Tap 2: Activity list — full activity roster per domain, Supabase AI gates run here for Iron
+  - Tap 3: "END SESSION / DEBRIEF" — triggers `completeOnboarding()` DB write, unmounts overlay
+- **Hub: 2-tap fast-path** — Domain → Session Active immediately (no activity sub-selection)
+- **Checking screen:** Terminal-style spinner with live gate function names displayed
+- **Session Active:** Live up-timer (`useRef` + `setInterval`, identical pattern to `SOSShell`), AMRAP banner when flags present, idempotent end-session guard (`isEnding` flag)
+- **Aesthetic:** `#0f172a` / `#1e293b` bg, `font-mono`, uppercase tracking, emerald/red/yellow accent per flow state — fully consistent with existing WarRoom/EntryGate language
+
+---
+
+#### Step 2 — Onboarding Flow Wired: IMPLEMENTED ✅
+
+**File:** `src/components/WarRoom.tsx` (updated)
+
+- `useTetherState` now fully destructured: `{ profile, completeOnboarding, trickycardio, bitchweights }`
+- `profile?.onboarding_pending` check gates a full-screen `z-30` overlay above the War Room canvas (above identity modal at `z-20`)
+- Overlay header: `TETHER // FIRST_MISSION_BRIEF` with subtitle "Lock in your first protocol"
+- On session end → `completeOnboarding()` writes `onboarding_pending: false` to DB → profile state updates → overlay unmounts automatically
+
+---
+
+#### Step 3 — AI Gate Integration: IMPLEMENTED ✅
+
+**Iron domain path (within FitnessOnboardingGrid):**
+- `trickycardio()` runs first on any Iron activity selection
+  - `liftingGated: true` → Cardio Gate Block: red-bordered card showing required vs logged minutes, Valkyrie quote, "SELECT DIFFERENT PROTOCOL" escape hatch
+  - `liftingGated: false` → proceeds to `bitchweights()`
+- `bitchweights()` scans all exercises for `delta_pct < 2%` over 6 weeks
+  - Flags present → AMRAP Briefing: yellow-bordered cards per flagged exercise (1RM + delta), Valkyrie warning quote, requires explicit "ACKNOWLEDGED" tap
+  - No flags → proceeds directly to Session Active
+- All gate results surface in `agentLog.architect` + `agentLog.valkyrie` per protocol
+
+---
+
+#### Step 4 — VALKYRIE_MANIFEST Gear Themes: IMPLEMENTED ✅
+
+**File:** `src/components/WarRoom.tsx` (updated)
+
+- `VALKYRIE_MANIFEST` imported from `src/registry/valkyrie/manifest.ts`
+- Active loadout computed from `mode` state:
+  - `MILITARY` → `Shadow Visor [ELITE]` + `Carbon Thruster [COMMON]`
+  - `ETHER` → `Shimmer Crown [PRIME]` + `Ethereal Flight-Span [PRIME]`
+- Displayed in the War Room top-right alongside the operative's handle — 8px monospace tracking, `text-slate-800` (subtle; present but not dominant)
+- Mode toggle (`Initiate Shift`) instantly swaps the gear loadout display
+
+---
+
+#### Bug Tracker Update
+
+| Severity | ID | Description | Status |
+|---|---|---|---|
+| 🟢 NEW | B-007 | `FitnessOnboardingGrid` session data not yet synced to Supabase `workouts` table | OPEN |
+| 🟢 LOW | B-006 | `supabase/migrations/05_identity_upgrade.sql` needs manual apply | OPEN |
+| 🟢 LOW | B-003 | `App.css` vestigial — safe to delete | OPEN (requires manual `rm`) |
+
+**B-007 note:** The session active timer is live and `completeOnboarding()` fires correctly, but actual workout set data (reps/weight) is not being written to Supabase — that requires the full `PushDayOnboarding` web port. Logged for next build cycle.
+
+---
+
+**AUDIT ME**

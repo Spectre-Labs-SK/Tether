@@ -112,6 +112,38 @@
       "related_bugs": [],
       "occurrences": 1,
       "last_seen": "2026-04-26T07:55:29.172Z"
+    },
+    {
+      "id": "bug-008",
+      "timestamp": "2026-04-26T08:13:10.376Z",
+      "error_message": "Type error",
+      "file": "src/components/WarRoom.tsx",
+      "root_cause": "Missing or incorrect type annotation",
+      "fix": "Added type assertion/annotation",
+      "tags": [
+        "auto-detected",
+        "type-fix",
+        "tsx"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-04-26T08:13:10.376Z"
+    },
+    {
+      "id": "bug-009",
+      "timestamp": "2026-04-26T08:13:19.754Z",
+      "error_message": "Null/undefined access in ",
+      "file": "src/components/WarRoom.tsx",
+      "root_cause": "Property access on potentially null/undefined value",
+      "fix": "Added null safety (optional chaining or null check)",
+      "tags": [
+        "auto-detected",
+        "null-safety",
+        "tsx"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-04-26T08:13:19.754Z"
     }
   ]
 }

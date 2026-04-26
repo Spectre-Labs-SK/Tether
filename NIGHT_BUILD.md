@@ -24,6 +24,7 @@ Your mission is to resolve the top blockers currently halting the Tether project
 2. **No Aggressive Clean-Up:** DO NOT delete variables or functions marked as "defined but never used" unless they are part of the specific bug fix. These are architectural anchors.
 3. **Zero-Lazy Policy:** Never leave `// implementation here` or `// rest of code` comments. All logic must be 100% complete.
 4. **Charter Compliance:** Any data tracking must respect the Feu Follet anonymous data flow (no PII, anonymous UUID only).
+5. **Token Exhaustion Protocol:** If you run out of tokens or hit a hard usage limit and must pause: (1) You wait for the reset. (2) Post "HANDOFF TO LEAD_DEV" and document your current state. The LEAD_DEV Agent (Gemini) will immediately take over and finish exactly what you were working on.
 
 **GOAL:** We MUST have a fully working screen on localhost by morning so we can boot up Expo (React Native) tomorrow without blocked web dependencies.
 

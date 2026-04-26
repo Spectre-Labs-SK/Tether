@@ -1,7 +1,7 @@
 # anatomy.md
 
-> Auto-maintained by OpenWolf. Last scanned: 2026-04-26T08:01:32.465Z
-> Files: 7 tracked | Anatomy hits: 0 | Misses: 0
+> Auto-maintained by OpenWolf. Last scanned: 2026-04-26T08:13:40.690Z
+> Files: 8 tracked | Anatomy hits: 0 | Misses: 0
 
 ## ./
 
@@ -36,7 +36,11 @@
 
 - `EntryGate.tsx` — Phase B recovery login view + anonymous boot; onEnter(mode, userId) passes userId up to App (~3630 tok)
 - `ShimmerCore.tsx` — 3D ShimmerCore sphere; mode + staticLevel props; extracted from App.tsx (~200 tok)
-- `WarRoom.tsx` — War Room: calibration bunker + 3D canvas + Phase A identity upgrade modal (updateUser) + Phase C sign-out kill switch (~3646 tok)
+- `WarRoom.tsx` — War Room: calibration bunker + 3D canvas + identity upgrade modal (z-20) + kill switch + Valkyrie gear loadout (mode-driven) + onboarding overlay (z-30, gated by profile.onboarding_pending) (~4303 tok)
+
+## src/components/fitness/
+
+- `FitnessOnboardingGrid.tsx` — Web DOM fitness onboarding: 3-taps-to-active (Domain→Activity→Session Active); Iron gates: trickycardio() then bitchweights(); AMRAP briefing; session up-timer; onComplete() fires completeOnboarding() (~4092 tok)
 
 ## src/hooks/
 
