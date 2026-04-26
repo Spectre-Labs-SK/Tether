@@ -22,3 +22,7 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Educational Content
+TEXTBOOK_*.md
+FULL_AUDIT_APR25.md
