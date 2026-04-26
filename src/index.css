@@ -11,7 +11,7 @@ body, html, #root {
 
 /* Safety Grain: No external URLs */
 .noise-overlay {
-  fixed inset-0 pointer-events-none z-50 opacity-[0.03] bg-white;
+  @apply fixed inset-0 pointer-events-none z-50 opacity-[0.03] bg-white;
   background-image: repeating-radial-gradient(#000 0 0.0001%,#fff 0 0.0002%);
   background-size: 100px 100px;
 }

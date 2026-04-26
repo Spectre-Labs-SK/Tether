@@ -1,0 +1,11 @@
+{
+  "backed_up_at": "2026-04-26T03:35:40.314Z",
+  "from_version": "1.38.5",
+  "from_manifest_timestamp": "2026-04-26T03:33:45.001Z",
+  "files": [
+    ".clinerules"
+  ],
+  "pristine_hashes": {
+    ".clinerules": "29e79ada7b60b3203b02d559c2bbf66d850426715cf547225a9c68ab6b471f3c"
+  }
+}
