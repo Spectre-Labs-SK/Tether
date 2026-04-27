@@ -122,7 +122,7 @@ export default function WarRoom({ userId, onSignOut }: Props) {
             <ambientLight intensity={1} />
             <pointLight position={[10, 10, 10]} />
             <Suspense fallback={null}>
-              <ShimmerCore mode={mode} staticLevel={staticLevel} />
+              <ShimmerCore />
             </Suspense>
           </Canvas>
         </div>
