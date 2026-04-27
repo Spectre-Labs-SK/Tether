@@ -1,13 +1,13 @@
 # anatomy.md
 
-> Auto-maintained by OpenWolf. Last scanned: 2026-04-27T03:12:08.806Z
-> Files: 9 tracked | Anatomy hits: 0 | Misses: 0
+> Auto-maintained by OpenWolf. Last scanned: 2026-04-27T04:43:36.087Z
+> Files: 12 tracked | Anatomy hits: 0 | Misses: 0
 
 ## ./
 
+- `.env.local` — Supabase env vars (VITE_SUPABASE_URL, VITE_SUPABASE_ANON_KEY); placeholder values; not committed (~50 tok)
 - `DEPENDENCIES.md` — Pillar 3 supply chain; all npm deps with versions + env var requirements (~509 tok)
 - `TETHER_BUILD_JOURNAL.md` — TETHER BUILD JOURNAL; bug tracker + phase logs (~6835 tok)
-- `.env.local` — Supabase env vars (VITE_SUPABASE_URL, VITE_SUPABASE_ANON_KEY); placeholder values; not committed (~50 tok)
 
 ## .claude/
 
@@ -29,6 +29,7 @@
 
 ## .planning/phases/01-pattern-observer-threejs/
 
+- `01-01-SUMMARY.md` — Phase 01 Plan 01: Zustand Bridge and Canonical ShimmerCore Summary (~933 tok)
 
 ## src/
 
@@ -37,8 +38,8 @@
 ## src/components/
 
 - `EntryGate.tsx` — Phase B recovery login view + anonymous boot; onEnter(mode, userId) passes userId up to App (~3630 tok)
-- `ShimmerCore.tsx` — 3D ShimmerCore sphere; mode + staticLevel props; extracted from App.tsx (~200 tok)
-- `WarRoom.tsx` — War Room: calibration bunker + 3D canvas + identity upgrade modal (z-20) + kill switch + Valkyrie gear loadout (mode-driven) + onboarding overlay (z-30, gated by profile.onboarding_pending) (~4303 tok)
+- `ShimmerCore.tsx` — Canonical zero-props store-driven sphere; lerps distort/speed/metalness/color via usePatternStore.getState() in useFrame; floatIntensity/floatSpeed as reactive selectors (~516 tok)
+- `WarRoom.tsx` — WarRoom (~4035 tok)
 
 ## src/components/fitness/
 
@@ -59,6 +60,7 @@
 
 ## src/stores/
 
+- `patternStore.ts` — Exports ShimmerTarget, DEFAULTS, usePatternStore (~260 tok)
 
 ## supabase/functions/calculate-1rm/
 
