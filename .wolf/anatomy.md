@@ -1,11 +1,13 @@
 # anatomy.md
 
-> Auto-maintained by OpenWolf. Last scanned: 2026-04-26T08:13:40.690Z
-> Files: 8 tracked | Anatomy hits: 0 | Misses: 0
+> Auto-maintained by OpenWolf. Last scanned: 2026-04-27T03:12:08.806Z
+> Files: 9 tracked | Anatomy hits: 0 | Misses: 0
 
 ## ./
 
-- `TETHER_BUILD_JOURNAL.md` — TETHER BUILD JOURNAL (~5255 tok)
+- `DEPENDENCIES.md` — Pillar 3 supply chain; all npm deps with versions + env var requirements (~509 tok)
+- `TETHER_BUILD_JOURNAL.md` — TETHER BUILD JOURNAL; bug tracker + phase logs (~6835 tok)
+- `.env.local` — Supabase env vars (VITE_SUPABASE_URL, VITE_SUPABASE_ANON_KEY); placeholder values; not committed (~50 tok)
 
 ## .claude/
 

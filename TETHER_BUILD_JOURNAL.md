@@ -47,10 +47,10 @@
 | Severity | ID | Description | Status |
 |---|---|---|---|
 | 🟠 HIGH | B-000 | Kill switch for anonymous/SOS session not yet user-accessible in UI | OPEN |
-| 🟡 MEDIUM | B-001 | `staticLevel` slider not wired to `distort` prop on `MeshDistortMaterial` | OPEN |
-| 🟢 LOW | B-002 | `lucide-react` icons imported but never rendered | OPEN |
-| 🟢 LOW | B-003 | `App.css` vestigial — safe to delete | OPEN |
-| 🟢 LOW | B-004 | `ShimmerCore` inline in `App.tsx` — extract as complexity grows | OPEN |
+| 🟡 MEDIUM | B-001 | `staticLevel` slider not wired to `distort` prop on `MeshDistortMaterial` | **CLOSED** 2026-04-26 — wired in `ShimmerCore.tsx:19` (`distort={staticLevel / 100}`) |
+| 🟢 LOW | B-002 | `lucide-react` icons imported but never rendered | OPEN — deferred to future session |
+| 🟢 LOW | B-003 | `App.css` vestigial — safe to delete | **CLOSED** 2026-04-26 — file already deleted |
+| 🟢 LOW | B-004 | `ShimmerCore` inline in `App.tsx` — extract as complexity grows | **CLOSED** 2026-04-26 — extracted to `src/components/ShimmerCore.tsx` |
 
 ---
 
@@ -453,3 +453,9 @@ The vestigial React Native `FitnessOnboardingGrid` has been fully ported to Vite
 - **B-007 (CLOSED):** `PushDaySession.tsx` created as a native Vite port of the React Native component. It integrates the Epley/Brzycki/Lander 1RM algorithms, tracks `workouts` and `workout_sets` via Supabase, supports Skip tracking, and implements Muscle Group Lockdowns (Pain Logging).
 - **Web Wiring:** `FitnessOnboardingGrid.tsx` now actively routes the Push Day selection into the new `PushDaySession.tsx` interface, preserving the Time-Check hard stop features and propagating them down as props.
 - **B-003 (CLOSED):** `src/App.css` permanently removed via terminal command.
+
+#### Bug Tracker Update
+
+| Severity | ID | Description | Status |
+|---|---|---|---|
+| 🟢 LOW | B-008 | `lucide-react` icons require deliberate placement (e.g., WarRoom header, SOSShell) before rendering. Do not arbitrarily render to close bug. | OPEN |

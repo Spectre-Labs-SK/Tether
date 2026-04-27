@@ -134,7 +134,7 @@ import EntryGate from './components/EntryGate';
 
 1. **(From Audit)** Implement a user-accessible "kill switch" for the SOS/anonymous mode to fully comply with the Feu Follet Charter.
 2. `staticLevel` slider is captured but does nothing — wire to `distort` prop on `MeshDistortMaterial`.
-3. `lucide-react` icons (Shield, Sparkles, Brain, Zap) imported but never rendered.
+3. `lucide-react` icons imported but never rendered. *Constraint: These need a deliberate placement (e.g., WarRoom header, SOSShell), not just an arbitrary render to close the bug.*
 4. `App.css` is vestigial — safe to delete.
 5. `DEPENDENCIES.docx` doesn't exist yet (referenced in AGENT.md).
 6. ShimmerCore is inline in `App.tsx` — extract as complexity grows.
