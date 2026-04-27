@@ -2,6 +2,7 @@ import { useState, Suspense, useEffect } from "react";
 import { Canvas } from "@react-three/fiber";
 import { supabase, upgradeAnonymousUser } from "../lib/supabase";
 import { useTetherState } from "../hooks/useTetherState";
+import { usePatternObserver } from "../hooks/usePatternObserver";
 import { agentLog } from "../lib/agentLog";
 import { ShimmerCore } from "./ShimmerCore";
 import { VALKYRIE_MANIFEST } from "../registry/valkyrie/manifest";
@@ -10,14 +11,16 @@ import FitnessOnboardingGrid from "./fitness/FitnessOnboardingGrid";
 type Props = {
   userId: string | null;
   onSignOut: () => void;
+  appMode: 'gate' | 'chill' | 'sos';
 };
 
 type UpgradeState = "idle" | "open" | "submitting" | "success" | "error";
 
-export default function WarRoom({ userId, onSignOut }: Props) {
-  const [mode, setMode]           = useState<"MILITARY" | "ETHER">("MILITARY");
+export default function WarRoom({ userId, onSignOut, appMode }: Props) {
+  const [shimmerMode, setShimmerMode] = useState<"MILITARY" | "ETHER">("MILITARY");
   const [isCalibrated, setIsCalibrated] = useState(false);
-  const [staticLevel, setStaticLevel]   = useState(40);
+  const [liftingGated, setLiftingGated] = useState(false);
+  const [bitchweightCount, setBitchweightCount] = useState(0);
 
   // Phase A: anonymous identity detection
   const [isGhost, setIsGhost]           = useState(false);
@@ -29,10 +32,10 @@ export default function WarRoom({ userId, onSignOut }: Props) {
   const { profile, completeOnboarding, trickycardio, bitchweights } = useTetherState(userId);
 
   // Valkyrie gear loadout — ETHER equips PRIME gear; MILITARY equips ELITE/COMMON
-  const activeHelmet = mode === "ETHER"
+  const activeHelmet = shimmerMode === "ETHER"
     ? VALKYRIE_MANIFEST.gear.helmets[0]   // Shimmer Crown [PRIME]
     : VALKYRIE_MANIFEST.gear.helmets[1];  // Shadow Visor [ELITE]
-  const activeWings = mode === "ETHER"
+  const activeWings = shimmerMode === "ETHER"
     ? VALKYRIE_MANIFEST.gear.wings[0]     // Ethereal Flight-Span [PRIME]
     : VALKYRIE_MANIFEST.gear.wings[1];    // Carbon Thruster [COMMON]
 
@@ -43,6 +46,34 @@ export default function WarRoom({ userId, onSignOut }: Props) {
       setIsGhost(user?.is_anonymous ?? false);
     });
   }, [userId]);
+
+  // Resolve async gate signals when calibration completes
+  useEffect(() => {
+    if (!isCalibrated) return;
+    const resolve = async () => {
+      if (!userId) {
+        // userId not wired in Phase 1 — skip gate resolution
+        return;
+      }
+      try {
+        const [gate, flags] = await Promise.all([trickycardio(), bitchweights()]);
+        setLiftingGated(gate.liftingGated);
+        setBitchweightCount(flags.length);
+      } catch {
+        // fail-open: keep defaults (liftingGated=false, bitchweightCount=0)
+      }
+    };
+    void resolve();
+  }, [isCalibrated, userId, trickycardio, bitchweights]);
+
+  usePatternObserver({
+    appMode,
+    shimmerMode,
+    isCrisisMode: profile?.is_crisis_mode ?? false,
+    selectedDomain: null,
+    liftingGated,
+    bitchweightCount,
+  });
 
   // Phase A: Bind email/password to the existing anonymous UUID
   const handleUpgrade = async () => {
@@ -87,14 +118,6 @@ export default function WarRoom({ userId, onSignOut }: Props) {
               Bunker_B12 // Reality_Sync_Required
             </p>
             <div className="space-y-10">
-              <input
-                type="range"
-                min={0}
-                max={100}
-                value={staticLevel}
-                onChange={(e) => setStaticLevel(Number(e.target.value))}
-                className="w-full accent-emerald-500"
-              />
               <button
                 onClick={() => setIsCalibrated(true)}
                 className="w-full bg-emerald-500 text-black font-black py-5 uppercase tracking-[0.4em] text-xs"
@@ -113,7 +136,7 @@ export default function WarRoom({ userId, onSignOut }: Props) {
     <div className="w-full h-screen bg-black overflow-hidden text-white">
       <main
         className={`relative h-full transition-colors duration-1000 ${
-          mode === "MILITARY" ? "bg-[#0a0a0b]" : "bg-[#0f071a]"
+          shimmerMode === "MILITARY" ? "bg-[#0a0a0b]" : "bg-[#0f071a]"
         }`}
       >
         {/* 3D Canvas */}
@@ -152,7 +175,7 @@ export default function WarRoom({ userId, onSignOut }: Props) {
           </div>
 
           <h2 className="text-8xl font-black italic uppercase tracking-tighter">
-            {mode === "MILITARY" ? "Shadow" : "Ethereal"}
+            {shimmerMode === "MILITARY" ? "Shadow" : "Ethereal"}
           </h2>
 
           {/* Bottom controls */}
@@ -172,7 +195,7 @@ export default function WarRoom({ userId, onSignOut }: Props) {
 
             <div className="flex gap-4">
               <button
-                onClick={() => setMode(mode === "MILITARY" ? "ETHER" : "MILITARY")}
+                onClick={() => setShimmerMode(shimmerMode === "MILITARY" ? "ETHER" : "MILITARY")}
                 className="bg-white text-black px-10 py-5 font-black uppercase"
               >
                 Initiate Shift
