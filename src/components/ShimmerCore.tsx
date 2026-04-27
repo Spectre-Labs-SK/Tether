@@ -1,24 +1,46 @@
-import { Float, MeshDistortMaterial } from '@react-three/drei';
+import { useRef } from 'react';
+import { useFrame } from '@react-three/fiber';
+import { MeshDistortMaterial, Float } from '@react-three/drei';
+import * as THREE from 'three';
+import { usePatternStore } from '../stores/patternStore';
 
-type ShimmerCoreProps = {
-  mode: 'MILITARY' | 'ETHER';
-  staticLevel: number; // 0-100
-};
+const LERP = 0.04;
 
-export function ShimmerCore({ mode, staticLevel }: ShimmerCoreProps) {
-  const color = mode === 'MILITARY' ? '#1e293b' : '#6d28d9';
-  // Scale the 0-100 staticLevel to a 0-1 range for the distort prop.
-  const distortion = staticLevel / 100;
+// Pre-allocate a scratch Color so useFrame never allocates new THREE.Color() at 60fps.
+const _targetColor = new THREE.Color('#1e293b');
+
+export function ShimmerCore() {
+  const materialRef = useRef<InstanceType<typeof MeshDistortMaterial>>(null!);
+
+  // floatIntensity and floatSpeed are React props on <Float> — they cannot be
+  // mutated in useFrame. Read them reactively here (outside Canvas render loop)
+  // so <Float> re-renders only on domain transitions, not every frame.
+  const floatIntensity = usePatternStore((state) => state.target.floatIntensity);
+  const floatSpeed = usePatternStore((state) => state.target.floatSpeed);
+
+  useFrame(() => {
+    if (!materialRef.current) return;
+    // Use getState() (non-reactive) — never call usePatternStore() inside useFrame.
+    const { target } = usePatternStore.getState();
+    const mat = materialRef.current;
+
+    mat.distort = THREE.MathUtils.lerp(mat.distort, target.distort, LERP);
+    mat.speed = THREE.MathUtils.lerp(mat.speed ?? 2, target.speed, LERP);
+    mat.metalness = THREE.MathUtils.lerp(mat.metalness, target.metalness, LERP);
+
+    _targetColor.set(target.color);
+    mat.color.lerp(_targetColor, LERP);
+  });
 
   return (
-    <Float speed={1.5} rotationIntensity={1} floatIntensity={2}>
-      <mesh>
-        <sphereGeometry args={[1.5, 64, 64]} />
+    <Float speed={floatSpeed} rotationIntensity={0.5} floatIntensity={floatIntensity}>
+      <mesh scale={1.5}>
+        <sphereGeometry args={[1, 64, 64]} />
         <MeshDistortMaterial
-          color={color}
-          distort={distortion}
-          speed={2}
-          roughness={0.1}
+          ref={materialRef}
+          color="#1e293b"
+          distort={0.15}
+          speed={1}
           metalness={0.9}
         />
       </mesh>
