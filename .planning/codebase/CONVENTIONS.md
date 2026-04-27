@@ -62,8 +62,25 @@ Native screens additionally import React Native primitives first.
 
 ## State Management Conventions
 
-- Local `useState` only — no Redux, Zustand, Jotai, or Context API
+- Local `useState` only — no Redux, Zustand, Jotai, or Context API (see exception below)
 - Supabase is the source of truth; local state mirrors DB
 - DB write always precedes local state update (no optimistic updates, except ops list prepend on createOp)
 - `userId` flows down from `EntryGate` → `useTetherState` as a prop; not stored in global context
 - **Interval + state pattern** (established 2026-04-27): When a `setInterval` needs access to state that changes frequently, mirror the state into a `useRef` and read from the ref inside the interval. The ref is kept in sync via a dedicated single-dep `useEffect`. This avoids tearing down and recreating the interval on every state change. See `SOSShell.phaseIndexRef` as the canonical example.
+
+## State Management Exception: Zustand for R3F Bridge Pattern
+
+**Rule:** Prefer local `useState` for component-scoped state.
+
+**Exception (approved):** Zustand is the approved solution when bridging React state into a Three.js `useFrame` render loop. React hooks (`useState`, `useContext`) cannot be called inside `useFrame` — doing so causes runtime errors. The approved pattern is:
+
+- Declare a Zustand store (e.g., `src/stores/patternStore.ts`)
+- Write to the store from React components/hooks via reactive selectors
+- Read from the store inside `useFrame` using `store.getState()` (non-reactive direct read)
+
+This pattern was introduced in Phase 01 (PatternObserver / Three.js state mirroring). See:
+- `src/stores/patternStore.ts` — store definition
+- `src/components/ShimmerCore.tsx` — `usePatternStore.getState()` inside `useFrame`
+- `src/hooks/usePatternObserver.ts` — reactive writes to the store from React
+
+Do NOT use Zustand for state that has no render-loop consumer. Local `useState` remains the default.
