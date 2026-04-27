@@ -177,3 +177,33 @@
 | 21:43 | Created .planning/phases/01-pattern-observer-threejs/01-01-SUMMARY.md | — | ~995 |
 
 | 21:44 | Plan 01-01: created patternStore.ts + rewrote ShimmerCore as zero-props store-driven; fixed WarRoom caller | src/stores/patternStore.ts, src/components/ShimmerCore.tsx, src/components/WarRoom.tsx | 3 commits: 951fcd5, c210765, bc94e28 | ~800 tok |
+| 21:45 | Created src/hooks/usePatternObserver.ts | — | ~860 |
+| 21:45 | Edited src/components/WarRoom.tsx | added 1 import(s) | ~178 |
+| 21:45 | Edited src/components/WarRoom.tsx | modified WarRoom() | ~126 |
+| 21:46 | Edited src/components/WarRoom.tsx | 7→7 lines | ~130 |
+| 21:46 | Edited src/components/WarRoom.tsx | added error handling | ~313 |
+| 21:46 | Edited src/components/WarRoom.tsx | reduced (-8 lines) | ~95 |
+| 21:46 | Edited src/components/WarRoom.tsx | inline fix | ~20 |
+| 21:46 | Edited src/components/WarRoom.tsx | 3→3 lines | ~46 |
+| 21:46 | Edited src/components/WarRoom.tsx | inline fix | ~28 |
+| 21:47 | Edited src/App.tsx | added 1 import(s) | ~66 |
+| 21:47 | Edited src/App.tsx | modified SOSShell() | ~65 |
+| 21:47 | Edited src/App.tsx | modified if() | ~45 |
+| 21:48 | Created .planning/phases/01-pattern-observer-threejs/01-02-SUMMARY.md | — | ~508 |
+| 21:51 | Edited src/hooks/usePatternObserver.ts | 2→3 lines | ~53 |
+| 21:51 | Edited src/hooks/useJointOps.ts | modified if() | ~44 |
+| 21:51 | Edited src/hooks/useTetherState.ts | modified if() | ~55 |
+| 21:52 | Edited src/native/screens/MatSession.tsx | 5→7 lines | ~88 |
+| 21:52 | Edited src/native/screens/PushDayOnboarding.tsx | 2→1 lines | ~14 |
+| 21:52 | Edited src/native/screens/PushDayOnboarding.tsx | modified calculate1RM() | ~75 |
+| 21:52 | Edited src/components/fitness/PushDaySession.tsx | modified calculate1RM() | ~39 |
+| 21:52 | Edited src/native/screens/RoadSession.tsx | inline fix | ~12 |
+| 21:53 | Edited src/hooks/usePatternObserver.ts | 2→1 lines | ~6 |
+| 21:53 | Edited src/native/screens/MatSession.tsx | 4→3 lines | ~47 |
+| 21:54 | Edited src/hooks/usePatternObserver.ts | modified usePatternObserver() | ~731 |
+| 21:55 | Edited src/components/fitness/PushDaySession.tsx | inline fix | ~17 |
+| 21:55 | Edited src/components/ShimmerCore.tsx | CSS: distort, speed | ~100 |
+| 21:56 | Edited src/components/ShimmerCore.tsx | 4→4 lines | ~106 |
+| 21:56 | Edited src/components/ShimmerCore.tsx | 7→8 lines | ~73 |
+| 21:57 | Edited .planning/codebase/CONVENTIONS.md | modified Exception() | ~471 |
+| 21:58 | Created .planning/phases/01-pattern-observer-threejs/01-03-SUMMARY.md | — | ~2315 |

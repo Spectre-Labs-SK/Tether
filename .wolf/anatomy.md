@@ -1,7 +1,7 @@
 # anatomy.md
 
-> Auto-maintained by OpenWolf. Last scanned: 2026-04-27T04:43:36.087Z
-> Files: 12 tracked | Anatomy hits: 0 | Misses: 0
+> Auto-maintained by OpenWolf. Last scanned: 2026-04-27T04:58:51.094Z
+> Files: 22 tracked | Anatomy hits: 0 | Misses: 0
 
 ## ./
 
@@ -26,27 +26,34 @@
 
 ## .planning/codebase/
 
+- `CONVENTIONS.md` — Conventions (~1093 tok)
 
 ## .planning/phases/01-pattern-observer-threejs/
 
 - `01-01-SUMMARY.md` — Phase 01 Plan 01: Zustand Bridge and Canonical ShimmerCore Summary (~933 tok)
+- `01-02-SUMMARY.md` — Summary (~477 tok)
+- `01-03-SUMMARY.md` — Phase 01 Plan 03: Build Pipeline Validation and Zustand Installation Summary (~2171 tok)
 
 ## src/
 
-- `App.tsx` — Root router: gate/chill/sos modes; threads userId from EntryGate to WarRoom; SOSShell breathing timer (~1195 tok)
+- `App.tsx` — BREATHE_PHASES (~1360 tok)
 
 ## src/components/
 
 - `EntryGate.tsx` — Phase B recovery login view + anonymous boot; onEnter(mode, userId) passes userId up to App (~3630 tok)
-- `ShimmerCore.tsx` — Canonical zero-props store-driven sphere; lerps distort/speed/metalness/color via usePatternStore.getState() in useFrame; floatIntensity/floatSpeed as reactive selectors (~516 tok)
-- `WarRoom.tsx` — WarRoom (~4035 tok)
+- `ShimmerCore.tsx` — LERP (~625 tok)
+- `WarRoom.tsx` — WarRoom (~4247 tok)
 
 ## src/components/fitness/
 
 - `FitnessOnboardingGrid.tsx` — Web DOM fitness onboarding: 3-taps-to-active (Domain→Activity→Session Active); Iron gates: trickycardio() then bitchweights(); AMRAP briefing; session up-timer; onComplete() fires completeOnboarding() (~4092 tok)
+- `PushDaySession.tsx` — --------------------------------------------------------------------------- (~4062 tok)
 
 ## src/hooks/
 
+- `useJointOps.ts` — Exports JointOpsReturn, useJointOps (~2491 tok)
+- `usePatternObserver.ts` — Exports Domain, PatternSignals, usePatternObserver (~837 tok)
+- `useTetherState.ts` — Exports UIConfig, BitchWeightFlag, TrickyCardioGate, TetherStateReturn, useTetherState (~3165 tok)
 
 ## src/lib/
 
@@ -54,6 +61,9 @@
 
 ## src/native/screens/
 
+- `MatSession.tsx` — Define a simple yoga flow manifest locally. (~1385 tok)
+- `PushDayOnboarding.tsx` — SPECTRE LABS — TETHER MOBILE (~7821 tok)
+- `RoadSession.tsx` — Assuming RootStackParamList is shared or defined here (~1692 tok)
 
 ## src/registry/valkyrie/
 
