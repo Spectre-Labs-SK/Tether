@@ -1,6 +1,6 @@
 # File Structure
 
-**Last Mapped:** 2026-04-25
+**Last Mapped:** 2026-04-27 (refresh after Phase 01 review fixes)
 
 ## Directory Tree
 
@@ -18,7 +18,11 @@ Tether/
 │   │   └── vite.svg
 │   ├── components/
 │   │   ├── EntryGate.tsx          — Auth gate; 50/50 Chill/SOS split; anonymous sign-in + kill switch
-│   │   └── ShimmerCore.tsx        — Standalone Three.js sphere component (NOT used — App.tsx has inline duplicate)
+│   │   ├── ShimmerCore.tsx        — Standalone Three.js sphere component (NOT used — App.tsx has inline duplicate)
+│   │   ├── WarRoom.tsx            — Home shell; ShimmerCore canvas + mode toggle
+│   │   └── fitness/
+│   │       ├── FitnessOnboardingGrid.tsx — 2-step domain→activity selector (web port)
+│   │       └── PushDaySession.tsx        — Iron domain: Push Day workout logger (web port)
 │   ├── hooks/
 │   │   ├── useTetherState.ts      — Profile state machine; crisis mode; bitchweights; trickycardio
 │   │   └── useJointOps.ts         — Joint Op CRUD; member management; HR sync
@@ -37,13 +41,14 @@ Tether/
 │       └── houses.ts              — RONIN_HOUSES (The Outpost / Sector 7 / Iron Gate)
 ├── supabase/
 │   ├── migrations/
-│   │   ├── 01_initial_schema.sql  — profiles + life_sectors tables
-│   │   ├── 02_fitness_schema.sql  — workouts, exercises, workout_sets, one_rm_history
+│   │   ├── 01_initial_schema.sql  — profiles (handle CHECK 3-32 chars) + life_sectors (UNIQUE profile_id)
+│   │   ├── 02_fitness_schema.sql  — workouts, exercises, workout_sets, one_rm_history + indexes
 │   │   ├── 03_joint_ops_schema.sql — joint_ops, op_members, op_checkpoints
-│   │   └── 04_hr_clash_schema.sql — hr_readings, op_hr_sync; clash_state on joint_ops
+│   │   ├── 04_hr_clash_schema.sql — hr_readings, op_hr_sync; clash_state on joint_ops
+│   │   └── 05_identity_upgrade.sql — is_registered column on profiles (Ghost → permanent identity)
 │   └── functions/
-│       ├── calculate-1rm/index.ts — Edge function: server-side 1RM calculation
-│       └── sync-workout/index.ts  — Edge function: workout session persistence
+│       ├── calculate-1rm/index.ts — Edge function: server-side 1RM calculation (auth-gated 2026-04-27)
+│       └── sync-workout/index.ts  — Edge function: workout session persistence + PR detection
 ├── .planning/codebase/            — GSD codebase map documents
 ├── .wolf/                         — OpenWolf context management
 ├── .claude/                       — Claude Code settings + rules + skills
@@ -79,9 +84,9 @@ Tether/
 |---|---|---|---|
 | EntryGate | Auth | Web | Complete — auth, 50/50 UI, kill switch |
 | WarRoom | Home | Web | Functional — ShimmerCore 3D, mode toggle |
-| SOSShell | Crisis | Web | **Stub** — placeholder text only, TODO comment |
-| FitnessOnboardingGrid | Navigation | Native | Complete — domain + activity selection |
-| PushDayOnboarding | Iron | Native | Complete — full workout logger |
+| SOSShell | Crisis | Web | Functional — 4-phase breathing exercise, timer race FIXED |
+| FitnessOnboardingGrid | Navigation | Web + Native | Web port exists in `src/components/fitness/` |
+| PushDaySession | Iron | Web + Native | Web port in `src/components/fitness/`; native in `src/native/` |
 | RoadSession | Road | Native | Implemented — interval timer |
 | MatSession | Mat | Native | Implemented — yoga pose timer |
 | HubSession | Hub | Native | Implemented — desk tracker |

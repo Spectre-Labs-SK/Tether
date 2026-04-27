@@ -1,6 +1,6 @@
 # Architecture
 
-**Last Mapped:** 2026-04-25
+**Last Mapped:** 2026-04-27 (refresh after Phase 01 review fixes)
 
 ## Pattern
 
@@ -10,7 +10,7 @@
 App
 ├── appMode === 'gate'  → EntryGate
 ├── appMode === 'chill' → WarRoom (+ ShimmerCore 3D inline)
-└── appMode === 'sos'   → SOSShell
+└── appMode === 'sos'   → SOSShell (4-phase breathing exercise; timer race FIXED 2026-04-27)
 ```
 
 The native screens in `src/native/` form a **parallel, disconnected architecture** — they assume a React Navigation stack but have no Expo/React Native build system wired up. They share the Supabase client and Valkyrie registry but are not imported by the web app.
@@ -78,3 +78,4 @@ src/components/ShimmerCore.tsx — standalone extracted component (NOT used anyw
 4. **Native screens co-located with web**: `src/native/` is explicitly excluded from tsconfig compilation but lives in the same repo. Intended for eventual Expo extraction.
 5. **DB-write-first pattern**: `completeOnboarding()` writes to Supabase before updating local state to prevent UI advancing ahead of persistence.
 6. **Valkyrie Registry**: `src/registry/valkyrie/` holds gear manifest and Ronin House definitions — shared between web (EntryGate display) and native (PushDayOnboarding context).
+7. **Edge Function auth gate pattern** (established 2026-04-27): Both `calculate-1rm` and `sync-workout` now require `Authorization: Bearer <jwt>`. Auth gate uses `extractBearerToken()` → 401 if missing. Service role key used for DB ops in `sync-workout`; user JWT passes through in `calculate-1rm`.

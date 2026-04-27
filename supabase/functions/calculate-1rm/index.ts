@@ -71,6 +71,12 @@ function jsonResponse(body: unknown, status = 200): Response {
   });
 }
 
+function extractBearerToken(req: Request): string | null {
+  const auth = req.headers.get('authorization') ?? '';
+  const match = auth.match(/^Bearer\s+(.+)$/i);
+  return match ? match[1] : null;
+}
+
 serve(async (req: Request) => {
   if (req.method === 'OPTIONS') {
     return new Response('ok', { headers: CORS_HEADERS });
@@ -78,6 +84,11 @@ serve(async (req: Request) => {
 
   if (req.method !== 'POST') {
     return jsonResponse({ error: 'Method not allowed' }, 405);
+  }
+
+  const token = extractBearerToken(req);
+  if (!token) {
+    return jsonResponse({ error: 'Missing authorization token' }, 401);
   }
 
   let body: RequestBody;

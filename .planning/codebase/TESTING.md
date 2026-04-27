@@ -1,6 +1,6 @@
 # Testing
 
-**Last Mapped:** 2026-04-25
+**Last Mapped:** 2026-04-27 (refresh after Phase 01 review fixes)
 
 ## Framework
 
@@ -34,6 +34,8 @@ Zero test files exist in `src/`. All `.test.*` / `.spec.*` files found are insid
 | Supabase integration | High | No mock or integration tests |
 | EntryGate auth flow | Medium | Anonymous sign-in + kill switch — no E2E test |
 | `brzycki()` edge case | Medium | `reps >= 37` guard returns 0 — untested |
+| `calculate-1rm` 401 gate | Medium | Added 2026-04-27 — should verify unauthenticated requests get 401, authenticated get 200 |
+| `sync-workout` ownership guard | High | Service-role bypass + profileId check — critical security path, no test |
 
 ## Running Tests
 

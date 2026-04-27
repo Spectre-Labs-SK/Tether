@@ -1,6 +1,6 @@
 # Tech Stack
 
-**Last Mapped:** 2026-04-25
+**Last Mapped:** 2026-04-27 (refresh after Phase 01 review fixes)
 
 ## Languages
 

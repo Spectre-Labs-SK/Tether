@@ -17,17 +17,22 @@ function SOSShell() {
   const [isRunning, setIsRunning]           = useState(false);
   const [phaseIndex, setPhaseIndex]         = useState(0);
   const [phaseElapsed, setPhaseElapsed]     = useState(0);
-  const tickRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const tickRef        = useRef<ReturnType<typeof setInterval> | null>(null);
+  const phaseIndexRef  = useRef(phaseIndex);
+
+  // Keep the ref in sync without restarting the interval
+  useEffect(() => { phaseIndexRef.current = phaseIndex; }, [phaseIndex]);
 
   useEffect(() => {
     if (!isRunning) {
       if (tickRef.current) clearInterval(tickRef.current);
       return;
     }
+    // Interval only depends on isRunning — reads phaseIndex via ref to avoid restarts
     tickRef.current = setInterval(() => {
       setSessionSeconds(s => s + 1);
       setPhaseElapsed(prev => {
-        const phase = BREATHE_PHASES[phaseIndex];
+        const phase = BREATHE_PHASES[phaseIndexRef.current];
         if (prev + 1 >= phase.seconds) {
           setPhaseIndex(i => (i + 1) % BREATHE_PHASES.length);
           return 0;
@@ -36,7 +41,7 @@ function SOSShell() {
       });
     }, 1000);
     return () => { if (tickRef.current) clearInterval(tickRef.current); };
-  }, [isRunning, phaseIndex]);
+  }, [isRunning]);
 
   const currentPhase = BREATHE_PHASES[phaseIndex];
   const phaseProgress = currentPhase.seconds - phaseElapsed;

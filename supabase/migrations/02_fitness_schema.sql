@@ -104,5 +104,16 @@ CREATE POLICY "workout_sets: own via workout" ON workout_sets
     workout_id IN (SELECT id FROM workouts WHERE profile_id = auth.uid())
   );
 
+-- workout_sets: intentionally has no updated_at column — sets are append-only;
+-- once logged a set is never mutated (only the parent workout.finished_at changes).
+-- If mutation tracking is ever required, add updated_at + trigger at that point.
+
+-- Performance indexes (missing from original schema)
+CREATE INDEX workout_sets_workout_id
+  ON workout_sets (workout_id);
+
+CREATE INDEX one_rm_history_profile_exercise_time
+  ON one_rm_history (profile_id, exercise_id, recorded_at DESC);
+
 CREATE POLICY "one_rm_history: own rows" ON one_rm_history
   FOR ALL USING (profile_id = auth.uid());

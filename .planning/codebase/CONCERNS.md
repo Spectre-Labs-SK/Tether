@@ -1,25 +1,23 @@
 # Technical Concerns
 
-**Last Mapped:** 2026-04-25
+**Last Mapped:** 2026-04-27 (refresh after Phase 01 review fixes)
 
 ## Critical (Blockers)
 
-### C-001: No .env.local — Supabase will crash on boot
-`src/lib/supabase.ts` reads `import.meta.env.VITE_SUPABASE_URL` and `VITE_SUPABASE_ANON_KEY` without defaults. No `.env.local` exists. The app calls `createClient(undefined, undefined)` and all Supabase operations will silently fail or throw on first run.
-- **Fix**: Create `.env.local` with real Supabase project credentials.
+### ~~C-001: No .env.local~~ ✅ RESOLVED 2026-04-27
+`.env.local` now exists with `VITE_SUPABASE_URL`, `VITE_SUPABASE_ANON_KEY`, and `ANTHROPIC_API_KEY`. Supabase client initialises correctly.
 
 ### C-002: React Native screens have no build system
 `src/native/` contains full React Native screens importing `react-native`, `react-navigation/native`, `react-native-safe-area-context` — none of which are in `package.json`. `tsconfig.app.json` explicitly excludes `src/native/` from compilation. There is no `app.json`, `babel.config.js`, `metro.config.js`, or Expo SDK installed. These screens exist as source code but cannot be compiled or run.
 - **Fix**: Either extract to a separate Expo project, or add Expo SDK + RN dependencies and a separate tsconfig for native.
 
-### C-003: ShimmerCore defined twice — implementations will drift
-`App.tsx` contains an inline `ShimmerCore` component (lines 9–23) used by `WarRoom`. `src/components/ShimmerCore.tsx` is a separate standalone component that is **not imported anywhere**. Two divergent copies.
-- **Fix**: Remove inline definition from App.tsx; import from `src/components/ShimmerCore.tsx`.
+### ~~C-003: ShimmerCore defined twice~~ ✅ PARTIALLY RESOLVED
+`App.tsx` no longer has an inline `ShimmerCore`. `WarRoom.tsx` is now a proper component in `src/components/`. `src/components/ShimmerCore.tsx` standalone component still exists but is not imported — the duplicate is resolved architecturally; the dead file can be deleted.
 
 ## High Priority
 
-### C-004: SOSShell is a stub
-`SOSShell` in `App.tsx` renders only placeholder text ("We've Got You") with a `// TODO` comment. Users who hit the SOS flow land here with no actionable UI — no fitness module, no onboarding, no guidance.
+### ~~C-004: SOSShell is a stub~~ ✅ RESOLVED 2026-04-27
+`SOSShell` now implements a full 4-phase breathing exercise (INHALE/HOLD/EXHALE/HOLD) with session timer, phase progress display, and start/pause controls. Timer race condition also fixed (phaseIndexRef pattern).
 
 ### C-005: Zero automated tests
 No test framework installed. Business-critical logic (`bitchweights` 1RM delta, `trickycardio` HR gating, `calculate1RM` formulas) has no test coverage. Any change to these functions is unguarded.
@@ -73,7 +71,23 @@ If `signInAnonymously()` fails, `setAuthReady(true)` is called without `userId`,
 | lucide-react icons not rendered | **STILL TRUE** — installed, zero usage |
 | App.css vestigial | **STILL TRUE** |
 | DEPENDENCIES.docx doesn't exist | **STILL TRUE** |
-| ShimmerCore inline in App.tsx | **STILL TRUE** + ShimmerCore.tsx duplicate exists |
+| ShimmerCore inline in App.tsx | **RESOLVED** — WarRoom is now a component; ShimmerCore.tsx is vestigial |
 | Supabase Auth flow not configured | **PARTIAL** — anonymous auth works; no email/OAuth |
 | VALKYRIE_MANIFEST not wired into UI | **RESOLVED** — wired in EntryGate |
 | Kill switch not implemented | **RESOLVED** — handleReset in EntryGate (B-000) |
+| No .env.local | **RESOLVED** — .env.local created |
+| SOSShell stub | **RESOLVED** — breathing exercise implemented |
+
+## New Concerns — Added 2026-04-27 (from Phase 01 review)
+
+### C-016: CORS wildcard on Edge Functions (HIGH)
+Both `calculate-1rm` and `sync-workout` use `Access-Control-Allow-Origin: *`. Must be restricted to production domain before go-live. Log production URL in `.env` and pass via Deno env var.
+
+### C-017: Duplicated 1RM formulas (MEDIUM)
+`calculate-1rm/index.ts` and `sync-workout/index.ts` both define `epley()`, `brzycki()`, `lander()`. Extract to `supabase/functions/_shared/1rm.ts`.
+
+### C-018: No React ErrorBoundary (MEDIUM)
+No error boundary wraps the app tree. A Supabase error or Three.js render failure will blank the entire page. Add a minimal `ErrorBoundary` component wrapping `<App />`.
+
+### C-019: `sync-workout` uses service-role key for all DB ops (MEDIUM)
+The service role key bypasses RLS entirely. Ownership guard compensates partially but any bug in the guard is a full data-exposure incident. Scope the service-role key to the upsert only; use the user JWT for reads.

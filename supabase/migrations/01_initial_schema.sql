@@ -6,7 +6,8 @@ CREATE EXTENSION IF NOT EXISTS "pgcrypto";
 -- Profiles: core user identity with crisis state
 CREATE TABLE profiles (
   id           UUID        PRIMARY KEY DEFAULT gen_random_uuid(),
-  random_handle TEXT       NOT NULL UNIQUE,
+  random_handle TEXT       NOT NULL UNIQUE
+                           CHECK (char_length(random_handle) BETWEEN 3 AND 32),
   is_crisis_mode   BOOLEAN NOT NULL DEFAULT FALSE,
   onboarding_pending BOOLEAN NOT NULL DEFAULT TRUE,
   created_at   TIMESTAMPTZ NOT NULL DEFAULT NOW(),
@@ -16,7 +17,7 @@ CREATE TABLE profiles (
 -- Life Sectors: tarnish levels across key life dimensions (one row per profile)
 CREATE TABLE life_sectors (
   id         UUID    PRIMARY KEY DEFAULT gen_random_uuid(),
-  profile_id UUID    NOT NULL REFERENCES profiles(id) ON DELETE CASCADE,
+  profile_id UUID    NOT NULL REFERENCES profiles(id) ON DELETE CASCADE UNIQUE,
   finance    FLOAT   NOT NULL DEFAULT 0.0,
   health     FLOAT   NOT NULL DEFAULT 0.0,
   work       FLOAT   NOT NULL DEFAULT 0.0,

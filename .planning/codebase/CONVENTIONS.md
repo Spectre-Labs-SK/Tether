@@ -1,6 +1,6 @@
 # Conventions
 
-**Last Mapped:** 2026-04-25
+**Last Mapped:** 2026-04-27 (refresh after Phase 01 review fixes)
 
 ## Naming
 
@@ -66,3 +66,4 @@ Native screens additionally import React Native primitives first.
 - Supabase is the source of truth; local state mirrors DB
 - DB write always precedes local state update (no optimistic updates, except ops list prepend on createOp)
 - `userId` flows down from `EntryGate` → `useTetherState` as a prop; not stored in global context
+- **Interval + state pattern** (established 2026-04-27): When a `setInterval` needs access to state that changes frequently, mirror the state into a `useRef` and read from the ref inside the interval. The ref is kept in sync via a dedicated single-dep `useEffect`. This avoids tearing down and recreating the interval on every state change. See `SOSShell.phaseIndexRef` as the canonical example.
