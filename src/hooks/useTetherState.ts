@@ -64,6 +64,7 @@ export function useTetherState(userId: string | null): TetherStateReturn {
 
   useEffect(() => {
     if (!userId) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setIsLoading(false);
       return;
     }

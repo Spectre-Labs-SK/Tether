@@ -42,6 +42,7 @@ export default function MatSession() {
 
   useEffect(() => {
     // For now, we only have one flow.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setPoses(YOGA_FLOW_MANIFEST);
     setTimeRemaining(YOGA_FLOW_MANIFEST[0]?.durationSeconds || 0);
   }, [activityId]);

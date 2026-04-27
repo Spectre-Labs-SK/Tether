@@ -10,7 +10,10 @@ const LERP = 0.04;
 const _targetColor = new THREE.Color('#1e293b');
 
 export function ShimmerCore() {
-  const materialRef = useRef<InstanceType<typeof MeshDistortMaterial>>(null!);
+  // DistortMaterialImpl is not exported from @react-three/drei — approximate the type
+  // using MeshPhysicalMaterial plus the distort/speed extensions. The ref cast on
+  // the JSX element handles the incompatibility between this type and Ref<DistortMaterialImpl>.
+  const materialRef = useRef<THREE.MeshPhysicalMaterial & { distort: number; speed: number }>(null!);
 
   // floatIntensity and floatSpeed are React props on <Float> — they cannot be
   // mutated in useFrame. Read them reactively here (outside Canvas render loop)
@@ -37,7 +40,8 @@ export function ShimmerCore() {
       <mesh scale={1.5}>
         <sphereGeometry args={[1, 64, 64]} />
         <MeshDistortMaterial
-          ref={materialRef}
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          ref={materialRef as unknown as any}
           color="#1e293b"
           distort={0.15}
           speed={1}

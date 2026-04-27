@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { supabase } from '../../lib/supabase';
 import { agentLog } from '../../lib/agentLog';
 
@@ -21,6 +21,7 @@ function lander(weightKg: number, reps: number): number {
   return (weightKg * 100) / (101.3 - 2.67123 * reps);
 }
 
+// eslint-disable-next-line react-refresh/only-export-components
 export function calculate1RM(weightKg: number, reps: number): number {
   if (weightKg <= 0 || reps <= 0 || reps > 36) return 0;
   const avg = (epley(weightKg, reps) + brzycki(weightKg, reps) + lander(weightKg, reps)) / 3;

@@ -29,7 +29,7 @@ export default function RoadSession() {
   const [currentIntervalIndex, setCurrentIntervalIndex] = useState(0);
   const [timeRemaining, setTimeRemaining] = useState(0);
   const [isPaused, setIsPaused] = useState(true);
-  const [totalTime, setTotalTime] = useState(0);
+  const [, setTotalTime] = useState(0);
 
   useEffect(() => {
     const loadManifest = async () => {

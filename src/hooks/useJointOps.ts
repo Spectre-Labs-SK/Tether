@@ -23,6 +23,7 @@ export function useJointOps(userId: string | null): JointOpsReturn {
 
   useEffect(() => {
     if (!userId) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setIsLoading(false);
       return;
     }

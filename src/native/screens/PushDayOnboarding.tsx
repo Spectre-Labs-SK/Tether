@@ -24,7 +24,6 @@ import { useNavigation, useRoute, RouteProp } from '@react-navigation/native';
 import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import type { ShimmerMode } from '../../registry/valkyrie/houses';
 import { supabase } from '../../lib/supabase';
-import { VALKYRIE_MANIFEST } from '../../registry/valkyrie/manifest';
 
 // ---------------------------------------------------------------------------
 // 1RM Formula Suite
@@ -53,6 +52,7 @@ function lander(weightKg: number, reps: number): number {
  * Consensus 1RM: weighted average of Epley, Brzycki, and Lander.
  * Returns 0 for invalid input rather than throwing.
  */
+// eslint-disable-next-line react-refresh/only-export-components
 export function calculate1RM(weightKg: number, reps: number): number {
   if (weightKg <= 0 || reps <= 0 || reps > 36) return 0;
   const avg = (epley(weightKg, reps) + brzycki(weightKg, reps) + lander(weightKg, reps)) / 3;

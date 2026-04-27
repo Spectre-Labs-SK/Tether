@@ -15,9 +15,9 @@ export type PatternSignals = {
 export function usePatternObserver(signals: PatternSignals): void {
   const setTarget = usePatternStore((state) => state.setTarget);
 
-  useEffect(() => {
-    const { appMode, shimmerMode, isCrisisMode, selectedDomain, liftingGated, bitchweightCount } = signals;
+  const { appMode, shimmerMode, isCrisisMode, selectedDomain, liftingGated, bitchweightCount } = signals;
 
+  useEffect(() => {
     // Priority 1: SOS / crisis — overrides everything
     if (appMode === 'sos' || isCrisisMode) {
       setTarget({ color: '#f472b6', distort: 0.9, speed: 4, metalness: 0.3, floatIntensity: 3, floatSpeed: 6 });
@@ -67,13 +67,5 @@ export function usePatternObserver(signals: PatternSignals): void {
     } else {
       setTarget({ color: '#1e293b', distort: 0.3, speed: 2, metalness: 0.8, floatIntensity: 1, floatSpeed: 2 });
     }
-  }, [
-    signals.appMode,
-    signals.shimmerMode,
-    signals.isCrisisMode,
-    signals.selectedDomain,
-    signals.liftingGated,
-    signals.bitchweightCount,
-    setTarget,
-  ]);
+  }, [appMode, shimmerMode, isCrisisMode, selectedDomain, liftingGated, bitchweightCount, setTarget]);
 }
