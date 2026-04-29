@@ -30,6 +30,11 @@ export function ShimmerCore() {
     mat.distort = THREE.MathUtils.lerp(mat.distort, target.distort, LERP);
     mat.speed = THREE.MathUtils.lerp(mat.speed ?? 2, target.speed, LERP);
     mat.metalness = THREE.MathUtils.lerp(mat.metalness, target.metalness, LERP);
+    mat.emissiveIntensity = THREE.MathUtils.lerp(
+      mat.emissiveIntensity,
+      target.emissiveIntensity,
+      LERP,
+    );
 
     _targetColor.set(target.color);
     mat.color.lerp(_targetColor, LERP);
