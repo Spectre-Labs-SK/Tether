@@ -99,11 +99,20 @@ export function useTetherState(userId: string | null): TetherStateReturn {
         // State machine: if crisis_mode is on but onboarding_pending isn't set, fix it
         if (data.is_crisis_mode && !data.onboarding_pending) {
           agentLog.architect(`Crisis mode detected. Enforcing onboarding_pending = TRUE.`);
-          await supabase
+          const { data: patched, error: patchError } = await supabase
             .from('profiles')
             .update({ onboarding_pending: true })
-            .eq('id', userId);
-          setProfile({ ...data, onboarding_pending: true });
+            .eq('id', userId)
+            .select()
+            .single();
+
+          if (!patchError && patched) {
+            setProfile(patched);
+          } else {
+            // DB write failed — keep as-fetched profile; state machine re-runs next session
+            setProfile(data);
+            agentLog.architect(`WARNING: crisis_mode fix write failed: ${patchError?.message}`);
+          }
         } else {
           setProfile(data);
         }
