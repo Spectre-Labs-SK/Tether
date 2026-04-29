@@ -434,9 +434,9 @@ export default function PushDayOnboarding() {
       .map((log) => ({ exercise_id: log.exercise.exerciseId, name: log.exercise.name }));
 
     if (skippedExercises.length > 0) {
-      try {
-        const { data: { user } } = await supabase.auth.getUser();
-        if (user) {
+      // Reuse 'user' from the first supabase.auth.getUser() call above — already in scope
+      if (user) {
+        try {
           const rows = skippedExercises.map((e) => ({
             profile_id: user.id,
             exercise_id: e.exercise_id,
@@ -445,20 +445,22 @@ export default function PushDayOnboarding() {
           }));
           const { error } = await supabase.from('exercise_skips').insert(rows);
           if (error) console.error('[PushDay] Skipped exercises insert error:', error.message);
-        } else {
-          console.log('[PushDay] No user session; skipped exercises:', skippedExercises.map((e) => e.name));
+        } catch (err) {
+          console.error('[PushDay] Failed to persist skipped exercises:', err);
         }
-      } catch (err) {
-        console.error('[PushDay] Failed to persist skipped exercises:', err);
+      } else {
+        console.log('[PushDay] No user session; skipped exercises:', skippedExercises.map((e) => e.name));
       }
     }
 
-    const { error: setsError } = await supabase.from('workout_sets').insert(setRows);
+    if (setRows.length > 0) {
+      const { error: setsError } = await supabase.from('workout_sets').insert(setRows);
 
-    if (setsError) {
-      Alert.alert('Sync Failed', setsError.message);
-      setSyncing(false);
-      return;
+      if (setsError) {
+        Alert.alert('Sync Failed', setsError.message);
+        setSyncing(false);
+        return;
+      }
     }
 
     // 3. Invoke the sync-workout edge function to handle 1RM upserts
