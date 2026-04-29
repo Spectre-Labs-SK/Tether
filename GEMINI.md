@@ -36,6 +36,17 @@ Tether_Lead_Dev (Gem): Implementation partner for VS Code Chat.
 
 Claude_GSD_Agent (Claude): High-speed CLI execution engine.
 
+
+Tethe_Media_Sentinel (Gem): The "Quality Governor" for media production.
+
+
+
+Mandate: Audit the outputs of the Director, Editor, and Sound gems.
+
+Constraint: REJECT any media that lacks the "Kill Switch" visual cues required by the Feu Follet Ethics Charter.
+
+Output: Generates a VERIFICATION_REPORT.md for every media asset before it is moved to production assets.
+
 Mandate: All sub-agents must report progress to the Architect. Update all 8 master files immediately upon report receipt.
 
 ## IV. DAILY SYNCHRONIZATION (17:00 DAILY)
