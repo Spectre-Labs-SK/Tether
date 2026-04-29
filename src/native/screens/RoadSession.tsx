@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, Alert } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRoute, useNavigation, RouteProp } from '@react-navigation/native';
@@ -54,31 +54,40 @@ export default function RoadSession() {
       } catch (err) {
         console.error('[RoadSession] Failed to load manifest:', err);
         // Fallback to steady state
-        const fallback = [
+        const fallback: Interval[] = [
           { type: 'warmup', durationMinutes: 5 },
           { type: 'work', durationMinutes: 30, intensity: 'medium' },
           { type: 'cooldown', durationMinutes: 5 },
         ];
         setManifest(fallback);
+        setTimeRemaining(fallback[0].durationMinutes * 60); // WR-01: was missing — timer frozen at 00:00 on load failure
       }
     };
     
     loadManifest();
   }, [activityId]);
 
+  // Refs carry mutable values into the interval callback so the effect only
+  // depends on isPaused — recreating every second caused timing drift on Android.
+  const currentIntervalIndexRef = useRef(currentIntervalIndex);
+  const manifestRef = useRef(manifest);
+
+  useEffect(() => { currentIntervalIndexRef.current = currentIntervalIndex; }, [currentIntervalIndex]);
+  useEffect(() => { manifestRef.current = manifest; }, [manifest]);
+
   useEffect(() => {
-    if (isPaused || timeRemaining <= 0) {
-      return;
-    }
+    if (isPaused) return;
 
     const timer = setInterval(() => {
       setTimeRemaining(prev => {
         if (prev <= 1) {
           // Move to next interval
-          if (currentIntervalIndex < manifest.length - 1) {
-            const nextIndex = currentIntervalIndex + 1;
+          const idx = currentIntervalIndexRef.current;
+          const localManifest = manifestRef.current;
+          if (idx < localManifest.length - 1) {
+            const nextIndex = idx + 1;
             setCurrentIntervalIndex(nextIndex);
-            return manifest[nextIndex].durationMinutes * 60;
+            return localManifest[nextIndex].durationMinutes * 60;
           } else {
             // Workout finished
             setIsPaused(true);
@@ -91,7 +100,7 @@ export default function RoadSession() {
     }, 1000);
 
     return () => clearInterval(timer);
-  }, [isPaused, timeRemaining, currentIntervalIndex, manifest, navigation]);
+  }, [isPaused, navigation]);
 
   const currentInterval = manifest[currentIntervalIndex];
   if (!currentInterval) {

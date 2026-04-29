@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Vibration } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRoute, useNavigation, RouteProp } from '@react-navigation/native';
@@ -41,23 +41,32 @@ export default function MatSession() {
   const [isPaused, setIsPaused] = useState(true);
 
   useEffect(() => {
-    // For now, we only have one flow.
-    // eslint-disable-next-line react-hooks/set-state-in-effect
+    // TODO Phase 2: select manifest by activityId when multiple flows are available.
+    // Currently all Mat domain activities use YOGA_FLOW_MANIFEST regardless of activityId.
     setPoses(YOGA_FLOW_MANIFEST);
-    setTimeRemaining(YOGA_FLOW_MANIFEST[0]?.durationSeconds || 0);
-  }, [activityId]);
+    setTimeRemaining(YOGA_FLOW_MANIFEST[0]?.durationSeconds ?? 0);
+  }, []); // dep on activityId removed until multi-manifest routing is implemented
+
+  // Refs carry mutable values into the interval callback so the effect only
+  // depends on isPaused — recreating every second caused timing drift on Android.
+  const currentPoseIndexRef = useRef(currentPoseIndex);
+  const posesRef = useRef(poses);
+
+  useEffect(() => { currentPoseIndexRef.current = currentPoseIndex; }, [currentPoseIndex]);
+  useEffect(() => { posesRef.current = poses; }, [poses]);
 
   useEffect(() => {
-    if (isPaused || timeRemaining <= 0) return;
+    if (isPaused) return;
 
     const timer = setInterval(() => {
       setTimeRemaining((prev) => {
         if (prev <= 1) {
-          if (currentPoseIndex < poses.length - 1) {
+          const idx = currentPoseIndexRef.current;
+          const localPoses = posesRef.current;
+          if (idx < localPoses.length - 1) {
             Vibration.vibrate(100); // Haptic for transition
-            const nextIndex = currentPoseIndex + 1;
-            setCurrentPoseIndex(nextIndex);
-            return poses[nextIndex].durationSeconds;
+            setCurrentPoseIndex(idx + 1);
+            return localPoses[idx + 1].durationSeconds;
           } else {
             Vibration.vibrate([200, 100, 200]); // Haptic for completion
             setIsPaused(true);
@@ -70,7 +79,7 @@ export default function MatSession() {
     }, 1000);
 
     return () => clearInterval(timer);
-  }, [isPaused, timeRemaining, currentPoseIndex, poses, navigation]);
+  }, [isPaused, navigation]);
 
   const currentPose = poses[currentPoseIndex];
 
