@@ -31,18 +31,51 @@ export function useJointOps(userId: string | null): JointOpsReturn {
     const loadOps = async () => {
       agentLog.architect(`Loading joint ops for userId: ${userId}`);
 
-      const { data, error } = await supabase
+      const { data: ownedOps, error: ownedError } = await supabase
         .from('joint_ops')
         .select('*')
-        .or(`owner_id.eq.${userId},id.in.(select op_id from op_members where profile_id = '${userId}')`)
+        .eq('owner_id', userId)
         .order('created_at', { ascending: false });
 
-      if (error) {
-        agentLog.architect(`ERROR loading joint ops: ${error.message}`);
-      } else {
-        setOps(data ?? []);
-        agentLog.architect(`Joint ops loaded: ${data?.length ?? 0} ops`);
+      if (ownedError) {
+        agentLog.architect(`ERROR loading owned joint ops: ${ownedError.message}`);
+        setIsLoading(false);
+        return;
       }
+
+      const { data: memberRows, error: memberRowsError } = await supabase
+        .from('op_members')
+        .select('op_id')
+        .eq('profile_id', userId);
+
+      if (memberRowsError) {
+        agentLog.architect(`ERROR loading op memberships: ${memberRowsError.message}`);
+        // Fall back to owned ops only
+        setOps(ownedOps ?? []);
+        agentLog.architect(`Joint ops loaded (owned only): ${ownedOps?.length ?? 0} ops`);
+        setIsLoading(false);
+        return;
+      }
+
+      const memberOpIds = (memberRows ?? []).map(r => r.op_id);
+
+      const { data: memberOps } = memberOpIds.length > 0
+        ? await supabase
+            .from('joint_ops')
+            .select('*')
+            .in('id', memberOpIds)
+            .order('created_at', { ascending: false })
+        : { data: [] };
+
+      const seen = new Set<string>();
+      const allOps = [...(ownedOps ?? []), ...(memberOps ?? [])].filter(op => {
+        if (seen.has(op.id)) return false;
+        seen.add(op.id);
+        return true;
+      });
+
+      setOps(allOps);
+      agentLog.architect(`Joint ops loaded: ${allOps.length} ops (${ownedOps?.length ?? 0} owned, ${memberOps?.length ?? 0} as member)`);
 
       setIsLoading(false);
     };
