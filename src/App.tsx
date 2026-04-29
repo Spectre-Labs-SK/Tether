@@ -2,6 +2,7 @@ import { useState, useRef, useEffect } from 'react';
 import './index.css';
 import EntryGate from './components/EntryGate';
 import WarRoom from './components/WarRoom';
+import { usePatternObserver } from './hooks/usePatternObserver';
 
 type AppMode = 'gate' | 'chill' | 'sos';
 
@@ -12,7 +13,15 @@ const BREATHE_PHASES: { label: string; seconds: number; color: string }[] = [
   { label: 'HOLD',   seconds: 2, color: '#a78bfa' },
 ];
 
-function SOSShell() {
+function SOSShell({ appMode }: { appMode: AppMode }) {
+  usePatternObserver({
+    appMode,
+    shimmerMode: 'MILITARY',
+    isCrisisMode: true,
+    selectedDomain: null,
+    liftingGated: false,
+    bitchweightCount: 0,
+  });
   const [sessionSeconds, setSessionSeconds] = useState(0);
   const [isRunning, setIsRunning]           = useState(false);
   const [phaseIndex, setPhaseIndex]         = useState(0);
@@ -117,8 +126,8 @@ export default function App() {
   }
 
   if (appMode === 'sos') {
-    return <SOSShell />;
+    return <SOSShell appMode={appMode} />;
   }
 
-  return <WarRoom userId={userId} onSignOut={handleSignOut} />;
+  return <WarRoom userId={userId} onSignOut={handleSignOut} appMode={appMode} />;
 }

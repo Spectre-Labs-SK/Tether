@@ -1,12 +1,17 @@
 # anatomy.md
 
-> Auto-maintained by OpenWolf. Last scanned: 2026-04-27T04:58:51.094Z
-> Files: 22 tracked | Anatomy hits: 0 | Misses: 0
+> Auto-maintained by OpenWolf. Last scanned: 2026-04-29T00:57:54.211Z
+> Files: 31 tracked | Anatomy hits: 0 | Misses: 0
 
 ## ./
 
 - `.env.local` — Supabase env vars (VITE_SUPABASE_URL, VITE_SUPABASE_ANON_KEY); placeholder values; not committed (~50 tok)
+- `app.json` (~83 tok)
+- `babel.config.js` (~31 tok)
 - `DEPENDENCIES.md` — Pillar 3 supply chain; all npm deps with versions + env var requirements (~509 tok)
+- `index.js` (~37 tok)
+- `metro.config.js` — Learn more https://docs.expo.io/guides/customizing-metro (~70 tok)
+- `package.json` — Node.js package manifest (~366 tok)
 - `TETHER_BUILD_JOURNAL.md` — TETHER BUILD JOURNAL; bug tracker + phase logs (~6835 tok)
 
 ## .claude/
@@ -33,6 +38,9 @@
 - `01-01-SUMMARY.md` — Phase 01 Plan 01: Zustand Bridge and Canonical ShimmerCore Summary (~933 tok)
 - `01-02-SUMMARY.md` — Summary (~477 tok)
 - `01-03-SUMMARY.md` — Phase 01 Plan 03: Build Pipeline Validation and Zustand Installation Summary (~2171 tok)
+- `01-HUMAN-UAT.md` — Current Test (~249 tok)
+- `01-REVIEW.md` — Phase 01: Code Review Report (~5050 tok)
+- `01-VERIFICATION.md` — Phase 01: Pattern Observer / Three.js Verification Report (~3475 tok)
 
 ## src/
 
@@ -59,11 +67,18 @@
 
 - `supabase.ts` — Supabase client + Profile/LifeSector/JointOp types + upgradeAnonymousUser() + signInWithEmailPassword() helpers (~817 tok)
 
+## src/native/
+
+- `NativeApp.tsx` — NavigationContainer + NativeStackNavigator root; wires all 5 screens; registered via index.js as Expo entry (~332 tok)
+
 ## src/native/screens/
 
-- `MatSession.tsx` — Define a simple yoga flow manifest locally. (~1385 tok)
-- `PushDayOnboarding.tsx` — SPECTRE LABS — TETHER MOBILE (~7821 tok)
-- `RoadSession.tsx` — Assuming RootStackParamList is shared or defined here (~1692 tok)
+- `FitnessOnboardingGrid.tsx` — Native domain/activity selection (2-step); exports RootStackParamList; navigates to Push/Road/Mat/Hub screens (~800 tok)
+- `HubSession.tsx` — Desk session tracker: up-time counter + postural resets; uses Supabase + react-navigation (~500 tok)
+- `manifest.ts` — DOMAINS data (Iron/Road/Mat/Hub), Activity type, C25K_WEEK_1_DAY_1 intervals (~300 tok)
+- `MatSession.tsx` — Yoga flow timer: pose countdown with Vibration haptics; follows YOGA_FLOW_MANIFEST (~1385 tok)
+- `PushDayOnboarding.tsx` — Push day workout logger: weight/reps input, 1RM calculator (Epley+Brzycki+Lander), set tracker, syncs to Supabase (~7821 tok)
+- `RoadSession.tsx` — Road/cardio interval timer; uses C25K_WEEK_1_DAY_1 manifest from manifest.ts (~1692 tok)
 
 ## src/registry/valkyrie/
 

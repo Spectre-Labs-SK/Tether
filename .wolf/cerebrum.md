@@ -26,6 +26,13 @@
 - **userId threading:** `EntryGate.onEnter(mode, userId)` passes userId up to `App`, which stores it and passes to `WarRoom`. WarRoom calls `useTetherState(userId)` independently. This pattern avoids prop-drilling auth state through unrelated components.
 - **isUntracked vs isGhost:** `isUntracked = !isLoading && !userId` — total auth failure (Supabase unavailable). `isGhost` in WarRoom = user has anonymous session (`is_anonymous: true`) — upgradeable. These are different conditions requiring different UI responses.
 
+- **Expo native entry point:** EAS Build requires `"main": "index.js"` in package.json + a root `index.js` that calls `registerRootComponent(NativeApp)`. Without `"main"`, Expo cannot find the entry.
+- **app.json minimum fields for EAS:** Must have `name`, `slug`, `version`, `platforms`, `android.package` + `extra.eas.projectId`. A minimal stub with only `extra.eas` will fail the build.
+- **Missing nav packages for EAS:** The native screens require `@react-navigation/native`, `@react-navigation/native-stack`, `react-native-screens`, `react-native-safe-area-context` — none are in Expo's transitive dependencies. They must be in package.json.
+- **babel.config.js required:** Expo Metro build needs `babel.config.js` with `babel-preset-expo`. Without it, Metro cannot transpile JSX/TS.
+- **metro.config.js format:** Use CommonJS (`require`/`module.exports`) even with `"type": "module"` in package.json — Metro uses its own module loader for the config file.
+- **NativeApp.tsx placement:** Goes in `src/native/` (not `src/native/screens/`). It's the Navigator root, not a screen. Imported by `index.js` via relative path.
+
 ## Do-Not-Repeat
 
 <!-- Mistakes made and corrected. Each entry prevents the same mistake recurring. -->

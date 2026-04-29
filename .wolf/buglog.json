@@ -160,6 +160,118 @@
       "related_bugs": [],
       "occurrences": 1,
       "last_seen": "2026-04-27T03:12:08.899Z"
+    },
+    {
+      "id": "bug-011",
+      "timestamp": "2026-04-27T04:46:17.843Z",
+      "error_message": "Missing error handling in gate",
+      "file": "src/components/WarRoom.tsx",
+      "root_cause": "Code path had no error handling — exceptions would propagate uncaught",
+      "fix": "Added try/catch block",
+      "tags": [
+        "auto-detected",
+        "error-handling",
+        "tsx"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-04-27T04:46:17.843Z"
+    },
+    {
+      "id": "bug-012",
+      "timestamp": "2026-04-27T04:46:29.353Z",
+      "error_message": "Significant refactor of ",
+      "file": "src/components/WarRoom.tsx",
+      "root_cause": "8 lines replaced/restructured",
+      "fix": "Rewrote 16→8 lines (8 removed)",
+      "tags": [
+        "auto-detected",
+        "refactor",
+        "tsx"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-04-27T04:46:29.353Z"
+    },
+    {
+      "id": "bug-013",
+      "timestamp": "2026-04-27T04:46:41.412Z",
+      "error_message": "Wrong reference: mode should be shimmerMode",
+      "file": "src/components/WarRoom.tsx",
+      "root_cause": "Used \"mode\" instead of \"shimmerMode\"",
+      "fix": "Changed mode → shimmerMode",
+      "tags": [
+        "auto-detected",
+        "wrong-reference",
+        "tsx"
+      ],
+      "related_bugs": [],
+      "occurrences": 2,
+      "last_seen": "2026-04-27T04:46:50.182Z"
+    },
+    {
+      "id": "bug-014",
+      "timestamp": "2026-04-27T04:47:22.046Z",
+      "error_message": "Type error",
+      "file": "src/App.tsx",
+      "root_cause": "Missing or incorrect type annotation",
+      "fix": "Added type assertion/annotation",
+      "tags": [
+        "auto-detected",
+        "type-fix",
+        "tsx"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-04-27T04:47:22.046Z"
+    },
+    {
+      "id": "bug-015",
+      "timestamp": "2026-04-27T04:47:28.522Z",
+      "error_message": "Wrong return value",
+      "file": "src/App.tsx",
+      "root_cause": "Was returning: <SOSShell />;",
+      "fix": "Now returns: <SOSShell appMode={appMode} />;",
+      "tags": [
+        "auto-detected",
+        "return-value",
+        "tsx"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-04-27T04:47:28.522Z"
+    },
+    {
+      "id": "bug-016",
+      "timestamp": "2026-04-27T04:53:17.255Z",
+      "error_message": "Wrong reference: eslint should be useEffect",
+      "file": "src/hooks/usePatternObserver.ts",
+      "root_cause": "Used \"eslint\" instead of \"useEffect\"",
+      "fix": "Changed eslint → useEffect",
+      "tags": [
+        "auto-detected",
+        "wrong-reference",
+        "ts"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-04-27T04:53:17.255Z"
+    },
+    {
+      "id": "bug-017",
+      "timestamp": "2026-04-27T04:55:42.422Z",
+      "error_message": "Type error",
+      "file": "src/components/ShimmerCore.tsx",
+      "root_cause": "Missing or incorrect type annotation",
+      "fix": "Added type assertion/annotation | Also: // eslint-disable-next-line @typescript-eslint/no-explicit-a; ref={materialRef as unknown as any}",
+      "tags": [
+        "auto-detected",
+        "type-fix",
+        "tsx"
+      ],
+      "related_bugs": [],
+      "occurrences": 2,
+      "last_seen": "2026-04-27T04:56:17.126Z"
     }
   ]
 }

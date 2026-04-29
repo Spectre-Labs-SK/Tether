@@ -1,84 +1,133 @@
 {
-  "session_id": "session-2026-04-27-2000",
-  "started": "2026-04-27T03:00:18.393Z",
+  "session_id": "session-2026-04-29-1741",
+  "started": "2026-04-29T00:41:38.292Z",
   "files_read": {
-    "c:/Users/Windows 11 Pro/Desktop/Spectre_Labs/Feu_Follet/Tether_Safe/.wolf/anatomy.md": {
-      "count": 2,
-      "tokens": 0,
-      "first_read": "2026-04-27T03:02:50.547Z"
-    },
     "c:/Users/Windows 11 Pro/Desktop/Spectre_Labs/Feu_Follet/Tether_Safe/.wolf/cerebrum.md": {
       "count": 1,
       "tokens": 0,
-      "first_read": "2026-04-27T03:02:50.560Z"
+      "first_read": "2026-04-29T00:42:17.656Z"
     },
-    "c:/Users/Windows 11 Pro/Desktop/Spectre_Labs/Feu_Follet/Tether_Safe/AGENT.md": {
-      "count": 1,
-      "tokens": 0,
-      "first_read": "2026-04-27T03:02:55.226Z"
-    },
-    "c:/Users/Windows 11 Pro/Desktop/Spectre_Labs/Feu_Follet/Tether_Safe/src/App.css": {
-      "count": 1,
-      "tokens": 0,
-      "first_read": "2026-04-27T03:02:55.878Z"
-    },
-    "c:/Users/Windows 11 Pro/Desktop/Spectre_Labs/Feu_Follet/Tether_Safe/SESSION_STATE.json": {
-      "count": 1,
-      "tokens": 0,
-      "first_read": "2026-04-27T03:03:02.409Z"
-    },
-    "c:/Users/Windows 11 Pro/Desktop/Spectre_Labs/Feu_Follet/Tether_Safe/src/App.tsx": {
-      "count": 1,
-      "tokens": 1195,
-      "first_read": "2026-04-27T03:03:07.273Z"
-    },
-    "c:/Users/Windows 11 Pro/Desktop/Spectre_Labs/Feu_Follet/Tether_Safe/TETHER_BUILD_JOURNAL.md": {
+    "c:/Users/Windows 11 Pro/Desktop/Spectre_Labs/Feu_Follet/Tether_Safe/.wolf/anatomy.md": {
       "count": 2,
-      "tokens": 5255,
-      "first_read": "2026-04-27T03:03:07.492Z"
+      "tokens": 0,
+      "first_read": "2026-04-29T00:42:17.925Z"
+    },
+    "c:/Users/Windows 11 Pro/Desktop/Spectre_Labs/Feu_Follet/Tether_Safe/eas.json": {
+      "count": 1,
+      "tokens": 0,
+      "first_read": "2026-04-29T00:42:32.453Z"
+    },
+    "c:/Users/Windows 11 Pro/Desktop/Spectre_Labs/Feu_Follet/Tether_Safe/app.json": {
+      "count": 1,
+      "tokens": 0,
+      "first_read": "2026-04-29T00:42:41.569Z"
     },
     "c:/Users/Windows 11 Pro/Desktop/Spectre_Labs/Feu_Follet/Tether_Safe/package.json": {
       "count": 1,
       "tokens": 0,
-      "first_read": "2026-04-27T03:11:24.833Z"
+      "first_read": "2026-04-29T00:42:41.760Z"
     },
-    "c:/Users/Windows 11 Pro/Desktop/Spectre_Labs/Feu_Follet/Tether_Safe/TetherArchitect/env/.env.local": {
+    "c:/Users/Windows 11 Pro/Desktop/Spectre_Labs/Feu_Follet/Tether_Safe/src/native/screens/PushDayOnboarding.tsx": {
+      "count": 1,
+      "tokens": 7821,
+      "first_read": "2026-04-29T00:42:49.506Z"
+    },
+    "c:/Users/Windows 11 Pro/Desktop/Spectre_Labs/Feu_Follet/Tether_Safe/src/native/screens/RoadSession.tsx": {
+      "count": 1,
+      "tokens": 1692,
+      "first_read": "2026-04-29T00:42:53.286Z"
+    },
+    "c:/Users/Windows 11 Pro/Desktop/Spectre_Labs/Feu_Follet/Tether_Safe/src/native/screens/FitnessOnboardingGrid.tsx": {
+      "count": 2,
+      "tokens": 0,
+      "first_read": "2026-04-29T00:43:04.592Z"
+    },
+    "c:/Users/Windows 11 Pro/Desktop/Spectre_Labs/Feu_Follet/Tether_Safe/src/registry/valkyrie/houses.ts": {
       "count": 1,
       "tokens": 0,
-      "first_read": "2026-04-27T03:11:28.794Z"
+      "first_read": "2026-04-29T00:43:56.695Z"
     },
-    "c:/Users/Windows 11 Pro/Desktop/Spectre_Labs/Feu_Follet/Tether_Safe/agent-tether-orchestrator/.env.local": {
+    "c:/Users/Windows 11 Pro/Desktop/Spectre_Labs/Feu_Follet/Tether_Safe/tsconfig.json": {
       "count": 1,
       "tokens": 0,
-      "first_read": "2026-04-27T03:11:32.340Z"
+      "first_read": "2026-04-29T00:48:44.033Z"
     },
-    "c:/Users/Windows 11 Pro/Desktop/Spectre_Labs/Feu_Follet/Tether_Safe/.gitignore": {
+    "c:/Users/Windows 11 Pro/Desktop/Spectre_Labs/Feu_Follet/Tether_Safe/tsconfig.app.json": {
       "count": 1,
       "tokens": 0,
-      "first_read": "2026-04-27T04:00:50.714Z"
+      "first_read": "2026-04-29T00:48:44.768Z"
+    },
+    "c:/Users/Windows 11 Pro/Desktop/Spectre_Labs/Feu_Follet/Tether_Safe/src/native/screens/HubSession.tsx": {
+      "count": 1,
+      "tokens": 0,
+      "first_read": "2026-04-29T00:55:30.947Z"
+    },
+    "c:/Users/Windows 11 Pro/Desktop/Spectre_Labs/Feu_Follet/Tether_Safe/src/native/screens/MatSession.tsx": {
+      "count": 1,
+      "tokens": 1385,
+      "first_read": "2026-04-29T00:55:31.139Z"
+    },
+    "c:/Users/Windows 11 Pro/Desktop/Spectre_Labs/Feu_Follet/Tether_Safe/.wolf/memory.md": {
+      "count": 2,
+      "tokens": 0,
+      "first_read": "2026-04-29T00:58:41.935Z"
     }
   },
   "files_written": [
     {
-      "file": "c:/Users/Windows 11 Pro/Desktop/Spectre_Labs/Feu_Follet/Tether_Safe/DEPENDENCIES.md",
-      "action": "create",
-      "tokens": 582,
-      "at": "2026-04-27T03:11:58.765Z"
+      "file": "c:/Users/Windows 11 Pro/Desktop/Spectre_Labs/Feu_Follet/Tether_Safe/app.json",
+      "action": "edit",
+      "tokens": 82,
+      "at": "2026-04-29T00:57:00.725Z"
     },
     {
-      "file": "c:/Users/Windows 11 Pro/Desktop/Spectre_Labs/Feu_Follet/Tether_Safe/TETHER_BUILD_JOURNAL.md",
+      "file": "c:/Users/Windows 11 Pro/Desktop/Spectre_Labs/Feu_Follet/Tether_Safe/package.json",
       "action": "edit",
-      "tokens": 186,
-      "at": "2026-04-27T03:12:08.895Z"
+      "tokens": 34,
+      "at": "2026-04-29T00:57:11.024Z"
+    },
+    {
+      "file": "c:/Users/Windows 11 Pro/Desktop/Spectre_Labs/Feu_Follet/Tether_Safe/package.json",
+      "action": "edit",
+      "tokens": 74,
+      "at": "2026-04-29T00:57:21.494Z"
+    },
+    {
+      "file": "c:/Users/Windows 11 Pro/Desktop/Spectre_Labs/Feu_Follet/Tether_Safe/index.js",
+      "action": "create",
+      "tokens": 37,
+      "at": "2026-04-29T00:57:28.725Z"
+    },
+    {
+      "file": "c:/Users/Windows 11 Pro/Desktop/Spectre_Labs/Feu_Follet/Tether_Safe/metro.config.js",
+      "action": "create",
+      "tokens": 70,
+      "at": "2026-04-29T00:57:36.893Z"
+    },
+    {
+      "file": "c:/Users/Windows 11 Pro/Desktop/Spectre_Labs/Feu_Follet/Tether_Safe/babel.config.js",
+      "action": "create",
+      "tokens": 31,
+      "at": "2026-04-29T00:57:44.888Z"
+    },
+    {
+      "file": "c:/Users/Windows 11 Pro/Desktop/Spectre_Labs/Feu_Follet/Tether_Safe/src/native/NativeApp.tsx",
+      "action": "create",
+      "tokens": 332,
+      "at": "2026-04-29T00:57:54.232Z"
     }
   ],
   "edit_counts": {
-    "DEPENDENCIES.md": 1,
-    "TETHER_BUILD_JOURNAL.md": 1
+    "app.json": 1,
+    "package.json": 2,
+    "index.js": 1,
+    "metro.config.js": 1,
+    "babel.config.js": 1,
+    "src/native/NativeApp.tsx": 1
   },
-  "anatomy_hits": 2,
-  "anatomy_misses": 9,
-  "repeated_reads_warned": 2,
+  "anatomy_hits": 3,
+  "anatomy_misses": 11,
+  "repeated_reads_warned": 3,
   "cerebrum_warnings": 0,
-  "stop_count": 3
+  "stop_count": 1
 }
