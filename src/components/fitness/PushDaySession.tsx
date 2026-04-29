@@ -160,7 +160,9 @@ export default function PushDaySession({ hardStop, compressionStatus, sessionSec
       if (user) {
         supabase.from('exercise_skips').insert({
           profile_id: user.id, exercise_name: exerciseName, skipped_at: new Date().toISOString(),
-        }).then();
+        }).then(({ error }) => {
+          if (error) agentLog.architect(`Skip persist failed: ${error.message}`);
+        });
       }
     });
   }, []);
@@ -187,7 +189,9 @@ export default function PushDaySession({ hardStop, compressionStatus, sessionSec
         supabase.from('muscle_group_freezes').insert({
           profile_id: user.id, muscle_group: muscleGroup,
           locked_until: lockdownUntil.toISOString(), created_at: new Date(now).toISOString(),
-        }).then();
+        }).then(({ error }) => {
+          if (error) agentLog.architect(`Freeze persist failed: ${error.message}`);
+        });
       }
     }
   }, [painAlerts]);
