@@ -6,6 +6,9 @@
 | 2026-04-22 | gsd map-codebase refresh — all 7 docs rewritten inline after sub-agents hit rate limit | .planning/codebase/*.md | 467 lines total across STACK, INTEGRATIONS, ARCHITECTURE, STRUCTURE, CONVENTIONS, TESTING, CONCERNS | ~4k tok |
 | 2026-04-22 | gsd plan-phase Phase 1: PatternObserver + Three.js state mirroring — 3 plans, VERIFICATION PASSED | .planning/phases/01-pattern-observer-threejs/*.md | 1584 lines: RESEARCH, REQUIREMENTS, 3 PLAN.md files (Wave 1-3) | ~12k tok |
 
+| 2026-04-28 | task-observer setup — activation hook added to CLAUDE.md; observation log + cross-cutting principles created; GEMINI.md updated with Section V; anatomy.md updated | CLAUDE.md, GEMINI.md, .wolf/skill-observations/log.md, .wolf/skill-observations/cross-cutting-principles.md, .wolf/skill-updates/, .wolf/anatomy.md | all files written, skill infrastructure live | ~300 tok |
+| 2026-04-28 | gsd-code-review-fix Phase 01 — 9/9 critical+warning findings fixed across 5 files; 5 atomic commits (4750564 74d3f32 73f7a51 4ce1214 b92d812 68295c7); REVIEW-FIX.md written | src/hooks/useJointOps.ts, src/components/ShimmerCore.tsx, src/native/screens/MatSession.tsx, src/native/screens/RoadSession.tsx, src/hooks/useTetherState.ts, src/components/fitness/PushDaySession.tsx, src/native/screens/PushDayOnboarding.tsx | all_fixed | ~8k tok |
+
 ## Session: 2026-04-22 08:14
 
 | Time | Action | File(s) | Outcome | ~Tokens |
@@ -239,6 +242,100 @@
 |------|--------|---------|---------|--------|
 
 ## Session: 2026-04-29 21:14
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+
+## Session: 2026-04-29 21:18
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+| 21:20 | Edited CLAUDE.md | expanded (+10 lines) | ~212 |
+| 21:20 | Edited GEMINI.md | expanded (+36 lines) | ~489 |
+| 21:21 | Session end: 2 writes across 2 files (CLAUDE.md, GEMINI.md) | 5 reads | ~752 tok |
+
+## Session: 2026-04-29 21:21
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+
+## Session: 2026-04-29 21:22
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+
+## Session: 2026-04-29 21:22
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+
+## Session: 2026-04-29 21:23
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+
+## Session: 2026-04-29 21:23
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+
+## Session: 2026-04-29 21:23
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+
+## Session: 2026-04-29 21:24
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+| 21:25 | Created .planning/STATE.md | — | ~567 |
+| 21:26 | STATE.md reconstructed from phase artifacts | .planning/STATE.md | written | ~200 tok |
+| 21:26 | Session end: 1 writes across 1 files (STATE.md) | 5 reads | ~4331 tok |
+| 21:27 | Created .planning/phases/01-pattern-observer-threejs/01-HUMAN-UAT.md | — | ~290 |
+| 21:27 | Edited .planning/STATE.md | 6→6 lines | ~77 |
+| 21:27 | Human UAT closed — lerp confirmed, SOS canvas required per Sentinel | 01-HUMAN-UAT.md, STATE.md | 1 pass / 1 action item | ~100 tok |
+| 21:27 | Session end: 3 writes across 2 files (STATE.md, 01-HUMAN-UAT.md) | 5 reads | ~4725 tok |
+| 21:29 | Edited src/App.tsx | added 2 import(s) | ~98 |
+| 21:29 | Edited src/App.tsx | CSS: position | ~161 |
+| 21:30 | Edited .planning/phases/01-pattern-observer-threejs/01-HUMAN-UAT.md | 3→3 lines | ~37 |
+| 21:30 | SOSShell: added Canvas+ShimmerCore background — SOS pink sphere now renders in crisis mode | src/App.tsx | tsc clean | ~150 tok |
+| 21:31 | Created .planning/ROADMAP.md | — | ~262 |
+| 21:31 | Edited .planning/STATE.md | expanded (+7 lines) | ~47 |
+| 21:31 | Phase 02 added: Nervous System Integration — ROADMAP.md created, phase dir created | .planning/ROADMAP.md, .planning/phases/02-nervous-system-integration/ | done | ~100 tok |
+| 21:31 | Session end: 8 writes across 4 files (STATE.md, 01-HUMAN-UAT.md, App.tsx, ROADMAP.md) | 7 reads | ~6713 tok |
+
+## Session: 2026-04-29 21:33
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+
+## Session: 2026-04-29 21:37
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+
+## Session: 2026-04-29 21:40
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+| 21:48 | Created .planning/phases/01-pattern-observer-threejs/01-REVIEW.md | — | ~4246 |
+| 21:49 | Session end: 1 writes across 1 files (01-REVIEW.md) | 20 reads | ~40177 tok |
+| 06:13 | Edited src/hooks/useJointOps.ts | added 2 condition(s) | ~484 |
+| 06:14 | Edited src/components/ShimmerCore.tsx | 5→10 lines | ~114 |
+| 06:14 | Edited src/native/screens/MatSession.tsx | inline fix | ~17 |
+| 06:14 | Edited src/native/screens/MatSession.tsx | added nullish coalescing | ~444 |
+| 06:15 | Edited src/native/screens/RoadSession.tsx | inline fix | ~17 |
+| 06:15 | Edited src/native/screens/RoadSession.tsx | CSS: fallback, WR-01, 00 | ~146 |
+| 06:15 | Edited src/native/screens/RoadSession.tsx | modified setTimeRemaining() | ~367 |
+| 06:16 | Edited src/hooks/useTetherState.ts | added optional chaining | ~242 |
+| 06:51 | Edited src/components/fitness/PushDaySession.tsx | CSS: failed | ~111 |
+| 06:51 | Edited src/components/fitness/PushDaySession.tsx | CSS: failed | ~96 |
+| 06:51 | Edited src/native/screens/PushDayOnboarding.tsx | added 1 condition(s) | ~73 |
+| 06:52 | Edited src/native/screens/PushDayOnboarding.tsx | modified if() | ~233 |
+| 06:55 | Created .planning/phases/01-pattern-observer-threejs/01-REVIEW-FIX.md | — | ~1642 |
+| 06:56 | Session end: 14 writes across 9 files (01-REVIEW.md, useJointOps.ts, ShimmerCore.tsx, MatSession.tsx, RoadSession.tsx) | 24 reads | ~48821 tok |
+
+## Session: 2026-04-29 07:10
 
 | Time | Action | File(s) | Outcome | ~Tokens |
 |------|--------|---------|---------|--------|

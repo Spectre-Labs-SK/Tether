@@ -4,6 +4,16 @@
 
 This project uses OpenWolf for context management. Read and follow .wolf/OPENWOLF.md every session. Check .wolf/cerebrum.md before generating code. Check .wolf/anatomy.md before reading files.
 
+# Task Observer (One Skill to Rule Them All)
+
+At the start of every task-oriented session — any session where you will use tools to produce deliverables — invoke the `task-observer` skill before proceeding.
+
+Observation log: `.wolf/skill-observations/log.md`
+Skill updates staging: `.wolf/skill-updates/`
+Cross-cutting principles: `.wolf/skill-observations/cross-cutting-principles.md`
+
+Weekly review: If more than 7 days have passed since the last review and there are open observations, trigger a comprehensive review at session start before proceeding with the task.
+
 
 # TETHER — CLAUDE.md (Context Injector)
 

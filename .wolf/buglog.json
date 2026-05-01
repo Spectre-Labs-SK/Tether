@@ -272,6 +272,86 @@
       "related_bugs": [],
       "occurrences": 2,
       "last_seen": "2026-04-27T04:56:17.126Z"
+    },
+    {
+      "id": "bug-018",
+      "timestamp": "2026-04-29T13:13:44.472Z",
+      "error_message": "Type error",
+      "file": "src/hooks/useJointOps.ts",
+      "root_cause": "Missing or incorrect type annotation",
+      "fix": "Added type assertion/annotation",
+      "tags": [
+        "auto-detected",
+        "type-fix",
+        "ts"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-04-29T13:13:44.472Z"
+    },
+    {
+      "id": "bug-019",
+      "timestamp": "2026-04-29T13:14:52.028Z",
+      "error_message": "Null/undefined access in ",
+      "file": "src/native/screens/MatSession.tsx",
+      "root_cause": "Property access on potentially null/undefined value",
+      "fix": "Added null safety (optional chaining or null check)",
+      "tags": [
+        "auto-detected",
+        "null-safety",
+        "tsx"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-04-29T13:14:52.028Z"
+    },
+    {
+      "id": "bug-020",
+      "timestamp": "2026-04-29T13:15:30.450Z",
+      "error_message": "Missing guard clause",
+      "file": "src/native/screens/RoadSession.tsx",
+      "root_cause": "No early return/throw for edge case: isPaused",
+      "fix": "Added guard clause: if (isPaused)",
+      "tags": [
+        "auto-detected",
+        "guard-clause",
+        "tsx"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-04-29T13:15:30.450Z"
+    },
+    {
+      "id": "bug-021",
+      "timestamp": "2026-04-29T13:16:16.671Z",
+      "error_message": "Null/undefined access in ",
+      "file": "src/hooks/useTetherState.ts",
+      "root_cause": "Property access on potentially null/undefined value",
+      "fix": "Added null safety (optional chaining or null check)",
+      "tags": [
+        "auto-detected",
+        "null-safety",
+        "ts"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-04-29T13:16:16.672Z"
+    },
+    {
+      "id": "bug-022",
+      "timestamp": "2026-04-29T13:52:07.397Z",
+      "error_message": "CSS fix: exercises",
+      "file": "src/native/screens/PushDayOnboarding.tsx",
+      "root_cause": "exercises: ', err) → ', skippedExercises.map((e) => e.name))",
+      "fix": "Changed exercises: ', err) → ', skippedExercises.map((e) => e.name))",
+      "tags": [
+        "auto-detected",
+        "style-fix",
+        "tsx"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-04-29T13:52:07.397Z"
     }
   ]
 }

@@ -1,7 +1,9 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, Suspense } from 'react';
 import './index.css';
+import { Canvas } from '@react-three/fiber';
 import EntryGate from './components/EntryGate';
 import WarRoom from './components/WarRoom';
+import { ShimmerCore } from './components/ShimmerCore';
 import { usePatternObserver } from './hooks/usePatternObserver';
 
 type AppMode = 'gate' | 'chill' | 'sos';
@@ -63,6 +65,15 @@ function SOSShell({ appMode }: { appMode: AppMode }) {
 
   return (
     <div className="w-full h-screen bg-black flex flex-col items-center justify-center font-mono text-[#4ade80]">
+      <div className="absolute inset-0 z-0 h-full w-full">
+        <Canvas camera={{ position: [0, 0, 5] }}>
+          <ambientLight intensity={1} />
+          <pointLight position={[10, 10, 10]} />
+          <Suspense fallback={null}>
+            <ShimmerCore />
+          </Suspense>
+        </Canvas>
+      </div>
       <div className="noise-overlay" />
       <div className="relative z-10 text-center space-y-6 p-12 max-w-md w-full">
         <p className="text-[10px] tracking-[0.4em] uppercase text-[#f472b6]">SOS / Crisis Mode Active</p>

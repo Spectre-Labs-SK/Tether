@@ -1,110 +1,109 @@
-# 01-REVIEW-FIX — Phase 01: Pattern Observer / Three.js
-# Tether Fitness Engine · Spectre Labs
-# Fixer: Tether Architect (Antigravity) · 2026-04-27
-
 ---
-
-## Metadata
-
-```yaml
 phase: 01-pattern-observer-threejs
-source_review: 01-REVIEW.md
-fixes_applied: 5
-fixes_skipped: 0
-status: PASS — all CRITICAL + HIGH items resolved
-remaining: MEDIUM/LOW in backlog
-```
+fix_date: 2026-04-28T00:00:00Z
+fix_scope: critical_warning
+findings_in_scope: 9
+fixed: 9
+skipped: 0
+iteration: 1
+status: all_fixed
+---
+
+# Phase 01: Code Review Fix Report
+
+**Fixed at:** 2026-04-28
+**Source review:** .planning/phases/01-pattern-observer-threejs/01-REVIEW.md
+**Iteration:** 1
+
+**Summary:**
+- Findings in scope: 9
+- Fixed: 9
+- Skipped: 0
 
 ---
 
-## Fixes Applied
+## Fixed Issues
 
-### 🔴 FIX 5-1 · CRITICAL — `calculate-1rm` Auth Gate
-**File:** `supabase/functions/calculate-1rm/index.ts`
+### CR-01: PostgREST subquery replaced with two-query merge in useJointOps
 
-Added `extractBearerToken()` helper and a 401 guard immediately after the method check. The function now rejects any request without a valid `Authorization: Bearer <jwt>` header, matching the pattern already established in `sync-workout`.
-
-```diff
-+function extractBearerToken(req: Request): string | null { ... }
-
- serve(async (req) => {
-   // OPTIONS pass-through unchanged
-   if (req.method !== 'POST') return jsonResponse(..., 405);
-+
-+  const token = extractBearerToken(req);
-+  if (!token) return jsonResponse({ error: 'Missing authorization token' }, 401);
-```
+**Files modified:** `src/hooks/useJointOps.ts`
+**Commit:** `4750564`
+**Applied fix:** Replaced the single `.or()` call that embedded a raw SQL subquery (`id.in.(select op_id from op_members ...)`) with two separate queries: one for ops the user owns (`.eq('owner_id', userId)`) and one that first fetches `op_members` rows then uses `.in('id', memberOpIds)`. Results are merged client-side with a `Set<string>` for deduplication. Each query branch has its own error handling with early return and fall-through to owned-only on membership lookup failure. Eliminates the injection vector from string-interpolated userId.
 
 ---
 
-### 🟠 FIX 4-1 · HIGH — SOSShell Timer Race
-**File:** `src/App.tsx`
+### CR-02: emissiveIntensity lerp added to ShimmerCore useFrame loop
 
-Introduced `phaseIndexRef` (a `useRef` mirror of `phaseIndex`) and removed `phaseIndex` from the `useEffect` dependency array. The interval now reads `phaseIndexRef.current` instead of the closed-over state variable, eliminating the ~1 s missed-tick on every phase boundary.
-
-```diff
-+  const phaseIndexRef = useRef(phaseIndex);
-+  useEffect(() => { phaseIndexRef.current = phaseIndex; }, [phaseIndex]);
-
-   useEffect(() => {
-     tickRef.current = setInterval(() => {
--        const phase = BREATHE_PHASES[phaseIndex];
-+        const phase = BREATHE_PHASES[phaseIndexRef.current];
-       ...
--    }, [isRunning, phaseIndex]);
-+    }, [isRunning]);   // interval never restarts on phase change
-```
+**Files modified:** `src/components/ShimmerCore.tsx`
+**Commit:** `74d3f32`
+**Applied fix:** Added `mat.emissiveIntensity = THREE.MathUtils.lerp(mat.emissiveIntensity, target.emissiveIntensity, LERP)` after the `metalness` lerp inside `useFrame`. Every emissive value emitted by `usePatternObserver` was previously silently discarded because the render loop never read `target.emissiveIntensity`. No type change was needed — `MeshPhysicalMaterial` inherits `emissiveIntensity` from `MeshStandardMaterial`.
 
 ---
 
-### 🟠 FIX 8-1 · HIGH — Missing Indexes on `workout_sets` and `one_rm_history`
-**File:** `supabase/migrations/02_fitness_schema.sql`
+### CR-03: Timer effect interval thrashing fixed in MatSession and RoadSession
 
-Added:
-- `workout_sets_workout_id` index on the FK column (most common filter in RLS join queries)
-- `one_rm_history_profile_exercise_time` composite index matching the exact query pattern in `sync-workout` (`profile_id, exercise_id, recorded_at DESC`)
-- Explicit comment documenting the intentional absence of `updated_at` on `workout_sets` (append-only design)
+**Files modified:** `src/native/screens/MatSession.tsx`, `src/native/screens/RoadSession.tsx`
+**Commit:** `73f7a51`
+**Applied fix:** Extracted mutable values (`currentPoseIndex`/`poses` in MatSession; `currentIntervalIndex`/`manifest` in RoadSession) into refs (`currentPoseIndexRef`, `posesRef`, `currentIntervalIndexRef`, `manifestRef`). Added sync effects to keep refs current. Changed the timer `useEffect` dep array from `[isPaused, timeRemaining, currentPoseIndex, poses, navigation]` to `[isPaused, navigation]`. This prevents ~1800 clearInterval/setInterval pairs per yoga session that caused timing drift on low-end Android.
 
----
-
-### 🟠 FIX 7-2 · HIGH — Missing `UNIQUE` on `life_sectors.profile_id`
-**File:** `supabase/migrations/01_initial_schema.sql`
-
-Added `UNIQUE` to the `profile_id` FK column on `life_sectors`, enforcing the one-row-per-profile invariant at the database level rather than relying solely on application logic.
+**Status:** fixed: requires human verification — logic change to ref-sync pattern; verify pose transitions and session completion behave correctly end-to-end.
 
 ---
 
-### 🟡 FIX 7-1 · MEDIUM — `random_handle` Length Constraint
-**File:** `supabase/migrations/01_initial_schema.sql`
+### WR-01: RoadSession catch block now calls setTimeRemaining on fallback
 
-Added `CHECK (char_length(random_handle) BETWEEN 3 AND 32)` to the `profiles.random_handle` column. Prevents empty handles, single-character handles, and excessively long values that could cause display bugs.
-
----
-
-## Remaining Backlog (MEDIUM / LOW — not auto-fixed)
-
-| ID | Severity | Item | Reason deferred |
-|----|----------|------|----------------|
-| 5-2 / 6-1 | HIGH | Restrict CORS from `*` to production domain | Requires knowing the production domain; must be set at deploy time via env var |
-| 6-2 | MEDIUM | Extract shared 1RM formulas to `_shared/1rm.ts` | Refactor scope — safe to defer until next Edge Function is added |
-| 6-3 | MEDIUM | Scope service-role key in `sync-workout` to upsert only | Requires RLS policy redesign; plan for next phase |
-| 3-1 | MEDIUM | Confirm Tailwind v4 install + Vite plugin config | Config audit — not a code change |
-| 4-3 | MEDIUM | Add React `ErrorBoundary` wrapping app tree | New component — plan for next phase |
-| X-3 | MEDIUM | Add integration test harness for Edge Functions | New test infra — plan for Phase 02 |
-| 9-1 | LOW | Remove duplicate `CREATE EXTENSION pgcrypto` from migration 03 | Idempotent; safe to defer |
-| 4-4 | LOW | Hoist `SOSShell` to `src/components/SOSShell.tsx` | Cosmetic refactor |
-| 8-4 | LOW | Wrap seed INSERT with `ON CONFLICT DO NOTHING` | Only matters on DB reset |
-| X-4 | INFO | Document `profiles.id ↔ auth.users.id` in CONTEXT_MAP.md | Documentation |
+**Files modified:** `src/native/screens/RoadSession.tsx`
+**Commit:** `73f7a51`
+**Applied fix:** Added `setTimeRemaining(fallback[0].durationMinutes * 60)` in the `catch` block of `loadManifest` after `setManifest(fallback)`. Also added explicit `Interval[]` type annotation to the fallback array. Previously `timeRemaining` stayed at `0` after a fallback, which combined with the `isPaused` guard meant the interval never started even after the user pressed START.
 
 ---
 
-## Next Steps
+### WR-02: Crisis-mode DB update checks result before patching local profile state
 
-1. **Deploy migrations** — run `supabase db push` (or apply in Supabase dashboard) to apply the constraint changes in migrations 01 and 02.
-2. **Deploy Edge Functions** — `supabase functions deploy calculate-1rm && supabase functions deploy sync-workout`.
-3. **Smoke-test `calculate-1rm`** — verify a request without a Bearer token now returns 401.
-4. **Run `/gsd-next`** to advance to the next phase in the roadmap.
+**Files modified:** `src/hooks/useTetherState.ts`
+**Commit:** `4ce1214`
+**Applied fix:** Chained `.select().single()` on the `profiles.update({ onboarding_pending: true })` call and destructured `{ data: patched, error: patchError }`. If `!patchError && patched`, calls `setProfile(patched)` (DB-confirmed state). On failure, calls `setProfile(data)` (the as-fetched profile without the pending flag) and logs a warning via `agentLog.architect`. Prevents the desync where local state showed `onboarding_pending: true` but the DB still had `false`, which could trigger duplicate onboarding overlays.
 
 ---
 
-*REVIEW-FIX generated by Tether Architect (Antigravity) on 2026-04-27.*
+### WR-03: Error handling added to fire-and-forget Supabase inserts in PushDaySession
+
+**Files modified:** `src/components/fitness/PushDaySession.tsx`
+**Commit:** `b92d812`
+**Applied fix:** Added `({ error }) => { if (error) agentLog.architect(...) }` argument to the bare `.then()` callbacks in both `skipExercise` (exercise_skips insert) and `handlePainAlert` (muscle_group_freezes insert). Previously both returned void and discarded errors silently. Matches the error-handling style already in the native `PushDayOnboarding.tsx`.
+
+---
+
+### WR-04: Guard added around empty setRows insert in PushDayOnboarding.syncWorkout
+
+**Files modified:** `src/native/screens/PushDayOnboarding.tsx`
+**Commit:** `68295c7`
+**Applied fix:** Wrapped `supabase.from('workout_sets').insert(setRows)` and its error check inside `if (setRows.length > 0) { ... }`. When all exercises are skipped or no sets are completed, `setRows` is empty. Inserting an empty array returned a Supabase error that surfaced as "Sync Failed" and halted sync before the `sync-workout` edge function ran. The web counterpart (`PushDaySession.tsx`) already had this guard.
+
+---
+
+### WR-05: Second supabase.auth.getUser() call removed from syncWorkout
+
+**Files modified:** `src/native/screens/PushDayOnboarding.tsx`
+**Commit:** `68295c7`
+**Applied fix:** Removed the second `const { data: { user } } = await supabase.auth.getUser()` call inside the `skippedExercises.length > 0` block in `syncWorkout`. The `user` object from the first call (at function entry) is already in scope and guaranteed non-null at that point. The block now directly checks `if (user)` and reuses `user.id`. A comment documents the intent.
+
+---
+
+### WR-06: activityId removed from MatSession manifest-loading effect dep array
+
+**Files modified:** `src/native/screens/MatSession.tsx`
+**Commit:** `73f7a51`
+**Applied fix:** Changed `}, [activityId])` to `}, [])` on the manifest-loading `useEffect`. Added a TODO comment explaining that all Mat domain activities currently use `YOGA_FLOW_MANIFEST` regardless of `activityId`, and that multi-manifest routing is deferred to Phase 2. Changed `durationSeconds || 0` to `?? 0` for nullish coalescing consistency.
+
+---
+
+## Skipped Issues
+
+None — all 9 in-scope findings were fixed successfully.
+
+---
+
+_Fixed: 2026-04-28_
+_Fixer: Claude (gsd-code-fixer)_
+_Iteration: 1_

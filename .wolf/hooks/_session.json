@@ -1,12 +1,28 @@
 {
-  "session_id": "session-2026-04-29-2114",
-  "started": "2026-04-29T04:14:27.071Z",
-  "files_read": {},
+  "session_id": "session-2026-04-29-0710",
+  "started": "2026-04-29T14:10:22.367Z",
+  "files_read": {
+    "c:/Users/Windows 11 Pro/Desktop/Spectre_Labs/Feu_Follet/Tether_Safe/.wolf/anatomy.md": {
+      "count": 1,
+      "tokens": 0,
+      "first_read": "2026-04-29T14:10:50.549Z"
+    },
+    "c:/Users/Windows 11 Pro/Desktop/Spectre_Labs/Feu_Follet/Tether_Safe/.wolf/cerebrum.md": {
+      "count": 1,
+      "tokens": 0,
+      "first_read": "2026-04-29T14:10:51.223Z"
+    },
+    "c:/Users/Windows 11 Pro/Desktop/Spectre_Labs/Feu_Follet/Tether_Safe/.wolf/skill-observations/log.md": {
+      "count": 1,
+      "tokens": 0,
+      "first_read": "2026-04-29T14:11:00.085Z"
+    }
+  },
   "files_written": [],
   "edit_counts": {},
   "anatomy_hits": 0,
-  "anatomy_misses": 0,
+  "anatomy_misses": 3,
   "repeated_reads_warned": 0,
   "cerebrum_warnings": 0,
-  "stop_count": 0
+  "stop_count": 1
 }
