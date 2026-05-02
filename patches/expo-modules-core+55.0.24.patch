@@ -1,0 +1,13 @@
+diff --git a/android/cmake/main.cmake b/android/cmake/main.cmake
+index e2f26b0..4188b69 100644
+--- a/android/cmake/main.cmake
++++ b/android/cmake/main.cmake
+@@ -66,7 +66,7 @@ target_link_libraries(
+   ${JSEXECUTOR_LIB}
+   ${NEW_ARCHITECTURE_DEPENDENCIES}
+   expo-modules-jsi
+-
++  -lc++_shared
+ )
+
+ if (REACT_NATIVE_WORKLETS_DIR)

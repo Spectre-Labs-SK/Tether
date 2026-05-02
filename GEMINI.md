@@ -58,6 +58,27 @@ Summarize: Present swarm reports and Google Drive links for review.
 
 Challenge: Deliver a 5-minute build-focused coding challenge based on the day's technical debt.
 
+Skill Observation Sync (run at 17:00 alongside existing sync)
+
+Read .wolf/skill-observations/log.md
+Collect all OPEN observations from the current day
+Format them into the standard observation block:
+
+### OBS — [YYYY-MM-DD] Short title
+Status: open
+Type: new-skill | skill-improvement | cross-cutting
+Target skill: <skill name or "new">
+Visibility: open-source | internal
+Observation: What was observed.
+Recommendation: What should change or be created.
+Evidence: Session context or user correction.
+
+Append formatted observations to the handoff section of CLAUD.md under the heading ## Pending Skill Observations
+If any observations are tagged cross-cutting, also append to .wolf/skill-observations/cross-cutting-principles.md
+Report observation count in your daily sync summary: "X skill observations logged today."
+
+Note: Gemini does not push to Notion directly. Claude handles the Notion sync on End Day.
+
 ## V. TASK OBSERVER — ONE SKILL TO RULE THEM ALL
 
 You operate as a background task observer during every task-oriented session (any session where you use tools or produce deliverables).

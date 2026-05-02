@@ -1,14 +1,14 @@
 # anatomy.md
 
-> Auto-maintained by OpenWolf. Last scanned: 2026-05-01T20:52:44.514Z
-> Files: 47 tracked | Anatomy hits: 0 | Misses: 0
+> Auto-maintained by OpenWolf. Last scanned: 2026-05-02T21:38:39.477Z
+> Files: 50 tracked | Anatomy hits: 0 | Misses: 0
 
 ## ./
 
 - `.env.local` — Supabase env vars (VITE_SUPABASE_URL, VITE_SUPABASE_ANON_KEY); placeholder values; not committed (~50 tok)
 - `app.json` (~85 tok)
 - `babel.config.js` (~31 tok)
-- `CLAUDE.md` — OpenWolf (~1863 tok)
+- `CLAUDE.md` — Developer guide: commands (web/native/patch-package), dual-build split architecture, state management rules, TypeScript rules, naming conventions (~1400 tok)
 - `DEPENDENCIES.md` — Pillar 3 supply chain; all npm deps with versions + env var requirements (~509 tok)
 - `GEMINI.md` — PERSONA: Tether Architect (~1234 tok)
 - `index.js` (~37 tok)
@@ -27,6 +27,10 @@
 
 ## .claude/skills/paperclip/
 
+
+## .claude/skills/task-observer/
+
+- `SKILL.md` — Task Observer — Continuous Skill Discovery & Improvement (~4141 tok)
 
 ## .github/workflows/
 
@@ -53,9 +57,19 @@
 ## .wolf/skill-observations/
 
 - `cross-cutting-principles.md` — library-wide principles checked when creating/updating any skill (~20 tok)
+- `log.md` — skill observation log; OPEN entries appended per session; resolved entries archived to archive/ (~10 tok, grows over time)
+- `last-review-date.txt` — ISO date of last comprehensive skill review; task-observer checks this to trigger 7-day fallback review (~5 tok)
 
 ## .wolf/skill-updates/
 
+
+## node_modules/expo-modules-core/android/cmake/
+
+- `main.cmake` (~531 tok)
+
+## patches/
+
+- `expo-modules-core+55.0.24.patch` (~88 tok)
 
 ## src/
 
