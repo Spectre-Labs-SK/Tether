@@ -63,7 +63,8 @@ export default function EntryGate({ onEnter }: Props) {
     return () => subscription.unsubscribe();
   }, []);
 
-  const { triggerCrisisMode, isLoading, isUntracked, profile } = useTetherState(userId);
+  const { isLoading, state } = useTetherState(userId);
+  const isUntracked = !state && !isLoading;
 
   // B-000 kill switch — clears anonymous session and resets state
   const handleReset = async () => {
@@ -75,8 +76,13 @@ export default function EntryGate({ onEnter }: Props) {
 
   const handleSOS = async () => {
     agentLog.architect(`SOS button activated.`);
-    await triggerCrisisMode();
-    agentLog.valkyrie(`SOS mode armed. Routing to minimalist experience.`);
+    if (userId) {
+      const handle = state?.random_handle ?? `ghost-${Math.floor(Math.random() * 9999)}`;
+      await supabase
+        .from('profiles')
+        .upsert({ id: userId, random_handle: handle, is_crisis_mode: true, onboarding_pending: true });
+      agentLog.valkyrie(`SOS received. Switching to minimalist mode. You are safe. Handle: ${handle}`);
+    }
     onEnter('sos', userId);
   };
 
@@ -243,9 +249,9 @@ export default function EntryGate({ onEnter }: Props) {
             <div className="w-full border border-[#1e293b] py-4 px-6 text-center text-xs tracking-[0.3em] uppercase text-slate-400 group-hover:border-slate-500 group-hover:text-white transition-all">
               Enter Full Mode
             </div>
-            {profile && (
+            {state && (
               <p className="mt-3 text-[10px] text-slate-700 text-center">
-                handle: {profile.random_handle}
+                handle: {state.random_handle}
               </p>
             )}
             {isUntracked && (

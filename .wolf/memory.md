@@ -3,6 +3,10 @@
 > Chronological action log. Hooks and AI append to this file automatically.
 > Old sessions are consolidated by the daemon weekly.
 
+| 05:00 | SPEC-002 Task 1: replaced TetherStateReturn with explicit TetherState + ValkyrieTheme types; added sync/updateTheme/triggerKillSwitch; removed profile/uiConfig/isUntracked/triggerCrisisMode/exitCrisisMode/completeOnboarding/bitchweights/trickycardio from hook return | src/hooks/useTetherState.ts | 0 any types; 7 callsite failures in EntryGate.tsx + WarRoom.tsx reported for SPEC adjustment | ~600 tok |
+| 05:10 | SPEC-004+005: installed @types/node; added "node" to tsconfig types; removed unused React imports from 6 native files; fixed verbatimModuleSyntax violations in NativeApp/FitnessOnboardingGrid/MatSession/PushDayOnboarding/RoadSession/HubSession | tsconfig.app.json, src/native/**/*.tsx | error count 25→7; only SPEC-002 callsite breaks remain | ~400 tok |
+| 05:20 | SPEC-002 callsite migration: created useArmory.ts (bitchweights+trickycardio); fixed EntryGate.tsx (state, isUntracked derived, triggerCrisisMode inlined); fixed WarRoom.tsx (state, useArmory wired, handleCompleteOnboarding inline+sync) | src/hooks/useArmory.ts, src/components/EntryGate.tsx, src/components/WarRoom.tsx | tsc exit 0 — 0 TypeScript errors | ~600 tok |
+
 | 2026-04-22 | gsd map-codebase refresh — all 7 docs rewritten inline after sub-agents hit rate limit | .planning/codebase/*.md | 467 lines total across STACK, INTEGRATIONS, ARCHITECTURE, STRUCTURE, CONVENTIONS, TESTING, CONCERNS | ~4k tok |
 | 2026-04-22 | gsd plan-phase Phase 1: PatternObserver + Three.js state mirroring — 3 plans, VERIFICATION PASSED | .planning/phases/01-pattern-observer-threejs/*.md | 1584 lines: RESEARCH, REQUIREMENTS, 3 PLAN.md files (Wave 1-3) | ~12k tok |
 
@@ -406,6 +410,45 @@
 |------|--------|---------|---------|--------|
 
 ## Session: 2026-05-01 11:30
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+| 11:43 | Created src/hooks/useTetherState.ts | — | ~1762 |
+| 12:03 | Session end: 1 writes across 1 files (useTetherState.ts) | 10 reads | ~9519 tok |
+| 12:26 | Edited tsconfig.app.json | 3→2 lines | ~7 |
+| 12:50 | Session end: 2 writes across 2 files (useTetherState.ts, tsconfig.app.json) | 11 reads | ~9611 tok |
+| 13:44 | Edited tsconfig.app.json | inline fix | ~11 |
+| 13:44 | Edited src/native/NativeApp.tsx | 4→3 lines | ~68 |
+| 13:45 | Edited src/native/screens/FitnessOnboardingGrid.tsx | inline fix | ~10 |
+| 13:45 | Edited src/native/screens/FitnessOnboardingGrid.tsx | inline fix | ~19 |
+| 13:45 | Edited src/native/screens/MatSession.tsx | inline fix | ~15 |
+| 13:45 | Edited src/native/screens/MatSession.tsx | 2→2 lines | ~43 |
+| 13:45 | Edited src/native/screens/PushDayOnboarding.tsx | inline fix | ~17 |
+| 13:45 | Edited src/native/screens/PushDayOnboarding.tsx | inline fix | ~24 |
+| 13:45 | Edited src/native/screens/RoadSession.tsx | inline fix | ~15 |
+| 13:45 | Edited src/native/screens/RoadSession.tsx | 5→3 lines | ~61 |
+| 13:45 | Edited src/native/screens/HubSession.tsx | inline fix | ~13 |
+| 13:46 | Session end: 13 writes across 8 files (useTetherState.ts, tsconfig.app.json, NativeApp.tsx, FitnessOnboardingGrid.tsx, MatSession.tsx) | 17 reads | ~22779 tok |
+| 13:51 | Created src/hooks/useArmory.ts | — | ~1308 |
+| 13:51 | Edited src/components/EntryGate.tsx | 1→2 lines | ~28 |
+| 13:51 | Edited src/components/EntryGate.tsx | added optional chaining | ~139 |
+| 13:51 | Edited src/components/EntryGate.tsx | 5→5 lines | ~51 |
+| 13:52 | Edited src/components/WarRoom.tsx | inline fix | ~20 |
+| 13:52 | Edited src/components/WarRoom.tsx | added 1 import(s) | ~30 |
+| 13:52 | Edited src/components/WarRoom.tsx | CSS: userId, onboarding_pending, onboarding | ~188 |
+| 13:52 | Edited src/components/WarRoom.tsx | inline fix | ~14 |
+| 13:52 | Edited src/components/WarRoom.tsx | 5→5 lines | ~54 |
+| 13:52 | Edited src/components/WarRoom.tsx | inline fix | ~12 |
+| 13:52 | Edited src/components/WarRoom.tsx | inline fix | ~16 |
+| 13:53 | Session end: 24 writes across 11 files (useTetherState.ts, tsconfig.app.json, NativeApp.tsx, FitnessOnboardingGrid.tsx, MatSession.tsx) | 19 reads | ~32516 tok |
+| 13:58 | Session end: 24 writes across 11 files (useTetherState.ts, tsconfig.app.json, NativeApp.tsx, FitnessOnboardingGrid.tsx, MatSession.tsx) | 19 reads | ~32516 tok |
+| 15:17 | Session end: 24 writes across 11 files (useTetherState.ts, tsconfig.app.json, NativeApp.tsx, FitnessOnboardingGrid.tsx, MatSession.tsx) | 19 reads | ~32516 tok |
+| 17:13 | Session end: 24 writes across 11 files (useTetherState.ts, tsconfig.app.json, NativeApp.tsx, FitnessOnboardingGrid.tsx, MatSession.tsx) | 19 reads | ~32516 tok |
+| 17:23 | Session end: 24 writes across 11 files (useTetherState.ts, tsconfig.app.json, NativeApp.tsx, FitnessOnboardingGrid.tsx, MatSession.tsx) | 19 reads | ~32516 tok |
+| 17:26 | Session end: 24 writes across 11 files (useTetherState.ts, tsconfig.app.json, NativeApp.tsx, FitnessOnboardingGrid.tsx, MatSession.tsx) | 19 reads | ~32516 tok |
+| 17:27 | Session end: 24 writes across 11 files (useTetherState.ts, tsconfig.app.json, NativeApp.tsx, FitnessOnboardingGrid.tsx, MatSession.tsx) | 19 reads | ~32516 tok |
+
+## Session: 2026-05-02 17:34
 
 | Time | Action | File(s) | Outcome | ~Tokens |
 |------|--------|---------|---------|--------|

@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, Alert } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useNavigation } from '@react-navigation/native';
 import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { DOMAINS, Domain, Activity } from './manifest';
+import { DOMAINS, type Domain, type Activity } from './manifest';
 import type { ShimmerMode } from '../../registry/valkyrie/houses';
 
 // Assuming a root stack navigator setup

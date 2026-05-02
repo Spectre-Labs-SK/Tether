@@ -1,8 +1,8 @@
-import React, { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Vibration } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { useRoute, useNavigation, RouteProp } from '@react-navigation/native';
-import { RootStackParamList } from './FitnessOnboardingGrid';
+import { useRoute, useNavigation, type RouteProp } from '@react-navigation/native';
+import type { RootStackParamList } from './FitnessOnboardingGrid';
 
 // Define a simple yoga flow manifest locally.
 // In a real app, this would come from manifest.ts and be selected via activityId.

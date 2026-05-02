@@ -1,43 +1,12 @@
 {
-  "session_id": "session-2026-05-01-1130",
-  "started": "2026-05-01T18:30:53.919Z",
-  "files_read": {
-    "c:/Users/Windows 11 Pro/Desktop/Spectre_Labs/Feu_Follet/Tether_Safe/.wolf/cerebrum.md": {
-      "count": 1,
-      "tokens": 0,
-      "first_read": "2026-05-01T18:30:56.450Z"
-    },
-    "c:/Users/Windows 11 Pro/Desktop/Spectre_Labs/Feu_Follet/Tether_Safe/.wolf/anatomy.md": {
-      "count": 1,
-      "tokens": 0,
-      "first_read": "2026-05-01T18:30:57.553Z"
-    },
-    "c:/Users/Windows 11 Pro/Desktop/Spectre_Labs/Feu_Follet/Tether_Safe/src/hooks/useTetherState.ts": {
-      "count": 1,
-      "tokens": 3269,
-      "first_read": "2026-05-01T18:31:02.033Z"
-    },
-    "c:/Users/Windows 11 Pro/Desktop/Spectre_Labs/Feu_Follet/Tether_Safe/.wolf/buglog.json": {
-      "count": 1,
-      "tokens": 0,
-      "first_read": "2026-05-01T18:31:02.092Z"
-    },
-    "c:/Users/Windows 11 Pro/Desktop/Spectre_Labs/Feu_Follet/Tether_Safe/.planning/STATE.md": {
-      "count": 1,
-      "tokens": 568,
-      "first_read": "2026-05-01T18:31:09.514Z"
-    },
-    "c:/Users/Windows 11 Pro/Desktop/Spectre_Labs/Feu_Follet/Tether_Safe/.planning/ROADMAP.md": {
-      "count": 1,
-      "tokens": 245,
-      "first_read": "2026-05-01T18:31:09.563Z"
-    }
-  },
+  "session_id": "session-2026-05-02-1734",
+  "started": "2026-05-02T00:34:19.890Z",
+  "files_read": {},
   "files_written": [],
   "edit_counts": {},
-  "anatomy_hits": 3,
-  "anatomy_misses": 2,
+  "anatomy_hits": 0,
+  "anatomy_misses": 0,
   "repeated_reads_warned": 0,
   "cerebrum_warnings": 0,
-  "stop_count": 1
+  "stop_count": 0
 }

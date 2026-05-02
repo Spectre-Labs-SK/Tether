@@ -41,6 +41,18 @@
 - **LEARNING_VELOCITY.log:** Lives at project root. Append new entries whenever a significant architecture decision, pattern, schema change, or module is added. Format: `[YYYY-MM-DD] | TYPE | DESCRIPTION`.
 - **task-observer skill:** Not registered in this Claude Code environment. OPENWOLF protocol (anatomy + cerebrum checks) serves as the equivalent session start ritual.
 
+## Key Learnings
+
+- **SPEC-002 TetherStateReturn (2026-05-01):** `useTetherState` now returns `{ state, isLoading, error, sync, updateTheme, triggerKillSwitch }`. Old fields (`profile`, `uiConfig`, `isUntracked`, `triggerCrisisMode`, `exitCrisisMode`, `completeOnboarding`, `bitchweights`, `trickycardio`) are gone. Callers must migrate: `profile→state`, `uiConfig` derive from `state?.is_crisis_mode`, `isUntracked` derive from `!state && !isLoading`.
+- **ValkyrieTheme type:** Defined in `useTetherState.ts` as `'MILITARY' | 'ETHER'` — aligns with `JointOp.shimmer_mode` in supabase.ts. Used by `updateTheme()`.
+- **TetherState vs Profile:** `TetherState` extends `Profile` with `is_nightmare_active`, `theme_state: ValkyrieTheme`, and `last_sync_timestamp`. Fields pending DB migration 06 — `toTetherState()` supplies safe defaults (`false`, `'MILITARY'`, `now()`).
+- **triggerKillSwitch pattern:** Fire-and-forget (`() => void`). Clears local state immediately, then calls `supabase.auth.signOut()` async without awaiting. Ethics Charter requirement.
+- **npx tsc --noEmit uses composite build cache:** Always use `npx tsc --project tsconfig.app.json --noEmit` to get accurate per-file error output for the web build. The root `npx tsc --noEmit` may return 0 due to cached tsbuildinfo even when callsite errors exist.
+- **verbatimModuleSyntax pattern for native files:** All type-only named imports must use `import { type Foo }` or `import type { Foo }`. Value+type mixed: `import { value, type TypeOnly } from '...'`. Pure type: `import type { Foo } from '...'`.
+- **React import in native files:** Do NOT import React at the top of native files — `react/jsx-runtime` handles it. `import React from 'react'` triggers TS6133 (unused) with `noUnusedLocals: true`.
+- **@types/node required for native scope:** `NodeJS.Timeout` in HubSession and `process.env` in supabase.ts both need `@types/node` installed and `"node"` in tsconfig `types[]`.
+- **Pre-existing error in supabase.ts:** `process` is not found (TS2591) — needs `@types/node`. Pre-dates SPEC-002, unrelated to hook refactor.
+
 ## Do-Not-Repeat
 
 <!-- Mistakes made and corrected. Each entry prevents the same mistake recurring. -->

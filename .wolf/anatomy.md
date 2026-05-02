@@ -1,7 +1,7 @@
 # anatomy.md
 
-> Auto-maintained by OpenWolf. Last scanned: 2026-04-30T04:29:50.927Z
-> Files: 45 tracked | Anatomy hits: 0 | Misses: 0
+> Auto-maintained by OpenWolf. Last scanned: 2026-05-01T20:52:44.514Z
+> Files: 47 tracked | Anatomy hits: 0 | Misses: 0
 
 ## ./
 
@@ -16,6 +16,7 @@
 - `metro.config.js` — Learn more https://docs.expo.io/guides/customizing-metro (~70 tok)
 - `package.json` — Node.js package manifest (~366 tok)
 - `TETHER_BUILD_JOURNAL.md` — TETHER BUILD JOURNAL; bug tracker + phase logs (~6835 tok)
+- `tsconfig.app.json` (~186 tok)
 - `vite.config.ts` — Declares env (~191 tok)
 
 ## .claude/
@@ -62,9 +63,9 @@
 
 ## src/components/
 
-- `EntryGate.tsx` — Phase B recovery login view + anonymous boot; onEnter(mode, userId) passes userId up to App (~3630 tok)
+- `EntryGate.tsx` — EntryGate (~3706 tok)
 - `ShimmerCore.tsx` — LERP (~662 tok)
-- `WarRoom.tsx` — WarRoom (~4247 tok)
+- `WarRoom.tsx` — WarRoom (~4424 tok)
 
 ## src/components/fitness/
 
@@ -73,9 +74,10 @@
 
 ## src/hooks/
 
+- `useArmory.ts` — Exports ArmoryReturn, useArmory (~1308 tok)
 - `useJointOps.ts` — Exports JointOpsReturn, useJointOps (~2810 tok)
 - `usePatternObserver.ts` — Exports Domain, PatternSignals, usePatternObserver (~837 tok)
-- `useTetherState.ts` — Exports UIConfig, BitchWeightFlag, TrickyCardioGate, TetherStateReturn, useTetherState (~3269 tok)
+- `useTetherState.ts` — SPEC-002: Exports ValkyrieTheme, TetherState, TetherStateReturn (state/isLoading/error/sync/updateTheme/triggerKillSwitch); UIConfig/BitchWeightFlag/TrickyCardioGate retained as type-only exports pending domain hook migration (~2100 tok)
 
 ## src/lib/
 
@@ -89,16 +91,16 @@
 
 ## src/native/
 
-- `NativeApp.tsx` — NavigationContainer + NativeStackNavigator root; wires all 5 screens; registered via index.js as Expo entry (~332 tok)
+- `NativeApp.tsx` — Stack (~326 tok)
 
 ## src/native/screens/
 
-- `FitnessOnboardingGrid.tsx` — Native domain/activity selection (2-step); exports RootStackParamList; navigates to Push/Road/Mat/Hub screens (~800 tok)
-- `HubSession.tsx` — Desk session tracker: up-time counter + postural resets; uses Supabase + react-navigation (~500 tok)
+- `FitnessOnboardingGrid.tsx` — Assuming a root stack navigator setup (~1763 tok)
+- `HubSession.tsx` — COLORS (~1181 tok)
 - `manifest.ts` — DOMAINS data (Iron/Road/Mat/Hub), Activity type, C25K_WEEK_1_DAY_1 intervals (~300 tok)
 - `MatSession.tsx` — Define a simple yoga flow manifest locally. (~1538 tok)
 - `PushDayOnboarding.tsx` — SPECTRE LABS — TETHER MOBILE (~7842 tok)
-- `RoadSession.tsx` — Assuming RootStackParamList is shared or defined here (~1860 tok)
+- `RoadSession.tsx` — COLORS (~1845 tok)
 
 ## src/registry/valkyrie/
 

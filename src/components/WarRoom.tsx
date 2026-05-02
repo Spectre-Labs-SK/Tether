@@ -1,7 +1,8 @@
-import { useState, Suspense, useEffect } from "react";
+import { useState, Suspense, useEffect, useCallback } from "react";
 import { Canvas } from "@react-three/fiber";
 import { supabase, upgradeAnonymousUser } from "../lib/supabase";
 import { useTetherState } from "../hooks/useTetherState";
+import { useArmory } from "../hooks/useArmory";
 import { usePatternObserver } from "../hooks/usePatternObserver";
 import { agentLog } from "../lib/agentLog";
 import { ShimmerCore } from "./ShimmerCore";
@@ -29,7 +30,23 @@ export default function WarRoom({ userId, onSignOut, appMode }: Props) {
   const [upgradePassword, setUpgradePassword] = useState("");
   const [upgradeError, setUpgradeError] = useState<string | null>(null);
 
-  const { profile, completeOnboarding, trickycardio, bitchweights } = useTetherState(userId);
+  const { state, sync } = useTetherState(userId);
+  const { trickycardio, bitchweights } = useArmory(userId);
+
+  const handleCompleteOnboarding = useCallback(async () => {
+    if (!userId) return;
+    agentLog.architect(`Completing onboarding for userId: ${userId}`);
+    const { error } = await supabase
+      .from('profiles')
+      .update({ onboarding_pending: false })
+      .eq('id', userId);
+    if (!error) {
+      await sync();
+      agentLog.valkyrie(`Onboarding complete. Full protocol active. The Queen sees your commitment.`);
+    } else {
+      agentLog.architect(`ERROR completing onboarding: ${error.message}`);
+    }
+  }, [userId, sync]);
 
   // Valkyrie gear loadout — ETHER equips PRIME gear; MILITARY equips ELITE/COMMON
   const activeHelmet = shimmerMode === "ETHER"
@@ -69,7 +86,7 @@ export default function WarRoom({ userId, onSignOut, appMode }: Props) {
   usePatternObserver({
     appMode,
     shimmerMode,
-    isCrisisMode: profile?.is_crisis_mode ?? false,
+    isCrisisMode: state?.is_crisis_mode ?? false,
     selectedDomain: null,
     liftingGated,
     bitchweightCount,
@@ -158,9 +175,9 @@ export default function WarRoom({ userId, onSignOut, appMode }: Props) {
               Spectre Labs
             </h1>
             <div className="text-right font-mono space-y-1">
-              {profile && (
+              {state && (
                 <p className="text-[10px] tracking-widest uppercase text-slate-600">
-                  {profile.random_handle}
+                  {state.random_handle}
                 </p>
               )}
               <div className="space-y-0.5">
@@ -321,7 +338,7 @@ export default function WarRoom({ userId, onSignOut, appMode }: Props) {
         )}
 
         {/* First Mission Brief — shown when profile.onboarding_pending = true — z-30 */}
-        {profile?.onboarding_pending && (
+        {state?.onboarding_pending && (
           <div className="absolute inset-0 z-30 bg-black flex flex-col">
             <div className="border-b border-slate-900 px-8 py-4 flex items-center justify-between font-mono flex-shrink-0">
               <p className="text-[10px] tracking-[0.4em] uppercase text-slate-600">
@@ -335,7 +352,7 @@ export default function WarRoom({ userId, onSignOut, appMode }: Props) {
               <FitnessOnboardingGrid
                 trickycardio={trickycardio}
                 bitchweights={bitchweights}
-                onComplete={completeOnboarding}
+                onComplete={handleCompleteOnboarding}
               />
             </div>
           </div>

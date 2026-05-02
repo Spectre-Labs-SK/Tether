@@ -1,11 +1,9 @@
-import React, { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, Alert } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { useRoute, useNavigation, RouteProp } from '@react-navigation/native';
-import { C25K_WEEK_1_DAY_1, Interval } from './manifest';
-
-// Assuming RootStackParamList is shared or defined here
-import { RootStackParamList } from './FitnessOnboardingGrid';
+import { useRoute, useNavigation, type RouteProp } from '@react-navigation/native';
+import { C25K_WEEK_1_DAY_1, type Interval } from './manifest';
+import type { RootStackParamList } from './FitnessOnboardingGrid';
 
 type RoadSessionRouteProp = RouteProp<RootStackParamList, 'RoadSession'>;
 

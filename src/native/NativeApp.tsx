@@ -1,7 +1,6 @@
-import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import FitnessOnboardingGrid, { RootStackParamList } from './screens/FitnessOnboardingGrid';
+import FitnessOnboardingGrid, { type RootStackParamList } from './screens/FitnessOnboardingGrid';
 import PushDayOnboarding from './screens/PushDayOnboarding';
 import RoadSession from './screens/RoadSession';
 import MatSession from './screens/MatSession';
