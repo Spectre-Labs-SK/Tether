@@ -3,7 +3,7 @@
     "name": "Tether",
     "slug": "tether",
     "version": "1.0.0",
-    "platforms": ["android"],
+    "platforms": ["android", "ios"],
     "android": {
       "package": "com.spectrelabs.tether"
     },

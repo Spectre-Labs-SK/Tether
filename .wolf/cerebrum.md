@@ -2,7 +2,7 @@
 
 > OpenWolf's learning memory. Updated automatically as the AI learns from interactions.
 > Do not edit manually unless correcting an error.
-> Last updated: 2026-04-22
+> Last updated: 2026-04-29
 
 ## User Preferences
 
@@ -16,7 +16,8 @@
 - **completeOnboarding() prop type:** FitnessOnboardingGrid accepts `onComplete: () => Promise<void>` — pass `completeOnboarding` directly from `useTetherState` (signatures match). DB-first pattern: profile state updates after Supabase confirms, causing the overlay to unmount automatically.
 - **Valkyrie gear loadout:** MILITARY mode → `Shadow Visor [ELITE]` + `Carbon Thruster [COMMON]`; ETHER mode → `Shimmer Crown [PRIME]` + `Ethereal Flight-Span [PRIME]`. Computed from `VALKYRIE_MANIFEST.gear.helmets/wings[0|1]` by index — safe with `as const`.
 - **Project:** tether
-- **Description:** React Native (Expo) universal activity tracker with a Vite web shell — dual codebase in one repo.
+- **Description:** React Native (Expo) universal activity tracker. **Mobile only** — the Vite web shell is a dev sandbox, not the product.
+- **Primary target:** Expo native app (`src/native/`). All product decisions should prioritise the native experience.
 - **Architecture split:** `src/native/` is Expo/RN only — excluded from `tsconfig.app.json` via `"exclude": ["src/native"]`. The Vite web build never touches it; the native build needs its own tsconfig/metro config.
 - **shimmer_mode flow:** Driven via navigation params `FitnessOnboardingGrid → PushDayOnboarding({ shimmerMode })` → persisted in `workouts.shimmer_mode` on sync. Type: `ShimmerMode` from `src/registry/valkyrie/houses.ts`.
 - **useTetherState pattern:** All profile state mutations follow DB-first → then `setProfile(data)`. Never optimistic-update local state before Supabase confirms.
@@ -32,6 +33,13 @@
 - **babel.config.js required:** Expo Metro build needs `babel.config.js` with `babel-preset-expo`. Without it, Metro cannot transpile JSX/TS.
 - **metro.config.js format:** Use CommonJS (`require`/`module.exports`) even with `"type": "module"` in package.json — Metro uses its own module loader for the config file.
 - **NativeApp.tsx placement:** Goes in `src/native/` (not `src/native/screens/`). It's the Navigator root, not a screen. Imported by `index.js` via relative path.
+
+- **Synthesis module location:** `src/logic/synthesis/` — pure TypeScript logic, no React. Consumed by screen layers; never imported from `src/native/` directly until a consumer screen is built.
+- **DailyPlanEvent.alternate invariant:** `alternate: DailyPlanAlternate` is non-nullable. The synthesizer must always populate it. Never make it optional. This is the contract that enables "Alternate" buttons in any UI consumer.
+- **Domain alternate map (iron→mat, road→hub, mat→hub, hub→mat):** Always cross-domain — the alternate must require different equipment/environment than the primary event.
+- **Checkpoint alternate:** Always `hub/Defer to Next Cycle` — checkpoints don't have a natural movement alternate.
+- **LEARNING_VELOCITY.log:** Lives at project root. Append new entries whenever a significant architecture decision, pattern, schema change, or module is added. Format: `[YYYY-MM-DD] | TYPE | DESCRIPTION`.
+- **task-observer skill:** Not registered in this Claude Code environment. OPENWOLF protocol (anatomy + cerebrum checks) serves as the equivalent session start ritual.
 
 ## Do-Not-Repeat
 

@@ -27,7 +27,7 @@ Tether is a **React Native (Expo)** application designed as a universal activity
 
 ---
 
-## CURRENT STATE (as of 2026-04-23)
+## CURRENT STATE (as of 2026-04-29)
 
 The application is built around a `NativeStack.Navigator`. The entry point is the `FitnessOnboardingGrid`.
 
@@ -42,6 +42,11 @@ The application is built around a `NativeStack.Navigator`. The entry point is th
 - **`RoadSession.tsx` (Road Domain):** A timer for interval or steady-state cardio. Follows a manifest (e.g., Couch-to-5k) and displays current interval type and time remaining.
 - **`MatSession.tsx` (Mat Domain):** A follow-along timer for a yoga flow. Displays the current pose and a countdown, with haptics for transitions.
 - **`HubSession.tsx` (Hub Domain):** A minimal screen for tracking "Up-Time" and "Postural Resets" during a desk session.
+
+**Logic Layer — `src/logic/synthesis/` (added 2026-04-29):**
+- **Nightly Intelligence Synthesizer** — `synthesizeDay(userId, date)` aggregates Supabase data (workouts, op_checkpoints, hr_readings) into a `DailyPlan`.
+- Every `DailyPlanEvent` carries a non-nullable `alternate: DailyPlanAlternate` — domain-keyed fallback (`iron→mat`, `road→hub`, `mat→hub`, `hub→mat`, `checkpoint→hub`).
+- Pure logic module — no UI. Consumed by future screen layers to render "Alternate" buttons per event.
 
 ---
 
@@ -64,11 +69,17 @@ src/
   index.css                — Tailwind import + body reset + .noise-overlay
   App.css                  — Vestigial Vite template styles (unused)
   main.tsx                 — React root mount
+  logic/
+    synthesis/
+      DailyPlanSchema.ts   — DailyPlan, DailyPlanEvent, DailyPlanAlternate, ActivityDomain types
+      nightlySynth.ts      — synthesizeDay(userId, date): Promise<DailyPlan> — Supabase aggregator
+      index.ts             — Barrel export for synthesis module
   registry/
     valkyrie/
       manifest.ts          — VALKYRIE_MANIFEST data (stubbed, not yet imported)
 AGENT.md                   — Agent role & master file protocols
 CLAUDE.md                  — This file (Context Injector)
+LEARNING_VELOCITY.log      — Milestone + pattern log: arch decisions, schema events, module additions
 ```
 
 ---
@@ -149,6 +160,7 @@ import EntryGate from './components/EntryGate';
 5. `DEPENDENCIES.docx` doesn't exist yet (referenced in AGENT.md).
 6. ShimmerCore is inline in `App.tsx` — extract as complexity grows.
 7. Supabase Auth flow not yet configured — `EntryGate` uses `supabase.auth.getUser()` with graceful fallback.
+8. `src/logic/synthesis/` exists but has no UI consumer yet — next step is a DailyPlanView screen that renders events with "Alternate" buttons using the `DailyPlanEvent.alternate` field.
 
 ---
 

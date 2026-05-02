@@ -1,20 +1,22 @@
 # anatomy.md
 
-> Auto-maintained by OpenWolf. Last scanned: 2026-04-29T13:55:20.231Z
-> Files: 40 tracked | Anatomy hits: 0 | Misses: 0
+> Auto-maintained by OpenWolf. Last scanned: 2026-04-30T04:29:50.927Z
+> Files: 45 tracked | Anatomy hits: 0 | Misses: 0
 
 ## ./
 
 - `.env.local` — Supabase env vars (VITE_SUPABASE_URL, VITE_SUPABASE_ANON_KEY); placeholder values; not committed (~50 tok)
-- `app.json` (~83 tok)
+- `app.json` (~85 tok)
 - `babel.config.js` (~31 tok)
-- `CLAUDE.md` — OpenWolf (~1594 tok)
+- `CLAUDE.md` — OpenWolf (~1863 tok)
 - `DEPENDENCIES.md` — Pillar 3 supply chain; all npm deps with versions + env var requirements (~509 tok)
 - `GEMINI.md` — PERSONA: Tether Architect (~1234 tok)
 - `index.js` (~37 tok)
+- `LEARNING_VELOCITY.log` — Timestamped milestone log: ARCH/PATTERN/SCHEMA/MODULE/FIX entries tracking significant capability additions and project learnings (~588 tok)
 - `metro.config.js` — Learn more https://docs.expo.io/guides/customizing-metro (~70 tok)
 - `package.json` — Node.js package manifest (~366 tok)
 - `TETHER_BUILD_JOURNAL.md` — TETHER BUILD JOURNAL; bug tracker + phase logs (~6835 tok)
+- `vite.config.ts` — Declares env (~191 tok)
 
 ## .claude/
 
@@ -77,7 +79,13 @@
 
 ## src/lib/
 
-- `supabase.ts` — Supabase client + Profile/LifeSector/JointOp types + upgradeAnonymousUser() + signInWithEmailPassword() helpers (~817 tok)
+- `supabase.ts` — Falls back to placeholder values when .env.local is absent so createClient (~865 tok)
+
+## src/logic/synthesis/
+
+- `DailyPlanSchema.ts` — Exports ActivityDomain, EventStatus, DailyPlanAlternate, IronEventData + 6 more (~496 tok)
+- `index.ts` (~80 tok)
+- `nightlySynth.ts` — Aggregates a user's activity data for a given date from Supabase and (~1778 tok)
 
 ## src/native/
 

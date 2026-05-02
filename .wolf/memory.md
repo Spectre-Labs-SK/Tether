@@ -8,6 +8,7 @@
 
 | 2026-04-28 | task-observer setup — activation hook added to CLAUDE.md; observation log + cross-cutting principles created; GEMINI.md updated with Section V; anatomy.md updated | CLAUDE.md, GEMINI.md, .wolf/skill-observations/log.md, .wolf/skill-observations/cross-cutting-principles.md, .wolf/skill-updates/, .wolf/anatomy.md | all files written, skill infrastructure live | ~300 tok |
 | 2026-04-28 | gsd-code-review-fix Phase 01 — 9/9 critical+warning findings fixed across 5 files; 5 atomic commits (4750564 74d3f32 73f7a51 4ce1214 b92d812 68295c7); REVIEW-FIX.md written | src/hooks/useJointOps.ts, src/components/ShimmerCore.tsx, src/native/screens/MatSession.tsx, src/native/screens/RoadSession.tsx, src/hooks/useTetherState.ts, src/components/fitness/PushDaySession.tsx, src/native/screens/PushDayOnboarding.tsx | all_fixed | ~8k tok |
+| 2026-04-29 | Nightly Intelligence Synthesizer — full GSD RESEARCH→SPEC→PLAN→EXECUTE→VERIFY cycle; created src/logic/synthesis/ (DailyPlanSchema.ts, nightlySynth.ts, index.ts); DailyPlanEvent.alternate non-null contract; LEARNING_VELOCITY.log created; CLAUDE.md updated; anatomy+cerebrum+memory updated | src/logic/synthesis/*, LEARNING_VELOCITY.log, CLAUDE.md, .wolf/*.md | all_written | ~6k tok |
 
 ## Session: 2026-04-22 08:14
 
@@ -336,6 +337,75 @@
 | 06:56 | Session end: 14 writes across 9 files (01-REVIEW.md, useJointOps.ts, ShimmerCore.tsx, MatSession.tsx, RoadSession.tsx) | 24 reads | ~48821 tok |
 
 ## Session: 2026-04-29 07:10
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+
+## Session: 2026-04-29 07:21
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+| 07:35 | Edited src/lib/supabase.ts | expanded (+13 lines) | ~202 |
+| 07:36 | Edited src/lib/supabase.ts | added nullish coalescing | ~106 |
+| 07:36 | Edited vite.config.ts | added nullish coalescing | ~186 |
+| 07:36 | Edited app.json | inline fix | ~10 |
+| 07:58 | Session end: 4 writes across 3 files (supabase.ts, vite.config.ts, app.json) | 15 reads | ~4484 tok |
+
+## Session: 2026-04-29 15:34
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+
+## Session: 2026-04-29 15:34
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+
+## Session: 2026-04-30 20:30
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+
+## Session: 2026-04-30 20:30
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+
+## Session: 2026-04-30 21:20
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+
+## Session: 2026-04-30 21:21
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+| 21:27 | Created src/logic/synthesis/DailyPlanSchema.ts | — | ~496 |
+| 21:27 | Created src/logic/synthesis/nightlySynth.ts | — | ~1778 |
+| 21:28 | Created src/logic/synthesis/index.ts | — | ~80 |
+| 21:28 | Created LEARNING_VELOCITY.log | — | ~588 |
+| 21:29 | Edited CLAUDE.md | inline fix | ~10 |
+| 21:29 | Edited CLAUDE.md | 3→8 lines | ~136 |
+| 21:29 | Edited CLAUDE.md | modified synthesizeDay() | ~238 |
+| 21:29 | Edited CLAUDE.md | 7→8 lines | ~239 |
+| 21:31 | Session end: 8 writes across 5 files (DailyPlanSchema.ts, nightlySynth.ts, index.ts, LEARNING_VELOCITY.log, CLAUDE.md) | 11 reads | ~8161 tok |
+
+## Session: 2026-05-01 09:08
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+
+## Session: 2026-05-01 09:08
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+
+## Session: 2026-05-01 11:30
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+
+## Session: 2026-05-01 11:30
 
 | Time | Action | File(s) | Outcome | ~Tokens |
 |------|--------|---------|---------|--------|

@@ -3,8 +3,11 @@ import { createClient } from '@supabase/supabase-js';
 // Falls back to placeholder values when .env.local is absent so createClient
 // doesn't throw at module init. Auth calls will fail gracefully (EntryGate
 // handles this via its error path → setAuthReady(true) without userId).
-const supabaseUrl = (import.meta.env.VITE_SUPABASE_URL as string) ?? 'https://placeholder.supabase.co';
-const supabaseAnonKey = (import.meta.env.VITE_SUPABASE_ANON_KEY as string) ?? 'placeholder-anon-key';
+// process.env.EXPO_PUBLIC_* works natively in Expo/Metro.
+// Vite injects these same names via the `define` block in vite.config.ts,
+// so this single pattern works in both bundlers.
+const supabaseUrl = process.env.EXPO_PUBLIC_SUPABASE_URL ?? 'https://placeholder.supabase.co';
+const supabaseAnonKey = process.env.EXPO_PUBLIC_SUPABASE_ANON_KEY ?? 'placeholder-anon-key';
 
 export const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
