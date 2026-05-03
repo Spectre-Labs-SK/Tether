@@ -53,6 +53,12 @@
 - **@types/node required for native scope:** `NodeJS.Timeout` in HubSession and `process.env` in supabase.ts both need `@types/node` installed and `"node"` in tsconfig `types[]`.
 - **Pre-existing error in supabase.ts:** `process` is not found (TS2591) — needs `@types/node`. Pre-dates SPEC-002, unrelated to hook refactor.
 
+- **CNG (Continuous Native Generation):** Project uses CNG — `android/` and `ios/` are gitignored and generated fresh by `expo prebuild` during EAS Build. Never commit or manually edit native folders. EAS Build detects absence and runs prebuild automatically.
+- **metro.config.js import:** Must use `require('expo/metro-config')`, NOT `require('@expo/metro-config')`. The latter is the legacy package path that diverges in behaviour.
+- **expo-modules-core patch obsolete:** The `patches/expo-modules-core+55.0.24.patch` that added `-lc++_shared` is now included natively in the published package. No patch needed. If reinstating patch-package, regenerate from scratch.
+- **patch-package removed:** No `postinstall` hook, no `patch-package` dep. If a future patch is needed, re-add `patch-package` to devDeps and add a `postinstall: "patch-package"` script.
+- **Expo 55 aligned versions (2026-05-03):** react@19.2.0, react-dom@19.2.0, typescript@~5.9.2. Do not upgrade react/react-dom above 19.2.0 or typescript above 5.9.x without checking `npx expo install --check`.
+
 ## Do-Not-Repeat
 
 <!-- Mistakes made and corrected. Each entry prevents the same mistake recurring. -->

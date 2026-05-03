@@ -3,6 +3,11 @@
 > Chronological action log. Hooks and AI append to this file automatically.
 > Old sessions are consolidated by the daemon weekly.
 
+| 14:38 | metro.config.js: fixed import from @expo/metro-config → expo/metro-config | metro.config.js | done | ~10 tok |
+| 14:38 | Stability: react@19.2.0, react-dom@19.2.0, typescript@~5.9.2 aligned to Expo 55 | package.json | done | ~50 tok |
+| 14:38 | Removed broken patches (react-native-screens stub, expo-modules-core now ships -lc++_shared natively) + patch-package dep | patches/, package.json | done | ~30 tok |
+| 14:38 | CNG: deleted android/ from git, added android/ + ios/ to .gitignore | .gitignore | done | ~20 tok |
+
 | 05:00 | SPEC-002 Task 1: replaced TetherStateReturn with explicit TetherState + ValkyrieTheme types; added sync/updateTheme/triggerKillSwitch; removed profile/uiConfig/isUntracked/triggerCrisisMode/exitCrisisMode/completeOnboarding/bitchweights/trickycardio from hook return | src/hooks/useTetherState.ts | 0 any types; 7 callsite failures in EntryGate.tsx + WarRoom.tsx reported for SPEC adjustment | ~600 tok |
 | 05:10 | SPEC-004+005: installed @types/node; added "node" to tsconfig types; removed unused React imports from 6 native files; fixed verbatimModuleSyntax violations in NativeApp/FitnessOnboardingGrid/MatSession/PushDayOnboarding/RoadSession/HubSession | tsconfig.app.json, src/native/**/*.tsx | error count 25→7; only SPEC-002 callsite breaks remain | ~400 tok |
 | 05:20 | SPEC-002 callsite migration: created useArmory.ts (bitchweights+trickycardio); fixed EntryGate.tsx (state, isUntracked derived, triggerCrisisMode inlined); fixed WarRoom.tsx (state, useArmory wired, handleCompleteOnboarding inline+sync) | src/hooks/useArmory.ts, src/components/EntryGate.tsx, src/components/WarRoom.tsx | tsc exit 0 — 0 TypeScript errors | ~600 tok |
@@ -482,3 +487,8 @@
 
 | Time | Action | File(s) | Outcome | ~Tokens |
 |------|--------|---------|---------|--------|
+| 08:29 | Edited metro.config.js | "@expo/metro-config" → "expo/metro-config" | ~17 |
+| 08:33 | Edited package.json | 6.0 → 5.9 | ~8 |
+| 08:37 | Created package.json | — | ~390 |
+| 08:38 | Edited .gitignore | 1→5 lines | ~20 |
+| 08:39 | Session end: 4 writes across 3 files (metro.config.js, package.json, .gitignore) | 13 reads | ~1624 tok |

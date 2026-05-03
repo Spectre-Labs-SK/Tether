@@ -1,11 +1,12 @@
 # anatomy.md
 
-> Auto-maintained by OpenWolf. Last scanned: 2026-05-02T21:38:39.477Z
-> Files: 50 tracked | Anatomy hits: 0 | Misses: 0
+> Auto-maintained by OpenWolf. Last scanned: 2026-05-03T14:38:31.158Z
+> Files: 52 tracked | Anatomy hits: 0 | Misses: 0
 
 ## ./
 
 - `.env.local` — Supabase env vars (VITE_SUPABASE_URL, VITE_SUPABASE_ANON_KEY); placeholder values; not committed (~50 tok)
+- `.gitignore` — Git ignore rules (~116 tok)
 - `app.json` (~85 tok)
 - `babel.config.js` (~31 tok)
 - `CLAUDE.md` — Developer guide: commands (web/native/patch-package), dual-build split architecture, state management rules, TypeScript rules, naming conventions (~1400 tok)
@@ -13,8 +14,8 @@
 - `GEMINI.md` — PERSONA: Tether Architect (~1234 tok)
 - `index.js` (~37 tok)
 - `LEARNING_VELOCITY.log` — Timestamped milestone log: ARCH/PATTERN/SCHEMA/MODULE/FIX entries tracking significant capability additions and project learnings (~588 tok)
-- `metro.config.js` — Learn more https://docs.expo.io/guides/customizing-metro (~70 tok)
-- `package.json` — Node.js package manifest (~366 tok)
+- `metro.config.js` — Uses `expo/metro-config` (not `@expo/metro-config`); CNG-aligned (~60 tok)
+- `package.json` — Node.js package manifest; react/react-dom@19.2.0, typescript@~5.9.2 (Expo 55 aligned); no patch-package (~340 tok)
 - `TETHER_BUILD_JOURNAL.md` — TETHER BUILD JOURNAL; bug tracker + phase logs (~6835 tok)
 - `tsconfig.app.json` (~186 tok)
 - `vite.config.ts` — Declares env (~191 tok)
@@ -57,7 +58,6 @@
 ## .wolf/skill-observations/
 
 - `cross-cutting-principles.md` — library-wide principles checked when creating/updating any skill (~20 tok)
-- `log.md` — skill observation log; OPEN entries appended per session; resolved entries archived to archive/ (~10 tok, grows over time)
 - `last-review-date.txt` — ISO date of last comprehensive skill review; task-observer checks this to trigger 7-day fallback review (~5 tok)
 
 ## .wolf/skill-updates/
