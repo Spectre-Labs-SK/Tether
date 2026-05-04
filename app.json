@@ -3,10 +3,14 @@
     "name": "Tether",
     "slug": "tether",
     "version": "1.0.0",
-    "platforms": ["android", "ios"],
+    "platforms": [
+      "android",
+      "ios"
+    ],
     "android": {
       "package": "com.spectrelabs.tether"
     },
+    "plugins": [],
     "extra": {
       "eas": {
         "projectId": "79507357-e5e4-4f48-97ea-ba01a6f4ac65"
