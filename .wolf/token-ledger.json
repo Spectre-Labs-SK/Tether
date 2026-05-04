@@ -2,14 +2,14 @@
   "version": 1,
   "created_at": "2026-04-22T14:09:09.590Z",
   "lifetime": {
-    "total_tokens_estimated": 1098938,
-    "total_reads": 804,
-    "total_writes": 539,
-    "total_sessions": 51,
-    "anatomy_hits": 500,
-    "anatomy_misses": 289,
-    "repeated_reads_blocked": 461,
-    "estimated_savings_vs_bare_cli": 935619
+    "total_tokens_estimated": 1101890,
+    "total_reads": 816,
+    "total_writes": 541,
+    "total_sessions": 55,
+    "anatomy_hits": 504,
+    "anatomy_misses": 297,
+    "repeated_reads_blocked": 470,
+    "estimated_savings_vs_bare_cli": 939295
   },
   "sessions": [
     {
@@ -8354,6 +8354,122 @@
         "writes_count": 4,
         "repeated_reads_blocked": 3,
         "anatomy_lookups": 6
+      }
+    },
+    {
+      "id": "session-2026-05-03-0940",
+      "started": "2026-05-03T15:40:53.186Z",
+      "ended": "2026-05-03T16:02:28.345Z",
+      "reads": [
+        {
+          "file": "c:/Users/Windows 11 Pro/Desktop/Spectre_Labs/Feu_Follet/Tether_Safe/.wolf/anatomy.md",
+          "tokens_estimated": 0,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "c:/Users/Windows 11 Pro/Desktop/Spectre_Labs/Feu_Follet/Tether_Safe/.wolf/cerebrum.md",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "c:/Users/Windows 11 Pro/Desktop/Spectre_Labs/Feu_Follet/Tether_Safe/.wolf/skill-observations/log.md",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "c:/Users/Windows 11 Pro/Desktop/Spectre_Labs/Feu_Follet/Tether_Safe/metro.config.js",
+          "tokens_estimated": 38,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "c:/Users/Windows 11 Pro/Desktop/Spectre_Labs/Feu_Follet/Tether_Safe/.wolf/memory.md",
+          "tokens_estimated": 0,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "c:/Users/Windows 11 Pro/Desktop/Spectre_Labs/Feu_Follet/Tether_Safe/CLAUDE.md",
+          "tokens_estimated": 1400,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        }
+      ],
+      "writes": [
+        {
+          "file": "c:/Users/Windows 11 Pro/Desktop/Spectre_Labs/Feu_Follet/Tether_Safe/metro.config.js",
+          "tokens_estimated": 38,
+          "action": "create"
+        }
+      ],
+      "totals": {
+        "input_tokens_estimated": 1438,
+        "output_tokens_estimated": 38,
+        "reads_count": 6,
+        "writes_count": 1,
+        "repeated_reads_blocked": 4,
+        "anatomy_lookups": 2
+      }
+    },
+    {
+      "id": "session-2026-05-03-0940",
+      "started": "2026-05-03T15:40:53.186Z",
+      "ended": "2026-05-03T16:03:33.415Z",
+      "reads": [
+        {
+          "file": "c:/Users/Windows 11 Pro/Desktop/Spectre_Labs/Feu_Follet/Tether_Safe/.wolf/anatomy.md",
+          "tokens_estimated": 0,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "c:/Users/Windows 11 Pro/Desktop/Spectre_Labs/Feu_Follet/Tether_Safe/.wolf/cerebrum.md",
+          "tokens_estimated": 0,
+          "was_repeated": false,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "c:/Users/Windows 11 Pro/Desktop/Spectre_Labs/Feu_Follet/Tether_Safe/.wolf/skill-observations/log.md",
+          "tokens_estimated": 0,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "c:/Users/Windows 11 Pro/Desktop/Spectre_Labs/Feu_Follet/Tether_Safe/metro.config.js",
+          "tokens_estimated": 38,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "c:/Users/Windows 11 Pro/Desktop/Spectre_Labs/Feu_Follet/Tether_Safe/.wolf/memory.md",
+          "tokens_estimated": 0,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        },
+        {
+          "file": "c:/Users/Windows 11 Pro/Desktop/Spectre_Labs/Feu_Follet/Tether_Safe/CLAUDE.md",
+          "tokens_estimated": 1400,
+          "was_repeated": true,
+          "anatomy_had_description": false
+        }
+      ],
+      "writes": [
+        {
+          "file": "c:/Users/Windows 11 Pro/Desktop/Spectre_Labs/Feu_Follet/Tether_Safe/metro.config.js",
+          "tokens_estimated": 38,
+          "action": "create"
+        }
+      ],
+      "totals": {
+        "input_tokens_estimated": 1438,
+        "output_tokens_estimated": 38,
+        "reads_count": 6,
+        "writes_count": 1,
+        "repeated_reads_blocked": 5,
+        "anatomy_lookups": 2
       }
     }
   ],

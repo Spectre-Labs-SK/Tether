@@ -3,6 +3,9 @@
 > Chronological action log. Hooks and AI append to this file automatically.
 > Old sessions are consolidated by the daemon weekly.
 
+| 2026-05-03 | CNG purge commit + push to origin/main (3 commits: wolf files, deps, CNG gitignore) | .wolf/*.md | done | ~5 tok |
+| 2026-05-03 | metro.config.js → metro.config.cjs: package.json "type":"module" made Node treat .js as ESM, breaking metro config load silently; .cjs forces CJS; expo-doctor 18/18 pass | metro.config.cjs | done | ~50 tok |
+| 2026-05-03 | cerebrum corrected: metro config must be .cjs not .js with type:module; anatomy updated | .wolf/cerebrum.md, .wolf/anatomy.md | done | ~10 tok |
 | 14:38 | metro.config.js: fixed import from @expo/metro-config → expo/metro-config | metro.config.js | done | ~10 tok |
 | 14:38 | Stability: react@19.2.0, react-dom@19.2.0, typescript@~5.9.2 aligned to Expo 55 | package.json | done | ~50 tok |
 | 14:38 | Removed broken patches (react-native-screens stub, expo-modules-core now ships -lc++_shared natively) + patch-package dep | patches/, package.json | done | ~30 tok |
@@ -504,6 +507,29 @@
 |------|--------|---------|---------|--------|
 
 ## Session: 2026-05-03 09:40
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+| 09:43 | Created metro.config.js | — | ~38 |
+| 10:02 | Session end: 1 writes across 1 files (metro.config.js) | 6 reads | ~1476 tok |
+| 10:03 | Session end: 1 writes across 1 files (metro.config.js) | 6 reads | ~1476 tok |
+
+## Session: 2026-05-03 10:07
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+
+## Session: 2026-05-03 10:37
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+
+## Session: 2026-05-03 10:37
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+
+## Session: 2026-05-04 09:08
 
 | Time | Action | File(s) | Outcome | ~Tokens |
 |------|--------|---------|---------|--------|

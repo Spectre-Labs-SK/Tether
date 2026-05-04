@@ -31,7 +31,7 @@
 - **app.json minimum fields for EAS:** Must have `name`, `slug`, `version`, `platforms`, `android.package` + `extra.eas.projectId`. A minimal stub with only `extra.eas` will fail the build.
 - **Missing nav packages for EAS:** The native screens require `@react-navigation/native`, `@react-navigation/native-stack`, `react-native-screens`, `react-native-safe-area-context` — none are in Expo's transitive dependencies. They must be in package.json.
 - **babel.config.js required:** Expo Metro build needs `babel.config.js` with `babel-preset-expo`. Without it, Metro cannot transpile JSX/TS.
-- **metro.config.js format:** Use CommonJS (`require`/`module.exports`) even with `"type": "module"` in package.json — Metro uses its own module loader for the config file.
+- **metro.config.js format:** Must be named `metro.config.cjs` (not `.js`) when `"type": "module"` is in package.json. Node treats `.js` as ESM in that case, so `require()` fails and metro falls back to pure defaults — silently stripping all Expo transformer config including `_expoRelativeProjectRoot`. The `.cjs` extension forces CJS regardless of package type. Metro's resolver explicitly searches for `.cjs` in addition to `.js`.
 - **NativeApp.tsx placement:** Goes in `src/native/` (not `src/native/screens/`). It's the Navigator root, not a screen. Imported by `index.js` via relative path.
 
 - **Synthesis module location:** `src/logic/synthesis/` — pure TypeScript logic, no React. Consumed by screen layers; never imported from `src/native/` directly until a consumer screen is built.
@@ -54,7 +54,7 @@
 - **Pre-existing error in supabase.ts:** `process` is not found (TS2591) — needs `@types/node`. Pre-dates SPEC-002, unrelated to hook refactor.
 
 - **CNG (Continuous Native Generation):** Project uses CNG — `android/` and `ios/` are gitignored and generated fresh by `expo prebuild` during EAS Build. Never commit or manually edit native folders. EAS Build detects absence and runs prebuild automatically.
-- **metro.config.js import:** Must use `require('expo/metro-config')`, NOT `require('@expo/metro-config')`. The latter is the legacy package path that diverges in behaviour.
+- **metro.config.cjs import:** Must use `require('expo/metro-config')`, NOT `require('@expo/metro-config')`. The latter is the legacy package path that diverges in behaviour.
 - **expo-modules-core patch obsolete:** The `patches/expo-modules-core+55.0.24.patch` that added `-lc++_shared` is now included natively in the published package. No patch needed. If reinstating patch-package, regenerate from scratch.
 - **patch-package removed:** No `postinstall` hook, no `patch-package` dep. If a future patch is needed, re-add `patch-package` to devDeps and add a `postinstall: "patch-package"` script.
 - **Expo 55 aligned versions (2026-05-03):** react@19.2.0, react-dom@19.2.0, typescript@~5.9.2. Do not upgrade react/react-dom above 19.2.0 or typescript above 5.9.x without checking `npx expo install --check`.

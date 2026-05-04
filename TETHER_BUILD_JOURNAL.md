@@ -459,3 +459,12 @@ The vestigial React Native `FitnessOnboardingGrid` has been fully ported to Vite
 | Severity | ID | Description | Status |
 |---|---|---|---|
 | 🟢 LOW | B-008 | `lucide-react` icons require deliberate placement (e.g., WarRoom header, SOSShell) before rendering. Do not arbitrarily render to close bug. | OPEN |
+
+---
+
+### 2026-04-27: Phase 3 Bootstrapping — Local APK Stabilization (CNG)
+
+**STRATEGY:** 100% Continuous Native Generation (CNG)
+- **Architecture:** `android/` and `ios/` directories eradicated. Native configurations managed strictly via `app.json` plugins.
+- **Credentials:** Managed dynamically via `eas credentials` (No local keystore files in repository).
+- **Current Blocker:** Verifying Windows host toolchain (JDK 17, Android SDK) before triggering `eas build --local`.

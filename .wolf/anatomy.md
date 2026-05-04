@@ -1,6 +1,6 @@
 # anatomy.md
 
-> Auto-maintained by OpenWolf. Last scanned: 2026-05-03T14:38:31.158Z
+> Auto-maintained by OpenWolf. Last scanned: 2026-05-03T15:43:41.825Z
 > Files: 52 tracked | Anatomy hits: 0 | Misses: 0
 
 ## ./
@@ -14,7 +14,7 @@
 - `GEMINI.md` — PERSONA: Tether Architect (~1234 tok)
 - `index.js` (~37 tok)
 - `LEARNING_VELOCITY.log` — Timestamped milestone log: ARCH/PATTERN/SCHEMA/MODULE/FIX entries tracking significant capability additions and project learnings (~588 tok)
-- `metro.config.js` — Uses `expo/metro-config` (not `@expo/metro-config`); CNG-aligned (~60 tok)
+- `metro.config.cjs` — CJS format required because package.json has "type":"module"; uses expo/metro-config getDefaultConfig; CNG-aligned (~50 tok)
 - `package.json` — Node.js package manifest; react/react-dom@19.2.0, typescript@~5.9.2 (Expo 55 aligned); no patch-package (~340 tok)
 - `TETHER_BUILD_JOURNAL.md` — TETHER BUILD JOURNAL; bug tracker + phase logs (~6835 tok)
 - `tsconfig.app.json` (~186 tok)
