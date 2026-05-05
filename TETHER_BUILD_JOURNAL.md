@@ -462,6 +462,101 @@ The vestigial React Native `FitnessOnboardingGrid` has been fully ported to Vite
 
 ---
 
+### 2026-05-05: Night Build — Clean House
+
+**STRATEGY:** Autonomous cleanup build. Research → Spec → Plan → Execute → Verify. Zero-Lazy Policy.
+
+#### Step 1: Noise Deletion
+
+Deleted the following garbage without mercy:
+
+| Item | Reason |
+|---|---|
+| `src/# SPECTRE LABS` | Zero-byte corrupted filename from Gemini |
+| `ghostProtocol.ts` | References nonexistent `ghost_ledger` table |
+| `useDrillSergeant.ts` | Imports `lib/haptics`, `lib/health/garmin`, `lib/media/spotify` — none exist |
+| `CODE_CHEAT_SHEET` | Extensionless duplicate of `CODE_CHEAT_SHEET.md` |
+| `.agent/`, `.codex/`, `.qwen/` | Duplicated GSD scaffolding for tools not in use |
+| `agents/`, `get-shit-done/` | Root-level duplicates (live in `.claude/` already) |
+| `TetherArchitect/`, `agent-tether-orchestrator/` | M365 Teams experiments, not part of this build |
+| `.github/agents/`, `.github/skills/`, `.github/get-shit-done/` | `.github/` scaffolding cruft |
+| `.github/gsd-file-manifest.json` | Stale manifest |
+
+`.github/` now contains only `workflows/` and `copilot-instructions.md`.
+
+#### Step 2: Hook Relocation
+
+Moved `useBunkerTap.ts` from project root → `src/hooks/useBunkerTap.ts`.
+Pre-checked: only React imports (`useState`, `useEffect`, `useCallback`) — no path fix needed.
+Pre-checked: nothing in `src/` imported it from the old root location.
+
+#### Step 3: Migration 06
+
+Created `supabase/migrations/06_tether_state_and_hub_sessions.sql`:
+
+- Added `is_nightmare_active BOOLEAN NOT NULL DEFAULT FALSE` to profiles
+- Added `theme_state TEXT NOT NULL DEFAULT 'MILITARY' CHECK (theme_state IN ('MILITARY', 'ETHER'))` to profiles
+- Created `hub_sessions` table (id, profile_id, up_time_seconds, postural_resets, completed_at, created_at)
+- RLS: `profile_id = auth.uid()` for ALL operations
+- Index: `hub_sessions_profile_time ON hub_sessions (profile_id, completed_at DESC)`
+
+**Status:** Migration written. Not yet applied to production — run via Supabase dashboard or `supabase db push`.
+
+#### Step 4: WorkoutSummary Screen Stub
+
+Created `src/native/screens/WorkoutSummary.tsx` — prevents navigation crash when `PushDayOnboarding` navigates to `WorkoutSummary` on session complete.
+
+- Terminal aesthetic, same COLORS pattern as HubSession.tsx
+- Receives `workoutId` via route params, displays it
+- "RETURN TO BASE" button calls `navigation.popToTop()`
+- No Supabase calls yet — shell only, ready for data wiring
+- Wired into `NativeApp.tsx` Stack.Navigator
+- `RootStackParamList` already included `WorkoutSummary: { workoutId: string }` in `FitnessOnboardingGrid.tsx`
+
+#### Step 5: Impeccable Design Skill
+
+Installed `pbakaus/impeccable` via `npx skills add pbakaus/impeccable --yes`.
+Landed in `.agents/skills/impeccable/` with symlink to `.claude/skills/impeccable`.
+
+Created `PRODUCT.md` with Impeccable project context:
+- Register: product
+- Brand: dark military terminal, industrial, earned
+- Anti-references: no SaaS patterns, no rounded cards, no Inter, no wellness-app aesthetic
+- 5 design principles (terminal-first, two-mode discipline, crisis path sacred, earn every pixel, briefing aesthetic)
+
+#### Step 6: Codebase Map Refresh
+
+Ran `/gsd map-codebase` — 4 parallel mapper agents rewrote all 7 `.planning/codebase/` docs to reflect current state:
+
+| Document | Lines |
+|---|---|
+| STACK.md | 112 |
+| INTEGRATIONS.md | 113 |
+| ARCHITECTURE.md | 270 |
+| STRUCTURE.md | 250 |
+| CONVENTIONS.md | 206 |
+| TESTING.md | 119 |
+| CONCERNS.md | 190 |
+
+#### Step 7: TypeScript Check
+
+```
+npx tsc --project tsconfig.app.json --noEmit
+→ 0 errors
+```
+
+Build clean.
+
+#### Decisions for Cade's Review
+
+1. **Migration 06 needs manual apply** — written to `supabase/migrations/` but not pushed to the remote DB. Run `supabase db push` or apply via dashboard.
+2. **`DESIGN.md` not created** — Impeccable's `/impeccable document` step was deferred. Run it when you want Impeccable to capture visual tokens from the live codebase.
+3. **Duplicate `RootStackParamList`** — `PushDayOnboarding.tsx` exports its own `RootStackParamList` that mirrors `FitnessOnboardingGrid.tsx`. Potential type drift. Consider centralizing to a single `navigation.types.ts` file.
+4. **`useBunkerTap.ts` orphaned** — moved to `src/hooks/` but no screen imports it yet. Either wire it into `BunkerGate.tsx` or note it as a future feature.
+5. **`CONCERNS.md` logged logging violations** — `HubSession.tsx`, `RoadSession.tsx`, and `PushDayOnboarding.tsx` use bare `console.error` instead of `agentLog`. Low priority but violates convention.
+
+---
+
 ### 2026-04-27: Phase 3 Bootstrapping — Local APK Stabilization (CNG)
 
 **STRATEGY:** 100% Continuous Native Generation (CNG)

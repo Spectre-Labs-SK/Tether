@@ -1,7 +1,7 @@
 # anatomy.md
 
-> Auto-maintained by OpenWolf. Last scanned: 2026-05-05T05:32:06.341Z
-> Files: 53 tracked | Anatomy hits: 0 | Misses: 0
+> Auto-maintained by OpenWolf. Last scanned: 2026-05-05T15:02:48.899Z
+> Files: 65 tracked | Anatomy hits: 0 | Misses: 0
 
 ## ./
 
@@ -16,7 +16,9 @@
 - `LEARNING_VELOCITY.log` — Timestamped milestone log: ARCH/PATTERN/SCHEMA/MODULE/FIX entries tracking significant capability additions and project learnings (~588 tok)
 - `metro.config.cjs` — CJS format required because package.json has "type":"module"; uses expo/metro-config getDefaultConfig; CNG-aligned (~50 tok)
 - `package.json` — Node.js package manifest; react/react-dom@19.2.0, typescript@~5.9.2 (Expo 55 aligned); no patch-package (~340 tok)
-- `TETHER_BUILD_JOURNAL.md` — TETHER BUILD JOURNAL; bug tracker + phase logs (~6835 tok)
+- `PRODUCT.md` — Impeccable project context: register=product, Spectre Labs brand, dark military terminal aesthetic, MILITARY/ETHER two-mode discipline, anti-references (no SaaS/rounded cards/Inter), 5 design principles (~660 tok)
+- `SESSION_STATE.json` (~42 tok)
+- `TETHER_BUILD_JOURNAL.md` — TETHER BUILD JOURNAL (~8105 tok)
 - `tsconfig.app.json` — Web build tsconfig; includes `src/`, excludes `src/native/`; verbatimModuleSyntax, noUnusedLocals, react-jsx (~211 tok)
 - `vite.config.ts` — Declares env (~191 tok)
 
@@ -28,6 +30,10 @@
 
 ## .claude/skills/paperclip/
 
+
+## .claude/skills/impeccable/
+
+- `SKILL.md` — Impeccable design skill: 23 commands (polish, audit, critique, craft, shape, etc.); reads PRODUCT.md + DESIGN.md before any work; requires /impeccable teach to generate PRODUCT.md first (~variable tok)
 
 ## .claude/skills/task-observer/
 
@@ -43,7 +49,13 @@
 
 ## .planning/codebase/
 
-- `CONVENTIONS.md` — Conventions (~1093 tok)
+- `ARCHITECTURE.md` — Architecture (~4270 tok)
+- `CONCERNS.md` — Codebase Concerns (~3400 tok)
+- `CONVENTIONS.md` — Coding Conventions (~2163 tok)
+- `INTEGRATIONS.md` — External Integrations (~1315 tok)
+- `STACK.md` — Technology Stack (~1169 tok)
+- `STRUCTURE.md` — Codebase Structure (~2792 tok)
+- `TESTING.md` — Testing Patterns (~1437 tok)
 
 ## .planning/phases/01-pattern-observer-threejs/
 
@@ -90,6 +102,7 @@
 ## src/hooks/
 
 - `useArmory.ts` — Exports ArmoryReturn, useArmory (~1308 tok)
+- `useBunkerTap.ts` — Tap-sequence detection hook; BUNKER_SEQUENCE [1,2,1]; calls onSequenceMatch() on match; 1500ms timeout resets pattern (~120 tok)
 - `useJointOps.ts` — Exports JointOpsReturn, useJointOps (~2810 tok)
 - `usePatternObserver.ts` — Exports Domain, PatternSignals, usePatternObserver (~837 tok)
 - `useTetherState.ts` — SPEC-002: Exports ValkyrieTheme, TetherState, TetherStateReturn (state/isLoading/error/sync/updateTheme/triggerKillSwitch); UIConfig/BitchWeightFlag/TrickyCardioGate retained as type-only exports pending domain hook migration (~2100 tok)
@@ -106,7 +119,7 @@
 
 ## src/native/
 
-- `NativeApp.tsx` — Stack (~326 tok)
+- `NativeApp.tsx` — Stack (~362 tok)
 
 ## src/native/screens/
 
@@ -116,12 +129,12 @@
 - `MatSession.tsx` — Define a simple yoga flow manifest locally. (~1538 tok)
 - `PushDayOnboarding.tsx` — SPECTRE LABS — TETHER MOBILE (~7842 tok)
 - `RoadSession.tsx` — COLORS (~1845 tok)
+- `WorkoutSummary.tsx` — COLORS (~812 tok)
 
 ## src/registry/valkyrie/
 
 - `houses.ts` — ShimmerMode type (`'MILITARY' | 'ETHER'`) and valkyrie house definitions (~50 tok)
 - `manifest.ts` — VALKYRIE_MANIFEST: title, codename, gear (helmets/wings arrays with name/rarity) (~80 tok)
-
 
 ## src/stores/
 
@@ -136,3 +149,4 @@
 ## supabase/migrations/
 
 - `05_identity_upgrade.sql` — Tether | Spectre Labs (~145 tok)
+- `06_tether_state_and_hub_sessions.sql` — Tether | Spectre Labs (~385 tok)

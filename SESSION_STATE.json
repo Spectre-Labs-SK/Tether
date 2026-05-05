@@ -1,6 +1,6 @@
 {
-  "last_command": "npm install @supabase/supabase-js",
+  "last_command": "night-build-clean-house",
   "dev_server_port": 5173,
-  "active_workstream": "infrastructure",
-  "timestamp": "2026-04-26T19:59:00"
+  "active_workstream": "cleanup",
+  "timestamp": "2026-05-05T00:30:00"
 }

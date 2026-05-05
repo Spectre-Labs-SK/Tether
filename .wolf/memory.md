@@ -579,3 +579,22 @@
 
 | Time | Action | File(s) | Outcome | ~Tokens |
 |------|--------|---------|---------|--------|
+| 00:09 | Created supabase/migrations/06_tether_state_and_hub_sessions.sql | — | ~385 |
+| 08:17 | Created src/native/screens/WorkoutSummary.tsx | — | ~812 |
+| 08:17 | Edited src/native/NativeApp.tsx | added 1 import(s) | ~102 |
+| 08:17 | Edited src/native/NativeApp.tsx | 2→3 lines | ~47 |
+| 08:50 | Created PRODUCT.md | — | ~704 |
+| 08:55 | Session end: 5 writes across 4 files (06_tether_state_and_hub_sessions.sql, WorkoutSummary.tsx, NativeApp.tsx, PRODUCT.md) | 28 reads | ~22903 tok |
+| 08:56 | Created .planning/codebase/STACK.md | — | ~1247 |
+| 08:57 | Created .planning/codebase/INTEGRATIONS.md | — | ~1402 |
+| 08:57 | Created .planning/codebase/CONVENTIONS.md | — | ~2307 |
+| 08:57 | Session end: 8 writes across 7 files (06_tether_state_and_hub_sessions.sql, WorkoutSummary.tsx, NativeApp.tsx, PRODUCT.md, STACK.md) | 48 reads | ~52866 tok |
+| 08:58 | Created .planning/codebase/CONCERNS.md | — | ~3626 |
+| 08:58 | Created .planning/codebase/TESTING.md | — | ~1532 |
+| 08:58 | Session end: 10 writes across 9 files (06_tether_state_and_hub_sessions.sql, WorkoutSummary.tsx, NativeApp.tsx, PRODUCT.md, STACK.md) | 51 reads | ~58393 tok |
+| 08:58 | Session end: 10 writes across 9 files (06_tether_state_and_hub_sessions.sql, WorkoutSummary.tsx, NativeApp.tsx, PRODUCT.md, STACK.md) | 51 reads | ~58393 tok |
+| 08:58 | Created .planning/codebase/ARCHITECTURE.md | — | ~4554 |
+| 08:59 | Created .planning/codebase/STRUCTURE.md | — | ~2978 |
+| 09:02 | Created SESSION_STATE.json | — | ~42 |
+| 09:02 | Edited TETHER_BUILD_JOURNAL.md | expanded (+95 lines) | ~1218 |
+| 2026-05-05 | NIGHT BUILD — CLEAN HOUSE: deleted 13 noise files/dirs, moved useBunkerTap.ts→src/hooks/, created migration 06 (hub_sessions + profiles columns), WorkoutSummary.tsx stub (prevents nav crash), installed Impeccable skill + PRODUCT.md, refreshed 7 codebase docs (1260L total), tsc 0 errors | multiple | done | ~220k tok |
