@@ -19,6 +19,7 @@
     "@tailwindcss/vite": "^4.2.2",
     "@types/three": "^0.184.0",
     "expo": "^55.0.17",
+    "expo-dev-client": "~55.0.32",
     "expo-gl": "~55.0.13",
     "expo-haptics": "~55.0.14",
     "get-shit-done": "^0.0.2",
