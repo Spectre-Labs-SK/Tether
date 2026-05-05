@@ -5,6 +5,7 @@ import PushDayOnboarding from './screens/PushDayOnboarding';
 import RoadSession from './screens/RoadSession';
 import MatSession from './screens/MatSession';
 import HubSession from './screens/HubSession';
+import WorkoutSummary from './screens/WorkoutSummary';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -20,6 +21,7 @@ export default function NativeApp() {
         <Stack.Screen name="RoadSession" component={RoadSession} />
         <Stack.Screen name="MatSession" component={MatSession} />
         <Stack.Screen name="HubSession" component={HubSession} />
+        <Stack.Screen name="WorkoutSummary" component={WorkoutSummary} />
       </Stack.Navigator>
     </NavigationContainer>
   );
