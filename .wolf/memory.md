@@ -533,3 +533,49 @@
 
 | Time | Action | File(s) | Outcome | ~Tokens |
 |------|--------|---------|---------|--------|
+
+## Session: 2026-05-05 22:17
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+
+## Session: 2026-05-05 22:22
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+
+## Session: 2026-05-05 22:22
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+
+## Session: 2026-05-05 23:16
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+| 23:31 | Created src/components/BunkerGate.tsx | — | ~1826 |
+| 23:31 | Edited src/App.tsx | "./components/EntryGate" → "./components/BunkerGate" | ~14 |
+| 23:31 | Edited src/App.tsx | inline fix | ~14 |
+| 23:32 | Edited tsconfig.app.json | 4→7 lines | ~20 |
+| 2026-05-04 | Bunker Protocol: created BunkerGate.tsx (resilience-first entry gate: 3s auth timeout, no blocking loading state, fire-and-forget SOS upsert); wired into App.tsx; fixed tsconfig.app.json missing exclude for src/native | src/components/BunkerGate.tsx, src/App.tsx, tsconfig.app.json | done | ~80 tok |
+| 23:33 | Session end: 4 writes across 3 files (BunkerGate.tsx, App.tsx, tsconfig.app.json) | 10 reads | ~7960 tok |
+
+## Session: 2026-05-05 23:41
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+
+## Session: 2026-05-05 23:41
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+
+## Session: 2026-05-05 23:42
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+
+## Session: 2026-05-05 00:01
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|

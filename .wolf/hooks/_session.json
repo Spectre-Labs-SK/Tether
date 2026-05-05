@@ -1,11 +1,62 @@
 {
-  "session_id": "session-2026-05-04-0908",
-  "started": "2026-05-04T15:08:04.751Z",
-  "files_read": {},
+  "session_id": "session-2026-05-05-0001",
+  "started": "2026-05-05T06:01:34.770Z",
+  "files_read": {
+    "c:/Users/Windows 11 Pro/Desktop/Spectre_Labs/Feu_Follet/Tether_Safe/.wolf/anatomy.md": {
+      "count": 1,
+      "tokens": 0,
+      "first_read": "2026-05-05T06:04:18.567Z"
+    },
+    "c:/Users/Windows 11 Pro/Desktop/Spectre_Labs/Feu_Follet/Tether_Safe/.wolf/skill-observations/last-review-date.txt": {
+      "count": 1,
+      "tokens": 5,
+      "first_read": "2026-05-05T06:04:28.289Z"
+    },
+    "c:/Users/Windows 11 Pro/Desktop/Spectre_Labs/Feu_Follet/Tether_Safe/useBunkerTap.ts": {
+      "count": 1,
+      "tokens": 0,
+      "first_read": "2026-05-05T06:04:51.491Z"
+    },
+    "c:/Users/Windows 11 Pro/Desktop/Spectre_Labs/Feu_Follet/Tether_Safe/ghostProtocol.ts": {
+      "count": 1,
+      "tokens": 0,
+      "first_read": "2026-05-05T06:04:52.995Z"
+    },
+    "c:/Users/Windows 11 Pro/Desktop/Spectre_Labs/Feu_Follet/Tether_Safe/useDrillSergeant.ts": {
+      "count": 1,
+      "tokens": 0,
+      "first_read": "2026-05-05T06:04:53.192Z"
+    },
+    "c:/Users/Windows 11 Pro/Desktop/Spectre_Labs/Feu_Follet/Tether_Safe/src/components/BunkerGate.tsx": {
+      "count": 1,
+      "tokens": 1826,
+      "first_read": "2026-05-05T06:05:12.402Z"
+    },
+    "c:/Users/Windows 11 Pro/Desktop/Spectre_Labs/Feu_Follet/Tether_Safe/src/native/screens/HubSession.tsx": {
+      "count": 1,
+      "tokens": 1181,
+      "first_read": "2026-05-05T06:05:29.203Z"
+    },
+    "c:/Users/Windows 11 Pro/Desktop/Spectre_Labs/Feu_Follet/Tether_Safe/src/native/screens/PushDayOnboarding.tsx": {
+      "count": 1,
+      "tokens": 7842,
+      "first_read": "2026-05-05T06:05:30.586Z"
+    },
+    "c:/Users/Windows 11 Pro/Desktop/Spectre_Labs/Feu_Follet/Tether_Safe/src/native/NativeApp.tsx": {
+      "count": 1,
+      "tokens": 326,
+      "first_read": "2026-05-05T06:05:43.644Z"
+    },
+    "c:/Users/Windows 11 Pro/Desktop/Spectre_Labs/Feu_Follet/Tether_Safe/src/native/screens/FitnessOnboardingGrid.tsx": {
+      "count": 1,
+      "tokens": 1763,
+      "first_read": "2026-05-05T06:05:50.078Z"
+    }
+  },
   "files_written": [],
   "edit_counts": {},
-  "anatomy_hits": 0,
-  "anatomy_misses": 0,
+  "anatomy_hits": 6,
+  "anatomy_misses": 4,
   "repeated_reads_warned": 0,
   "cerebrum_warnings": 0,
   "stop_count": 0

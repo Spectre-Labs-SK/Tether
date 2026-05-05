@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect, Suspense } from 'react';
 import './index.css';
 import { Canvas } from '@react-three/fiber';
-import EntryGate from './components/EntryGate';
+import BunkerGate from './components/BunkerGate';
 import WarRoom from './components/WarRoom';
 import { ShimmerCore } from './components/ShimmerCore';
 import { usePatternObserver } from './hooks/usePatternObserver';
@@ -133,7 +133,7 @@ export default function App() {
   };
 
   if (appMode === 'gate') {
-    return <EntryGate onEnter={handleEnter} />;
+    return <BunkerGate onEnter={handleEnter} />;
   }
 
   if (appMode === 'sos') {

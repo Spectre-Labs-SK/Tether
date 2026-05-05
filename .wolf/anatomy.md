@@ -1,7 +1,7 @@
 # anatomy.md
 
-> Auto-maintained by OpenWolf. Last scanned: 2026-05-03T15:43:41.825Z
-> Files: 52 tracked | Anatomy hits: 0 | Misses: 0
+> Auto-maintained by OpenWolf. Last scanned: 2026-05-05T05:32:06.341Z
+> Files: 53 tracked | Anatomy hits: 0 | Misses: 0
 
 ## ./
 
@@ -17,7 +17,7 @@
 - `metro.config.cjs` — CJS format required because package.json has "type":"module"; uses expo/metro-config getDefaultConfig; CNG-aligned (~50 tok)
 - `package.json` — Node.js package manifest; react/react-dom@19.2.0, typescript@~5.9.2 (Expo 55 aligned); no patch-package (~340 tok)
 - `TETHER_BUILD_JOURNAL.md` — TETHER BUILD JOURNAL; bug tracker + phase logs (~6835 tok)
-- `tsconfig.app.json` (~186 tok)
+- `tsconfig.app.json` — Web build tsconfig; includes `src/`, excludes `src/native/`; verbatimModuleSyntax, noUnusedLocals, react-jsx (~211 tok)
 - `vite.config.ts` — Declares env (~191 tok)
 
 ## .claude/
@@ -73,10 +73,11 @@
 
 ## src/
 
-- `App.tsx` — BREATHE_PHASES (~1482 tok)
+- `App.tsx` — BREATHE_PHASES (~1483 tok)
 
 ## src/components/
 
+- `BunkerGate.tsx` — AUTH_TIMEOUT_MS (~1826 tok)
 - `EntryGate.tsx` — EntryGate (~3706 tok)
 - `ShimmerCore.tsx` — LERP (~662 tok)
 - `WarRoom.tsx` — WarRoom (~4424 tok)
@@ -117,6 +118,9 @@
 - `RoadSession.tsx` — COLORS (~1845 tok)
 
 ## src/registry/valkyrie/
+
+- `houses.ts` — ShimmerMode type (`'MILITARY' | 'ETHER'`) and valkyrie house definitions (~50 tok)
+- `manifest.ts` — VALKYRIE_MANIFEST: title, codename, gear (helmets/wings arrays with name/rarity) (~80 tok)
 
 
 ## src/stores/
