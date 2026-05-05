@@ -186,6 +186,27 @@ Total pending observations across all time
 Step 5 — Prompt for apply (optional)
 If there are priority skill updates, ask: "Want me to apply the skill updates now? Say 'Apply skill updates' to proceed."
 
+## SESSION-END SUMMARY PROTOCOL
+
+At the end of every completed task-oriented session — automatically, without waiting to be asked — surface two things in this order:
+
+**1. Task-Observer Observation Surfacing**
+Read `.wolf/skill-observations/log.md`. For each OPEN observation, surface:
+- Observation number + title
+- One-sentence summary of the issue
+- Whether it's already actioned or needs a skill file edit
+- Proposed status: ACTIONED or requires further work
+
+**2. Session Summary**
+A structured summary of the session covering:
+- What was built/changed (bullet list, specific files)
+- TypeScript / build status
+- Decisions that need Cade's review (numbered list)
+
+Do not wait for "End Day" or any trigger phrase. Surface this at natural session end — when the last task is done and committed.
+
+---
+
 APPLY SKILL UPDATES PROTOCOL
 Trigger phrase: "Apply skill updates"
 When Cade says "Apply skill updates":

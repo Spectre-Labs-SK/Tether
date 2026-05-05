@@ -27,6 +27,7 @@
 **Skill:** internal (build workflow)
 **Type:** internal
 **Phase/Area:** Tool installation
+**Status:** ACTIONED — principle applied to cerebrum.md (2026-05-05)
 
 **Issue:** `npx skills add pbakaus/impeccable` is interactive by default — it prompts to select which agent runtimes to install to (Claude Code, Codex, Cursor, Gemini CLI, etc.). In an autonomous session this hangs waiting for keyboard input.
 
@@ -41,6 +42,7 @@
 **Skill:** internal (OpenWolf cerebrum / project learning)
 **Type:** internal
 **Phase/Area:** Project setup / Metro configuration
+**Status:** ACTIONED — fix applied to cerebrum.md and metro.config.cjs during CNG session (2026-05-03)
 
 **Issue:** Cerebrum entry stated "metro.config.js format: Use CommonJS even with type:module — Metro uses its own module loader." This was incorrect. With `"type": "module"` in package.json, Node treats `.js` files as ESM. Metro's `loadConfig` calls Node's `require()` on the file, which throws `ReferenceError: require is not defined`. Metro catches this, tries `import()`, which also fails (file uses `require`). Metro falls back to pure defaults — silently dropping all Expo transformer config including `_expoRelativeProjectRoot`, `babelTransformerPath` (expo's), and all CNG-related settings. expo-doctor reported the config as "not extending expo/metro-config" as a result.
 
