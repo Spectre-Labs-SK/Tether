@@ -59,6 +59,9 @@
 - **patch-package removed:** No `postinstall` hook, no `patch-package` dep. If a future patch is needed, re-add `patch-package` to devDeps and add a `postinstall: "patch-package"` script.
 - **Expo 55 aligned versions (2026-05-03):** react@19.2.0, react-dom@19.2.0, typescript@~5.9.2. Do not upgrade react/react-dom above 19.2.0 or typescript above 5.9.x without checking `npx expo install --check`.
 
+- **Impeccable skill (2026-05-05):** Installed to `.agents/skills/impeccable/` with symlink to `.claude/skills/impeccable`. Use `npx skills@1.5.3 add pbakaus/impeccable --yes` for non-interactive install. Requires PRODUCT.md at project root (run `/impeccable teach` or create manually). DESIGN.md is a separate step (`/impeccable document`). Reads both files before any design task.
+- **RootStackParamList duplication:** `PushDayOnboarding.tsx` exports its own `RootStackParamList` that mirrors `FitnessOnboardingGrid.tsx`. NativeApp.tsx imports from FitnessOnboardingGrid. The PushDayOnboarding type is used locally by its own NavProp/RouteProp. This is a known drift risk — pending consolidation to a `navigation.types.ts` file.
+
 ## Do-Not-Repeat
 
 <!-- Mistakes made and corrected. Each entry prevents the same mistake recurring. -->

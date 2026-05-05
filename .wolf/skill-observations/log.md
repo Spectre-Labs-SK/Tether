@@ -20,6 +20,20 @@
 
 <!-- Observations are appended below this line -->
 
+### Observation 2: npx skills add requires --yes for non-interactive installs
+
+**Date:** 2026-05-05
+**Session context:** Night Build — installing Impeccable design skill via `npx skills add pbakaus/impeccable`
+**Skill:** internal (build workflow)
+**Type:** internal
+**Phase/Area:** Tool installation
+
+**Issue:** `npx skills add pbakaus/impeccable` is interactive by default — it prompts to select which agent runtimes to install to (Claude Code, Codex, Cursor, Gemini CLI, etc.). In an autonomous session this hangs waiting for keyboard input.
+
+**Suggested improvement:** Always append `--yes` (or `-y`) when running `npx skills add` in autonomous builds. The tip is printed at the top of the CLI output: "use the --yes (-y) and --global (-g) flags to install without prompts."
+
+**Principle:** Any `npx skills` invocation in an autonomous build must include `--yes`. The skills CLI is interactive by default. Pinning a specific version (`npx skills@1.5.3`) also avoids an extra npm install step and prevents version drift between runs.
+
 ### Observation 1: Cerebrum correction — metro.config.cjs required with "type":"module"
 
 **Date:** 2026-05-03
