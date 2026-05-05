@@ -1,48 +1,112 @@
-# Tech Stack
+# Technology Stack
 
-**Last Mapped:** 2026-04-27 (refresh after Phase 01 review fixes)
+**Analysis Date:** 2026-05-05
 
 ## Languages
 
-- **TypeScript** ~6.0.2 — strict-ish config (noUnusedLocals, noUnusedParameters, erasableSyntaxOnly)
-- Target: ES2023 / DOM (web build); ESNext modules
+**Primary:**
+- TypeScript ~5.9.2 — all source files (web + native)
+- SQL — Supabase migrations (`supabase/migrations/`)
 
-## Frameworks
-
-- **React** 19.2.5 — functional components, hooks-only, no class components
-- **React Native** (referenced via `src/native/` imports) — NOT part of the Vite build; no Expo SDK installed
-
-## Key Libraries
-
-| Package | Version | Role |
-|---|---|---|
-| @react-three/fiber | ^9.6.0 | React renderer for Three.js |
-| @react-three/drei | ^10.7.7 | Three.js helpers (Float, MeshDistortMaterial) |
-| three | ^0.184.0 | 3D engine |
-| @supabase/supabase-js | ^2.104.0 | BaaS client (auth, database, edge functions) |
-| lucide-react | ^1.8.0 | Icons (installed but not yet used in any component) |
-| tailwindcss (via @tailwindcss/vite) | ^4.2.2 | CSS utility framework, v4 Vite plugin |
-
-## Build Tooling
-
-- **Vite** ^8.0.9 — dev server + bundler
-- **@vitejs/plugin-react** ^6.0.1 — JSX transform
-- **@tailwindcss/vite** ^4.2.2 — Tailwind v4 plugin (replaces postcss setup)
-- Build command: `tsc -b && vite build`
-- Dev server: `vite` (port auto-assigned)
-
-## Linting
-
-- **ESLint** ^9.39.4 with flat config (`eslint.config.js`)
-- **typescript-eslint** ^8.58.2
-- **eslint-plugin-react-hooks** ^7.1.1
-- **eslint-plugin-react-refresh** ^0.5.2
+**Secondary:**
+- JavaScript (CJS) — `metro.config.cjs`, `babel.config.cjs` (CJS extension required because `package.json` has `"type": "module"`)
 
 ## Runtime
 
-- **Browser** — primary target (Vite SPA)
-- **React Native / Expo** — intended secondary target; `src/native/` screens exist but Expo SDK is NOT installed and `src/native` is excluded from tsconfig compilation
+**Environment:**
+- Node.js (development tooling; no `.nvmrc` / `.node-version` pinned)
 
-## Package Manager
+**Package Manager:**
+- npm (single root `package.json`; all web + native deps co-located)
+- Lockfile: `package-lock.json` present
 
-- **npm** (`package-lock.json` present)
+## Frameworks
+
+**Core — Native (the product):**
+- React Native 0.83.6 — mobile UI primitives
+- Expo SDK ^55.0.17 — CNG build system, device APIs, dev client
+- expo-dev-client ~55.0.32 — custom dev builds for native modules
+- expo-gl ~55.0.13 — OpenGL ES surface (Three.js on native)
+- expo-haptics ~55.0.14 — haptic feedback in workout sessions
+
+**Core — Web (dev sandbox only):**
+- React 19.2.0 + react-dom 19.2.0 — web shell
+- Vite ^8.0.9 — dev server and web bundler
+- `@vitejs/plugin-react` ^6.0.1 — React fast-refresh in Vite
+
+**Navigation:**
+- `@react-navigation/native` ^7.0.0 — navigation container
+- `@react-navigation/native-stack` ^7.0.0 — stack navigator
+- `react-native-screens` ^4.0.0 — native screen optimization
+- `react-native-safe-area-context` ^5.0.0 — safe-area insets
+
+**3D / Visual:**
+- three ^0.184.0 — 3D engine (`src/components/ShimmerCore.tsx`)
+- `@react-three/fiber` ^9.6.0 — React renderer for Three.js
+- `@react-three/drei` ^10.7.7 — R3F helpers (MeshDistortMaterial, Float, etc.)
+- `@types/three` ^0.184.0 — Three.js type definitions
+
+**State Management:**
+- zustand ^5.0.12 — R3F render-loop bridge only (`src/stores/patternStore.ts`). All other state is local `useState`.
+
+**Styling:**
+- tailwindcss 3.4.1 + `@tailwindcss/vite` ^4.2.2 — web sandbox (Tailwind v4 API via Vite plugin)
+- nativewind ^4.2.3 — Tailwind-compatible utility layer for React Native
+- `StyleSheet.create()` with file-top `COLORS` constants — native screens (primary native styling pattern)
+
+**Testing:**
+- No test framework detected in `package.json`
+
+**Build / Dev:**
+- `babel-preset-expo` via `babel.config.cjs` — Metro/Expo transpiler
+- EAS CLI >= 18.10.0 — cloud build service (`eas.json`)
+- ESLint ^9.39.4 with flat config (`eslint.config.js`)
+- eslint-plugin-react-hooks ^7.1.1
+- eslint-plugin-react-refresh ^0.5.2
+- typescript-eslint ^8.58.2
+
+## Key Dependencies
+
+**Critical:**
+- `expo` ^55.0.17 — entire native build pipeline; pins react 19.2.0, RN 0.83.6, TS ~5.9.2
+- `@supabase/supabase-js` ^2.104.1 — auth + database; only backend service dependency
+- `react-native` 0.83.6 — exact version pinned by Expo 55 compatibility matrix
+
+**Supporting:**
+- `lucide-react` ^1.8.0 — icon library (web sandbox)
+- `get-shit-done` ^0.0.2 — listed in prod deps; task management CLI utility
+- `@types/node` ^24.12.2 — required for `process.env` in `src/lib/supabase.ts` and `NodeJS.Timeout` in native screens
+
+## Configuration
+
+**Environment variables:**
+- Web: `.env.local` — `VITE_SUPABASE_URL`, `VITE_SUPABASE_ANON_KEY`
+  - Vite re-maps these to `EXPO_PUBLIC_*` names via `define` block in `vite.config.ts`
+- Native (Metro): `EXPO_PUBLIC_SUPABASE_URL`, `EXPO_PUBLIC_SUPABASE_ANON_KEY`
+  - Metro resolves `EXPO_PUBLIC_*` natively
+- Both pipelines consume the same `process.env.EXPO_PUBLIC_*` names in `src/lib/supabase.ts`
+- Supabase client falls back to placeholder strings when `.env.local` is absent
+
+**Build config files:**
+- `tsconfig.app.json` — web build; `"include": ["src"]`, `"exclude": ["src/native"]`; target ES2023; verbatimModuleSyntax; noUnusedLocals; noUnusedParameters; erasableSyntaxOnly; noFallthroughCasesInSwitch
+- `vite.config.ts` — React plugin + Tailwind v4 plugin + env define block
+- `metro.config.cjs` — minimal wrapper: `getDefaultConfig(__dirname)` from `expo/metro-config`; `.cjs` required for ESM package type
+- `babel.config.cjs` — `babel-preset-expo` only; no extra plugins
+- `app.json` — Expo config: name `Tether`, slug `tether`, package `com.spectrelabs.tether`, platforms android+ios, EAS project ID `79507357-e5e4-4f48-97ea-ba01a6f4ac65`
+- `eas.json` — EAS profiles: `development` (APK, internal, dev client), `preview` (APK, internal, env vars inlined), `production` (store, autoIncrement)
+
+## Platform Requirements
+
+**Development:**
+- Node.js with npm
+- EAS CLI >= 18.10.0
+- `.env.local` with Supabase credentials
+
+**Production:**
+- CNG: `android/` and `ios/` are gitignored; generated by `expo prebuild` during EAS Build
+- Android package name: `com.spectrelabs.tether`
+- EAS Build for development APK and production store releases
+
+---
+
+*Stack analysis: 2026-05-05*

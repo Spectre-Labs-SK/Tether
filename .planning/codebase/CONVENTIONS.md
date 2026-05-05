@@ -1,86 +1,206 @@
-# Conventions
+# Coding Conventions
 
-**Last Mapped:** 2026-04-27 (refresh after Phase 01 review fixes)
+**Analysis Date:** 2026-05-05
 
-## Naming
+## Naming Patterns
 
-| Category | Convention | Example |
-|---|---|---|
-| Components | PascalCase | `EntryGate`, `ShimmerCore` |
-| Hooks | camelCase with `use` prefix | `useTetherState`, `useJointOps` |
-| Types/Interfaces | PascalCase | `Profile`, `JointOp`, `UIConfig` |
-| Constants/Manifests | SCREAMING_SNAKE_CASE | `VALKYRIE_MANIFEST`, `RONIN_HOUSES`, `C25K_WEEK_1_DAY_1` |
-| Files | PascalCase for components, camelCase for libs/hooks | `EntryGate.tsx`, `supabase.ts` |
-| Database columns | snake_case (Postgres convention) | `is_crisis_mode`, `one_rm_kg` |
-| CSS classes | Tailwind utility classes (no BEM, no modules) | `font-mono tracking-widest` |
+**Files:**
+- PascalCase for components: `EntryGate.tsx`, `BunkerGate.tsx`, `ShimmerCore.tsx`, `WarRoom.tsx`
+- camelCase for libs, hooks, stores, logic: `supabase.ts`, `useTetherState.ts`, `patternStore.ts`, `nightlySynth.ts`
+- SCREAMING_SNAKE_CASE for data manifests: `manifest.ts` exports `VALKYRIE_MANIFEST`, `C25K_WEEK_1_DAY_1`
 
-## TypeScript
+**Functions / Hooks:**
+- Hooks: `use` prefix, camelCase — `useTetherState`, `useJointOps`, `useArmory`, `usePatternObserver`
+- Plain functions: camelCase — `generateRandomHandle`, `toTetherState`, `inferDomain`, `computeTopDomain`
+- Default exports match filename exactly: `export default function BunkerGate`
 
-- **tsconfig strict-ish**: `noUnusedLocals`, `noUnusedParameters`, `noFallthroughCasesInSwitch`, `erasableSyntaxOnly`
-- `verbatimModuleSyntax: true` — all type imports must use `import type`
-- Types exported from `src/lib/supabase.ts` as the central type registry
-- Hook return types explicitly typed (e.g., `TetherStateReturn`, `JointOpsReturn`)
-- No `any` patterns observed; `as string` casts used for env vars
-- `useCallback` used on all async Supabase operations to prevent recreation on re-render
+**Types and Interfaces:**
+- PascalCase throughout: `Profile`, `JointOp`, `TetherState`, `DailyPlan`, `ShimmerTarget`
+- Explicit return type aliases for every hook: `TetherStateReturn`, `JointOpsReturn`, `ArmoryReturn`
+- Discriminated union `kind` fields use lowercase string literals: `'iron' | 'road' | 'mat' | 'hub'`
+
+**Constants:**
+- SCREAMING_SNAKE_CASE: `VALKYRIE_MANIFEST`, `C25K_WEEK_1_DAY_1`, `DOMAIN_ALTERNATES`, `CHECKPOINT_ALTERNATE`, `DEFAULTS`, `AUTH_TIMEOUT_MS`, `COLORS`
+- Module-level constant blocks declared above component/function body
+
+**Database Columns:**
+- snake_case matching Postgres: `is_crisis_mode`, `onboarding_pending`, `one_rm_kg`, `clash_state`, `shimmer_mode`
+
+**CSS Classes:**
+- Web: Tailwind v4 utility classes inline — no BEM, no CSS modules
+- Native: `StyleSheet.create()` with a `COLORS` constant object at the top of each screen file
+
+## TypeScript Rules
+
+**Compiler flags (enforced in `tsconfig.app.json`):**
+- `verbatimModuleSyntax: true` — pure type imports use `import type { Foo }` or `import { value, type Foo }`. Never bare `import { Foo }` for type-only imports.
+- `noUnusedLocals: true` — no declared-but-unused variables
+- `noUnusedParameters: true` — no unused function parameters
+- `erasableSyntaxOnly: true` — no TypeScript-only runtime syntax (no `const enum`, no namespaces)
+- `noFallthroughCasesInSwitch: true` — every switch case must break or return
+- `jsx: "react-jsx"` — JSX transform is automatic; do NOT `import React from 'react'` in native files (triggers TS6133 unused import)
+
+**Type import examples from codebase:**
+```ts
+// Pure type import
+import type { BitchWeightFlag, TrickyCardioGate } from './useTetherState';
+
+// Mixed value + type import
+import { supabase, type JointOp, type OpMember, type OpCheckpoint } from '../lib/supabase';
+```
+
+**Hook return types — always explicit:**
+```ts
+export type TetherStateReturn = { state: TetherState | null; isLoading: boolean; ... };
+export function useTetherState(userId: string | null): TetherStateReturn { ... }
+
+export type JointOpsReturn = { ops: JointOp[]; isLoading: boolean; ... };
+export function useJointOps(userId: string | null): JointOpsReturn { ... }
+
+export type ArmoryReturn = { bitchweights: ...; trickycardio: ... };
+export function useArmory(userId: string | null): ArmoryReturn { ... }
+```
+
+**No `any` patterns** — `as string` casts used for env vars; `as ValkyrieTheme` for DB column narrowing; `as { is_anonymous?: boolean }` for Supabase JWT property not in SDK types.
+
+**Type narrowing pattern for pre-migration DB columns:**
+```ts
+type RawRow = Profile & { is_nightmare_active?: boolean; theme_state?: string };
+// Then narrow with ?? defaults inside a mapper function (toTetherState)
+```
 
 ## Component Structure
 
-All components are functional React. Pattern:
+All components are functional React with this ordering:
 1. Props type defined above component
-2. useState declarations
-3. useEffect for data loading
-4. Event handlers (async functions)
-5. Conditional early returns (loading state)
-6. JSX return
+2. `useState` declarations with explicit generic type
+3. `useRef` declarations
+4. `useEffect` for data loading (calls inner `async` function)
+5. `useCallback`-wrapped event handlers and async operations
+6. Conditional early returns (loading / error state)
+7. JSX return
 
-No higher-order components. No class components.
+No class components. No higher-order components. No Context API for data threading.
 
-## Imports
+**Pattern:**
+```ts
+type Props = { onEnter: (mode: 'chill' | 'sos', userId: string | null) => void };
 
-Order convention observed:
-1. React (and hooks)
-2. Third-party libraries
-3. Internal: lib/ before hooks/ before components/ before registry/
+export default function BunkerGate({ onEnter }: Props) {
+  const [userId, setUserId] = useState<string | null>(null);
+  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  // ...useEffect, useCallback, return JSX
+}
+```
 
-Native screens additionally import React Native primitives first.
+## Import Organization
 
-## Style / Linting
+Order observed across all files:
+1. React (named hooks only — no default `React` import)
+2. React Native primitives (native files only)
+3. Third-party libraries (`@react-navigation`, `@supabase/supabase-js`, `zustand`, `three`)
+4. Internal `lib/` (supabase client, agentLog)
+5. Internal `hooks/`
+6. Internal `stores/`
+7. Internal `components/`
+8. Internal `registry/` or `logic/`
+9. Relative `./ manifest` or sibling files
 
-- **Web**: Tailwind CSS v4 utility classes inline. No CSS modules. No styled-components.
-- **Native**: `StyleSheet.create()` with inline COLORS constants at file top
-- ESLint flat config — react-hooks and react-refresh plugins
-- No Prettier config detected — formatting is manual/editor
+## Style and Linting
+
+**Linting:** ESLint flat config (`eslint.config.js`) with:
+- `@eslint/js` recommended
+- `typescript-eslint` recommended
+- `eslint-plugin-react-hooks` flat recommended
+- `eslint-plugin-react-refresh` vite preset
+- Scope: all `**/*.{ts,tsx}` files; `dist/` ignored
+
+**Formatting:** No Prettier config — manual/editor formatting. Consistent 2-space indentation observed throughout.
+
+**Type-check command (use this, not bare `tsc`):**
+```bash
+npx tsc --project tsconfig.app.json --noEmit
+```
+Bare `npx tsc --noEmit` may return 0 due to cached `.tsbuildinfo` even when errors exist.
+
+## Async and useCallback Pattern
+
+All async Supabase operations are wrapped in `useCallback` to prevent recreation on re-render:
+```ts
+const updateTheme = useCallback(async (theme: ValkyrieTheme) => {
+  // DB write first, then setState
+  const { data, error } = await supabase.from('profiles').update(...).select().single();
+  if (!error && data) setState(toTetherState(data));
+}, [userId]);
+```
+
+## State Management
+
+**Rule:** Local `useState` only. Supabase is source of truth.
+
+**DB-first pattern** — always write to Supabase before updating local state. No optimistic updates except one approved exception:
+```ts
+// Approved exception: ops list prepend on createOp (useJointOps.ts)
+setOps(prev => [data, ...prev]);
+```
+
+**Interval + ref pattern** — when `setInterval` needs frequently-changing state, mirror into a `useRef` kept in sync via `useEffect` with a single dep. Read the ref inside the interval, not the state variable.
+
+**Zustand — R3F bridge only:**
+- Store: `src/stores/patternStore.ts`
+- Write from React: reactive selector in `usePatternObserver.ts`
+- Read in `useFrame`: `usePatternStore.getState()` (non-reactive direct read)
+- Do NOT use Zustand for any state without a render-loop consumer
+
+**`userId` threading:** Passed down as a prop from `EntryGate` → `App` → `WarRoom` → `useTetherState(userId)`. Not stored in global context.
+
+## Logging
+
+Use the project logger — never bare `console.log` (except `console.error` seen in `RoadSession` — treat as legacy):
+
+```ts
+import { agentLog } from '../lib/agentLog';
+
+agentLog.architect('Loading profile for userId: ...');   // ops/debug
+agentLog.valkyrie('The Queen sees you. You\'re not alone.');  // persona/narrative
+```
 
 ## Comment Conventions
 
-- Multi-line block comments for complex logic (1RM formula suite in `PushDayOnboarding`)
-- JSDoc `/** */` for exported pure functions (e.g., `calculate1RM`)
+- Block comments `/* */` for complex multi-step logic (1RM formula suite in `PushDayOnboarding.tsx`)
+- JSDoc `/** */` for exported pure functions: `calculate1RM`, `synthesizeDay`
 - Inline `//` for state machine invariants and non-obvious guard conditions
-- `agentLog.architect()` for operational/debug logs (replaces console.log)
-- `agentLog.valkyrie()` for persona/narrative feedback logs
-- TODO comments for known stubs: `// TODO: SOS onboarding / fitness module screens go here`
+- `// TODO:` for known stubs — e.g. `// TODO: SOS onboarding / fitness module screens go here`
+- Priority comments in priority-ordered switch blocks: `// Priority 1: ... // Priority 2: ...`
 
-## State Management Conventions
+## Error Handling
 
-- Local `useState` only — no Redux, Zustand, Jotai, or Context API (see exception below)
-- Supabase is the source of truth; local state mirrors DB
-- DB write always precedes local state update (no optimistic updates, except ops list prepend on createOp)
-- `userId` flows down from `EntryGate` → `useTetherState` as a prop; not stored in global context
-- **Interval + state pattern** (established 2026-04-27): When a `setInterval` needs access to state that changes frequently, mirror the state into a `useRef` and read from the ref inside the interval. The ref is kept in sync via a dedicated single-dep `useEffect`. This avoids tearing down and recreating the interval on every state change. See `SOSShell.phaseIndexRef` as the canonical example.
+**Pattern in hooks:** Check `error || !data` after every Supabase call. Log with `agentLog.architect()`. Set `error` state with `new Error(message ?? 'fallback string')`. Never throw from hooks.
 
-## State Management Exception: Zustand for R3F Bridge Pattern
+```ts
+if (fetchError || !data) {
+  setError(new Error(fetchError?.message ?? 'Profile bootstrap failed'));
+  agentLog.architect(`ERROR creating profile: ${fetchError?.message}`);
+}
+```
 
-**Rule:** Prefer local `useState` for component-scoped state.
+**Pattern in pure logic (`nightlySynth.ts`):** Return empty arrays / safe defaults on error. Never throw from synthesis functions.
 
-**Exception (approved):** Zustand is the approved solution when bridging React state into a Three.js `useFrame` render loop. React hooks (`useState`, `useContext`) cannot be called inside `useFrame` — doing so causes runtime errors. The approved pattern is:
+## Pure Logic Module (`src/logic/synthesis/`)
 
-- Declare a Zustand store (e.g., `src/stores/patternStore.ts`)
-- Write to the store from React components/hooks via reactive selectors
-- Read from the store inside `useFrame` using `store.getState()` (non-reactive direct read)
+- No React, no hooks, no UI imports
+- Exported via `src/logic/synthesis/index.ts`
+- Types live in `DailyPlanSchema.ts`; implementation in `nightlySynth.ts`
+- JSDoc on all exported functions
+- `DailyPlanEvent.alternate` is always non-nullable — the synthesizer guarantees this invariant
 
-This pattern was introduced in Phase 01 (PatternObserver / Three.js state mirroring). See:
-- `src/stores/patternStore.ts` — store definition
-- `src/components/ShimmerCore.tsx` — `usePatternStore.getState()` inside `useFrame`
-- `src/hooks/usePatternObserver.ts` — reactive writes to the store from React
+## Central Type Registry
 
-Do NOT use Zustand for state that has no render-loop consumer. Local `useState` remains the default.
+All Supabase database types are declared in `src/lib/supabase.ts` — this is the single source of truth for:
+- `Profile`, `LifeSectors`, `JointOp`, `OpMember`, `OpCheckpoint`, `HRReading`, `OpHRSync`
+
+Add new DB types here, not in consuming hooks.
+
+---
+
+*Convention analysis: 2026-05-05*
