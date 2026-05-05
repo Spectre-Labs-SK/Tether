@@ -1,7 +1,7 @@
 # anatomy.md
 
-> Auto-maintained by OpenWolf. Last scanned: 2026-05-05T15:02:48.899Z
-> Files: 65 tracked | Anatomy hits: 0 | Misses: 0
+> Auto-maintained by OpenWolf. Last scanned: 2026-05-05T15:39:27.818Z
+> Files: 66 tracked | Anatomy hits: 0 | Misses: 0
 
 ## ./
 
@@ -9,7 +9,7 @@
 - `.gitignore` — Git ignore rules (~116 tok)
 - `app.json` (~85 tok)
 - `babel.config.js` (~31 tok)
-- `CLAUDE.md` — Developer guide: commands (web/native/patch-package), dual-build split architecture, state management rules, TypeScript rules, naming conventions (~1400 tok)
+- `CLAUDE.md` — CLAUDE.md (~2628 tok)
 - `DEPENDENCIES.md` — Pillar 3 supply chain; all npm deps with versions + env var requirements (~509 tok)
 - `GEMINI.md` — PERSONA: Tether Architect (~1234 tok)
 - `index.js` (~37 tok)
@@ -28,12 +28,11 @@
 ## .claude/rules/
 
 
-## .claude/skills/paperclip/
-
-
 ## .claude/skills/impeccable/
 
-- `SKILL.md` — Impeccable design skill: 23 commands (polish, audit, critique, craft, shape, etc.); reads PRODUCT.md + DESIGN.md before any work; requires /impeccable teach to generate PRODUCT.md first (~variable tok)
+
+## .claude/skills/paperclip/
+
 
 ## .claude/skills/task-observer/
 
