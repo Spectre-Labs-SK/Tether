@@ -2,6 +2,29 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+## Developer Profile (generated 2026-05-05)
+
+| Dimension            | Rating              |
+|----------------------|---------------------|
+| Communication Style  | conversational      |
+| Decision Speed       | fast-intuitive      |
+| Explanation Depth    | educational         |
+| Debugging Approach   | collaborative       |
+| UX Philosophy        | design-conscious    |
+| Vendor Philosophy    | pragmatic-fast      |
+| Frustration Triggers | regression          |
+| Learning Style       | example-driven      |
+
+**Apply these preferences every session:**
+- Conversational tone — informal, medium length, think-aloud when it helps
+- Recommend and move forward — no comparison tables unless asked
+- Educational explanations — teach the conceptual model, not just the working code
+- Collaborative debugging — "let's" language, incremental diagnosis, surface reasoning
+- Never touch code outside stated scope — regression is the primary frustration trigger
+- Design-conscious — treat visual detail as part of default scope for frontend work
+- Pragmatic-fast on tools — recommend the best-fit option directly
+- Example-driven learning — lead with runnable examples the developer can modify
+
 # OpenWolf
 
 @.wolf/OPENWOLF.md

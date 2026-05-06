@@ -3,6 +3,15 @@
 > Chronological action log. Hooks and AI append to this file automatically.
 > Old sessions are consolidated by the daemon weekly.
 
+| 2026-05-06 | created src/registry/avatar/index.ts | AVATAR_MANIFEST unified re-export | success | ~100 tok |
+| 2026-05-06 | created supabase/migrations/07_avatar_loadout.sql | avatar_body_id, avatar_loadout JSONB, unlocked_gear_ids TEXT[] added to profiles | success | ~120 tok |
+| 2026-05-06 | updated src/lib/supabase.ts | added AvatarLoadout, ProfileAvatarState types | success | ~60 tok |
+| 2026-05-06 | created src/hooks/useAvatarLoadout.ts | avatar body/gear state with Supabase persistence; tsc clean | success | ~350 tok |
+
+| 2026-05-05 | Built dev-profile-evolution skill — weekly session reader, profile drift detection, dimension discovery, task-observer loop | ~/.claude/skills/dev-profile-evolution/SKILL.md + all profile artifacts | skill created + profile written | ~2500 |
+| 2026-05-05 | gsd-new-project reset — deleted .planning/, ran gsd-map-codebase (4 parallel agents), created 7 codebase docs | .planning/codebase/*.md | committed | ~3000 |
+| 2026-05-05 | gsd-profile-user questionnaire — built developer profile (8 dimensions), propagated to 3 locations | USER-PROFILE.md, ~/.claude/CLAUDE.md, CLAUDE.md, dev-preferences.md | done | ~800 |
+
 | 2026-05-03 | CNG purge commit + push to origin/main (3 commits: wolf files, deps, CNG gitignore) | .wolf/*.md | done | ~5 tok |
 | 2026-05-03 | metro.config.js → metro.config.cjs: package.json "type":"module" made Node treat .js as ESM, breaking metro config load silently; .cjs forces CJS; expo-doctor 18/18 pass | metro.config.cjs | done | ~50 tok |
 | 2026-05-03 | cerebrum corrected: metro config must be .cjs not .js with type:module; anatomy updated | .wolf/cerebrum.md, .wolf/anatomy.md | done | ~10 tok |
@@ -615,3 +624,43 @@
 
 | Time | Action | File(s) | Outcome | ~Tokens |
 |------|--------|---------|---------|--------|
+| 23:05 | Created .planning/codebase/STACK.md | — | ~1587 |
+| 23:06 | Created .planning/codebase/INTEGRATIONS.md | — | ~1675 |
+| 23:06 | Created .planning/codebase/ARCHITECTURE.md | — | ~4018 |
+| 23:06 | Session end: 3 writes across 3 files (STACK.md, INTEGRATIONS.md, ARCHITECTURE.md) | 71 reads | ~74714 tok |
+| 23:06 | Created .planning/codebase/CONVENTIONS.md | — | ~3062 |
+| 23:07 | Created .planning/codebase/TESTING.md | — | ~1069 |
+| 23:07 | Created .planning/codebase/STRUCTURE.md | — | ~2824 |
+| 23:07 | gsd-map-codebase quality focus: wrote CONVENTIONS.md + TESTING.md | .planning/codebase/CONVENTIONS.md, .planning/codebase/TESTING.md | complete | ~3500 tok |
+| 23:07 | Session end: 6 writes across 6 files (STACK.md, INTEGRATIONS.md, ARCHITECTURE.md, CONVENTIONS.md, TESTING.md) | 72 reads | ~82164 tok |
+| 23:07 | Session end: 6 writes across 6 files (STACK.md, INTEGRATIONS.md, ARCHITECTURE.md, CONVENTIONS.md, TESTING.md) | 72 reads | ~82164 tok |
+| 23:08 | Created .planning/codebase/CONCERNS.md | — | ~6464 |
+| 23:09 | Session end: 7 writes across 7 files (STACK.md, INTEGRATIONS.md, ARCHITECTURE.md, CONVENTIONS.md, TESTING.md) | 72 reads | ~89090 tok |
+
+## Session: 2026-05-06 23:09
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+| 23:18 | Created ../../../../.claude/get-shit-done/USER-PROFILE.md | — | ~1045 |
+| 23:19 | Created ../../../../.claude/commands/gsd/dev-preferences.md | — | ~463 |
+| 23:20 | Edited ../../../../.claude/CLAUDE.md | expanded (+25 lines) | ~373 |
+| 23:20 | Edited CLAUDE.md | expanded (+23 lines) | ~348 |
+| 23:20 | Session end: 4 writes across 3 files (USER-PROFILE.md, dev-preferences.md, CLAUDE.md) | 6 reads | ~7644 tok |
+| 23:25 | Created ../../../../.claude/skills/dev-profile-evolution/SKILL.md | — | ~4179 |
+| 23:25 | Edited ../../../../.claude/CLAUDE.md | expanded (+12 lines) | ~137 |
+| 23:26 | Session end: 6 writes across 4 files (USER-PROFILE.md, dev-preferences.md, CLAUDE.md, SKILL.md) | 9 reads | ~12269 tok |
+| 23:35 | Created src/registry/avatar/bodies.ts | — | ~623 |
+| 23:35 | Created src/registry/avatar/themes.ts | — | ~555 |
+| 23:36 | Created src/registry/avatar/gear.ts | — | ~2822 |
+
+## Session: 2026-05-06 23:38
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+| 23:38 | Created src/registry/avatar/index.ts | — | ~216 |
+| 23:38 | Created supabase/migrations/07_avatar_loadout.sql | — | ~345 |
+| 23:39 | Edited src/lib/supabase.ts | expanded (+14 lines) | ~137 |
+| 23:39 | Created src/hooks/useAvatarLoadout.ts | — | ~1284 |
+| 23:40 | Session end: 4 writes across 4 files (index.ts, 07_avatar_loadout.sql, supabase.ts, useAvatarLoadout.ts) | 3 reads | ~2872 tok |
+| 07:57 | Session end: 4 writes across 4 files (index.ts, 07_avatar_loadout.sql, supabase.ts, useAvatarLoadout.ts) | 4 reads | ~2872 tok |
+| 08:01 | Session end: 4 writes across 4 files (index.ts, 07_avatar_loadout.sql, supabase.ts, useAvatarLoadout.ts) | 5 reads | ~2942 tok |

@@ -95,3 +95,17 @@ export type OpHRSync = {
   bpm: number;
   recorded_at: string;
 };
+
+// Avatar system — migration 07
+export type AvatarLoadout = {
+  helm?: string;
+  torso?: string;
+  legs?: string;
+  accessory?: string;
+};
+
+export type ProfileAvatarState = {
+  avatar_body_id: string | null;
+  avatar_loadout: AvatarLoadout | null;
+  unlocked_gear_ids: string[];
+};

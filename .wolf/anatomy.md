@@ -1,7 +1,23 @@
 # anatomy.md
 
-> Auto-maintained by OpenWolf. Last scanned: 2026-05-05T18:27:53.064Z
-> Files: 67 tracked | Anatomy hits: 0 | Misses: 0
+> Auto-maintained by OpenWolf. Last scanned: 2026-05-06T05:39:20.883Z
+> Files: 78 tracked | Anatomy hits: 0 | Misses: 0
+
+## ../../../../.claude/
+
+- `CLAUDE.md` — Global Claude Instructions (~606 tok)
+
+## ../../../../.claude/commands/gsd/
+
+- `dev-preferences.md` — Developer Preferences (~434 tok)
+
+## ../../../../.claude/get-shit-done/
+
+- `USER-PROFILE.md` — Developer Profile (~980 tok)
+
+## ../../../../.claude/skills/dev-profile-evolution/
+
+- `SKILL.md` — Dev Profile Evolution (~3918 tok)
 
 ## ./
 
@@ -10,7 +26,7 @@
 - `.mcp.json` (~70 tok)
 - `app.json` (~85 tok)
 - `babel.config.js` (~31 tok)
-- `CLAUDE.md` — CLAUDE.md (~2628 tok)
+- `CLAUDE.md` — CLAUDE.md (~2925 tok)
 - `DEPENDENCIES.md` — Pillar 3 supply chain; all npm deps with versions + env var requirements (~509 tok)
 - `GEMINI.md` — PERSONA: Tether Architect (~1234 tok)
 - `index.js` (~37 tok)
@@ -28,6 +44,10 @@
 
 ## .claude/rules/
 
+
+## .claude/skills/dev-profile-evolution/
+
+- `SKILL.md` — Dev Profile Evolution — weekly session analysis, profile update, dimension discovery, task-observer integration (~1200 tok)
 
 ## .claude/skills/impeccable/
 
@@ -49,13 +69,13 @@
 
 ## .planning/codebase/
 
-- `ARCHITECTURE.md` — Architecture (~4270 tok)
-- `CONCERNS.md` — Codebase Concerns (~3400 tok)
-- `CONVENTIONS.md` — Coding Conventions (~2163 tok)
-- `INTEGRATIONS.md` — External Integrations (~1315 tok)
-- `STACK.md` — Technology Stack (~1169 tok)
-- `STRUCTURE.md` — Codebase Structure (~2792 tok)
-- `TESTING.md` — Testing Patterns (~1437 tok)
+- `ARCHITECTURE.md` — Architecture (~3767 tok)
+- `CONCERNS.md` — Technical Concerns (~6060 tok)
+- `CONVENTIONS.md` — Code Conventions (~2870 tok)
+- `INTEGRATIONS.md` — External Integrations (~1571 tok)
+- `STACK.md` — Tech Stack (~1488 tok)
+- `STRUCTURE.md` — Directory Structure (~2647 tok)
+- `TESTING.md` — Testing (~1002 tok)
 
 ## .planning/phases/01-pattern-observer-threejs/
 
@@ -102,6 +122,7 @@
 ## src/hooks/
 
 - `useArmory.ts` — Exports ArmoryReturn, useArmory (~1308 tok)
+- `useAvatarLoadout.ts` — Exports AvatarLoadoutReturn, useAvatarLoadout (~1284 tok)
 - `useBunkerTap.ts` — Tap-sequence detection hook; BUNKER_SEQUENCE [1,2,1]; calls onSequenceMatch() on match; 1500ms timeout resets pattern (~120 tok)
 - `useJointOps.ts` — Exports JointOpsReturn, useJointOps (~2810 tok)
 - `usePatternObserver.ts` — Exports Domain, PatternSignals, usePatternObserver (~837 tok)
@@ -109,7 +130,7 @@
 
 ## src/lib/
 
-- `supabase.ts` — Falls back to placeholder values when .env.local is absent so createClient (~865 tok)
+- `supabase.ts` — Falls back to placeholder values when .env.local is absent so createClient (~950 tok)
 
 ## src/logic/synthesis/
 
@@ -131,6 +152,13 @@
 - `RoadSession.tsx` — COLORS (~1845 tok)
 - `WorkoutSummary.tsx` — COLORS (~812 tok)
 
+## src/registry/avatar/
+
+- `bodies.ts` — Relative silhouette proportions — consumed by the avatar renderer (~623 tok)
+- `gear.ts` — Exports GearSlot, GearRarity, GearItem, ALL_GEAR + 3 more (~2822 tok)
+- `index.ts` — Exports AVATAR_MANIFEST (~216 tok)
+- `themes.ts` — What the player earns or discovers to unlock this theme (~555 tok)
+
 ## src/registry/valkyrie/
 
 - `houses.ts` — ShimmerMode type (`'MILITARY' | 'ETHER'`) and valkyrie house definitions (~50 tok)
@@ -150,3 +178,4 @@
 
 - `05_identity_upgrade.sql` — Tether | Spectre Labs (~145 tok)
 - `06_tether_state_and_hub_sessions.sql` — Tether | Spectre Labs (~385 tok)
+- `07_avatar_loadout.sql` — Tether | Spectre Labs (~345 tok)

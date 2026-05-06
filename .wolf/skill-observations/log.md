@@ -49,3 +49,18 @@
 **Suggested improvement:** Rename `metro.config.js` → `metro.config.cjs`. Metro's resolver explicitly searches for `.cjs` extension (confirmed in `metro-config/src/loadConfig.js` line 58: `SEARCH_JS_EXTS = [".js", ".cjs", ".mjs", ".json"]`). The `.cjs` extension forces CommonJS regardless of package.json `"type"` field.
 
 **Principle:** Any CJS config file (metro.config, babel.config, patch-package postinstall scripts) in a project with `"type": "module"` must use the `.cjs` extension — not just "CommonJS syntax." Node's module type detection happens at the file system level, before the file is even evaluated. Metro's "own module loader" claim is false for config loading — it delegates to Node's standard `require()`. When in doubt, test with `require('./metro.config.js')` from a project-root test file.
+
+### Observation 3: New skill created — dev-profile-evolution
+
+**Date:** 2026-05-05
+**Session context:** gsd-new-project + gsd-profile-user session — user requested a self-improving profile skill
+**Skill:** dev-profile-evolution (new)
+**Type:** internal
+**Phase/Area:** Skill creation
+**Status:** OPEN
+
+**Issue:** The gsd-profile-user skill is one-shot — it creates a profile but doesn't evolve it over time. As the developer's style shifts, the profile drifts from reality. There's no mechanism for the profile to update itself from ongoing session data, discover new behavioral dimensions, or propagate changes to all artifact locations.
+
+**Suggested improvement:** Created `dev-profile-evolution` skill at `~/.claude/skills/dev-profile-evolution/SKILL.md`. It: (1) reads JSONL session files directly without gsd-sdk, (2) spawns gsd-user-profiler agent for behavioral analysis, (3) diffs and merges with recency weighting, (4) propagates to all 4 profile locations, (5) discovers emerging dimensions organically, (6) logs self-improvement observations back to task-observer. Task-observer weekly review should check if profile-last-run.txt is 7+ days old and trigger the skill if so.
+
+**Principle:** Any skill that produces a static artifact (profile, codebase map, requirements doc) should have a paired evolution mechanism. One-shot generation plus periodic refresh is more valuable than a single comprehensive run that stales over time. The evolution skill should log observations about its own accuracy — that's the hook that lets task-observer make it better.
