@@ -602,3 +602,16 @@
 | 09:32 | Session end: 14 writes across 13 files (06_tether_state_and_hub_sessions.sql, WorkoutSummary.tsx, NativeApp.tsx, PRODUCT.md, STACK.md) | 55 reads | ~74645 tok |
 | 09:39 | Edited CLAUDE.md | expanded (+21 lines) | ~232 |
 | 09:39 | Session end: 15 writes across 14 files (06_tether_state_and_hub_sessions.sql, WorkoutSummary.tsx, NativeApp.tsx, PRODUCT.md, STACK.md) | 56 reads | ~76294 tok |
+
+## Session: 2026-05-05 09:50
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+| 12:27 | Created .mcp.json | — | ~70 |
+| 12:27 | Session end: 1 writes across 1 files (.mcp.json) | 2 reads | ~70 tok |
+| 12:29 | Session end: 1 writes across 1 files (.mcp.json) | 2 reads | ~70 tok |
+
+## Session: 2026-05-05 12:30
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|

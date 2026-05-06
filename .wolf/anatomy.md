@@ -1,12 +1,13 @@
 # anatomy.md
 
-> Auto-maintained by OpenWolf. Last scanned: 2026-05-05T15:39:27.818Z
-> Files: 66 tracked | Anatomy hits: 0 | Misses: 0
+> Auto-maintained by OpenWolf. Last scanned: 2026-05-05T18:27:53.064Z
+> Files: 67 tracked | Anatomy hits: 0 | Misses: 0
 
 ## ./
 
 - `.env.local` — Supabase env vars (VITE_SUPABASE_URL, VITE_SUPABASE_ANON_KEY); placeholder values; not committed (~50 tok)
 - `.gitignore` — Git ignore rules (~116 tok)
+- `.mcp.json` (~70 tok)
 - `app.json` (~85 tok)
 - `babel.config.js` (~31 tok)
 - `CLAUDE.md` — CLAUDE.md (~2628 tok)
