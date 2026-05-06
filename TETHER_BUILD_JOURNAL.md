@@ -575,3 +575,5 @@ Build clean.
 **Finding:** Push rejected; need to conform to repository rules (branch protection, commit signatures, CI checks).
 
 **Action Item (HIGH):** Investigate repository policies, adjust branch accordingly, and push successfully.
+
+<!-- git‑push‑rules added on 2026‑05‑06 -->
