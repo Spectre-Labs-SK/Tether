@@ -563,3 +563,15 @@ Build clean.
 - **Architecture:** `android/` and `ios/` directories eradicated. Native configurations managed strictly via `app.json` plugins.
 - **Credentials:** Managed dynamically via `eas credentials` (No local keystore files in repository).
 - **Current Blocker:** Verifying Windows host toolchain (JDK 17, Android SDK) before triggering `eas build --local`.
+
+## 2026-05-06: Git Push Issue
+
+**AUDIT SUBJECT:** `Git Push Failure`
+
+**TRIGGER:** User encountered push error due to repository rule violations.
+
+**STATUS:** `OPEN`
+
+**Finding:** Push rejected; need to conform to repository rules (branch protection, commit signatures, CI checks).
+
+**Action Item (HIGH):** Investigate repository policies, adjust branch accordingly, and push successfully.

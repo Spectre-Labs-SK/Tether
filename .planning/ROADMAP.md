@@ -26,3 +26,18 @@
 **Plans:** TBD
 
 ---
+
+## Backlog
+
+### Phase 999.1: Resolve Git push rule violations (BACKLOG)
+
+**Goal:** Identify and comply with repository rule set preventing push, adjust branch workflow, and push successfully.
+
+**Plans:**
+- Review branch protection settings on GitHub.
+- Ensure commits are signed and pass CI checks.
+- Rebase onto target branch if required.
+- Push or open a PR as per policy.
+
+**Dependencies:** None
+
