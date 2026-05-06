@@ -1,118 +1,101 @@
-# Testing Patterns
+# Testing
 
-**Analysis Date:** 2026-05-05
+**Last mapped:** 2026-05-05
 
-## Test Framework
+## Framework
 
-**Runner:** None installed.
+**Test runner:** None installed. No Jest, Vitest, or any other test runner is present in `package.json` (neither `dependencies` nor `devDependencies`).
 
-No test runner (Jest, Vitest, Playwright, Detox) is present in `package.json` devDependencies. No `jest.config.*`, `vitest.config.*`, or `playwright.config.*` found at project root.
+**Assertion library:** None.
 
-**Test files in project source:** Zero. No `*.test.*` or `*.spec.*` files exist under `src/`.
+**Test config files:** None (`jest.config.*`, `vitest.config.*` — not present).
 
-**Run Commands:**
-```bash
-# No test command in package.json scripts
-npm run lint                                       # ESLint — only automated quality gate
-npx tsc --project tsconfig.app.json --noEmit       # Type-check web build accurately
-```
+The project has zero test infrastructure at this time.
 
-The only quality gates are TypeScript type-checking and ESLint linting. No runtime tests of any kind.
+---
+
+## Test Location
+
+**Test files in `src/`:** None.
+
+A glob for `**/*.test.*` and `**/*.spec.*` within `src/` returns no results. All `__tests__/` directories found in the repo are inside `node_modules/` (third-party packages only).
+
+---
 
 ## Coverage
 
-**Automated coverage:** 0% — no coverage tooling configured.
+**Enforced coverage:** None. No coverage thresholds, no coverage tooling.
 
-**TypeScript as a partial test layer:**
-The strict compiler config enforces compile-time correctness for:
-- Hook return type contracts: `TetherStateReturn`, `JointOpsReturn`, `ArmoryReturn` in their respective files
-- Discriminated union exhaustion in switch/case (via `noFallthroughCasesInSwitch`)
-- DB type shapes in `src/lib/supabase.ts`
-- `DailyPlanEvent.alternate` non-nullability enforced by type (field is `DailyPlanAlternate`, never `| null`)
+**Currently tested:** Nothing. Zero application code is covered by automated tests.
 
-**Manual UAT:**
-Phase-level acceptance testing is logged in `.planning/phases/01-pattern-observer-threejs/01-HUMAN-UAT.md`. Human-run checklists only, not automated.
+---
 
-## Test Coverage Gaps
+## Patterns
 
-**Pure Logic — highest priority, no mocks needed:**
+**No established patterns.** There are no mocking conventions, test data factories, or fixture strategies to document because no tests exist.
 
-| Item | File | Risk |
-|---|---|---|
-| `synthesizeDay` aggregation logic | `src/logic/synthesis/nightlySynth.ts` | High |
-| `inferDomain` name-matching heuristic | `src/logic/synthesis/nightlySynth.ts` | Medium |
-| `computeTopDomain` event counting | `src/logic/synthesis/nightlySynth.ts` | Medium |
-| `DOMAIN_ALTERNATES` invariant (always cross-domain) | `src/logic/synthesis/nightlySynth.ts` | Medium |
-| `toTetherState` mapper (pre-migration column defaults) | `src/hooks/useTetherState.ts` | Medium |
-| `generateRandomHandle` format | `src/hooks/useTetherState.ts` | Low |
-| `calculate1RM` Epley/Brzycki/Lander consensus | `src/native/screens/PushDayOnboarding.tsx` | Medium |
-| `brzycki()` edge case: `reps >= 37` guard returns 0 | `src/native/screens/PushDayOnboarding.tsx` | Medium |
+---
 
-**Hook Layer — requires Supabase mock:**
+## Running Tests
 
-| Item | File | Risk |
-|---|---|---|
-| Profile bootstrap path (no existing profile) | `src/hooks/useTetherState.ts` | High |
-| Crisis mode auto-patch write | `src/hooks/useTetherState.ts` | High |
-| Kill switch: clears state, fires signOut async | `src/hooks/useTetherState.ts` | Medium |
-| `bitchweights()` 6-week 1RM delta boundary | `src/hooks/useArmory.ts` | High |
-| `trickycardio()` 45-min window + 5-min threshold | `src/hooks/useArmory.ts` | High |
-| Ops deduplication (owned + member overlap) | `src/hooks/useJointOps.ts` | Medium |
-| Ops list prepend on `createOp` | `src/hooks/useJointOps.ts` | Low |
-| Member fallback to owned-only on membership fetch error | `src/hooks/useJointOps.ts` | Medium |
+No test commands are defined in `package.json`. The `scripts` block contains only:
 
-**Component Layer — requires React renderer:**
-
-| Item | File | Risk |
-|---|---|---|
-| `AUTH_TIMEOUT_MS` (3000ms) fires → offline state | `src/components/BunkerGate.tsx` | High |
-| Auth state change → online, userId set | `src/components/BunkerGate.tsx` | High |
-| SIGNED_OUT event → offline, userId cleared | `src/components/BunkerGate.tsx` | Medium |
-| Anonymous sign-in → `onEnter` called with userId | `src/components/BunkerGate.tsx` | High |
-| Anonymous → permanent upgrade via `updateUser` | `src/components/EntryGate.tsx` | High |
-
-**Security Paths — critical, untested:**
-
-| Item | File | Risk |
-|---|---|---|
-| `sync-workout` ownership guard (profileId check) | `supabase/functions/sync-workout/` | Critical |
-| `calculate-1rm` 401 gate for unauthenticated requests | `supabase/functions/calculate-1rm/` | High |
-
-## Recommended Testing Strategy (When Tests Are Added)
-
-**Framework choices:**
-- Unit + hook tests: **Vitest** — zero config overhead, already uses Vite. Add `vitest` to devDeps.
-- Hook rendering: `@testing-library/react` + Vitest
-- Native screen tests: `@testing-library/react-native` + Jest with `babel-preset-expo`
-- E2E: **Detox** — Expo-compatible; future consideration
-
-**Suggested config placement:**
-```
-vitest.config.ts     # src/ scope (web/shared logic)
-jest.config.cjs      # src/native/ scope (Expo/Metro)
+```bash
+npm run dev        # Vite dev server
+npm run build      # tsc -b && vite build
+npm run lint       # ESLint
+npm run preview    # Vite preview
 ```
 
-**Test file placement:**
-Co-locate with source — `src/logic/synthesis/nightlySynth.test.ts`, `src/hooks/useTetherState.test.ts`.
+There is no `test` or `test:watch` script.
 
-**Mocking strategy:**
-- Supabase: `vi.mock('../lib/supabase')` — return shaped `{ data, error }` objects
-- `agentLog`: `vi.mock('../lib/agentLog')` — suppress output in test runs
-- Three.js / R3F: mock `@react-three/fiber` `useFrame` for `patternStore` bridge tests
-- Auth: mock `supabase.auth.onAuthStateChange` and `supabase.auth.getSession`
+---
 
-**Priority order:**
-1. `src/logic/synthesis/nightlySynth.ts` — pure TS, zero dependencies to mock
-2. `src/hooks/useTetherState.ts` — `toTetherState` mapper (pure function extraction)
-3. `src/hooks/useArmory.ts` — threshold boundary conditions with mocked Supabase
-4. `src/components/BunkerGate.tsx` — timeout + auth state transitions (mock timers)
+## Gaps
 
-## Anti-Patterns to Avoid
+**Everything is untested.** The full application surface has zero automated coverage:
 
-- Do not type-check with bare `npx tsc --noEmit` — use `npx tsc --project tsconfig.app.json --noEmit` to bypass cached `.tsbuildinfo`
-- Do not import from `src/native/` in web/shared test files — excluded from `tsconfig.app.json`
-- Do not write optimistic-update tests — DB-first means state only changes after Supabase confirms (except the approved ops-list prepend in `useJointOps`)
-- Do not mock `useState` or `useEffect` internals — test observable behavior only
+| Area | Files | Risk |
+|---|---|---|
+| Auth flow (anon → permanent) | `src/components/EntryGate.tsx`, `src/lib/supabase.ts` | High — silent failures at auth boundary affect all users |
+| Profile state machine | `src/hooks/useTetherState.ts` | High — crisis_mode/onboarding_pending state machine has no regression tests |
+| Joint ops CRUD | `src/hooks/useJointOps.ts` | High — all Supabase mutations untested |
+| Armory gates (bitchweights, trickycardio) | `src/hooks/useArmory.ts` | High — gate logic is business-critical; wrong bpm math blocks users |
+| Synthesis logic | `src/logic/synthesis/nightlySynth.ts`, `src/logic/synthesis/DailyPlanSchema.ts` | High — pure TS, highly testable, completely uncovered |
+| Pattern observer priority logic | `src/hooks/usePatternObserver.ts` | Medium — 7-priority switch; priority ordering bugs would be invisible |
+| Zustand store | `src/stores/patternStore.ts` | Low — simple merge store, but `setTarget` partial-merge behavior is untested |
+| Native screens | `src/native/screens/*.tsx` | Medium — timer logic, interval progression, session persistence are untested |
+
+**Highest-priority testing candidates** (pure TS, no DOM/RN dependency):
+
+1. `src/logic/synthesis/nightlySynth.ts` — `synthesizeDay()` is pure async logic that can be tested with mocked Supabase responses. The `DailyPlanEvent.alternate` non-nullable invariant is especially important to guard.
+2. `src/hooks/useArmory.ts` — `bitchweights()` and `trickycardio()` contain arithmetic business logic (1RM delta %, cardio gate minutes) that is ideal for unit tests.
+3. `src/hooks/usePatternObserver.ts` — priority-ordered ShimmerTarget selection logic can be validated with simple input→output assertions without React.
+
+---
+
+## Recommended Setup (when tests are introduced)
+
+**Suggested runner:** Vitest (aligns with Vite build chain already in use).
+
+```bash
+npm install -D vitest @vitest/ui
+```
+
+**Add to `package.json` scripts:**
+```bash
+"test": "vitest",
+"test:ui": "vitest --ui",
+"test:coverage": "vitest --coverage"
+```
+
+**Suggested file placement:** Co-locate with source using `.test.ts` suffix:
+- `src/logic/synthesis/nightlySynth.test.ts`
+- `src/hooks/useArmory.test.ts`
+
+**Supabase mocking:** Use `vi.mock('../../lib/supabase')` to stub the Supabase client. The client is a named export from `src/lib/supabase.ts` — straightforward to intercept.
+
+**Hook testing:** Use `@testing-library/react` with `renderHook` for hooks that depend on React lifecycle. Pure-logic functions extracted from hooks (like `toTetherState()` in `useTetherState.ts`) can be imported and tested directly without React.
 
 ---
 

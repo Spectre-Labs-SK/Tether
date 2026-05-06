@@ -1,112 +1,107 @@
 # External Integrations
 
-**Analysis Date:** 2026-05-05
+**Last mapped:** 2026-05-05
 
-## APIs & External Services
+## Databases
 
-**Backend-as-a-Service:**
-- Supabase — auth, PostgreSQL database, Edge Functions, Row Level Security
-  - SDK/Client: `@supabase/supabase-js` ^2.104.1
-  - Client initialized: `src/lib/supabase.ts`
-  - Auth URL env var: `EXPO_PUBLIC_SUPABASE_URL`
-  - Anon key env var: `EXPO_PUBLIC_SUPABASE_ANON_KEY`
+**Supabase (PostgreSQL)**
+- Provider: Supabase hosted Postgres
+- Client: `@supabase/supabase-js` ^2.104.1
+- Client file: `src/lib/supabase.ts` — single shared client exported as `supabase`
+- Connection: `EXPO_PUBLIC_SUPABASE_URL` env var
+- Auth key: `EXPO_PUBLIC_SUPABASE_ANON_KEY` env var
+- Row-Level Security: enabled on all tables; users access only their own rows via `auth.uid() = profile_id`
+- Migrations: `supabase/migrations/` (6 migrations applied in order)
 
-## Data Storage
+**Schema (migration history):**
 
-**Databases:**
-- Supabase (PostgreSQL)
-  - Connection: `EXPO_PUBLIC_SUPABASE_URL` + `EXPO_PUBLIC_SUPABASE_ANON_KEY`
-  - Client: `@supabase/supabase-js` (no separate ORM; raw Supabase query builder)
-  - Migrations: `supabase/migrations/` (6 migrations; up to `06_tether_state_and_hub_sessions.sql`)
+| Migration | Tables / Changes |
+|-----------|-----------------|
+| `01_initial_schema.sql` | `profiles`, `life_sectors`, `update_updated_at()` trigger, RLS |
+| `02_fitness_schema.sql` | Fitness/workout tables (exercises, workouts, workout_sets, one_rm_history) |
+| `03_joint_ops_schema.sql` | `joint_ops`, `op_members`, `op_checkpoints` |
+| `04_hr_clash_schema.sql` | `hr_readings`, `op_hr_sync`, `clash_state` column on joint_ops |
+| `05_identity_upgrade.sql` | `is_registered` column on profiles (anon→permanent upgrade tracking) |
+| `06_tether_state_and_hub_sessions.sql` | `is_nightmare_active`, `theme_state` on profiles; `hub_sessions` table |
 
-**Tables (from migrations + `src/lib/supabase.ts` type registry):**
-- `profiles` — user identity; `id`, `random_handle`, `is_crisis_mode`, `onboarding_pending`, `is_registered`, `is_nightmare_active`, `theme_state` (MILITARY/ETHER)
-- `life_sectors` — per-profile sector scores (finance, health, work, groceries)
-- `joint_ops` — collaborative mission layer; `shimmer_mode`, `status`, `clash_state`
-- `op_members` — membership roles per joint op (commander/operative/observer)
-- `op_checkpoints` — task items within a joint op; priority 1–4
-- `hr_readings` — per-profile heart rate log with context tag
-- `op_hr_sync` — shared operative HR snapshots within a joint op
-- `hub_sessions` — Hub workout sessions; `up_time_seconds`, `postural_resets` (migration 06)
+**Core DB types** (defined in `src/lib/supabase.ts`):
+- `Profile` — user identity, crisis mode, onboarding state, theme
+- `LifeSectors` — finance/health/work/groceries tarnish levels
+- `JointOp` — collaborative mission (codename, shimmer_mode, status, clash_state)
+- `OpMember` — op membership with role (commander/operative/observer)
+- `OpCheckpoint` — op tasks with priority 1–4 and status
+- `HRReading` — per-profile heart rate log (bpm, context)
+- `OpHRSync` — shared HR snapshots within a joint op
 
-**Row Level Security:** Enabled on all tables. Policy pattern: `profile_id = auth.uid()` owner access.
+## Auth
 
-**File Storage:**
-- Not detected — no Supabase storage bucket references found
+**Supabase Auth**
+- Provider: Supabase built-in auth
+- Client: `supabase.auth.*` methods via `src/lib/supabase.ts`
+- Anonymous sessions: Created at app entry — `supabase.auth.signInAnonymously()` (invoked in `src/components/EntryGate.tsx` or `src/components/BunkerGate.tsx`)
+- Anonymous flag: Read via `session.user as { is_anonymous?: boolean }` — property exists in JWT but absent from SDK types
+- Upgrade path: `upgradeAnonymousUser(email, password)` in `src/lib/supabase.ts` — calls `supabase.auth.updateUser({ email, password })` to preserve UUID and all linked data. Never use signOut+signIn.
+- Returning user sign-in: `signInWithEmailPassword(email, password)` in `src/lib/supabase.ts`
+- Kill switch: `triggerKillSwitch` — fire-and-forget, clears local state immediately then signs out async (Ethics Charter requirement — do not await)
+- `userId` threading: `EntryGate.onEnter(mode, userId)` → `App` state → `WarRoom` prop → `useTetherState(userId)`
 
-**Caching:**
-- None
+## APIs & Services
 
-## Authentication & Identity
+**Supabase Edge Functions (Deno runtime)**
 
-**Auth Provider:** Supabase Anonymous Auth
-- Flow: Boot → check session → if none, `signInAnonymously()` → SIGNED_IN event → userId resolved
-- Implemented in: `src/components/EntryGate.tsx` (auth state listener), `src/components/BunkerGate.tsx`
-- `is_anonymous` detection: cast `session.user as { is_anonymous?: boolean }` — property exists in Supabase JWT but not in SDK types
-- Anonymous → permanent upgrade: `supabase.auth.updateUser({ email, password })` (preserves UUID; do not use signOut+signIn)
-- Kill switch: `supabase.auth.signOut()` — fire-and-forget via `triggerKillSwitch` in `useTetherState`; Ethics Charter requirement
+| Function | Endpoint | Purpose |
+|----------|----------|---------|
+| `calculate-1rm` | `POST /functions/v1/calculate-1rm` | Computes 1-rep max from weight+reps using Epley/Brzycki/Lander consensus. Body: `{ weightKg, reps }`. Returns: `{ epley, brzycki, lander, consensus, method }`. Source: `supabase/functions/calculate-1rm/index.ts` |
+| `sync-workout` | `POST /functions/v1/sync-workout` | After workout completion: calculates per-exercise 1RM, upserts `one_rm_history` only when session best exceeds all-time PR. Uses service role key (bypasses RLS). Body: `{ workoutId, profileId }`. Returns: `{ processed, newPRs, skipped }`. Source: `supabase/functions/sync-workout/index.ts` |
 
-**Auth helper functions in `src/lib/supabase.ts`:**
-- `upgradeAnonymousUser(email, password)` — anonymous → permanent upgrade
-- `signInWithEmailPassword(email, password)` — returning user sign-in on new device
+Both functions:
+- Use Deno std `serve` from `https://deno.land/std@0.208.0/http/server.ts`
+- Require `Authorization: Bearer <token>` header
+- Return JSON with CORS headers (`Access-Control-Allow-Origin: *`)
+- Handle `OPTIONS` preflight
 
-## Supabase Edge Functions
+**EAS (Expo Application Services)**
+- Provider: Expo / EAS Build
+- Project ID: `79507357-e5e4-4f48-97ea-ba01a6f4ac65` (in `app.json`)
+- Purpose: Cloud Android/iOS build pipeline
+- No SDK import — configured via `app.json` `extra.eas` and EAS CLI
 
-Two deployed functions in `supabase/functions/`:
+## Environment Variables
 
-| Function | Path | Purpose | Auth |
-|---|---|---|---|
-| calculate-1rm | `supabase/functions/calculate-1rm/` | Server-side 1RM calculation | Bearer JWT required |
-| sync-workout | `supabase/functions/sync-workout/` | Workout session persistence + PR detection | Bearer JWT; service-role key for DB upsert |
+| Variable | File | Used By | Purpose |
+|----------|------|---------|---------|
+| `VITE_SUPABASE_URL` | `.env.local` | Vite (web) | Supabase project URL — mapped to `EXPO_PUBLIC_SUPABASE_URL` via `vite.config.ts` define block |
+| `VITE_SUPABASE_ANON_KEY` | `.env.local` | Vite (web) | Supabase anon key — mapped to `EXPO_PUBLIC_SUPABASE_ANON_KEY` via `vite.config.ts` define block |
+| `EXPO_PUBLIC_SUPABASE_URL` | `.env.local` | Metro/Expo (native) | Supabase project URL — resolved natively by Metro |
+| `EXPO_PUBLIC_SUPABASE_ANON_KEY` | `.env.local` | Metro/Expo (native) | Supabase anon key — resolved natively by Metro |
+| `SUPABASE_URL` | Supabase edge function env | Edge functions | Injected automatically by Supabase runtime |
+| `SUPABASE_SERVICE_ROLE_KEY` | Supabase edge function env | `sync-workout` only | Service role key for RLS bypass during 1RM aggregation |
 
-Auth pattern: `extractBearerToken(req)` checks `Authorization: Bearer <jwt>` header → 401 if absent. Anonymous session JWT is sufficient.
+**Fallback behavior:** `src/lib/supabase.ts` falls back to placeholder strings (`https://placeholder.supabase.co`, `placeholder-anon-key`) when env vars are absent, so `createClient` does not throw. Auth calls will fail gracefully via EntryGate error path.
+
+**Note on dual-bundler env pattern:** Both bundlers resolve `EXPO_PUBLIC_SUPABASE_*` names. Vite injects them via the `define` block in `vite.config.ts`. Metro resolves `EXPO_PUBLIC_*` natively. `src/lib/supabase.ts` uses one env var pattern for both.
+
+## Webhooks & Realtime
+
+**Supabase Realtime**
+- Available via `@supabase/supabase-js` client (realtime channels built into SDK)
+- Not yet wired to any active channel subscriptions in current source — infrastructure is present via the client
+
+**Outgoing webhooks:** None configured.
+
+**Incoming webhooks:** None configured. Edge functions are invoked client-side via fetch (not via database triggers or webhooks).
+
+## File Storage
+
+**Local filesystem only** — no cloud file storage integration (no S3, no Supabase Storage buckets in use).
 
 ## Monitoring & Observability
 
-**Error Tracking:** None detected
+**Error tracking:** None (no Sentry, DataDog, etc.)
 
-**Logs:**
-- `agentLog.architect()` — operational/debug logs (project convention)
-- `agentLog.valkyrie()` — persona/narrative logs (project convention)
-- No bare `console.log` (enforced by convention)
+**Logging:** Custom `agentLog` utility — `agentLog.architect()` for operational/debug logs, `agentLog.valkyrie()` for persona/narrative logs. No bare `console.log`.
 
-## CI/CD & Deployment
-
-**Hosting:** Expo Application Services (EAS)
-- EAS project ID: `79507357-e5e4-4f48-97ea-ba01a6f4ac65`
-- EAS CLI version requirement: >= 18.10.0 (`eas.json` `cli.version`)
-- appVersionSource: `remote` (version managed by EAS, not `app.json`)
-
-**Build profiles (`eas.json`):**
-- `development` — APK, internal distribution, dev client enabled
-- `preview` — APK, internal distribution; inlines `EXPO_PUBLIC_SUPABASE_URL` + `EXPO_PUBLIC_SUPABASE_ANON_KEY` pointing to local Supabase at `http://10.0.0.24:54321`
-- `production` — store distribution; `autoIncrement: true`; no inlined env vars (must be set via EAS secrets or dashboard)
-
-**CI Pipeline:** No `.github/workflows/` CI configuration detected
-
-## Environment Configuration
-
-**Required environment variables:**
-
-| Variable | Where used | Source |
-|---|---|---|
-| `VITE_SUPABASE_URL` | Web (Vite) — re-mapped to `EXPO_PUBLIC_SUPABASE_URL` in `vite.config.ts` | `.env.local` |
-| `VITE_SUPABASE_ANON_KEY` | Web (Vite) — re-mapped to `EXPO_PUBLIC_SUPABASE_ANON_KEY` in `vite.config.ts` | `.env.local` |
-| `EXPO_PUBLIC_SUPABASE_URL` | Native (Metro) — read directly by `src/lib/supabase.ts` | `.env.local` / EAS env |
-| `EXPO_PUBLIC_SUPABASE_ANON_KEY` | Native (Metro) — read directly by `src/lib/supabase.ts` | `.env.local` / EAS env |
-
-**Secrets location:**
-- Development: `.env.local` (gitignored)
-- EAS preview: inlined in `eas.json` `build.preview.env` (local Supabase instance)
-- EAS production: must be configured via EAS Secrets dashboard (not in repo)
-
-**Fallback behavior:** `src/lib/supabase.ts` substitutes placeholder strings when env vars are absent, so `createClient` does not throw at module init. Auth calls fail gracefully; `EntryGate` handles this via its error path.
-
-## Webhooks & Callbacks
-
-**Incoming:** None detected outside Supabase auth state change listener
-
-**Outgoing:** None detected
+**CI/CD:** No CI pipeline configured (no `.github/workflows/` active — directory exists but empty per anatomy.md).
 
 ---
 
