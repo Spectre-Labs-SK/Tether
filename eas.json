@@ -15,10 +15,6 @@
       "distribution": "internal",
       "android": {
         "buildType": "apk"
-      },
-      "env": {
-        "EXPO_PUBLIC_SUPABASE_URL": "http://10.0.0.24:54321",
-        "EXPO_PUBLIC_SUPABASE_ANON_KEY": "sb_secret_iCgStwokSLCGB6u374bEPw_2YzatOTg"
       }
     },
     "production": {
