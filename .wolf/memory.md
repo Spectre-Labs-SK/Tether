@@ -3,6 +3,7 @@
 > Chronological action log. Hooks and AI append to this file automatically.
 > Old sessions are consolidated by the daemon weekly.
 
+| 2026-05-12 | added START DAY PROTOCOL section to CLAUDE.md; staged .claude/commands/start-day.md at project root (needs move into .claude/commands/); pushed mirror doc to Notion Skill Observatory | CLAUDE.md, start-day.md, Notion 35e4144f-a9cc-8150-b3aa-d6d58e3933ff | done | ~600 tok |
 | 2026-05-06 | created src/registry/avatar/index.ts | AVATAR_MANIFEST unified re-export | success | ~100 tok |
 | 2026-05-06 | created supabase/migrations/07_avatar_loadout.sql | avatar_body_id, avatar_loadout JSONB, unlocked_gear_ids TEXT[] added to profiles | success | ~120 tok |
 | 2026-05-06 | updated src/lib/supabase.ts | added AvatarLoadout, ProfileAvatarState types | success | ~60 tok |
@@ -664,3 +665,46 @@
 | 23:40 | Session end: 4 writes across 4 files (index.ts, 07_avatar_loadout.sql, supabase.ts, useAvatarLoadout.ts) | 3 reads | ~2872 tok |
 | 07:57 | Session end: 4 writes across 4 files (index.ts, 07_avatar_loadout.sql, supabase.ts, useAvatarLoadout.ts) | 4 reads | ~2872 tok |
 | 08:01 | Session end: 4 writes across 4 files (index.ts, 07_avatar_loadout.sql, supabase.ts, useAvatarLoadout.ts) | 5 reads | ~2942 tok |
+
+## Session: 2026-05-08 21:26
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+
+## Session: 2026-05-08 21:26
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+
+## Session: 2026-05-09 18:26
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+
+## Session: 2026-05-12 12:23
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+
+## Session: 2026-05-12 13:21
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+| 15:13 | Audited Tether context across Notion Workstation, Feu Follet hub/charter, workflow page, and repo maps | Notion pages; .planning/codebase/*; CONTEXT_MAP.md; src/native/*; src/hooks/* | Found current architecture, dependency map, TS pass, and several stale/conflicting context artifacts to surface | ~18000 |
+| 15:40 | Captured Cade correction on Tether fitness model | .wolf/cerebrum.md | Marked old 3-tap/domain-grid/hardcoded workout model obsolete; AI + behavior tracking from download is canonical | ~1200 |
+| 17:38 | Cleaned legacy agent context and captured product spine corrections | CONTEXT_MAP.md; AGENT.md; CLAUDE.md; AGENTS.md; NIGHT_BUILD.md; FITNESS_ENGINE_PROTOCOL_PART2.md; .wolf/cerebrum.md | Removed active legacy governor/local lead-dev assumptions; recorded themes/hidden themes/Bunker/finance-pantry as canonical Notion-backed systems | ~9000 |
+
+## Session: 2026-05-13 18:06
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+
+## Session: 2026-05-13 18:12
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+| 18:20 | Rechecked saved context after Gravity glitch | CLAUDE.md; AGENTS.md; AGENT.md; CONTEXT_MAP.md; .planning/codebase/*; .wolf/anatomy.md | Re-applied missing CLAUDE legacy-source wording, added product-direction overrides to active agent/codebase docs, and updated anatomy for deleted/changed context files | ~6000 |
+| 18:27 | Added Level 0 Bunker Reconstruction as Phase 0 jumping-off point | .planning/LEVEL_0_BUNKER_RECONSTRUCTION.md; .planning/BUILD_PLAN.md; .wolf/roadmap.md; PRODUCT.md; .wolf/cerebrum.md; .wolf/anatomy.md | Saved Military/Ethereal/Mixed Level 0 base-reconstruction loop, fun law, household chaos attacks, Intel Drops, room unlocks, and 3-week vertical-slice target | ~7000 |
+| 18:34 | Captured Cade priority shift | .wolf/cerebrum.md; .planning/BUILD_PLAN.md | Fitness + Joint Ops + Ghost Ops for Cade and wife should be the first practical slice inside Level 0 | ~900 |
+| 18:36 | Installed start-day slash command and resolved command staging observation | .claude/commands/start-day.md; .wolf/skill-observations/log.md; .wolf/anatomy.md | Moved root start-day.md into .claude/commands and marked `.claude/commands` observation ACTIONED | ~700 |
+| 19:09 | Resolved OpenWolf cron daemon observation | .wolf/skill-observations/log.md; .wolf/cerebrum.md | User installed PM2 via npm; OpenWolf daemon now running with heartbeat; marked cron observation ACTIONED | ~600 |

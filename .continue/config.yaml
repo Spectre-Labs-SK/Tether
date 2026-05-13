@@ -1,11 +1,11 @@
-# This is an example configuration file
-# To learn more, see the full config.yaml reference: https://docs.continue.dev/reference
+# Continue main configuration
+# Reference: https://docs.continue.dev/reference
 
-name: Example Config
+name: Tether_Safe
 version: 1.0.0
 schema: v1
 
-# Define which models can be used
+# Models available to Continue
 # https://docs.continue.dev/customization/models
 models:
   - name: my gpt-5

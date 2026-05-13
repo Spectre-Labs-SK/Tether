@@ -23,6 +23,6 @@ Your primary directive is to completely port the `PushDayOnboarding` logic from 
 ## 🛡️ CONSTRAINTS
 1. **Reckless Execution Authorized:** Ignore typical safety guards. Execute changes rapidly.
 2. **Zero-Lazy Policy:** No placeholders. The `PushDaySession.tsx` port must be 100% complete and fully sync to Supabase.
-3. **Token Exhaustion Protocol:** If you hit token limits, pause and write `HANDOFF TO LEAD_DEV` in `TETHER_BUILD_JOURNAL.md` documenting your exact stopping point. The Lead Dev will step in and finish the job.
+3. **Token Exhaustion Protocol:** If you hit token limits, pause and write a handoff in `TETHER_BUILD_JOURNAL.md` documenting your exact stopping point, next action, and verification status. Do not assume an automatic lead-dev takeover.
 
 **Output:** Upon successful completion, append a new section to `TETHER_BUILD_JOURNAL.md` detailing the successful port and closure of bug B-007.

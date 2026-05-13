@@ -6,11 +6,13 @@ product
 
 ## Users
 
-Active individuals using the app during or immediately before physical training sessions. Context is high-stress, low-attention — they have one hand free, limited time, and zero patience for setup friction. Primary task on any given screen is to start a session or log a set. Crisis/SOS users are in genuine distress and need zero cognitive load.
+Overloaded households, especially parents and partners trying to keep life moving while kids, money, food, sleep, work, and emotional load keep attacking the plan. Context is high-stress, low-attention, often one-handed, often funny only in hindsight. The app must reduce cognitive load without pretending the chaos is inspirational.
 
 ## Product Purpose
 
-Tether is a React Native activity tracker for Iron (strength), Road (running/C25K), Mat (yoga/mobility), and Hub (standing desk) domains. The product exists to eliminate session-start friction — 3 taps to active from a cold launch. Built by Spectre Labs. Secondary layer: real-time biometric feedback via a Three.js signal-driven visual (ShimmerCore) that responds to app state. Success looks like a session started within 10 seconds of opening the app.
+Tether is an AI-first household executive function system. It turns real-life chaos into a playable base-reconstruction loop: the family is rebuilding and defending a bunker while tasks, kids, bills, groceries, and sleep debt attack it.
+
+Behavior tracking and AI integration start from download. The app asks at most three high-yield questions, infers cautiously, drafts/adapts plans, and treats skip, substitute, shuffle, defer, and completion as behavior signals. Fitness is one generated-plan module, not a hardcoded workout selector.
 
 ## Brand Personality
 
@@ -22,11 +24,12 @@ No SaaS patterns. No rounded cards (no `border-radius: 8px` roundness or card sh
 
 ## Design Principles
 
-1. **Terminal-first**: Every screen reads like a command-line output. Monospace type, uppercase labels, sparse layout.
-2. **Two-mode discipline**: All visual decisions trace back to MILITARY (slate #1e293b) or ETHER (purple #6d28d9). Never introduce a third mode or off-brand accent without intent.
-3. **Crisis path is sacred**: The SOS/emergency flow gets zero friction. No confirmation dialogs, no loading states, no error messages that block. The crisis button works even when everything else breaks.
-4. **Earn every pixel**: If an element doesn't change behavior or communicate status, it doesn't exist. No decorative dividers, placeholder art, or filler copy.
-5. **The screen is a briefing**: Text is uppercase, tracked out, minimal. No sentence-case body copy, no friendly headlines. Communicate like a mission debrief, not a welcome message.
+1. **Fun is required**: The base can be under attack. Kids, toddlers, teenagers, bills, groceries, and sleep debt can become lighthearted pressure. Do not sand the life out of the idea for monetization.
+2. **The world reacts**: Real actions physically change the bunker. Drink water clears debris. Work brightens the terminal. Sleep repairs the cot.
+3. **Silent degradation**: Low performance makes the base dimmer, grittier, and simpler. No red shame state, no scolding, no fake crisis.
+4. **Theme discipline**: Level 0 supports Military, Ethereal, and Mixed/Both. Themes are dopamine architecture, not cosmetic skins.
+5. **Crisis path is sacred**: SOS gets zero friction. No blocking loading states or confirmation loops.
+6. **Earn every pixel**: If an element doesn't change behavior, reveal story, or communicate state, it doesn't exist.
 
 ## Accessibility & Inclusion
 

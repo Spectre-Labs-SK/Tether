@@ -10,6 +10,49 @@
 
 ## Key Learnings
 
+## Core Product Laws (Feu Follet Charter)
+
+- Tether's goal is to make itself unnecessary
+- No hardcoded workouts. Ever.
+- Sub button on every step. No exceptions.
+- Wipe data button is real. Test it.
+- Kill switch hardcoded: ads run or anything sold = everything wipes
+- Never rebuild PushDayOnboarding
+- 3 questions max for onboarding
+- Spec in Notion before writing code
+
+## Intelligence Layer — What This Actually Is
+
+The product is behavioral pattern detection before the user is aware.
+Screenshot ingestion → pattern detection → pendulum warning before the crash.
+The SOS/modules/themes are the delivery surface. The intelligence layer is the product.
+
+## Planned Tables (not yet migrated — Migration 07+)
+
+- noseyquestions_log
+- accounts (screenshot-inferred, not bank-connected)
+- transactions
+- envelopes
+- pantry_items
+- behavioral_logs
+- pendulum_events
+
+## Level 0 / Phase 0 — Bunker Reconstruction
+
+- Canonical jumping-off point is saved in `.planning/LEVEL_0_BUNKER_RECONSTRUCTION.md` and `.planning/BUILD_PLAN.md`.
+- The first playable loop is not cozy productivity and not avatar armor drops: a destroyed base is rebuilt by real tasks while household chaos attacks it.
+- Fun is a product requirement. Parenting should be emotionally honest and lighthearted where possible: babies, toddlers, teenagers, bills, groceries, missed sleep, and overwhelm can attack the base.
+- Level 0 supports Military, Ethereal, and Mixed/Both modes.
+- Use silent degradation, visible locked room doors, earned Intel Drops, HUD evolution, and household base-attack events as the reward loop.
+- Three-week target: prove one fun vertical slice before scaling modules.
+- **Personal priority (Cade + wife):** Fitness, Joint Ops, and Ghost Ops are the first practical use case because Cade and his wife need to get back to it together. Level 0 should support that need, not postpone it behind cooking/finance.
+
+## OpenWolf Cron Setup Note
+
+- On this Windows machine, `openwolf --version` works (`1.0.4`) and `openwolf status` reports core files/hooks healthy, but `openwolf daemon start` fails because `pm2` is missing.
+- OpenWolf suggests `pnpm add -g pm2`, but `pnpm` is not installed here. Use `npm install -g pm2` instead, then rerun `openwolf daemon start`.
+- **Resolved 2026-05-13:** `npm install -g pm2` installed PM2 7.0.1. `openwolf daemon start` launched `openwolf-Tether_Safe`; `openwolf status` reports daemon running and `.wolf/cron-state.json` has `engine_status: "running"` with a recent heartbeat.
+
 - **FitnessOnboardingGrid web port:** Cannot import from `src/native/screens/` in the Vite build (excluded via tsconfig). Domain/Activity data must be replicated locally in web components.
 - **AI gate order (Iron domain):** Always `trickycardio()` first (hard block — no cardio = no access), then `bitchweights()` (soft block — AMRAP mode, user can proceed after acknowledgement).
 - **Onboarding overlay z-stack:** Identity upgrade modal is `z-20`; onboarding overlay must be `z-30` to sit above it. Canvas is `z-0`, UI overlay is `z-10`.

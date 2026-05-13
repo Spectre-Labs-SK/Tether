@@ -1,5 +1,7 @@
 # Technical Concerns
 
+> **2026-05-12 correction:** Highest product risk is not just technical debt in the existing hardcoded workout screens; it is that those screens represent an obsolete product model. Prioritize replacing the hardcoded domain/workout foundation with behavior tracking, 3-question AI plan generation, adaptive controls, and module-wide executive-function architecture.
+
 **Last mapped:** 2026-05-05
 
 ---

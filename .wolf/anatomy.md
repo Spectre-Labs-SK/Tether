@@ -24,11 +24,13 @@
 - `.env.local` — Supabase env vars (VITE_SUPABASE_URL, VITE_SUPABASE_ANON_KEY); placeholder values; not committed (~50 tok)
 - `.gitignore` — Git ignore rules (~116 tok)
 - `.mcp.json` (~70 tok)
+- `AGENT.md` — Current Tether agent protocol: Cade governor, Notion product memory, repo implementation, compiler/tests auditor, Codex/Claude execution partners; legacy governor/local fallback removed (~260 tok)
+- `AGENTS.md` — Codex repository guidance with current AI-first product direction override, OpenWolf/task-observer rules, build commands, architecture notes, TypeScript conventions, and session protocols (~3300 tok)
 - `app.json` (~85 tok)
 - `babel.config.js` (~31 tok)
 - `CLAUDE.md` — CLAUDE.md (~2925 tok)
+- `CONTEXT_MAP.md` — Current product spine and source-of-truth map: behavior tracking from download, AI-first planning, adaptive controls, themes/hidden themes/Bunker, household executive function, and legacy implementation hubs (~420 tok)
 - `DEPENDENCIES.md` — Pillar 3 supply chain; all npm deps with versions + env var requirements (~509 tok)
-- `GEMINI.md` — PERSONA: Tether Architect (~1234 tok)
 - `index.js` (~37 tok)
 - `LEARNING_VELOCITY.log` — Timestamped milestone log: ARCH/PATTERN/SCHEMA/MODULE/FIX entries tracking significant capability additions and project learnings (~588 tok)
 - `metro.config.cjs` — CJS format required because package.json has "type":"module"; uses expo/metro-config getDefaultConfig; CNG-aligned (~50 tok)
@@ -43,6 +45,10 @@
 
 
 ## .claude/rules/
+
+## .claude/commands/
+
+- `start-day.md` — Slash command for START DAY PROTOCOL; reads CLAUDE.md, orients through OpenWolf/git state, surfaces stale machinery, emits Boot Report, and logs boot (~380 tok)
 
 
 ## .claude/skills/dev-profile-evolution/
@@ -64,6 +70,8 @@
 
 ## .planning/
 
+- `BUILD_PLAN.md` — Current phased build plan; Phase 0 is Level 0 Bunker Reconstruction vertical slice with Military/Ethereal/Mixed, task-reactive base, Intel Drop, chaos event, and behavior logging (~350 tok)
+- `LEVEL_0_BUNKER_RECONSTRUCTION.md` — Canonical Level 0 product/design spec: destroyed base rebuilt by real tasks, household chaos attacks, room unlocks, Intel Drops, HUD evolution, skeptical notes, and Phase 0 build target (~800 tok)
 - `ROADMAP.md` — ROADMAP — Tether (~245 tok)
 - `STATE.md` — STATE.md — Tether (~568 tok)
 

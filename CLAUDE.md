@@ -2,6 +2,19 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+## Current Product Direction Override (2026-05-12)
+
+Tether is an AI-first household executive function system. Fitness is not a hardcoded Iron/Road/Mat/Hub selector, and no new hardcoded workout plans should be built as the product foundation.
+
+- Behavior tracking starts from first download.
+- AI integration starts from first download.
+- The app should ask at most 3 high-yield questions, infer cautiously, and draft/adapt plans.
+- Skip, substitute, shuffle, defer, "Can I afford this?", and user corrections are first-class behavior signals.
+- Themes, hidden themes, the Bunker, groceries, finances, envelopes, debt snowball, pantry velocity, and automation are core systems.
+- Tether gives financial instructions; the user acts. Do not build bank-account access or automated money movement unless Cade explicitly changes that law.
+
+Older docs and screens may still describe hardcoded domains/workouts. Treat those as legacy implementation artifacts, not the current product direction.
+
 ## Developer Profile (generated 2026-05-05)
 
 | Dimension            | Rating              |
@@ -182,7 +195,7 @@ Trigger phrase: "End Day"
 When Cade says "End Day", execute the following steps in order. Do not ask for confirmation — just run it.
 Step 1 — Collect observations
 Read .wolf/skill-observations/log.md. Extract all OPEN observations from today's date.
-Also read the ## Pending Skill Observations section of CLAUD.md if present (these are Gemini's observations).
+Also read the ## Pending Skill Observations section of CLAUD.md if present (legacy external-agent observations).
 Step 2 — Assess skill gaps
 Review all OPEN observations across all dates. Group by target skill. Flag any skill that has 3+ open observations as a priority update candidate.
 Step 3 — Push to Notion Skill Observatory
@@ -202,7 +215,7 @@ Update the Skill Health table on the Skill Observatory page to reflect current o
 Step 4 — Summarize for Cade
 In chat, give a 3-line summary:
 
-How many observations logged today (Claude + Gemini)
+How many observations logged today (Claude/Codex + legacy external sources)
 Any skills flagged as priority updates
 Total pending observations across all time
 
@@ -241,3 +254,64 @@ For major rewrites, draft the change and confirm with Cade before applying
 Mark applied observations as ACTIONED in the log
 Update the Skill Health table in Notion
 Clear the #
+
+## START DAY PROTOCOL
+Trigger phrases: "Start Day", "Boot up"
+Slash command: /start-day
+
+When Cade says any trigger phrase, execute these steps in order. Do not ask
+for confirmation — just run it. This is the mirror of END DAY PROTOCOL.
+
+Step 1 — Orient (reads only, no writes)
+  a. Read .wolf/cerebrum.md → note Do-Not-Repeat entries and recent
+     User Preferences. Surface mtime; flag if >3 days stale.
+  b. Read tail of .wolf/memory.md (last 20 lines) → reconstruct what
+     last session ended on.
+  c. Read .wolf/anatomy.md header (Files: N tracked, Last scanned).
+     Flag if last scan >24h ago.
+  d. Run `git status -sb && git log -1 --oneline` → flag uncommitted
+     work or branch divergence.
+
+Step 2 — Surface stale machinery
+  a. Read .wolf/cron-state.json. If engine_status is "initialized"
+     or last_heartbeat is null/older than 24h, flag the cron is
+     not running.
+  b. Read .wolf/skill-observations/last-review-date.txt. If today
+     - that date >= 7, trigger the weekly review BEFORE proceeding
+     with the user's task.
+  c. Count OPEN observations across .wolf/skill-observations/log.md.
+     If >= 3 for any single skill, flag for "Apply skill updates".
+  d. Read .wolf/buglog.json. If the user's stated task touches a
+     file that appears in buglog within last 30 days, surface the
+     prior fix.
+
+Step 3 — Confirm focus
+  Output a single block in this format:
+
+    ## Boot Report — [YYYY-MM-DD HH:MM]
+
+    Branch: <branch> (<n> uncommitted)
+    Last commit: <oneline>
+    Last session ended: <one-line summary from memory.md tail>
+
+    Stale checks:
+    - cerebrum: <fresh|N days old>
+    - anatomy:  <fresh|N hours since scan>
+    - cron:     <running|stopped — engine_status>
+    - skill review: <due in N days|OVERDUE>
+
+    Flags:
+    - <any priority items from Step 2>
+
+    Build pipeline for today: <ask if ambiguous: web | native | both>
+
+Step 4 — Hand off
+  Wait for the user's actual task. Do NOT auto-invoke any GSD command.
+  If the user's task fits a known GSD entry point (resume work, next
+  step, health check), suggest the slash command but let the user
+  invoke it.
+
+Step 5 — Log the boot
+  Append one line to .wolf/memory.md:
+  | HH:MM | Boot Report | — | <branch>/<flags count> | ~50 tok |
+

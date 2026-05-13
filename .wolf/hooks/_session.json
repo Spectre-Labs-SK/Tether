@@ -1,68 +1,12 @@
 {
-  "session_id": "session-2026-05-06-2338",
-  "started": "2026-05-06T05:38:24.835Z",
-  "files_read": {
-    "c:/Users/Windows 11 Pro/Desktop/Spectre_Labs/Feu_Follet/Tether_Safe/src/lib/supabase.ts": {
-      "count": 1,
-      "tokens": 865,
-      "first_read": "2026-05-06T05:38:31.680Z"
-    },
-    "c:/Users/Windows 11 Pro/Desktop/Spectre_Labs/Feu_Follet/Tether_Safe/.wolf/anatomy.md": {
-      "count": 2,
-      "tokens": 0,
-      "first_read": "2026-05-06T05:39:38.211Z"
-    },
-    "c:/Users/Windows 11 Pro/Desktop/Spectre_Labs/Feu_Follet/Tether_Safe/.wolf/memory.md": {
-      "count": 1,
-      "tokens": 0,
-      "first_read": "2026-05-06T05:39:48.359Z"
-    },
-    "c:/Users/Windows 11 Pro/Desktop/Spectre_Labs/Feu_Follet/Tether_Safe/.wolf/skill-observations/log.md": {
-      "count": 1,
-      "tokens": 0,
-      "first_read": "2026-05-06T13:57:39.719Z"
-    },
-    "c:/Users/Windows 11 Pro/Desktop/Spectre_Labs/Feu_Follet/Tether_Safe/.mcp.json": {
-      "count": 1,
-      "tokens": 70,
-      "first_read": "2026-05-06T14:01:35.598Z"
-    }
-  },
-  "files_written": [
-    {
-      "file": "c:/Users/Windows 11 Pro/Desktop/Spectre_Labs/Feu_Follet/Tether_Safe/src/registry/avatar/index.ts",
-      "action": "create",
-      "tokens": 216,
-      "at": "2026-05-06T05:38:42.997Z"
-    },
-    {
-      "file": "c:/Users/Windows 11 Pro/Desktop/Spectre_Labs/Feu_Follet/Tether_Safe/supabase/migrations/07_avatar_loadout.sql",
-      "action": "create",
-      "tokens": 370,
-      "at": "2026-05-06T05:38:53.082Z"
-    },
-    {
-      "file": "c:/Users/Windows 11 Pro/Desktop/Spectre_Labs/Feu_Follet/Tether_Safe/src/lib/supabase.ts",
-      "action": "edit",
-      "tokens": 137,
-      "at": "2026-05-06T05:39:01.036Z"
-    },
-    {
-      "file": "c:/Users/Windows 11 Pro/Desktop/Spectre_Labs/Feu_Follet/Tether_Safe/src/hooks/useAvatarLoadout.ts",
-      "action": "create",
-      "tokens": 1284,
-      "at": "2026-05-06T05:39:20.900Z"
-    }
-  ],
-  "edit_counts": {
-    "src/registry/avatar/index.ts": 1,
-    "supabase/migrations/07_avatar_loadout.sql": 1,
-    "src/lib/supabase.ts": 1,
-    "src/hooks/useAvatarLoadout.ts": 1
-  },
-  "anatomy_hits": 2,
-  "anatomy_misses": 3,
-  "repeated_reads_warned": 1,
+  "session_id": "session-2026-05-13-1812",
+  "started": "2026-05-13T00:12:31.258Z",
+  "files_read": {},
+  "files_written": [],
+  "edit_counts": {},
+  "anatomy_hits": 0,
+  "anatomy_misses": 0,
+  "repeated_reads_warned": 0,
   "cerebrum_warnings": 0,
-  "stop_count": 3
+  "stop_count": 0
 }

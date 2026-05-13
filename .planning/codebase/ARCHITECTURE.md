@@ -1,6 +1,8 @@
 <!-- refreshed: 2026-05-05 -->
 # Architecture
 
+> **2026-05-12 correction:** This map contains useful implementation facts, but its product assumptions are stale where it centers hardcoded domains/workouts. Current direction is AI-first household executive function: behavior tracking and AI start at download; fitness plans are generated/adapted after at most 3 high-yield questions; themes/hidden themes/Bunker/finance-pantry are core systems. Treat hardcoded workout screens as legacy until replaced.
+
 **Last mapped:** 2026-05-05
 
 ## Pattern

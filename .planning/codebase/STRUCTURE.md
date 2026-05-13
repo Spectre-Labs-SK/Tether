@@ -1,6 +1,8 @@
 <!-- refreshed: 2026-05-05 -->
 # Directory Structure
 
+> **2026-05-12 correction:** Directory facts below are useful, but old fitness/domain screens are legacy implementation artifacts. Current product direction is AI-first plan generation, behavior tracking from download, adaptive controls, themes/hidden themes/Bunker, and finance-pantry executive function.
+
 **Last mapped:** 2026-05-05
 
 ## Layout
