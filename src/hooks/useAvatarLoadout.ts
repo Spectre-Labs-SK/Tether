@@ -36,28 +36,39 @@ export function useAvatarLoadout(userId: string | null): AvatarLoadoutReturn {
 
   useEffect(() => {
     if (!userId) {
-      setIsLoading(false);
       return;
     }
 
-    setIsLoading(true);
-    supabase
-      .from('profiles')
-      .select('avatar_body_id, avatar_loadout, unlocked_gear_ids')
-      .eq('id', userId)
-      .single()
-      .then(({ data, error: err }) => {
-        if (err) {
-          setError(err.message);
-        } else if (data) {
-          setState({
-            avatar_body_id: data.avatar_body_id ?? null,
-            avatar_loadout: (data.avatar_loadout as AvatarLoadout) ?? null,
-            unlocked_gear_ids: data.unlocked_gear_ids ?? [],
-          });
-        }
-        setIsLoading(false);
-      });
+    let isActive = true;
+
+    queueMicrotask(() => {
+      if (!isActive) return;
+
+      setIsLoading(true);
+      supabase
+        .from('profiles')
+        .select('avatar_body_id, avatar_loadout, unlocked_gear_ids')
+        .eq('id', userId)
+        .single()
+        .then(({ data, error: err }) => {
+          if (!isActive) return;
+
+          if (err) {
+            setError(err.message);
+          } else if (data) {
+            setState({
+              avatar_body_id: data.avatar_body_id ?? null,
+              avatar_loadout: (data.avatar_loadout as AvatarLoadout) ?? null,
+              unlocked_gear_ids: data.unlocked_gear_ids ?? [],
+            });
+          }
+          setIsLoading(false);
+        });
+    });
+
+    return () => {
+      isActive = false;
+    };
   }, [userId]);
 
   const persist = useCallback(
@@ -133,7 +144,7 @@ export function useAvatarLoadout(userId: string | null): AvatarLoadoutReturn {
     bodyId: (state.avatar_body_id as AvatarBodyId | null),
     loadout: state.avatar_loadout ?? {},
     unlockedGearIds: state.unlocked_gear_ids,
-    isLoading,
+    isLoading: Boolean(userId) && isLoading,
     error,
     selectBody,
     equipGear,

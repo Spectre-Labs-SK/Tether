@@ -3,7 +3,7 @@ import { View, Text, TouchableOpacity, StyleSheet, Alert } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRoute, useNavigation, type RouteProp } from '@react-navigation/native';
 import { C25K_WEEK_1_DAY_1, type Interval } from './manifest';
-import type { RootStackParamList } from './FitnessOnboardingGrid';
+import type { RootStackParamList } from '../navigation.types';
 
 type RoadSessionRouteProp = RouteProp<RootStackParamList, 'RoadSession'>;
 

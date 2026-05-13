@@ -19,6 +19,17 @@
 | `lucide-react` | ^1.8.0 | Icon set (Shield, Sparkles, Brain, Zap — pending render) |
 | `@tailwindcss/vite` | ^4.2.2 | Tailwind CSS v4 via Vite plugin |
 
+## Approved / Planned Phase 0 Additions
+
+| Tool | Package / Location | Status | Purpose |
+|---|---|---|---|
+| Zustand | `zustand` | Installed | Best-fit RN state management for scores, gear, degradation state, Bunker state, and lightweight shared state. |
+| Reanimated 4 | `react-native-reanimated` | Planned | Native animation standard for degradation/recovery, skin transitions, room unlocks, and satisfying task-to-scene reactions. |
+| React Native Skia | `@shopify/react-native-skia` | Planned | GPU-accelerated native visuals for HUD overlays, particle/intel drops, and performant bunker scene effects. |
+| Supabase + pgvector | Supabase Postgres extension `vector` | Planned migration | Vector search for personalized task/workout suggestions, adaptive memory retrieval, and ML pillar growth. |
+
+Install native visual packages with Expo-aware commands during the native implementation slice, then verify with `npx expo install --check`.
+
 ## Dev Dependencies
 
 | Package | Version (installed) | Purpose |

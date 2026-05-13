@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Vibration } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRoute, useNavigation, type RouteProp } from '@react-navigation/native';
-import type { RootStackParamList } from './FitnessOnboardingGrid';
+import type { RootStackParamList } from '../navigation.types';
 
 // Define a simple yoga flow manifest locally.
 // In a real app, this would come from manifest.ts and be selected via activityId.
@@ -35,17 +35,12 @@ export default function MatSession() {
   const navigation = useNavigation();
   const { activityId } = route.params;
 
-  const [poses, setPoses] = useState<YogaPose[]>([]);
   const [currentPoseIndex, setCurrentPoseIndex] = useState(0);
-  const [timeRemaining, setTimeRemaining] = useState(0);
+  const [timeRemaining, setTimeRemaining] = useState(YOGA_FLOW_MANIFEST[0]?.durationSeconds ?? 0);
   const [isPaused, setIsPaused] = useState(true);
-
-  useEffect(() => {
-    // TODO Phase 2: select manifest by activityId when multiple flows are available.
-    // Currently all Mat domain activities use YOGA_FLOW_MANIFEST regardless of activityId.
-    setPoses(YOGA_FLOW_MANIFEST);
-    setTimeRemaining(YOGA_FLOW_MANIFEST[0]?.durationSeconds ?? 0);
-  }, []); // dep on activityId removed until multi-manifest routing is implemented
+  // TODO Phase 2: select manifest by activityId when multiple flows are available.
+  // Currently all Mat domain activities use YOGA_FLOW_MANIFEST regardless of activityId.
+  const poses = YOGA_FLOW_MANIFEST;
 
   // Refs carry mutable values into the interval callback so the effect only
   // depends on isPaused — recreating every second caused timing drift on Android.
@@ -53,7 +48,6 @@ export default function MatSession() {
   const posesRef = useRef(poses);
 
   useEffect(() => { currentPoseIndexRef.current = currentPoseIndex; }, [currentPoseIndex]);
-  useEffect(() => { posesRef.current = poses; }, [poses]);
 
   useEffect(() => {
     if (isPaused) return;

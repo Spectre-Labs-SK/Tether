@@ -1,189 +1,707 @@
 # anatomy.md
 
-> Auto-maintained by OpenWolf. Last scanned: 2026-05-06T05:39:20.883Z
-> Files: 78 tracked | Anatomy hits: 0 | Misses: 0
-
-## ../../../../.claude/
-
-- `CLAUDE.md` — Global Claude Instructions (~606 tok)
-
-## ../../../../.claude/commands/gsd/
-
-- `dev-preferences.md` — Developer Preferences (~434 tok)
-
-## ../../../../.claude/get-shit-done/
-
-- `USER-PROFILE.md` — Developer Profile (~980 tok)
-
-## ../../../../.claude/skills/dev-profile-evolution/
-
-- `SKILL.md` — Dev Profile Evolution (~3918 tok)
+> Auto-maintained by OpenWolf. Last scanned: 2026-05-13T12:00:00.527Z
+> Files: 545 tracked | Anatomy hits: 0 | Misses: 0
 
 ## ./
 
-- `.env.local` — Supabase env vars (VITE_SUPABASE_URL, VITE_SUPABASE_ANON_KEY); placeholder values; not committed (~50 tok)
+- `.clinerules` — GSD — Get Shit Done (~231 tok)
 - `.gitignore` — Git ignore rules (~116 tok)
 - `.mcp.json` (~70 tok)
-- `AGENT.md` — Current Tether agent protocol: Cade governor, Notion product memory, repo implementation, compiler/tests auditor, Codex/Claude execution partners; legacy governor/local fallback removed (~260 tok)
-- `AGENTS.md` — Codex repository guidance with current AI-first product direction override, OpenWolf/task-observer rules, build commands, architecture notes, TypeScript conventions, and session protocols (~3300 tok)
-- `app.json` (~85 tok)
-- `babel.config.js` (~31 tok)
-- `CLAUDE.md` — CLAUDE.md (~2925 tok)
-- `CONTEXT_MAP.md` — Current product spine and source-of-truth map: behavior tracking from download, AI-first planning, adaptive controls, themes/hidden themes/Bunker, household executive function, and legacy implementation hubs (~420 tok)
-- `DEPENDENCIES.md` — Pillar 3 supply chain; all npm deps with versions + env var requirements (~509 tok)
+- `AGENT.md` — Tether Agent Protocol (~362 tok)
+- `AGENTS.md` — AGENTS.md (~3178 tok)
+- `app.json` (~95 tok)
+- `babel.config.cjs` (~34 tok)
+- `CLAUDE.md` — CLAUDE.md (~3741 tok)
+- `CODE_CHEAT_SHEET.md` — EXECUTION ARCHIVE (~90 tok)
+- `CONTEXT_MAP.md` — TETHER CONTEXT MAP (~566 tok)
+- `debug.log` (~106 tok)
+- `DEPENDENCIES.md` — DEPENDENCIES — Supply Chain (~745 tok)
+- `eas.json` (~144 tok)
+- `eslint.config.js` — ESLint flat configuration (~183 tok)
+- `FITNESS_ENGINE_PROTOCOL_PART2.md` — 🏋️ TETHER: FITNESS ENGINE PROTOCOL (PART 2) (~542 tok)
+- `FITNESS_ENGINE_PROTOCOL.md` — NIGHT BUILD PHASE 2: AI FITNESS ENGINE & VALKYRIE ONBOARDING (~716 tok)
+- `FULL_AUDIT_APR25.md` — FULL_AUDIT_APR25: TETHER MASTERCLASS & CODEBASE BREAKDOWN (~2935 tok)
+- `gsd_init_debug.log` (~718 tok)
+- `gsd-file-manifest.json` (~8692 tok)
+- `index.html` — tether (~99 tok)
 - `index.js` (~37 tok)
-- `LEARNING_VELOCITY.log` — Timestamped milestone log: ARCH/PATTERN/SCHEMA/MODULE/FIX entries tracking significant capability additions and project learnings (~588 tok)
-- `metro.config.cjs` — CJS format required because package.json has "type":"module"; uses expo/metro-config getDefaultConfig; CNG-aligned (~50 tok)
-- `package.json` — Node.js package manifest; react/react-dom@19.2.0, typescript@~5.9.2 (Expo 55 aligned); no patch-package (~340 tok)
-- `PRODUCT.md` — Impeccable project context: register=product, Spectre Labs brand, dark military terminal aesthetic, MILITARY/ETHER two-mode discipline, anti-references (no SaaS/rounded cards/Inter), 5 design principles (~660 tok)
+- `LEAD_DEV.md` — PERSONA: Tether Lead Developer (~235 tok)
+- `LEARNING_VELOCITY.log` — LEARNING_VELOCITY.log (~588 tok)
+- `log.sh` (~90 tok)
+- `LOGIN_WORKFLOW.md` — SPECTRE LABS: HANDLE REGISTRATION & LOGIN WORKFLOW (~819 tok)
+- `metro.config.cjs` — Declares config (~35 tok)
+- `NIGHT_BUILD.md` — 🌙 TETHER: NIGHT BUILD PROTOCOL (~737 tok)
+- `package-lock.json` — npm lock file (~135430 tok)
+- `package.json` — Node.js package manifest (~400 tok)
+- `PRODUCT.md` — Product (~676 tok)
+- `README.md` — Project documentation (~625 tok)
 - `SESSION_STATE.json` (~42 tok)
+- `skills-lock.json` (~220 tok)
+- `SKILLS.md` — CLAUDE CODE CUSTOM SKILLS (~258 tok)
+- `TECH_DEBT_SHADOW.log` — TECH_DEBT_SHADOW (~88 tok)
 - `TETHER_BUILD_JOURNAL.md` — TETHER BUILD JOURNAL (~8105 tok)
-- `tsconfig.app.json` — Web build tsconfig; includes `src/`, excludes `src/native/`; verbatimModuleSyntax, noUnusedLocals, react-jsx (~211 tok)
-- `vite.config.ts` — Declares env (~191 tok)
+- `TEXTBOOK_SYLLABUS.md` — The Tether Textbook: Syllabus & Cheat Sheet (~951 tok)
+- `TEXTBOOK_VOL_1.md` — THE TETHER TEXTBOOK (~1439 tok)
+- `TEXTBOOK_VOL_2.md` — THE TETHER TEXTBOOK (~1514 tok)
+- `TEXTBOOK_VOL_3.md` — THE TETHER TEXTBOOK (~1183 tok)
+- `tsconfig.app.json` (~211 tok)
+- `tsconfig.json` — TypeScript configuration (~57 tok)
+- `tsconfig.node.json` (~176 tok)
+- `vite.config.ts` — Vite build configuration (~191 tok)
+
+## .planning/
+
+- `BUILD_PLAN.md` — Phase 0 Bunker Reconstruction build plan and implementation roadmap (~1600 tok)
+- `FITNESS_PLAN.md` — Phase 0 adaptive Joint Ops/Ghost Ops fitness source spec (~1200 tok)
+- `INTELLIGENCE_LAYER.md` — Behavior pattern and intelligence layer product source spec (~1000 tok)
+- `LEVEL_0_BUNKER_RECONSTRUCTION.md` — Level 0 Bunker fun-loop source spec (~1100 tok)
+- `PROJECT.md` — GSD project context: current product description, core value, active requirements, constraints, and key decisions (~900 tok)
+- `REQUIREMENTS.md` — Phase 00 requirement traceability with implemented and human-needed status (~650 tok)
+- `ROADMAP.md` — GSD Phase 00 roadmap and requirements list (~900 tok)
+- `STATE.md` — GSD current state, decisions, checkpoints, and session continuity (~650 tok)
+- `TETHER_ML_ARCHITECTURE.md` — Phase 0 data spine, behavior events, screenshot ingestion, and cautious inference source spec (~1400 tok)
+- `config.json` — GSD workflow/config defaults for planning gates, validation, safety, and project identity (~550 tok)
+- `data-model.md` — Phase 0 table contract for behavior events, questions, generated plans, screenshots, finance records, pantry, pendulum, and trust boundaries (~900 tok)
+
+## .planning/phases/00-level-0-bunker-reconstruction/
+
+- `00-01-PLAN.md` — Consolidate Phase 0 product/spec docs and fill fitness/ML source specs (~850 tok)
+- `00-01-SUMMARY.md` — Execution summary for Phase 00 source spec consolidation (~500 tok)
+- `00-02-PLAN.md` — Define behavior-event data model, screenshot ingestion, wipe data, kill switch stub, and migrations (~1200 tok)
+- `00-02-SUMMARY.md` — Execution summary for Phase 00 data contracts and migrations (~700 tok)
+- `00-03-PLAN.md` — Build native Level 0 Bunker vertical slice with modes, degradation, locked door, Intel Drop, and chaos event (~1300 tok)
+- `00-03-SUMMARY.md` — Execution summary for native Level 0 Bunker slice and route typing (~650 tok)
+- `00-04-PLAN.md` — Add Joint Ops/Ghost Ops fitness framing without hardcoded workout plans (~950 tok)
+- `00-04-SUMMARY.md` — Execution summary for Joint Ops/Ghost Ops fitness integration (~550 tok)
+- `00-HUMAN-UAT.md` — Android manual verification checklist for Phase 00 Bunker slice (~450 tok)
+- `00-VERIFICATION.md` — Phase 00 automated verification report with human-needed status (~650 tok)
+
+## supabase/migrations/
+
+- `08_behavior_events_and_questions.sql` — Phase 0 behavior_events and question_sessions tables with RLS (~900 tok)
+- `09_generated_plans_and_screenshots.sql` — Phase 0 generated plans, plan actions, screenshot ingestion, and future finance/pantry/pendulum tables with RLS (~2100 tok)
+
+## src/hooks/
+
+- `useLevel0Bunker.ts` — Local Level 0 Bunker state hook with behavior-event writes and queued unauthenticated events (~1700 tok)
+- `useJointFitnessPlan.ts` — Phase 0 Joint/Ghost fitness planning hook with three-question cap and plan-action writes (~1900 tok)
+
+## src/native/screens/
+
+- `Level0BunkerReconstruction.tsx` — Native Phase 0 Bunker screen with modes, degradation, locked door, Intel Drop, chaos event, and Joint/Ghost fitness panel (~3400 tok)
+
+## .agents/skills/impeccable/
+
+- `SKILL.md` — Setup (non-optional) (~3575 tok)
+
+## .agents/skills/impeccable/reference/
+
+- `adapt.md` — Assess Adaptation Challenge (~1667 tok)
+- `animate.md` — Register (~1985 tok)
+- `audit.md` — Diagnostic Scan (~1684 tok)
+- `bolder.md` — Register (~1624 tok)
+- `brand.md` — Brand register (~2618 tok)
+- `clarify.md` — Assess Current Copy (~1577 tok)
+- `cognitive-load.md` — Cognitive Load Assessment (~1219 tok)
+- `color-and-contrast.md` — Color & Contrast (~1468 tok)
+- `colorize.md` — Register (~2042 tok)
+- `craft.md` — Craft Flow (~3710 tok)
+- `critique.md` — Declares is (~3224 tok)
+- `delight.md` — Register (~2505 tok)
+- `distill.md` — Assess Current State (~1435 tok)
+- `document.md` — The frontmatter: token schema (~7125 tok)
+- `extract.md` — Extract Flow (~844 tok)
+- `harden.md` — Assess Hardening Needs (~2237 tok)
+- `heuristics-scoring.md` — Heuristics Scoring Guide (~2249 tok)
+- `interaction-design.md` — Interaction Design (~1820 tok)
+- `layout.md` — Register (~2027 tok)
+- `live.md` — Prerequisites (~12834 tok)
+- `motion-design.md` — Motion Design (~1473 tok)
+- `onboard.md` — Assess Onboarding Needs (~1998 tok)
+- `optimize.md` — Assess Performance Issues (~1967 tok)
+- `overdrive.md` — Assess What "Extraordinary" Means Here (~2272 tok)
+- `personas.md` — Persona-Based Design Testing (~1820 tok)
+- `polish.md` — Design System Discovery (~3061 tok)
+- `product.md` — Product register (~1049 tok)
+- `quieter.md` — Register (~1225 tok)
+- `responsive-design.md` — Responsive Design (~894 tok)
+- `shape.md` — Philosophy (~2406 tok)
+- `spatial-design.md` — Spatial Design (~906 tok)
+- `teach.md` — Teach Flow (~2334 tok)
+- `typeset.md` — Register (~1610 tok)
+- `typography.md` — Typography (~2104 tok)
+- `ux-writing.md` — UX Writing (~1108 tok)
+
+## .agents/skills/impeccable/scripts/
+
+- `cleanup-deprecated.mjs` — Cleans up deprecated Impeccable skill files, symlinks, and (~2511 tok)
+- `command-metadata.json` — Declares feel (~2296 tok)
+- `design-parser.mjs` — Parse a DESIGN.md (Stitch-spec format) into a structured JSON model that (~6938 tok)
+- `detect-csp.mjs` — Scan a project tree for Content-Security-Policy signals and classify the (~1856 tok)
+- `impeccable-paths.mjs` — Exports IMPECCABLE_DIR, LIVE_DIR, getImpeccableDir, getDesignSidecarPath + 15 more (~902 tok)
+- `is-generated.mjs` — Decide whether a given file is "generated" (regenerated by a build step, (~623 tok)
+- `live-accept.mjs` — CLI helper: deterministic accept/discard of variant sessions. (~6259 tok)
+- `live-browser-session.js` — Browser-side durable session helpers for Impeccable live mode. (~978 tok)
+- `live-browser.js` — Impeccable Live Variant Mode — Browser Script (~58024 tok)
+- `live-complete.mjs` — Canonical durable completion acknowledgement for Impeccable live sessions. (~804 tok)
+- `live-completion.mjs` — Exports completionTypeForAcceptResult, completionAckForAcceptResult (~238 tok)
+- `live-inject.mjs` — CLI helper: insert/remove the live variant mode script tag in the project's (~4754 tok)
+- `live-poll.mjs` — CLI client for the live variant mode poll/reply protocol. (~2108 tok)
+- `live-resume.mjs` — Recover the next agent action from the durable live-session journal. (~540 tok)
+- `live-server.mjs` — Live variant mode server (self-contained, zero dependencies). (~8870 tok)
+- `live-session-store.mjs` — Exports createLiveSessionStore (~2467 tok)
+- `live-status.mjs` — Print durable recovery status for Impeccable live sessions. (~412 tok)
+- `live-wrap.mjs` — CLI helper: find an element in source and wrap it in a variant container. (~7088 tok)
+- `live.mjs` — CLI entry point: prepare everything needed to enter the live variant poll loop. (~2360 tok)
+- `load-context.mjs` — Shared context loader for every impeccable command that needs to know (~1399 tok)
+- `modern-screenshot.umd.js` — v: q, P, W + 29 more (~8373 tok)
+- `pin.mjs` — Pin/unpin sub-commands as standalone skill shortcuts. (~1691 tok)
+
+## .agents/skills/slill 9nio;der/
+
+- `SKILL.md` — Skill Creator (~8357 tok)
+
+## .agents/skills/source-command-gsd-from-gsd2/
+
+- `SKILL.md` — source-command-gsd-from-gsd2 (~534 tok)
+
+## .agents/skills/source-command-gsd-join-discord/
+
+- `SKILL.md` — source-command-gsd-join-discord (~141 tok)
+
+## .agents/skills/source-command-gsd-review-backlog/
+
+- `SKILL.md` — source-command-gsd-review-backlog (~492 tok)
+
+## .agents/skills/source-command-gsd-sync-skills/
+
+- `SKILL.md` — source-command-gsd-sync-skills (~211 tok)
+
+## .agents/skills/source-command-gsd-workstreams/
+
+- `SKILL.md` — source-command-gsd-workstreams (~582 tok)
+
+## .agents/skills/supabase-postgres-best-practices/
+
+- `SKILL.md` — Supabase Postgres Best Practices (~660 tok)
+
+## .agents/skills/supabase-postgres-best-practices/references/
+
+- `_contributing.md` — Writing Guidelines for Postgres References (~1071 tok)
+- `_sections.md` — Section Definitions (~431 tok)
+- `_template.md` — [Rule Title] (~269 tok)
+- `advanced-full-text-search.md` — Use tsvector for Full-Text Search (~381 tok)
+- `advanced-jsonb-indexing.md` — Index JSONB Columns for Efficient Querying (~374 tok)
+- `conn-idle-timeout.md` — Configure Idle Connection Timeouts (~332 tok)
+- `conn-limits.md` — Set Appropriate Connection Limits (~343 tok)
+- `conn-pooling.md` — Use Connection Pooling for All Applications (~356 tok)
+- `conn-prepared-statements.md` — Use Prepared Statements Correctly with Pooling (~394 tok)
+- `data-batch-inserts.md` — Batch INSERT Statements for Bulk Data (~336 tok)
+- `data-n-plus-one.md` — Eliminate N+1 Queries with Batch Loading (~354 tok)
+- `data-pagination.md` — Use Cursor-Based Pagination Instead of OFFSET (~352 tok)
+- `data-upsert.md` — Use UPSERT for Insert-or-Update Operations (~360 tok)
+- `lock-advisory.md` — Use Advisory Locks for Application-Level Locking (~397 tok)
+- `lock-deadlock-prevention.md` — Prevent Deadlocks with Consistent Lock Ordering (~481 tok)
+- `lock-short-transactions.md` — Keep Transactions Short to Reduce Lock Contention (~350 tok)
+- `lock-skip-locked.md` — Use SKIP LOCKED for Non-Blocking Queue Processing (~352 tok)
+- `monitor-explain-analyze.md` — Use EXPLAIN ANALYZE to Diagnose Slow Queries (~372 tok)
+- `monitor-pg-stat-statements.md` — Enable pg_stat_statements for Query Analysis (~369 tok)
+- `monitor-vacuum-analyze.md` — Maintain Table Statistics with VACUUM and ANALYZE (~391 tok)
+- `query-composite-indexes.md` — Create Composite Indexes for Multi-Column Queries (~375 tok)
+- `query-covering-indexes.md` — Use Covering Indexes to Avoid Table Lookups (~332 tok)
+- `query-index-types.md` — Choose the Right Index Type for Your Data (~393 tok)
+- `query-missing-indexes.md` — Add Indexes on WHERE and JOIN Columns (~316 tok)
+- `query-partial-indexes.md` — Use Partial Indexes for Filtered Queries (~348 tok)
+- `schema-constraints.md` — Add Constraints Safely in Migrations (~490 tok)
+- `schema-data-types.md` — Choose Appropriate Data Types (~375 tok)
+- `schema-foreign-key-indexes.md` — Index Foreign Key Columns (~435 tok)
+- `schema-lowercase-identifiers.md` — Use Lowercase Identifiers for Compatibility (~446 tok)
+- `schema-partitioning.md` — Partition Large Tables for Better Performance (~401 tok)
+- `schema-primary-keys.md` — Select Optimal Primary Key Strategy (~471 tok)
+- `security-privileges.md` — Apply Principle of Least Privilege (~405 tok)
+- `security-rls-basics.md` — Enable Row Level Security for Multi-Tenant Data (~356 tok)
+- `security-rls-performance.md` — Optimize RLS Policies for Performance (~388 tok)
+
+## .agents/skills/supabase/
+
+- `SKILL.md` — Supabase (~2232 tok)
+
+## .agents/skills/supabase/assets/
+
+- `feedback-issue-template.md` — What happened (~119 tok)
+
+## .agents/skills/supabase/references/
+
+- `skill-feedback.md` — Skill Feedback (~261 tok)
+
+## .agents/skills/task-observer/
+
+- `SKILL.md` — Task Observer — Continuous Skill Discovery & Improvement (~4138 tok)
 
 ## .claude/
 
+- `gsd-file-manifest.json` (~8992 tok)
+- `package.json` — Node.js package manifest (~6 tok)
+- `settings.json` (~1055 tok)
+- `settings.local.json` (~46 tok)
 
-## .claude/rules/
+## .claude/agents/
+
+- `gsd-advisor-researcher.md` — {area_name} (~1335 tok)
+- `gsd-ai-researcher.md` — hooks: (~1674 tok)
+- `gsd-assumptions-analyzer.md` — Assumptions (~1123 tok)
+- `gsd-code-fixer.md` — hooks: (~5656 tok)
+- `gsd-code-reviewer.md` — hooks: (~3799 tok)
+- `gsd-codebase-mapper.md` — hooks: (~5101 tok)
+- `gsd-debug-session-manager.md` — hooks: (~2409 tok)
+- `gsd-debugger.md` — hooks: (~11814 tok)
+- `gsd-doc-classifier.md` — hooks: (~1890 tok)
+- `gsd-doc-synthesizer.md` — hooks: (~2407 tok)
+- `gsd-doc-verifier.md` — hooks: (~3093 tok)
+- `gsd-doc-writer.md` — hooks: (~9449 tok)
+- `gsd-domain-researcher.md` — hooks: (~1544 tok)
+- `gsd-eval-auditor.md` — hooks: (~1951 tok)
+- `gsd-eval-planner.md` — hooks: (~1762 tok)
+- `gsd-executor.md` — hooks: (~6431 tok)
+- `gsd-framework-selector.md` — Declares of (~1656 tok)
+- `gsd-integration-checker.md` — Required Context (provided by milestone auditor) (~3756 tok)
+- `gsd-intel-updater.md` — hooks: (~3085 tok)
+- `gsd-nyquist-auditor.md` — GAPS FILLED (~1804 tok)
+- `gsd-pattern-mapper.md` — hooks: (~3112 tok)
+- `gsd-phase-researcher.md` — hooks: (~8288 tok)
+- `gsd-plan-checker.md` — Dimension 1: Requirement Coverage (~9099 tok)
+- `gsd-planner.md` — hooks: (~11785 tok)
+- `gsd-project-researcher.md` — hooks: (~4609 tok)
+- `gsd-research-synthesizer.md` — hooks: (~1836 tok)
+- `gsd-roadmapper.md` — hooks: (~4803 tok)
+- `gsd-security-auditor.md` — SECURED (~1548 tok)
+- `gsd-ui-auditor.md` — hooks: (~4273 tok)
+- `gsd-ui-checker.md` — Dimension 1: Copywriting (~2754 tok)
+- `gsd-ui-researcher.md` — hooks: (~3496 tok)
+- `gsd-user-profiler.md` (~2165 tok)
+- `gsd-verifier.md` — hooks: (~7684 tok)
 
 ## .claude/commands/
 
-- `start-day.md` — Slash command for START DAY PROTOCOL; reads CLAUDE.md, orients through OpenWolf/git state, surfaces stale machinery, emits Boot Report, and logs boot (~380 tok)
+- `start-day.md` (~436 tok)
 
+## .claude/commands/gsd/
 
-## .claude/skills/dev-profile-evolution/
+- `add-backlog.md` (~583 tok)
+- `add-phase.md` (~318 tok)
+- `add-tests.md` (~375 tok)
+- `add-todo.md` (~333 tok)
+- `ai-integration-phase.md` (~350 tok)
+- `analyze-dependencies.md` (~329 tok)
+- `audit-fix.md` (~279 tok)
+- `audit-milestone.md` (~337 tok)
+- `audit-uat.md` (~169 tok)
+- `autonomous.md` (~521 tok)
+- `check-todos.md` (~345 tok)
+- `cleanup.md` (~193 tok)
+- `code-review-fix.md` (~566 tok)
+- `code-review.md` (~650 tok)
+- `complete-milestone.md` (~1153 tok)
+- `debug.md` — 0. Initialize Context (~2350 tok)
+- `discuss-phase.md` (~903 tok)
+- `do.md` (~268 tok)
+- `docs-update.md` — Declares is (~594 tok)
+- `eval-review.md` (~284 tok)
+- `execute-phase.md` (~794 tok)
+- `explore.md` (~228 tok)
+- `extract_learnings.md` (~212 tok)
+- `fast.md` (~256 tok)
+- `forensics.md` (~626 tok)
+- `from-gsd2.md` (~520 tok)
+- `graphify.md` — Step 0 -- Banner (~1707 tok)
+- `health.md` (~192 tok)
+- `help.md` (~187 tok)
+- `import.md` (~300 tok)
+- `inbox.md` (~390 tok)
+- `ingest-docs.md` (~643 tok)
+- `insert-phase.md` (~299 tok)
+- `intel.md` — Step 0 -- Banner (~1218 tok)
+- `join-discord.md` — Join the GSD Discord (~104 tok)
+- `list-phase-assumptions.md` (~382 tok)
+- `list-workspaces.md` (~199 tok)
+- `manager.md` (~437 tok)
+- `map-codebase.md` (~663 tok)
+- `milestone-summary.md` (~515 tok)
+- `new-milestone.md` (~522 tok)
+- `new-project.md` (~506 tok)
+- `new-workspace.md` (~493 tok)
+- `next.md` (~359 tok)
+- `note.md` (~281 tok)
+- `pause-work.md` (~292 tok)
+- `plan-milestone-gaps.md` (~292 tok)
+- `plan-phase.md` (~617 tok)
+- `plan-review-convergence.md` (~874 tok)
+- `plant-seed.md` (~248 tok)
+- `pr-branch.md` (~224 tok)
+- `profile-user.md` (~436 tok)
+- `progress.md` (~240 tok)
+- `quick.md` — LIST subcommand (~1779 tok)
+- `reapply-patches.md` — Step 1: Detect backed-up patches (~3565 tok)
+- `remove-phase.md` (~279 tok)
+- `remove-workspace.md` (~239 tok)
+- `research-phase.md` — 0. Initialize Context (~1392 tok)
+- `resume-work.md` (~317 tok)
+- `review-backlog.md` (~466 tok)
+- `review.md` (~355 tok)
+- `scan.md` (~215 tok)
+- `secure-phase.md` (~239 tok)
+- `session-report.md` (~182 tok)
+- `set-profile.md` (~148 tok)
+- `settings-advanced.md` (~433 tok)
+- `settings-integrations.md` (~436 tok)
+- `settings.md` (~284 tok)
+- `ship.md` (~203 tok)
+- `sketch-wrap-up.md` (~307 tok)
+- `sketch.md` (~620 tok)
+- `spec-phase.md` (~701 tok)
+- `spike-wrap-up.md` (~317 tok)
+- `spike.md` (~498 tok)
+- `stats.md` (~166 tok)
+- `sync-skills.md` (~181 tok)
+- `thread.md` — Thread: {description} (~1860 tok)
+- `ui-phase.md` (~250 tok)
+- `ui-review.md` (~237 tok)
+- `ultraplan-phase.md` (~286 tok)
+- `undo.md` (~310 tok)
+- `update.md` (~272 tok)
+- `validate-phase.md` (~249 tok)
+- `verify-work.md` (~378 tok)
+- `workstreams.md` — /gsd-workstreams (~549 tok)
 
-- `SKILL.md` — Dev Profile Evolution — weekly session analysis, profile update, dimension discovery, task-observer integration (~1200 tok)
+## .claude/get-shit-done/
 
-## .claude/skills/impeccable/
+- `VERSION` (~2 tok)
 
+## .claude/get-shit-done/bin/
 
-## .claude/skills/paperclip/
+- `gsd-tools.cjs` — T: parseNamedArgs, parseMultiwordArg, main (~13852 tok)
 
+## .claude/get-shit-done/bin/lib/
+
+- `artifacts.cjs` — Canonical GSD artifact registry. (~406 tok)
+- `audit.cjs` — Open Artifact Audit — Cross-type unresolved state scanner (~5735 tok)
+- `commands.cjs` — Commands — Standalone utility commands (~9759 tok)
+- `config-schema.cjs` — Single source of truth for valid config key paths. (~1118 tok)
+- `config.cjs` — Config — Planning config CRUD operations (~4692 tok)
+- `core.cjs` — Core — Shared utilities, constants, and internal helpers (~21694 tok)
+- `decisions.cjs` — Shared parser for CONTEXT.md `<decisions>` blocks. (~346 tok)
+- `docs.cjs` — Docs — Commands for the docs-update workflow (~2389 tok)
+- `drift.cjs` — Codebase Drift Detection (#2003) (~3362 tok)
+- `frontmatter.cjs` — Frontmatter — YAML frontmatter parsing, serialization, and CRUD commands (~3945 tok)
+- `gap-checker.cjs` — Post-planning gap analysis (#2493). (~1494 tok)
+- `graphify.cjs` — Check whether graphify is enabled in the project config. (~4405 tok)
+- `gsd2-import.cjs` — gsd2-import — Reverse migration from GSD-2 (.gsd/) to GSD v1 (.planning/) (~3994 tok)
+- `init.cjs` — Init — Compound init commands for workflow bootstrapping (~19214 tok)
+- `intel.cjs` — lib/intel.cjs -- Intel storage and query operations for GSD. (~5234 tok)
+- `learnings.cjs` — Learnings — Global knowledge store with CRUD operations (~2877 tok)
+- `milestone.cjs` — Milestone — Milestone and requirements lifecycle operations (~2922 tok)
+- `model-profiles.cjs` — Mapping of GSD agent to model for each profile. (~1059 tok)
+- `phase.cjs` — Phase — Phase CRUD, query, and lifecycle operations (~11707 tok)
+- `profile-output.cjs` — Profile Output — profile rendering, questionnaire, and artifact generation (~12396 tok)
+- `profile-pipeline.cjs` — Profile Pipeline — session scanning, message extraction, and sampling (~4610 tok)
+- `roadmap.cjs` — Roadmap — Roadmap parsing and update operations (~5264 tok)
+- `schema-detect.cjs` — Schema Drift Detection — Detects schema-relevant file changes and verifies (~1861 tok)
+- `secrets.cjs` — Secrets handling — masking convention for API keys and other (~269 tok)
+- `security.cjs` — Security — Input validation, path traversal prevention, and prompt injection guards (~4530 tok)
+- `state.cjs` — State — STATE.md operations and progression engine (~17685 tok)
+- `template.cjs` — Template — Template selection and fill operations (~2013 tok)
+- `uat.cjs` — UAT Audit — Cross-phase UAT/VERIFICATION scanner (~2676 tok)
+- `verify.cjs` — Verify — Verification suite, consistency, and health validation (~14242 tok)
+- `workstream.cjs` — Workstream — CRUD operations for workstream namespacing (~4405 tok)
+
+## .claude/get-shit-done/contexts/
+
+- `dev.md` — Dev Context Profile (~189 tok)
+- `research.md` — Research Context Profile (~214 tok)
+- `review.md` — Review Context Profile (~228 tok)
+
+## .claude/get-shit-done/references/
+
+- `agent-contracts.md` — Agent Contracts (~1132 tok)
+- `ai-evals.md` — AI Evaluation Reference (~2155 tok)
+- `ai-frameworks.md` — AI Framework Decision Matrix (~2874 tok)
+- `artifact-types.md` — GSD Artifact Types (~1703 tok)
+- `autonomous-smart-discuss.md` — Smart Discuss — Autonomous Mode (~2360 tok)
+- `checkpoints.md` — checkpoint:human-verify (Most Common - 90%) (~7444 tok)
+- `common-bug-patterns.md` — Common Bug Patterns (~1411 tok)
+- `context-budget.md` — Context Budget Rules (~837 tok)
+- `continuation-format.md` — Continuation Format (~1161 tok)
+- `debugger-philosophy.md` — Debugger Philosophy (~829 tok)
+- `decimal-phase-calculation.md` — Decimal Phase Calculation (~301 tok)
+- `doc-conflict-engine.md` — Doc Conflict Engine (~830 tok)
+- `domain-probes.md` — Domain-Aware Probing Patterns (~1596 tok)
+- `executor-examples.md` — Executor Extended Examples (~1033 tok)
+- `gate-prompts.md` — Gate Prompt Patterns (~951 tok)
+- `gates.md` — Gates Taxonomy (~977 tok)
+- `git-integration.md` — Project Initialization (brief + roadmap together) (~2199 tok)
+- `git-planning-commit.md` — Git Planning Commit (~371 tok)
+- `ios-scaffold.md` — iOS App Scaffold Reference (~870 tok)
+- `mandatory-initial-read.md` (~55 tok)
+- `model-profile-resolution.md` — Model Profile Resolution (~347 tok)
+- `model-profiles.md` — Model Profiles (~1516 tok)
+- `phase-argument-parsing.md` — Phase Argument Parsing (~365 tok)
+- `planner-antipatterns.md` — Planner Anti-Patterns and Specificity Examples (~971 tok)
+- `planner-chunked.md` — Chunked Mode Return Formats (~373 tok)
+- `planner-gap-closure.md` — Gap Closure Mode — Planner Reference (~563 tok)
+- `planner-reviews.md` — Reviews Mode — Planner Reference (~394 tok)
+- `planner-revision.md` — Revision Mode — Planner Reference (~584 tok)
+- `planner-source-audit.md` — Planner Source Audit & Authority Limits (~820 tok)
+- `planning-config.md` — Commit with automatic commit_docs + gitignore checks: (~5936 tok)
+- `project-skills-discovery.md` — Project Skills Discovery (~270 tok)
+- `questioning.md` — Declares at (~1557 tok)
+- `revision-loop.md` — Revision Loop Pattern (~987 tok)
+- `scout-codebase.md` — Codebase scout — map selection table (~565 tok)
+- `sketch-interactivity.md` — Making Sketches Feel Alive (~425 tok)
+- `sketch-theme-system.md` — Shared Theme System (~611 tok)
+- `sketch-tooling.md` — Sketch Toolbar (~401 tok)
+- `sketch-variant-patterns.md` — Multi-Variant HTML Patterns (~673 tok)
+- `tdd.md` — When TDD Improves Quality (~2606 tok)
+- `thinking-models-debug.md` — Thinking Models: Debug Cluster (~1062 tok)
+- `thinking-models-execution.md` — Thinking Models: Execution Cluster (~1159 tok)
+- `thinking-models-planning.md` — Thinking Models: Planning Cluster (~1140 tok)
+- `thinking-models-research.md` — Thinking Models: Research Cluster (~1170 tok)
+- `thinking-models-verification.md` — Thinking Models: Verification Cluster (~1087 tok)
+- `thinking-partner.md` — Thinking Partner Integration (~761 tok)
+- `ui-brand.md` — Stage Banners (~735 tok)
+- `universal-anti-patterns.md` — Universal Anti-Patterns (~1557 tok)
+- `user-profiling.md` — User Profiling: Detection Heuristics Reference (~9444 tok)
+- `verification-overrides.md` — Verification Overrides (~2180 tok)
+- `verification-patterns.md` — Verification Patterns (~4148 tok)
+- `workstream-flag.md` — Workstream Flag (`--ws`) (~1108 tok)
+
+## .claude/get-shit-done/references/few-shot-examples/
+
+- `plan-checker.md` — Plan-Checker Few-Shot Examples (~888 tok)
+- `verifier.md` — Verifier Few-Shot Examples (~1785 tok)
+
+## .claude/get-shit-done/templates/
+
+- `AI-SPEC.md` — AI-SPEC — Phase {N}: {phase_name} (~1718 tok)
+- `claude-md.md` — CLAUDE.md Template (~1104 tok)
+- `config.json` (~387 tok)
+- `context.md` — Phase Context Template (~2442 tok)
+- `continue-here.md` — Continue-Here Template (~456 tok)
+- `copilot-instructions.md` — Instructions for GSD (~161 tok)
+- `debug-subagent-prompt.md` — Debug Subagent Prompt Template (~451 tok)
+- `DEBUG.md` — Debug Template (~1324 tok)
+- `dev-preferences.md` — Developer Preferences (~136 tok)
+- `discovery.md` — Discovery Template (~1020 tok)
+- `discussion-log.md` — Discussion Log Template (~453 tok)
+- `milestone-archive.md` — Milestone Archive Template (~701 tok)
+- `milestone.md` — Milestone Entry Template (~762 tok)
+- `phase-prompt.md` — Phase Prompt Template (~4799 tok)
+- `planner-subagent-prompt.md` — Planner Subagent Prompt Template (~671 tok)
+- `project.md` — PROJECT.md Template (~1260 tok)
+- `README.md` — Project documentation (~1081 tok)
+- `requirements.md` — Requirements Template (~1516 tok)
+- `research.md` — Research Template (~4536 tok)
+- `retrospective.md` — Project Retrospective (~314 tok)
+- `roadmap.md` — Roadmap Template (~1410 tok)
+- `SECURITY.md` — Phase {N} — Security (~371 tok)
+- `spec.md` — Phase Spec Template (~3540 tok)
+- `state.md` — State Template (~1176 tok)
+- `summary-complex.md` — Phase [X]: [Name] Summary (Complex) (~327 tok)
+- `summary-minimal.md` — Phase [X]: [Name] Summary (Minimal) (~216 tok)
+- `summary-standard.md` — Phase [X]: [Name] Summary (~264 tok)
+- `summary.md` — Summary Template (~1955 tok)
+- `UAT.md` — UAT Template (~1710 tok)
+- `UI-SPEC.md` — Phase {N} — UI Design Contract (~573 tok)
+- `user-profile.md` — Developer Profile (~764 tok)
+- `user-setup.md` — User Setup Template (~2233 tok)
+- `VALIDATION.md` — Phase {N} — Validation Strategy (~537 tok)
+- `verification-report.md` — Verification Report Template (~2389 tok)
+
+## .claude/get-shit-done/templates/codebase/
+
+- `architecture.md` — Architecture Template (~1817 tok)
+- `concerns.md` — Codebase Concerns Template (~2818 tok)
+- `conventions.md` — Coding Conventions Template (~2208 tok)
+- `integrations.md` — External Integrations Template (~2166 tok)
+- `stack.md` — Technology Stack Template (~1117 tok)
+- `structure.md` — Structure Template (~2044 tok)
+- `testing.md` — Testing Patterns Template (~2749 tok)
+
+## .claude/get-shit-done/templates/research-project/
+
+- `ARCHITECTURE.md` — Architecture Research Template (~1357 tok)
+- `FEATURES.md` — Features Research Template (~1067 tok)
+- `PITFALLS.md` — Pitfalls Research Template (~1372 tok)
+- `STACK.md` — Stack Research Template (~771 tok)
+- `SUMMARY.md` — Research Summary Template (~1089 tok)
+
+## .claude/get-shit-done/workflows/
+
+- `add-phase.md` — ▶ Next Up — [${PROJECT_CODE}] ${PROJECT_TITLE} (~678 tok)
+- `add-tests.md` — Find existing test directories (~2987 tok)
+- `add-todo.md` — Search for key words from title in existing todos (~1115 tok)
+- `ai-integration-phase.md` — 1. Initialize (~2329 tok)
+- `analyze-dependencies.md` — 1. Load ROADMAP.md (~964 tok)
+- `audit-fix.md` — Audit-Fix Classification (~1504 tok)
+- `audit-milestone.md` — 0. Initialize Milestone Context (~2717 tok)
+- `audit-uat.md` — All Clear (~733 tok)
+- `autonomous.md` — 1. Initialize (~7230 tok)
+- `check-todos.md` — [title] (~1231 tok)
+- `cleanup.md` — Cleanup Summary (~950 tok)
+- `code-review-fix.md` — Validate PADDED_PHASE contains only digits and optional dot (e.g., "02", "03.1") (~4169 tok)
+- `code-review.md` — Validate PADDED_PHASE contains only digits and optional dot (e.g., "02", "03.1") (~4075 tok)
+- `complete-milestone.md` — For each phase in milestone, extract one-liner (~6211 tok)
+- `diagnose-issues.md` — Diagnosing {N} Gaps (~1845 tok)
+- `discovery-phase.md` — Declares their (~2245 tok)
+- `discuss-phase-assumptions.md` — Output Format (~5337 tok)
+- `discuss-phase-power.md` (~2623 tok)
+- `discuss-phase.md` — Detect advisor mode (file-existence guard — no Read until needed) (~6733 tok)
+- `do.md` — Declares their (~1351 tok)
+- `docs-update.md` — Declares label (~11928 tok)
+- `eval-review.md` — 0. Initialize (~1238 tok)
+- `execute-phase.md` — REQUIRED: prevents stale auto-chain from previous --auto runs (~18063 tok)
+- `execute-plan.md` — Use plans/summaries from INIT JSON, or list files (~5940 tok)
+- `explore.md` — Step 1: Open the conversation (~1408 tok)
+- `extract_learnings.md` — Phase {PHASE_NUMBER} Learnings: {PHASE_NAME} (~2088 tok)
+- `fast.md` — Check if STATE.md has quick tasks table (~667 tok)
+- `forensics.md` — Forensics Workflow (~1854 tok)
+- `graduation.md` — graduation.md — LEARNINGS.md Cross-Phase Graduation Helper (~1763 tok)
+- `health.md` — Repairs Performed (~1465 tok)
+- `help.md` — GSD Command Reference (~5521 tok)
+- `import.md` — Import Workflow (~2107 tok)
+- `inbox.md` — Declares label (~3500 tok)
+- `ingest-docs.md` — Ingest Docs Workflow (~2990 tok)
+- `insert-phase.md` — Next Up (~1110 tok)
+- `list-phase-assumptions.md` — My Assumptions for Phase ${PHASE}: ${PHASE_NAME} (~1074 tok)
+- `list-workspaces.md` — 1. Setup (~294 tok)
+- `manager.md` — 1. Initialize (~4071 tok)
+- `map-codebase.md` — Validated, comma-separated paths (empty if --paths absent or all rejected): (~3822 tok)
+- `milestone-summary.md` — Milestone Summary Workflow (~1813 tok)
+- `new-milestone.md` — 1. Load Context (~5783 tok)
+- `new-project.md` — Auto Mode Detection (~10670 tok)
+- `new-workspace.md` — 1. Setup (~1685 tok)
+- `next.md` — Get state snapshot (~1910 tok)
+- `node-repair.md` (~1034 tok)
+- `note.md` — Goal (~1716 tok)
+- `pause-work.md` — Context Detection (~2285 tok)
+- `plan-milestone-gaps.md` — 1. Load Audit Results (~1664 tok)
+- `plan-phase.md` — 0. Git Branch Invariant (~16114 tok)
+- `plan-review-convergence.md` — 1. Parse and Normalize Arguments (~3139 tok)
+- `plant-seed.md` — Find files related to the idea keywords (~1026 tok)
+- `pr-branch.md` — Get all commits ahead of target (~1202 tok)
+- `profile-user.md` — 1. Initialize (~4166 tok)
+- `progress.md` — Get formatted progress bar (~4337 tok)
+- `quick.md` — Quick Task ${quick_id}: ${DESCRIPTION} - Context (~8236 tok)
+- `remove-phase.md` — What's Next (~991 tok)
+- `remove-workspace.md` — 1. Setup (~629 tok)
+- `research-phase.md` — Step 0: Resolve Model Profile (~566 tok)
+- `resume-project.md` — Check for structured handoff (preferred — machine-readable) (~2432 tok)
+- `review.md` — Check each CLI (~3864 tok)
+- `scan.md` — Focus-to-Document Mapping (~679 tok)
+- `secure-phase.md` — 0. Initialize (~1481 tok)
+- `session-report.md` — Get recent commits (last 24 hours) (~1005 tok)
+- `settings-advanced.md` — Declares the (~4074 tok)
+- `settings-integrations.md` — Declares and (~2604 tok)
+- `settings.md` — `state.load` returns STATE frontmatter JSON from the SDK — it does not include `config_path`. Orchestrators may set `GSD_CONFIG_PATH` from init pha... (~5301 tok)
+- `ship.md` — Summary (~2260 tok)
+- `sketch-wrap-up.md` — Gather Sketch Inventory (~2100 tok)
+- `sketch.md` — Routing (~3590 tok)
+- `spec-phase.md` — Step 1: Initialize (~2673 tok)
+- `spike-wrap-up.md` — Gather Spike Inventory (~2442 tok)
+- `spike.md` — Routing (~4404 tok)
+- `stats.md` — 📊 Project Statistics — {milestone_version} {milestone_name} (~376 tok)
+- `sync-skills.md` — sync-skills — Cross-Runtime GSD Skill Sync (~1550 tok)
+- `transition.md` — Count outstanding items in current phase (~4300 tok)
+- `ui-phase.md` — 1. Initialize (~2347 tok)
+- `ui-review.md` — 0. Initialize (~1440 tok)
+- `ultraplan-phase.md` — Ultraplan Phase Workflow [BETA] (~1188 tok)
+- `undo.md` — ▶ Next Up — [${PROJECT_CODE}] ${PROJECT_TITLE} (~2367 tok)
+- `update.md` — Runtime candidates: "<runtime>:<config-dir>" stored as an array. (~5046 tok)
+- `validate-phase.md` — 0. Initialize (~1455 tok)
+- `verify-phase.md` — Resolve test command: project config > Makefile > language sniff (~5956 tok)
+- `verify-work.md` — Active UAT Sessions (~5309 tok)
+
+## .claude/get-shit-done/workflows/discuss-phase/modes/
+
+- `advisor.md` — Advisor mode — research-backed comparison tables (~1933 tok)
+- `all.md` — --all mode — auto-select ALL gray areas, discuss interactively (~318 tok)
+- `analyze.md` — --analyze mode — trade-off tables before each question (~428 tok)
+- `auto.md` — --auto mode — fully autonomous discuss-phase (~666 tok)
+- `batch.md` — --batch mode — grouped question batches (~508 tok)
+- `chain.md` — --chain mode — interactive discuss, then auto-advance (~918 tok)
+- `default.md` — Default mode — interactive discuss-phase (~1823 tok)
+- `power.md` — --power mode — bulk question generation, async answering (~427 tok)
+- `text.md` — --text mode — plain-text overlay (no AskUserQuestion) (~404 tok)
+
+## .claude/get-shit-done/workflows/discuss-phase/templates/
+
+- `checkpoint.json` (~151 tok)
+- `context.md` — CONTEXT.md template — for discuss-phase write_context step (~1030 tok)
+- `discussion-log.md` — DISCUSSION-LOG.md template — for discuss-phase git_commit step (~338 tok)
+
+## .claude/get-shit-done/workflows/execute-phase/steps/
+
+- `codebase-drift-gate.md` — Step: codebase_drift_gate (~678 tok)
+
+## .claude/hooks/
+
+- `gsd-check-update-worker.js` — gsd-hook-version: 1.38.5 (~1107 tok)
+- `gsd-check-update.js` — gsd-hook-version: 1.38.5 (~699 tok)
+- `gsd-context-monitor.js` — gsd-hook-version: 1.38.5 (~2313 tok)
+- `gsd-phase-boundary.sh` — gsd-hook-version: 1.38.5 (~349 tok)
+- `gsd-prompt-guard.js` — gsd-hook-version: 1.38.5 (~995 tok)
+- `gsd-read-guard.js` — gsd-hook-version: 1.38.5 (~1115 tok)
+- `gsd-read-injection-scanner.js` — gsd-hook-version: 1.38.5 (~1570 tok)
+- `gsd-session-state.sh` — gsd-hook-version: 1.38.5 (~318 tok)
+- `gsd-statusline.js` — Walk up from dir looking for .planning/config.json and return its parsed contents. (~4379 tok)
+- `gsd-validate-commit.sh` — gsd-hook-version: 1.38.5 (~595 tok)
+- `gsd-workflow-guard.js` — gsd-hook-version: 1.38.5 (~955 tok)
+
+## .claude/rules/
+
+- `openwolf.md` (~317 tok)
+
+## .claude/skills/slill 9nio;der/
+
+- `SKILL.md` — Skill Creator (~8368 tok)
 
 ## .claude/skills/task-observer/
 
 - `SKILL.md` — Task Observer — Continuous Skill Discovery & Improvement (~4141 tok)
 
-## .github/workflows/
+## .codex/
 
+- `config.toml` (~54 tok)
+- `hooks.json` (~1188 tok)
 
-## .planning/
+## .codex/agents/
 
-- `BUILD_PLAN.md` — Current phased build plan; Phase 0 is Level 0 Bunker Reconstruction vertical slice with Military/Ethereal/Mixed, task-reactive base, Intel Drop, chaos event, and behavior logging (~350 tok)
-- `LEVEL_0_BUNKER_RECONSTRUCTION.md` — Canonical Level 0 product/design spec: destroyed base rebuilt by real tasks, household chaos attacks, room unlocks, Intel Drops, HUD evolution, skeptical notes, and Phase 0 build target (~800 tok)
-- `ROADMAP.md` — ROADMAP — Tether (~245 tok)
-- `STATE.md` — STATE.md — Tether (~568 tok)
-
-## .planning/codebase/
-
-- `ARCHITECTURE.md` — Architecture (~3767 tok)
-- `CONCERNS.md` — Technical Concerns (~6060 tok)
-- `CONVENTIONS.md` — Code Conventions (~2870 tok)
-- `INTEGRATIONS.md` — External Integrations (~1571 tok)
-- `STACK.md` — Tech Stack (~1488 tok)
-- `STRUCTURE.md` — Directory Structure (~2647 tok)
-- `TESTING.md` — Testing (~1002 tok)
-
-## .planning/phases/01-pattern-observer-threejs/
-
-- `01-01-SUMMARY.md` — Phase 01 Plan 01: Zustand Bridge and Canonical ShimmerCore Summary (~933 tok)
-- `01-02-SUMMARY.md` — Summary (~477 tok)
-- `01-03-SUMMARY.md` — Phase 01 Plan 03: Build Pipeline Validation and Zustand Installation Summary (~2171 tok)
-- `01-HUMAN-UAT.md` — Tests (~267 tok)
-- `01-REVIEW-FIX.md` — Phase 01: Code Review Fix Report (~1540 tok)
-- `01-REVIEW.md` — Phase 01: Code Review Report (~3980 tok)
-- `01-VERIFICATION.md` — Phase 01: Pattern Observer / Three.js Verification Report (~3475 tok)
-
-## .wolf/skill-observations/
-
-- `cross-cutting-principles.md` — library-wide principles checked when creating/updating any skill (~20 tok)
-- `last-review-date.txt` — ISO date of last comprehensive skill review; task-observer checks this to trigger 7-day fallback review (~5 tok)
-
-## .wolf/skill-updates/
-
-
-## node_modules/expo-modules-core/android/cmake/
-
-- `main.cmake` (~531 tok)
-
-## patches/
-
-- `expo-modules-core+55.0.24.patch` (~88 tok)
-
-## src/
-
-- `App.tsx` — BREATHE_PHASES (~1483 tok)
-
-## src/components/
-
-- `BunkerGate.tsx` — AUTH_TIMEOUT_MS (~1826 tok)
-- `EntryGate.tsx` — EntryGate (~3706 tok)
-- `ShimmerCore.tsx` — LERP (~662 tok)
-- `WarRoom.tsx` — WarRoom (~4424 tok)
-
-## src/components/fitness/
-
-- `FitnessOnboardingGrid.tsx` — Web DOM fitness onboarding: 3-taps-to-active (Domain→Activity→Session Active); Iron gates: trickycardio() then bitchweights(); AMRAP briefing; session up-timer; onComplete() fires completeOnboarding() (~4092 tok)
-- `PushDaySession.tsx` — --------------------------------------------------------------------------- (~4125 tok)
-
-## src/hooks/
-
-- `useArmory.ts` — Exports ArmoryReturn, useArmory (~1308 tok)
-- `useAvatarLoadout.ts` — Exports AvatarLoadoutReturn, useAvatarLoadout (~1284 tok)
-- `useBunkerTap.ts` — Tap-sequence detection hook; BUNKER_SEQUENCE [1,2,1]; calls onSequenceMatch() on match; 1500ms timeout resets pattern (~120 tok)
-- `useJointOps.ts` — Exports JointOpsReturn, useJointOps (~2810 tok)
-- `usePatternObserver.ts` — Exports Domain, PatternSignals, usePatternObserver (~837 tok)
-- `useTetherState.ts` — SPEC-002: Exports ValkyrieTheme, TetherState, TetherStateReturn (state/isLoading/error/sync/updateTheme/triggerKillSwitch); UIConfig/BitchWeightFlag/TrickyCardioGate retained as type-only exports pending domain hook migration (~2100 tok)
-
-## src/lib/
-
-- `supabase.ts` — Falls back to placeholder values when .env.local is absent so createClient (~950 tok)
-
-## src/logic/synthesis/
-
-- `DailyPlanSchema.ts` — Exports ActivityDomain, EventStatus, DailyPlanAlternate, IronEventData + 6 more (~496 tok)
-- `index.ts` (~80 tok)
-- `nightlySynth.ts` — Aggregates a user's activity data for a given date from Supabase and (~1778 tok)
-
-## src/native/
-
-- `NativeApp.tsx` — Stack (~362 tok)
-
-## src/native/screens/
-
-- `FitnessOnboardingGrid.tsx` — Assuming a root stack navigator setup (~1763 tok)
-- `HubSession.tsx` — COLORS (~1181 tok)
-- `manifest.ts` — DOMAINS data (Iron/Road/Mat/Hub), Activity type, C25K_WEEK_1_DAY_1 intervals (~300 tok)
-- `MatSession.tsx` — Define a simple yoga flow manifest locally. (~1538 tok)
-- `PushDayOnboarding.tsx` — SPECTRE LABS — TETHER MOBILE (~7842 tok)
-- `RoadSession.tsx` — COLORS (~1845 tok)
-- `WorkoutSummary.tsx` — COLORS (~812 tok)
-
-## src/registry/avatar/
-
-- `bodies.ts` — Relative silhouette proportions — consumed by the avatar renderer (~623 tok)
-- `gear.ts` — Exports GearSlot, GearRarity, GearItem, ALL_GEAR + 3 more (~2822 tok)
-- `index.ts` — Exports AVATAR_MANIFEST (~216 tok)
-- `themes.ts` — What the player earns or discovers to unlock this theme (~555 tok)
-
-## src/registry/valkyrie/
-
-- `houses.ts` — ShimmerMode type (`'MILITARY' | 'ETHER'`) and valkyrie house definitions (~50 tok)
-- `manifest.ts` — VALKYRIE_MANIFEST: title, codename, gear (helmets/wings arrays with name/rarity) (~80 tok)
-
-## src/stores/
-
-- `patternStore.ts` — Exports ShimmerTarget, DEFAULTS, usePatternStore (~260 tok)
-
-## supabase/functions/calculate-1rm/
-
-
-## supabase/functions/sync-workout/
-
-
-## supabase/migrations/
-
-- `05_identity_upgrade.sql` — Tether | Spectre Labs (~145 tok)
-- `06_tether_state_and_hub_sessions.sql` — Tether | Spectre Labs (~385 tok)
-- `07_avatar_loadout.sql` — Tether | Spectre Labs (~345 tok)
+- `gsd-advisor-researcher.toml` (~1508 tok)
+- `gsd-ai-researcher.toml` (~1844 tok)
+- `gsd-assumptions-analyzer.toml` (~1279 tok)
+- `gsd-code-fixer.toml` — Declares it (~6446 tok)
+- `gsd-code-reviewer.toml` — Declares mismatches (~4326 tok)
+- `gsd-codebase-mapper.toml` — /*.ts 2>/dev/null | head -10 (~5777 tok)
+- `gsd-debug-session-manager.toml` (~2693 tok)
+- `gsd-debugger.toml` — validation: MinimalRepro (~13441 tok)
+- `gsd-doc-classifier.toml` — ` or filename `ADR-*.md` or `0001-*.md`…`9999-*.md` → strong ADR signal (~2119 tok)
+- `gsd-doc-synthesizer.toml` — Declares content (~2709 tok)
+- `gsd-doc-verifier.toml` — /{filename}`) or Read to check existence (~3483 tok)
+- `gsd-doc-writer.toml` — /*.ts` or `lib/**/*.js` (~10747 tok)
+- `gsd-domain-researcher.toml` (~1694 tok)
+- `gsd-eval-auditor.toml` (~2174 tok)
+- `gsd-eval-planner.toml` (~1951 tok)
+- `gsd-executor.toml` — Declares errors (~7286 tok)
+- `gsd-framework-selector.toml` — Declares of (~1879 tok)
+- `gsd-integration-checker.toml` — Declares is (~4289 tok)
+- `gsd-intel-updater.toml` (~3516 tok)
+- `gsd-nyquist-auditor.toml` — Declares I (~2047 tok)
+- `gsd-pattern-mapper.toml` — /*.{ts,js,py,go,rs}") (~3503 tok)
+- `gsd-phase-researcher.toml` (~9394 tok)
+- `gsd-plan-checker.toml` — Declares 3 (~10394 tok)
+- `gsd-planner.toml` — Declares files (~13399 tok)
+- `gsd-project-researcher.toml` — Declares of (~5193 tok)
+- `gsd-research-synthesizer.toml` — Declares of (~2048 tok)
+- `gsd-roadmapper.toml` (~5435 tok)
+- `gsd-security-auditor.toml` (~1755 tok)
+- `gsd-ui-auditor.toml` — Declares audit (~4829 tok)

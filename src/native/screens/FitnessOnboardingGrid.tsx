@@ -4,17 +4,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { useNavigation } from '@react-navigation/native';
 import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { DOMAINS, type Domain, type Activity } from './manifest';
-import type { ShimmerMode } from '../../registry/valkyrie/houses';
-
-// Assuming a root stack navigator setup
-export type RootStackParamList = {
-  FitnessOnboardingGrid: undefined;
-  PushDayOnboarding: { shimmerMode?: ShimmerMode };
-  RoadSession: { activityId: string };
-  MatSession: { activityId: string };
-  HubSession: undefined;
-  WorkoutSummary: { workoutId: string }; // From previous context
-};
+import type { RootStackParamList } from '../navigation.types';
 
 type NavProp = NativeStackNavigationProp<RootStackParamList, 'FitnessOnboardingGrid'>;
 

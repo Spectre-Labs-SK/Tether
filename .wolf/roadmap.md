@@ -12,13 +12,21 @@ supabase/migrations/008_*   — accounts + transactions + envelopes
 ---
 
 ## Current Phase: 0 — LEVEL 0: BUNKER RECONSTRUCTION
-**Do not start Phase 1 tasks until the Level 0 fun loop is proven.**
+**Execution implemented; Android human UAT pending. Do not start Phase 1 tasks until the Level 0 fun loop is proven.**
 
 ---
 
 ## Phase 0 — Level 0: Bunker Reconstruction
 **Timeline:** 3 weeks for first fun vertical slice
 **Goal:** Prove the core loop: real household actions rebuild a destroyed base while chaos attacks it.
+
+**GSD phase directory:** `.planning/phases/00-level-0-bunker-reconstruction/`
+
+**GSD plans:**
+- `00-01-PLAN.md` — product/spec consolidation and missing source docs
+- `00-02-PLAN.md` — behavior-event model, screenshot ingestion, wipe data, kill switch stub, migrations
+- `00-03-PLAN.md` — native Level 0 Bunker vertical slice
+- `00-04-PLAN.md` — Joint Ops/Ghost Ops fitness framing without hardcoded workouts
 
 ### Level 0 Working Name
 **Bunker Reconstruction**
@@ -32,23 +40,23 @@ supabase/migrations/008_*   — accounts + transactions + envelopes
 This cannot be cozy productivity. Parenting, bills, groceries, toddlers, teenagers, sleep debt, and household overload are often not light or inspirational. Tether makes the chaos playable: the base is under attack, you and your partner rebuild/defend it, and every real action changes the world.
 
 ### Checklist
-- [ ] Create `Level0BunkerReconstruction` vertical slice from the pasted mockup direction
-- [ ] Military / Ethereal / Mixed Level 0 visual modes
-- [ ] Silent degradation states — dimmer, dirtier, quieter; no shame warnings
-- [ ] Task completion changes the scene physically
-- [ ] Locked door visible before unlock
-- [ ] One earned Intel Drop: `// INTEL RECOVERED`
-- [ ] One household chaos/base-attack event
-- [ ] Behavior events logged for completion, skip, substitute, shuffle, defer, and event response
-- [ ] Centralize `RootStackParamList` → `src/native/navigation.types.ts`
-- [ ] Write `data-model.md` — behavior_events, question_sessions, generated_plans, plan_steps, plan_actions, accounts, transactions, envelopes, pantry_items, pendulum_events, noseyquestions_log
+- [x] Create `Level0BunkerReconstruction` vertical slice from the pasted mockup direction
+- [x] Military / Ethereal / Mixed Level 0 visual modes
+- [x] Silent degradation states — dimmer, dirtier, quieter; no shame warnings
+- [x] Task completion changes the scene physically
+- [x] Locked door visible before unlock
+- [x] One earned Intel Drop: `// INTEL RECOVERED`
+- [x] One household chaos/base-attack event
+- [x] Behavior events logged for completion, skip, substitute, shuffle, defer, and event response
+- [x] Centralize `RootStackParamList` → `src/native/navigation.types.ts`
+- [x] Write `data-model.md` — behavior_events, question_sessions, generated_plans, plan_steps, plan_actions, accounts, transactions, envelopes, pantry_items, pendulum_events, noseyquestions_log
 - [ ] Build wipe data button — real, working, first feature shipped
-- [ ] Kill switch stub — hardcoded logic, doesn't need to fire yet, needs to exist
+- [x] Kill switch stub — hardcoded logic, doesn't need to fire yet, needs to exist
 - [ ] Push repo public to GitHub
-- [ ] Screenshot ingestion pipeline — image uploaded → stored, not parsed yet
-- [ ] Decide: Android or iOS first (affects all Expo build targets)
-- [ ] Migration 07 — behavior_events + question_sessions
-- [ ] Migration 08 — generated_plans + plan_steps + plan_actions
+- [x] Screenshot ingestion pipeline — image uploaded → stored, not parsed yet
+- [x] Decide: Android or iOS first (affects all Expo build targets)
+- [x] Migration 08 — behavior_events + question_sessions
+- [x] Migration 09 — generated_plans + plan_steps + plan_actions
 
 ### Rules While in Phase 0
 - UI work is allowed only for the Level 0 fun loop and trust-critical controls

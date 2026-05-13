@@ -33,638 +33,211 @@
 | 2026-04-29 | Nightly Intelligence Synthesizer — full GSD RESEARCH→SPEC→PLAN→EXECUTE→VERIFY cycle; created src/logic/synthesis/ (DailyPlanSchema.ts, nightlySynth.ts, index.ts); DailyPlanEvent.alternate non-null contract; LEARNING_VELOCITY.log created; CLAUDE.md updated; anatomy+cerebrum+memory updated | src/logic/synthesis/*, LEARNING_VELOCITY.log, CLAUDE.md, .wolf/*.md | all_written | ~6k tok |
 
 ## Session: 2026-04-22 08:14
-
-| Time | Action | File(s) | Outcome | ~Tokens |
-|------|--------|---------|---------|--------|
-| 08:52 | Edited tsconfig.app.json | 2→3 lines | ~15 |
-| 08:52 | Edited src/hooks/useTetherState.ts | 14→16 lines | ~244 |
-| 08:52 | Edited src/hooks/useTetherState.ts | added 2 condition(s) | ~327 |
-| 08:52 | Edited src/hooks/useTetherState.ts | inline fix | ~40 |
-| 08:53 | Edited src/native/screens/PushDayOnboarding.tsx | added 1 import(s) | ~65 |
-| 08:53 | Edited src/App.tsx | CSS: distort | ~131 |
-| 08:53 | Edited src/App.tsx | modified WarRoom() | ~58 |
-| 08:53 | Edited src/App.tsx | expanded (+7 lines) | ~58 |
-| 08:53 | Edited src/App.tsx | inline fix | ~21 |
-| 08:53 | Edited src/native/screens/PushDayOnboarding.tsx | 6→7 lines | ~83 |
-| 08:53 | Edited src/native/screens/PushDayOnboarding.tsx | added optional chaining | ~62 |
-| 08:54 | Edited src/native/screens/PushDayOnboarding.tsx | inline fix | ~10 |
-| 08:54 | Edited src/native/screens/PushDayOnboarding.tsx | inline fix | ~19 |
-| 08:54 | Edited src/native/screens/FitnessOnboardingGrid.tsx | added 1 import(s) | ~38 |
-| 08:54 | Edited src/native/screens/FitnessOnboardingGrid.tsx | inline fix | ~15 |
-| 08:54 | Edited src/native/screens/FitnessOnboardingGrid.tsx | inline fix | ~23 |
-| 08:59 | Debt liquidation complete — P0–P3 | tsconfig.app.json, useTetherState.ts, App.tsx, PushDayOnboarding.tsx, FitnessOnboardingGrid.tsx | tsc -b clean, 0 errors | ~3200 |
-| 08:59 | Session end: 16 writes across 5 files (tsconfig.app.json, useTetherState.ts, PushDayOnboarding.tsx, App.tsx, FitnessOnboardingGrid.tsx) | 11 reads | ~17533 tok |
-| 09:03 | Session end: 16 writes across 5 files (tsconfig.app.json, useTetherState.ts, PushDayOnboarding.tsx, App.tsx, FitnessOnboardingGrid.tsx) | 12 reads | ~17533 tok |
-| 09:10 | Session end: 16 writes across 5 files (tsconfig.app.json, useTetherState.ts, PushDayOnboarding.tsx, App.tsx, FitnessOnboardingGrid.tsx) | 26 reads | ~26875 tok |
-| 09:11 | Created .planning/codebase/STACK.md | — | ~1052 |
-| 09:12 | Created .planning/codebase/ARCHITECTURE.md | — | ~2789 |
-| 09:12 | Created .planning/codebase/CONVENTIONS.md | — | ~2359 |
-| 09:12 | Created .planning/codebase/INTEGRATIONS.md | — | ~1294 |
-| 09:12 | Session end: 20 writes across 9 files (tsconfig.app.json, useTetherState.ts, PushDayOnboarding.tsx, App.tsx, FitnessOnboardingGrid.tsx) | 32 reads | ~42944 tok |
-| 09:12 | Created .planning/codebase/TESTING.md | — | ~1602 |
-| 09:12 | Session end: 21 writes across 10 files (tsconfig.app.json, useTetherState.ts, PushDayOnboarding.tsx, App.tsx, FitnessOnboardingGrid.tsx) | 32 reads | ~44660 tok |
-| 09:12 | Created .planning/codebase/STRUCTURE.md | — | ~2981 |
-| 09:13 | Session end: 22 writes across 11 files (tsconfig.app.json, useTetherState.ts, PushDayOnboarding.tsx, App.tsx, FitnessOnboardingGrid.tsx) | 32 reads | ~47854 tok |
-| 09:13 | Created .planning/codebase/CONCERNS.md | — | ~4422 |
-| 09:14 | Session end: 23 writes across 12 files (tsconfig.app.json, useTetherState.ts, PushDayOnboarding.tsx, App.tsx, FitnessOnboardingGrid.tsx) | 32 reads | ~52592 tok |
+> Consolidated session (31 actions)
 
 ## Session: 2026-04-22 09:16
-
-| Time | Action | File(s) | Outcome | ~Tokens |
-|------|--------|---------|---------|--------|
+> Consolidated session (0 actions)
 
 ## Session: 2026-04-22 10:46
-
-| Time | Action | File(s) | Outcome | ~Tokens |
-|------|--------|---------|---------|--------|
+> Consolidated session (0 actions)
 
 ## Session: 2026-04-22 12:22
-
-| Time | Action | File(s) | Outcome | ~Tokens |
-|------|--------|---------|---------|--------|
-| 13:13 | Created .planning/codebase/STACK.md | — | ~427 |
-| 13:13 | Created .planning/codebase/INTEGRATIONS.md | — | ~663 |
-| 13:14 | Created .planning/codebase/ARCHITECTURE.md | — | ~917 |
-| 13:14 | Created .planning/codebase/STRUCTURE.md | — | ~1229 |
-| 13:14 | Created .planning/codebase/CONVENTIONS.md | — | ~764 |
-| 13:15 | Created .planning/codebase/TESTING.md | — | ~476 |
-| 13:15 | Created .planning/codebase/CONCERNS.md | — | ~1297 |
-| 13:16 | Session end: 7 writes across 7 files (STACK.md, INTEGRATIONS.md, ARCHITECTURE.md, STRUCTURE.md, CONVENTIONS.md) | 17 reads | ~39996 tok |
-| 13:17 | Session end: 7 writes across 7 files (STACK.md, INTEGRATIONS.md, ARCHITECTURE.md, STRUCTURE.md, CONVENTIONS.md) | 19 reads | ~39996 tok |
-| 13:19 | Created .planning/config.json | — | ~122 |
-| 13:23 | Created .planning/phases/01-pattern-observer-threejs/01-RESEARCH.md | — | ~7385 |
-| 13:24 | Phase 01 research complete — PatternObserver + Three.js state mirroring | .planning/phases/01-pattern-observer-threejs/01-RESEARCH.md | RESEARCH.md written, committed e616d3a | ~8k tok |
-| 13:26 | Created .planning/phases/01-pattern-observer-threejs/01-01-PLAN.md | — | ~3064 |
-| 13:27 | Created .planning/phases/01-pattern-observer-threejs/01-02-PLAN.md | — | ~4773 |
-| 13:27 | Created .planning/phases/01-pattern-observer-threejs/01-03-PLAN.md | — | ~1762 |
+> Consolidated session (15 actions)
 
 ## Session: 2026-04-22 (plan-phase)
-
-| Time | Action | File(s) | Outcome | ~Tokens |
-|------|--------|---------|---------|--------|
-| current | Created Phase 01 PLAN.md files (01-01, 01-02, 01-03) | .planning/phases/01-pattern-observer-threejs/01-01-PLAN.md, 01-02-PLAN.md, 01-03-PLAN.md | 3 plans in 3 waves: Wave1=store+ShimmerCore, Wave2=observer+App.tsx wiring, Wave3=install+build | ~12k tok |
-| 13:33 | Created .planning/phases/01-pattern-observer-threejs/01-REQUIREMENTS.md | — | ~1825 |
-| 13:34 | Created .planning/phases/01-pattern-observer-threejs/01-01-PLAN.md | — | ~3250 |
-| 13:35 | Created .planning/phases/01-pattern-observer-threejs/01-02-PLAN.md | — | ~5598 |
-| 13:36 | Created .planning/phases/01-pattern-observer-threejs/01-03-PLAN.md | — | ~2583 |
-| 13:38 | Session end: 16 writes across 13 files (STACK.md, INTEGRATIONS.md, ARCHITECTURE.md, STRUCTURE.md, CONVENTIONS.md) | 28 reads | ~85225 tok |
+> Consolidated session (6 actions)
 
 ## Session: 2026-04-22 14:53
-
-| Time | Action | File(s) | Outcome | ~Tokens |
-|------|--------|---------|---------|--------|
+> Consolidated session (0 actions)
 
 ## Session: 2026-04-23 19:03
-
-| Time | Action | File(s) | Outcome | ~Tokens |
-|------|--------|---------|---------|--------|
+> Consolidated session (0 actions)
 
 ## Session: 2026-04-23 19:03
-
-| Time | Action | File(s) | Outcome | ~Tokens |
-|------|--------|---------|---------|--------|
+> Consolidated session (0 actions)
 
 ## Session: 2026-04-23 19:03
-
-| Time | Action | File(s) | Outcome | ~Tokens |
-|------|--------|---------|---------|--------|
+> Consolidated session (0 actions)
 
 ## Session: 2026-04-23 19:04
-
-| Time | Action | File(s) | Outcome | ~Tokens |
-|------|--------|---------|---------|--------|
+> Consolidated session (0 actions)
 
 ## Session: 2026-04-26 00:33
-
-| Time | Action | File(s) | Outcome | ~Tokens |
-|------|--------|---------|---------|--------|
-| 00:55 | Edited src/lib/supabase.ts | modified upgradeAnonymousUser() | ~226 |
-| 00:56 | Created src/components/WarRoom.tsx | — | ~3646 |
-| 00:57 | Created src/components/EntryGate.tsx | — | ~3630 |
-| 00:57 | Created src/App.tsx | — | ~1195 |
-| 00:57 | Created supabase/migrations/05_identity_upgrade.sql | — | ~145 |
-| 01:01 | Edited TETHER_BUILD_JOURNAL.md | expanded (+69 lines) | ~959 |
-| 01:01 | Session end: 6 writes across 6 files (supabase.ts, WarRoom.tsx, EntryGate.tsx, App.tsx, 05_identity_upgrade.sql) | 7 reads | ~9879 tok |
+> Consolidated session (7 actions)
 
 ## Session: 2026-04-26 01:07
-
-| Time | Action | File(s) | Outcome | ~Tokens |
-|------|--------|---------|---------|--------|
+> Consolidated session (0 actions)
 
 ## Session: 2026-04-26 01:07
-
-| Time | Action | File(s) | Outcome | ~Tokens |
-|------|--------|---------|---------|--------|
-| 01:12 | Created src/components/fitness/FitnessOnboardingGrid.tsx | — | ~4092 |
-| 01:13 | Edited src/components/WarRoom.tsx | added 2 import(s) | ~128 |
-| 01:13 | Edited src/components/WarRoom.tsx | CSS: mode | ~154 |
-| 01:13 | Edited src/components/WarRoom.tsx | added optional chaining | ~263 |
-| 01:13 | Edited src/components/WarRoom.tsx | CSS: color | ~256 |
-| 01:13 | Edited src/components/WarRoom.tsx | expanded (+8 lines) | ~174 |
+> Consolidated session (6 actions)
 
 ## Session: 2026-04-26 (Night Build Phase 2)
-
-| Time | Action | File(s) | Outcome | ~Tokens |
-|------|--------|---------|---------|--------|
-| 02:00 | Created src/components/fitness/FitnessOnboardingGrid.tsx | new | 3-taps-to-active web port; Iron AI gates wired; session timer; AMRAP briefing | ~4092 |
-| 02:05 | Rewrote src/components/WarRoom.tsx | updated | Valkyrie gear loadout + onboarding overlay (z-30) + full useTetherState destructure | ~4303 |
-| 02:06 | Appended TETHER_BUILD_JOURNAL.md | updated | Night Build Phase 2 entry; B-007 logged | ~700 |
-| 02:07 | Updated .wolf/anatomy.md | updated | FitnessOnboardingGrid + WarRoom descriptions corrected | ~70 |
-| 02:07 | tsc -b --noEmit | all files | 0 errors | — |
-| 10:21 | Session end: 6 writes across 2 files (FitnessOnboardingGrid.tsx, WarRoom.tsx) | 10 reads | ~15820 tok |
-| 10:26 | Session end: 6 writes across 2 files (FitnessOnboardingGrid.tsx, WarRoom.tsx) | 11 reads | ~15820 tok |
+> Consolidated session (7 actions)
 
 ## Session: 2026-04-26 10:26
-
-| Time | Action | File(s) | Outcome | ~Tokens |
-|------|--------|---------|---------|--------|
+> Consolidated session (0 actions)
 
 ## Session: 2026-04-26 13:17
-
-| Time | Action | File(s) | Outcome | ~Tokens |
-|------|--------|---------|---------|--------|
+> Consolidated session (0 actions)
 
 ## Session: 2026-04-27 20:00
-
-| Time | Action | File(s) | Outcome | ~Tokens |
-|------|--------|---------|---------|--------|
-| 20:11 | Created DEPENDENCIES.md | — | ~543 |
-| 20:12 | Edited TETHER_BUILD_JOURNAL.md | 5→5 lines | ~174 |
-| 20:12 | Session end: 2 writes across 2 files (DEPENDENCIES.md, TETHER_BUILD_JOURNAL.md) | 10 reads | ~7218 tok |
-| 21:01 | Session end: 2 writes across 2 files (DEPENDENCIES.md, TETHER_BUILD_JOURNAL.md) | 11 reads | ~7218 tok |
+> Consolidated session (4 actions)
 
 ## Session: 2026-04-27 21:39
-
-| Time | Action | File(s) | Outcome | ~Tokens |
-|------|--------|---------|---------|--------|
-| 21:42 | Created src/stores/patternStore.ts | — | ~260 |
-| 21:42 | Created src/components/ShimmerCore.tsx | — | ~516 |
-| 21:42 | Edited src/components/WarRoom.tsx | inline fix | ~9 |
-| 21:43 | Created .planning/phases/01-pattern-observer-threejs/01-01-SUMMARY.md | — | ~995 |
-
-| 21:44 | Plan 01-01: created patternStore.ts + rewrote ShimmerCore as zero-props store-driven; fixed WarRoom caller | src/stores/patternStore.ts, src/components/ShimmerCore.tsx, src/components/WarRoom.tsx | 3 commits: 951fcd5, c210765, bc94e28 | ~800 tok |
-| 21:45 | Created src/hooks/usePatternObserver.ts | — | ~860 |
-| 21:45 | Edited src/components/WarRoom.tsx | added 1 import(s) | ~178 |
-| 21:45 | Edited src/components/WarRoom.tsx | modified WarRoom() | ~126 |
-| 21:46 | Edited src/components/WarRoom.tsx | 7→7 lines | ~130 |
-| 21:46 | Edited src/components/WarRoom.tsx | added error handling | ~313 |
-| 21:46 | Edited src/components/WarRoom.tsx | reduced (-8 lines) | ~95 |
-| 21:46 | Edited src/components/WarRoom.tsx | inline fix | ~20 |
-| 21:46 | Edited src/components/WarRoom.tsx | 3→3 lines | ~46 |
-| 21:46 | Edited src/components/WarRoom.tsx | inline fix | ~28 |
-| 21:47 | Edited src/App.tsx | added 1 import(s) | ~66 |
-| 21:47 | Edited src/App.tsx | modified SOSShell() | ~65 |
-| 21:47 | Edited src/App.tsx | modified if() | ~45 |
-| 21:48 | Created .planning/phases/01-pattern-observer-threejs/01-02-SUMMARY.md | — | ~508 |
-| 21:51 | Edited src/hooks/usePatternObserver.ts | 2→3 lines | ~53 |
-| 21:51 | Edited src/hooks/useJointOps.ts | modified if() | ~44 |
-| 21:51 | Edited src/hooks/useTetherState.ts | modified if() | ~55 |
-| 21:52 | Edited src/native/screens/MatSession.tsx | 5→7 lines | ~88 |
-| 21:52 | Edited src/native/screens/PushDayOnboarding.tsx | 2→1 lines | ~14 |
-| 21:52 | Edited src/native/screens/PushDayOnboarding.tsx | modified calculate1RM() | ~75 |
-| 21:52 | Edited src/components/fitness/PushDaySession.tsx | modified calculate1RM() | ~39 |
-| 21:52 | Edited src/native/screens/RoadSession.tsx | inline fix | ~12 |
-| 21:53 | Edited src/hooks/usePatternObserver.ts | 2→1 lines | ~6 |
-| 21:53 | Edited src/native/screens/MatSession.tsx | 4→3 lines | ~47 |
-| 21:54 | Edited src/hooks/usePatternObserver.ts | modified usePatternObserver() | ~731 |
-| 21:55 | Edited src/components/fitness/PushDaySession.tsx | inline fix | ~17 |
-| 21:55 | Edited src/components/ShimmerCore.tsx | CSS: distort, speed | ~100 |
-| 21:56 | Edited src/components/ShimmerCore.tsx | 4→4 lines | ~106 |
-| 21:56 | Edited src/components/ShimmerCore.tsx | 7→8 lines | ~73 |
-| 21:57 | Edited .planning/codebase/CONVENTIONS.md | modified Exception() | ~471 |
-| 21:58 | Created .planning/phases/01-pattern-observer-threejs/01-03-SUMMARY.md | — | ~2315 |
-| 04:07 | Created .planning/phases/01-pattern-observer-threejs/01-REVIEW.md | — | ~5387 |
-| 17:26 | Created .planning/phases/01-pattern-observer-threejs/01-VERIFICATION.md | — | ~3706 |
-| 17:27 | Created .planning/phases/01-pattern-observer-threejs/01-HUMAN-UAT.md | — | ~266 |
-| 17:28 | Phase 01 execution complete — all 3 plans done, build green, 14/15 verified, 2 human UAT items pending | .planning/phases/01-pattern-observer-threejs/ | complete | ~50k |
-| 17:28 | Session end: 37 writes across 18 files (patternStore.ts, ShimmerCore.tsx, WarRoom.tsx, 01-01-SUMMARY.md, usePatternObserver.ts) | 46 reads | ~57119 tok |
-| 17:36 | Session end: 37 writes across 18 files (patternStore.ts, ShimmerCore.tsx, WarRoom.tsx, 01-01-SUMMARY.md, usePatternObserver.ts) | 46 reads | ~57119 tok |
-| 17:37 | Session end: 37 writes across 18 files (patternStore.ts, ShimmerCore.tsx, WarRoom.tsx, 01-01-SUMMARY.md, usePatternObserver.ts) | 48 reads | ~57119 tok |
+> Consolidated session (42 actions)
 
 ## Session: 2026-04-29 17:41
-
-| Time | Action | File(s) | Outcome | ~Tokens |
-|------|--------|---------|---------|--------|
-| 17:57 | Edited app.json | expanded (+7 lines) | ~82 |
-| 17:57 | Edited package.json | 6→7 lines | ~34 |
-| 17:57 | Edited package.json | 3→7 lines | ~74 |
-| 17:57 | Created index.js | — | ~37 |
-| 17:57 | Created metro.config.js | — | ~70 |
-| 17:57 | Created babel.config.js | — | ~31 |
-| 17:57 | Created src/native/NativeApp.tsx | — | ~332 |
-| 17:59 | Session end: 7 writes across 6 files (app.json, package.json, index.js, metro.config.js, babel.config.js) | 14 reads | ~11558 tok |
+> Consolidated session (8 actions)
 
 ## Session: 2026-04-29 21:13
-
-| Time | Action | File(s) | Outcome | ~Tokens |
-|------|--------|---------|---------|--------|
+> Consolidated session (0 actions)
 
 ## Session: 2026-04-29 21:14
-
-| Time | Action | File(s) | Outcome | ~Tokens |
-|------|--------|---------|---------|--------|
+> Consolidated session (0 actions)
 
 ## Session: 2026-04-29 21:14
-
-| Time | Action | File(s) | Outcome | ~Tokens |
-|------|--------|---------|---------|--------|
+> Consolidated session (0 actions)
 
 ## Session: 2026-04-29 21:18
-
-| Time | Action | File(s) | Outcome | ~Tokens |
-|------|--------|---------|---------|--------|
-| 21:20 | Edited CLAUDE.md | expanded (+10 lines) | ~212 |
-| 21:20 | Edited GEMINI.md | expanded (+36 lines) | ~489 |
-| 21:21 | Session end: 2 writes across 2 files (CLAUDE.md, GEMINI.md) | 5 reads | ~752 tok |
+> Consolidated session (3 actions)
 
 ## Session: 2026-04-29 21:21
-
-| Time | Action | File(s) | Outcome | ~Tokens |
-|------|--------|---------|---------|--------|
+> Consolidated session (0 actions)
 
 ## Session: 2026-04-29 21:22
-
-| Time | Action | File(s) | Outcome | ~Tokens |
-|------|--------|---------|---------|--------|
+> Consolidated session (0 actions)
 
 ## Session: 2026-04-29 21:22
-
-| Time | Action | File(s) | Outcome | ~Tokens |
-|------|--------|---------|---------|--------|
+> Consolidated session (0 actions)
 
 ## Session: 2026-04-29 21:23
-
-| Time | Action | File(s) | Outcome | ~Tokens |
-|------|--------|---------|---------|--------|
+> Consolidated session (0 actions)
 
 ## Session: 2026-04-29 21:23
-
-| Time | Action | File(s) | Outcome | ~Tokens |
-|------|--------|---------|---------|--------|
+> Consolidated session (0 actions)
 
 ## Session: 2026-04-29 21:23
-
-| Time | Action | File(s) | Outcome | ~Tokens |
-|------|--------|---------|---------|--------|
+> Consolidated session (0 actions)
 
 ## Session: 2026-04-29 21:24
-
-| Time | Action | File(s) | Outcome | ~Tokens |
-|------|--------|---------|---------|--------|
-| 21:25 | Created .planning/STATE.md | — | ~567 |
-| 21:26 | STATE.md reconstructed from phase artifacts | .planning/STATE.md | written | ~200 tok |
-| 21:26 | Session end: 1 writes across 1 files (STATE.md) | 5 reads | ~4331 tok |
-| 21:27 | Created .planning/phases/01-pattern-observer-threejs/01-HUMAN-UAT.md | — | ~290 |
-| 21:27 | Edited .planning/STATE.md | 6→6 lines | ~77 |
-| 21:27 | Human UAT closed — lerp confirmed, SOS canvas required per Sentinel | 01-HUMAN-UAT.md, STATE.md | 1 pass / 1 action item | ~100 tok |
-| 21:27 | Session end: 3 writes across 2 files (STATE.md, 01-HUMAN-UAT.md) | 5 reads | ~4725 tok |
-| 21:29 | Edited src/App.tsx | added 2 import(s) | ~98 |
-| 21:29 | Edited src/App.tsx | CSS: position | ~161 |
-| 21:30 | Edited .planning/phases/01-pattern-observer-threejs/01-HUMAN-UAT.md | 3→3 lines | ~37 |
-| 21:30 | SOSShell: added Canvas+ShimmerCore background — SOS pink sphere now renders in crisis mode | src/App.tsx | tsc clean | ~150 tok |
-| 21:31 | Created .planning/ROADMAP.md | — | ~262 |
-| 21:31 | Edited .planning/STATE.md | expanded (+7 lines) | ~47 |
-| 21:31 | Phase 02 added: Nervous System Integration — ROADMAP.md created, phase dir created | .planning/ROADMAP.md, .planning/phases/02-nervous-system-integration/ | done | ~100 tok |
-| 21:31 | Session end: 8 writes across 4 files (STATE.md, 01-HUMAN-UAT.md, App.tsx, ROADMAP.md) | 7 reads | ~6713 tok |
+> Consolidated session (15 actions)
 
 ## Session: 2026-04-29 21:33
-
-| Time | Action | File(s) | Outcome | ~Tokens |
-|------|--------|---------|---------|--------|
+> Consolidated session (0 actions)
 
 ## Session: 2026-04-29 21:37
-
-| Time | Action | File(s) | Outcome | ~Tokens |
-|------|--------|---------|---------|--------|
+> Consolidated session (0 actions)
 
 ## Session: 2026-04-29 21:40
-
-| Time | Action | File(s) | Outcome | ~Tokens |
-|------|--------|---------|---------|--------|
-| 21:48 | Created .planning/phases/01-pattern-observer-threejs/01-REVIEW.md | — | ~4246 |
-| 21:49 | Session end: 1 writes across 1 files (01-REVIEW.md) | 20 reads | ~40177 tok |
-| 06:13 | Edited src/hooks/useJointOps.ts | added 2 condition(s) | ~484 |
-| 06:14 | Edited src/components/ShimmerCore.tsx | 5→10 lines | ~114 |
-| 06:14 | Edited src/native/screens/MatSession.tsx | inline fix | ~17 |
-| 06:14 | Edited src/native/screens/MatSession.tsx | added nullish coalescing | ~444 |
-| 06:15 | Edited src/native/screens/RoadSession.tsx | inline fix | ~17 |
-| 06:15 | Edited src/native/screens/RoadSession.tsx | CSS: fallback, WR-01, 00 | ~146 |
-| 06:15 | Edited src/native/screens/RoadSession.tsx | modified setTimeRemaining() | ~367 |
-| 06:16 | Edited src/hooks/useTetherState.ts | added optional chaining | ~242 |
-| 06:51 | Edited src/components/fitness/PushDaySession.tsx | CSS: failed | ~111 |
-| 06:51 | Edited src/components/fitness/PushDaySession.tsx | CSS: failed | ~96 |
-| 06:51 | Edited src/native/screens/PushDayOnboarding.tsx | added 1 condition(s) | ~73 |
-| 06:52 | Edited src/native/screens/PushDayOnboarding.tsx | modified if() | ~233 |
-| 06:55 | Created .planning/phases/01-pattern-observer-threejs/01-REVIEW-FIX.md | — | ~1642 |
-| 06:56 | Session end: 14 writes across 9 files (01-REVIEW.md, useJointOps.ts, ShimmerCore.tsx, MatSession.tsx, RoadSession.tsx) | 24 reads | ~48821 tok |
+> Consolidated session (16 actions)
 
 ## Session: 2026-04-29 07:10
-
-| Time | Action | File(s) | Outcome | ~Tokens |
-|------|--------|---------|---------|--------|
+> Consolidated session (0 actions)
 
 ## Session: 2026-04-29 07:21
-
-| Time | Action | File(s) | Outcome | ~Tokens |
-|------|--------|---------|---------|--------|
-| 07:35 | Edited src/lib/supabase.ts | expanded (+13 lines) | ~202 |
-| 07:36 | Edited src/lib/supabase.ts | added nullish coalescing | ~106 |
-| 07:36 | Edited vite.config.ts | added nullish coalescing | ~186 |
-| 07:36 | Edited app.json | inline fix | ~10 |
-| 07:58 | Session end: 4 writes across 3 files (supabase.ts, vite.config.ts, app.json) | 15 reads | ~4484 tok |
+> Consolidated session (5 actions)
 
 ## Session: 2026-04-29 15:34
-
-| Time | Action | File(s) | Outcome | ~Tokens |
-|------|--------|---------|---------|--------|
+> Consolidated session (0 actions)
 
 ## Session: 2026-04-29 15:34
-
-| Time | Action | File(s) | Outcome | ~Tokens |
-|------|--------|---------|---------|--------|
+> Consolidated session (0 actions)
 
 ## Session: 2026-04-30 20:30
-
-| Time | Action | File(s) | Outcome | ~Tokens |
-|------|--------|---------|---------|--------|
+> Consolidated session (0 actions)
 
 ## Session: 2026-04-30 20:30
-
-| Time | Action | File(s) | Outcome | ~Tokens |
-|------|--------|---------|---------|--------|
+> Consolidated session (0 actions)
 
 ## Session: 2026-04-30 21:20
-
-| Time | Action | File(s) | Outcome | ~Tokens |
-|------|--------|---------|---------|--------|
+> Consolidated session (0 actions)
 
 ## Session: 2026-04-30 21:21
-
-| Time | Action | File(s) | Outcome | ~Tokens |
-|------|--------|---------|---------|--------|
-| 21:27 | Created src/logic/synthesis/DailyPlanSchema.ts | — | ~496 |
-| 21:27 | Created src/logic/synthesis/nightlySynth.ts | — | ~1778 |
-| 21:28 | Created src/logic/synthesis/index.ts | — | ~80 |
-| 21:28 | Created LEARNING_VELOCITY.log | — | ~588 |
-| 21:29 | Edited CLAUDE.md | inline fix | ~10 |
-| 21:29 | Edited CLAUDE.md | 3→8 lines | ~136 |
-| 21:29 | Edited CLAUDE.md | modified synthesizeDay() | ~238 |
-| 21:29 | Edited CLAUDE.md | 7→8 lines | ~239 |
-| 21:31 | Session end: 8 writes across 5 files (DailyPlanSchema.ts, nightlySynth.ts, index.ts, LEARNING_VELOCITY.log, CLAUDE.md) | 11 reads | ~8161 tok |
+> Consolidated session (9 actions)
 
 ## Session: 2026-05-01 09:08
-
-| Time | Action | File(s) | Outcome | ~Tokens |
-|------|--------|---------|---------|--------|
+> Consolidated session (0 actions)
 
 ## Session: 2026-05-01 09:08
-
-| Time | Action | File(s) | Outcome | ~Tokens |
-|------|--------|---------|---------|--------|
+> Consolidated session (0 actions)
 
 ## Session: 2026-05-01 11:30
-
-| Time | Action | File(s) | Outcome | ~Tokens |
-|------|--------|---------|---------|--------|
+> Consolidated session (0 actions)
 
 ## Session: 2026-05-01 11:30
-
-| Time | Action | File(s) | Outcome | ~Tokens |
-|------|--------|---------|---------|--------|
-| 11:43 | Created src/hooks/useTetherState.ts | — | ~1762 |
-| 12:03 | Session end: 1 writes across 1 files (useTetherState.ts) | 10 reads | ~9519 tok |
-| 12:26 | Edited tsconfig.app.json | 3→2 lines | ~7 |
-| 12:50 | Session end: 2 writes across 2 files (useTetherState.ts, tsconfig.app.json) | 11 reads | ~9611 tok |
-| 13:44 | Edited tsconfig.app.json | inline fix | ~11 |
-| 13:44 | Edited src/native/NativeApp.tsx | 4→3 lines | ~68 |
-| 13:45 | Edited src/native/screens/FitnessOnboardingGrid.tsx | inline fix | ~10 |
-| 13:45 | Edited src/native/screens/FitnessOnboardingGrid.tsx | inline fix | ~19 |
-| 13:45 | Edited src/native/screens/MatSession.tsx | inline fix | ~15 |
-| 13:45 | Edited src/native/screens/MatSession.tsx | 2→2 lines | ~43 |
-| 13:45 | Edited src/native/screens/PushDayOnboarding.tsx | inline fix | ~17 |
-| 13:45 | Edited src/native/screens/PushDayOnboarding.tsx | inline fix | ~24 |
-| 13:45 | Edited src/native/screens/RoadSession.tsx | inline fix | ~15 |
-| 13:45 | Edited src/native/screens/RoadSession.tsx | 5→3 lines | ~61 |
-| 13:45 | Edited src/native/screens/HubSession.tsx | inline fix | ~13 |
-| 13:46 | Session end: 13 writes across 8 files (useTetherState.ts, tsconfig.app.json, NativeApp.tsx, FitnessOnboardingGrid.tsx, MatSession.tsx) | 17 reads | ~22779 tok |
-| 13:51 | Created src/hooks/useArmory.ts | — | ~1308 |
-| 13:51 | Edited src/components/EntryGate.tsx | 1→2 lines | ~28 |
-| 13:51 | Edited src/components/EntryGate.tsx | added optional chaining | ~139 |
-| 13:51 | Edited src/components/EntryGate.tsx | 5→5 lines | ~51 |
-| 13:52 | Edited src/components/WarRoom.tsx | inline fix | ~20 |
-| 13:52 | Edited src/components/WarRoom.tsx | added 1 import(s) | ~30 |
-| 13:52 | Edited src/components/WarRoom.tsx | CSS: userId, onboarding_pending, onboarding | ~188 |
-| 13:52 | Edited src/components/WarRoom.tsx | inline fix | ~14 |
-| 13:52 | Edited src/components/WarRoom.tsx | 5→5 lines | ~54 |
-| 13:52 | Edited src/components/WarRoom.tsx | inline fix | ~12 |
-| 13:52 | Edited src/components/WarRoom.tsx | inline fix | ~16 |
-| 13:53 | Session end: 24 writes across 11 files (useTetherState.ts, tsconfig.app.json, NativeApp.tsx, FitnessOnboardingGrid.tsx, MatSession.tsx) | 19 reads | ~32516 tok |
-| 13:58 | Session end: 24 writes across 11 files (useTetherState.ts, tsconfig.app.json, NativeApp.tsx, FitnessOnboardingGrid.tsx, MatSession.tsx) | 19 reads | ~32516 tok |
-| 15:17 | Session end: 24 writes across 11 files (useTetherState.ts, tsconfig.app.json, NativeApp.tsx, FitnessOnboardingGrid.tsx, MatSession.tsx) | 19 reads | ~32516 tok |
-| 17:13 | Session end: 24 writes across 11 files (useTetherState.ts, tsconfig.app.json, NativeApp.tsx, FitnessOnboardingGrid.tsx, MatSession.tsx) | 19 reads | ~32516 tok |
-| 17:23 | Session end: 24 writes across 11 files (useTetherState.ts, tsconfig.app.json, NativeApp.tsx, FitnessOnboardingGrid.tsx, MatSession.tsx) | 19 reads | ~32516 tok |
-| 17:26 | Session end: 24 writes across 11 files (useTetherState.ts, tsconfig.app.json, NativeApp.tsx, FitnessOnboardingGrid.tsx, MatSession.tsx) | 19 reads | ~32516 tok |
-| 17:27 | Session end: 24 writes across 11 files (useTetherState.ts, tsconfig.app.json, NativeApp.tsx, FitnessOnboardingGrid.tsx, MatSession.tsx) | 19 reads | ~32516 tok |
+> Consolidated session (34 actions)
 
 ## Session: 2026-05-02 17:34
-
-| Time | Action | File(s) | Outcome | ~Tokens |
-|------|--------|---------|---------|--------|
+> Consolidated session (0 actions)
 
 ## Session: 2026-05-02 19:52
-
-| Time | Action | File(s) | Outcome | ~Tokens |
-|------|--------|---------|---------|--------|
-| 23:23 | Edited node_modules/expo-modules-core/android/cmake/main.cmake | 9→10 lines | ~45 |
-| 08:50 | Created patches/expo-modules-core+55.0.24.patch | — | ~86 |
-| 09:02 | Created patches/expo-modules-core+55.0.24.patch | — | ~88 |
-| 09:02 | Session end: 3 writes across 2 files (main.cmake, expo-modules-core+55.0.24.patch) | 8 reads | ~234 tok |
+> Consolidated session (4 actions)
 
 ## Session: 2026-05-02 09:09
-
-| Time | Action | File(s) | Outcome | ~Tokens |
-|------|--------|---------|---------|--------|
+> Consolidated session (0 actions)
 
 ## Session: 2026-05-02 09:09
-
-| Time | Action | File(s) | Outcome | ~Tokens |
-|------|--------|---------|---------|--------|
-| 09:14 | Created CLAUDE.md | — | ~2063 |
-| 09:14 | Session end: 1 writes across 1 files (CLAUDE.md) | 13 reads | ~9211 tok |
-| 15:38 | Created .claude/skills/task-observer/SKILL.md | — | ~4417 |
-
-| 15:39 | task-observer skill installed | .claude/skills/task-observer/SKILL.md, .wolf/skill-observations/last-review-date.txt | skill live in available-skills list; review timestamp initialized to 2026-05-02 | ~200 tok |
-| 15:39 | Session end: 2 writes across 2 files (CLAUDE.md, SKILL.md) | 16 reads | ~13963 tok |
+> Consolidated session (5 actions)
 
 ## Session: 2026-05-03 08:21
-
-| Time | Action | File(s) | Outcome | ~Tokens |
-|------|--------|---------|---------|--------|
-| 08:29 | Edited metro.config.js | "@expo/metro-config" → "expo/metro-config" | ~17 |
-| 08:33 | Edited package.json | 6.0 → 5.9 | ~8 |
-| 08:37 | Created package.json | — | ~390 |
-| 08:38 | Edited .gitignore | 1→5 lines | ~20 |
-| 08:39 | Session end: 4 writes across 3 files (metro.config.js, package.json, .gitignore) | 13 reads | ~1624 tok |
+> Consolidated session (5 actions)
 
 ## Session: 2026-05-03 09:13
-
-| Time | Action | File(s) | Outcome | ~Tokens |
-|------|--------|---------|---------|--------|
+> Consolidated session (0 actions)
 
 ## Session: 2026-05-03 09:40
-
-| Time | Action | File(s) | Outcome | ~Tokens |
-|------|--------|---------|---------|--------|
+> Consolidated session (0 actions)
 
 ## Session: 2026-05-03 09:40
-
-| Time | Action | File(s) | Outcome | ~Tokens |
-|------|--------|---------|---------|--------|
-| 09:43 | Created metro.config.js | — | ~38 |
-| 10:02 | Session end: 1 writes across 1 files (metro.config.js) | 6 reads | ~1476 tok |
-| 10:03 | Session end: 1 writes across 1 files (metro.config.js) | 6 reads | ~1476 tok |
+> Consolidated session (3 actions)
 
 ## Session: 2026-05-03 10:07
-
-| Time | Action | File(s) | Outcome | ~Tokens |
-|------|--------|---------|---------|--------|
+> Consolidated session (0 actions)
 
 ## Session: 2026-05-03 10:37
-
-| Time | Action | File(s) | Outcome | ~Tokens |
-|------|--------|---------|---------|--------|
+> Consolidated session (0 actions)
 
 ## Session: 2026-05-03 10:37
-
-| Time | Action | File(s) | Outcome | ~Tokens |
-|------|--------|---------|---------|--------|
+> Consolidated session (0 actions)
 
 ## Session: 2026-05-04 09:08
-
-| Time | Action | File(s) | Outcome | ~Tokens |
-|------|--------|---------|---------|--------|
+> Consolidated session (0 actions)
 
 ## Session: 2026-05-05 22:17
-
-| Time | Action | File(s) | Outcome | ~Tokens |
-|------|--------|---------|---------|--------|
+> Consolidated session (0 actions)
 
 ## Session: 2026-05-05 22:22
-
-| Time | Action | File(s) | Outcome | ~Tokens |
-|------|--------|---------|---------|--------|
+> Consolidated session (0 actions)
 
 ## Session: 2026-05-05 22:22
-
-| Time | Action | File(s) | Outcome | ~Tokens |
-|------|--------|---------|---------|--------|
+> Consolidated session (0 actions)
 
 ## Session: 2026-05-05 23:16
-
-| Time | Action | File(s) | Outcome | ~Tokens |
-|------|--------|---------|---------|--------|
-| 23:31 | Created src/components/BunkerGate.tsx | — | ~1826 |
-| 23:31 | Edited src/App.tsx | "./components/EntryGate" → "./components/BunkerGate" | ~14 |
-| 23:31 | Edited src/App.tsx | inline fix | ~14 |
-| 23:32 | Edited tsconfig.app.json | 4→7 lines | ~20 |
-| 2026-05-04 | Bunker Protocol: created BunkerGate.tsx (resilience-first entry gate: 3s auth timeout, no blocking loading state, fire-and-forget SOS upsert); wired into App.tsx; fixed tsconfig.app.json missing exclude for src/native | src/components/BunkerGate.tsx, src/App.tsx, tsconfig.app.json | done | ~80 tok |
-| 23:33 | Session end: 4 writes across 3 files (BunkerGate.tsx, App.tsx, tsconfig.app.json) | 10 reads | ~7960 tok |
+> Consolidated session (6 actions)
 
 ## Session: 2026-05-05 23:41
-
-| Time | Action | File(s) | Outcome | ~Tokens |
-|------|--------|---------|---------|--------|
+> Consolidated session (0 actions)
 
 ## Session: 2026-05-05 23:41
-
-| Time | Action | File(s) | Outcome | ~Tokens |
-|------|--------|---------|---------|--------|
+> Consolidated session (0 actions)
 
 ## Session: 2026-05-05 23:42
-
-| Time | Action | File(s) | Outcome | ~Tokens |
-|------|--------|---------|---------|--------|
+> Consolidated session (0 actions)
 
 ## Session: 2026-05-05 00:01
-
-| Time | Action | File(s) | Outcome | ~Tokens |
-|------|--------|---------|---------|--------|
-| 00:09 | Created supabase/migrations/06_tether_state_and_hub_sessions.sql | — | ~385 |
-| 08:17 | Created src/native/screens/WorkoutSummary.tsx | — | ~812 |
-| 08:17 | Edited src/native/NativeApp.tsx | added 1 import(s) | ~102 |
-| 08:17 | Edited src/native/NativeApp.tsx | 2→3 lines | ~47 |
-| 08:50 | Created PRODUCT.md | — | ~704 |
-| 08:55 | Session end: 5 writes across 4 files (06_tether_state_and_hub_sessions.sql, WorkoutSummary.tsx, NativeApp.tsx, PRODUCT.md) | 28 reads | ~22903 tok |
-| 08:56 | Created .planning/codebase/STACK.md | — | ~1247 |
-| 08:57 | Created .planning/codebase/INTEGRATIONS.md | — | ~1402 |
-| 08:57 | Created .planning/codebase/CONVENTIONS.md | — | ~2307 |
-| 08:57 | Session end: 8 writes across 7 files (06_tether_state_and_hub_sessions.sql, WorkoutSummary.tsx, NativeApp.tsx, PRODUCT.md, STACK.md) | 48 reads | ~52866 tok |
-| 08:58 | Created .planning/codebase/CONCERNS.md | — | ~3626 |
-| 08:58 | Created .planning/codebase/TESTING.md | — | ~1532 |
-| 08:58 | Session end: 10 writes across 9 files (06_tether_state_and_hub_sessions.sql, WorkoutSummary.tsx, NativeApp.tsx, PRODUCT.md, STACK.md) | 51 reads | ~58393 tok |
-| 08:58 | Session end: 10 writes across 9 files (06_tether_state_and_hub_sessions.sql, WorkoutSummary.tsx, NativeApp.tsx, PRODUCT.md, STACK.md) | 51 reads | ~58393 tok |
-| 08:58 | Created .planning/codebase/ARCHITECTURE.md | — | ~4554 |
-| 08:59 | Created .planning/codebase/STRUCTURE.md | — | ~2978 |
-| 09:02 | Created SESSION_STATE.json | — | ~42 |
-| 09:02 | Edited TETHER_BUILD_JOURNAL.md | expanded (+95 lines) | ~1218 |
-| 2026-05-05 | NIGHT BUILD — CLEAN HOUSE: deleted 13 noise files/dirs, moved useBunkerTap.ts→src/hooks/, created migration 06 (hub_sessions + profiles columns), WorkoutSummary.tsx stub (prevents nav crash), installed Impeccable skill + PRODUCT.md, refreshed 7 codebase docs (1260L total), tsc 0 errors | multiple | done | ~220k tok |
-| 09:05 | Session end: 14 writes across 13 files (06_tether_state_and_hub_sessions.sql, WorkoutSummary.tsx, NativeApp.tsx, PRODUCT.md, STACK.md) | 55 reads | ~74645 tok |
-| 09:32 | Session end: 14 writes across 13 files (06_tether_state_and_hub_sessions.sql, WorkoutSummary.tsx, NativeApp.tsx, PRODUCT.md, STACK.md) | 55 reads | ~74645 tok |
-| 09:39 | Edited CLAUDE.md | expanded (+21 lines) | ~232 |
-| 09:39 | Session end: 15 writes across 14 files (06_tether_state_and_hub_sessions.sql, WorkoutSummary.tsx, NativeApp.tsx, PRODUCT.md, STACK.md) | 56 reads | ~76294 tok |
+> Consolidated session (23 actions)
 
 ## Session: 2026-05-05 09:50
-
-| Time | Action | File(s) | Outcome | ~Tokens |
-|------|--------|---------|---------|--------|
-| 12:27 | Created .mcp.json | — | ~70 |
-| 12:27 | Session end: 1 writes across 1 files (.mcp.json) | 2 reads | ~70 tok |
-| 12:29 | Session end: 1 writes across 1 files (.mcp.json) | 2 reads | ~70 tok |
+> Consolidated session (3 actions)
 
 ## Session: 2026-05-05 12:30
-
-| Time | Action | File(s) | Outcome | ~Tokens |
-|------|--------|---------|---------|--------|
-| 23:05 | Created .planning/codebase/STACK.md | — | ~1587 |
-| 23:06 | Created .planning/codebase/INTEGRATIONS.md | — | ~1675 |
-| 23:06 | Created .planning/codebase/ARCHITECTURE.md | — | ~4018 |
-| 23:06 | Session end: 3 writes across 3 files (STACK.md, INTEGRATIONS.md, ARCHITECTURE.md) | 71 reads | ~74714 tok |
-| 23:06 | Created .planning/codebase/CONVENTIONS.md | — | ~3062 |
-| 23:07 | Created .planning/codebase/TESTING.md | — | ~1069 |
-| 23:07 | Created .planning/codebase/STRUCTURE.md | — | ~2824 |
-| 23:07 | gsd-map-codebase quality focus: wrote CONVENTIONS.md + TESTING.md | .planning/codebase/CONVENTIONS.md, .planning/codebase/TESTING.md | complete | ~3500 tok |
-| 23:07 | Session end: 6 writes across 6 files (STACK.md, INTEGRATIONS.md, ARCHITECTURE.md, CONVENTIONS.md, TESTING.md) | 72 reads | ~82164 tok |
-| 23:07 | Session end: 6 writes across 6 files (STACK.md, INTEGRATIONS.md, ARCHITECTURE.md, CONVENTIONS.md, TESTING.md) | 72 reads | ~82164 tok |
-| 23:08 | Created .planning/codebase/CONCERNS.md | — | ~6464 |
-| 23:09 | Session end: 7 writes across 7 files (STACK.md, INTEGRATIONS.md, ARCHITECTURE.md, CONVENTIONS.md, TESTING.md) | 72 reads | ~89090 tok |
+> Consolidated session (12 actions)
 
 ## Session: 2026-05-06 23:09
-
-| Time | Action | File(s) | Outcome | ~Tokens |
-|------|--------|---------|---------|--------|
-| 23:18 | Created ../../../../.claude/get-shit-done/USER-PROFILE.md | — | ~1045 |
-| 23:19 | Created ../../../../.claude/commands/gsd/dev-preferences.md | — | ~463 |
-| 23:20 | Edited ../../../../.claude/CLAUDE.md | expanded (+25 lines) | ~373 |
-| 23:20 | Edited CLAUDE.md | expanded (+23 lines) | ~348 |
-| 23:20 | Session end: 4 writes across 3 files (USER-PROFILE.md, dev-preferences.md, CLAUDE.md) | 6 reads | ~7644 tok |
-| 23:25 | Created ../../../../.claude/skills/dev-profile-evolution/SKILL.md | — | ~4179 |
-| 23:25 | Edited ../../../../.claude/CLAUDE.md | expanded (+12 lines) | ~137 |
-| 23:26 | Session end: 6 writes across 4 files (USER-PROFILE.md, dev-preferences.md, CLAUDE.md, SKILL.md) | 9 reads | ~12269 tok |
-| 23:35 | Created src/registry/avatar/bodies.ts | — | ~623 |
-| 23:35 | Created src/registry/avatar/themes.ts | — | ~555 |
-| 23:36 | Created src/registry/avatar/gear.ts | — | ~2822 |
+> Consolidated session (11 actions)
 
 ## Session: 2026-05-06 23:38
-
-| Time | Action | File(s) | Outcome | ~Tokens |
-|------|--------|---------|---------|--------|
-| 23:38 | Created src/registry/avatar/index.ts | — | ~216 |
-| 23:38 | Created supabase/migrations/07_avatar_loadout.sql | — | ~345 |
-| 23:39 | Edited src/lib/supabase.ts | expanded (+14 lines) | ~137 |
-| 23:39 | Created src/hooks/useAvatarLoadout.ts | — | ~1284 |
-| 23:40 | Session end: 4 writes across 4 files (index.ts, 07_avatar_loadout.sql, supabase.ts, useAvatarLoadout.ts) | 3 reads | ~2872 tok |
-| 07:57 | Session end: 4 writes across 4 files (index.ts, 07_avatar_loadout.sql, supabase.ts, useAvatarLoadout.ts) | 4 reads | ~2872 tok |
-| 08:01 | Session end: 4 writes across 4 files (index.ts, 07_avatar_loadout.sql, supabase.ts, useAvatarLoadout.ts) | 5 reads | ~2942 tok |
+> Consolidated session (7 actions)
 
 ## Session: 2026-05-08 21:26
 
@@ -690,6 +263,12 @@
 
 | Time | Action | File(s) | Outcome | ~Tokens |
 |------|--------|---------|---------|--------|
+| 08:36 | Executed GSD Phase 00 Level 0 Bunker Reconstruction | .planning/phases/00-level-0-bunker-reconstruction/*-SUMMARY.md; .planning/REQUIREMENTS.md; .planning/data-model.md; supabase/migrations/08_behavior_events_and_questions.sql; supabase/migrations/09_generated_plans_and_screenshots.sql; src/hooks/useLevel0Bunker.ts; src/hooks/useJointFitnessPlan.ts; src/native/screens/Level0BunkerReconstruction.tsx | Implemented Phase 0 data spine, native Bunker slice, Joint/Ghost fitness panel, route type consolidation, summaries, verification, and UAT; typecheck/lint passed with Android human UAT pending | ~12000 |
+| 08:41 | Attempted Expo Metro start for UAT | .planning/phases/00-level-0-bunker-reconstruction/00-VERIFICATION.md; .planning/phases/00-level-0-bunker-reconstruction/00-HUMAN-UAT.md; .wolf/buglog.json | Expo config passed, but background Metro start hit React Native DevTools spawn EPERM/EADDRINUSE; documented interactive UAT command | ~500 |
+| 07:59 | Boot Report | — | main/3 flags | ~50 tok |
+| 08:02 | Resumed GSD Phase 0 context | .planning/STATE.md | Confirmed no handoff/checkpoint; all Phase 0 plans unexecuted; next action is 00-01 source spec consolidation | ~500 |
+| 08:09 | Ran GSD health diagnostic | .wolf/buglog.json; .wolf/skill-observations/log.md | Health status broken due missing PROJECT.md, missing config, roadmap/phase parser drift, and unexecuted Phase 0 plans; logged stale gsd-sdk query workflow issue | ~900 |
+| 08:17 | Repaired GSD health hygiene | .planning/PROJECT.md; .planning/config.json; .planning/ROADMAP.md; .planning/STATE.md; .claude/get-shit-done/bin/lib/artifacts.cjs; .wolf/anatomy.md; .wolf/buglog.json | Health now reports healthy with only expected unexecuted-plan info notes | ~1200 |
 | 15:13 | Audited Tether context across Notion Workstation, Feu Follet hub/charter, workflow page, and repo maps | Notion pages; .planning/codebase/*; CONTEXT_MAP.md; src/native/*; src/hooks/* | Found current architecture, dependency map, TS pass, and several stale/conflicting context artifacts to surface | ~18000 |
 | 15:40 | Captured Cade correction on Tether fitness model | .wolf/cerebrum.md | Marked old 3-tap/domain-grid/hardcoded workout model obsolete; AI + behavior tracking from download is canonical | ~1200 |
 | 17:38 | Cleaned legacy agent context and captured product spine corrections | CONTEXT_MAP.md; AGENT.md; CLAUDE.md; AGENTS.md; NIGHT_BUILD.md; FITNESS_ENGINE_PROTOCOL_PART2.md; .wolf/cerebrum.md | Removed active legacy governor/local lead-dev assumptions; recorded themes/hidden themes/Bunker/finance-pantry as canonical Notion-backed systems | ~9000 |
@@ -708,3 +287,23 @@
 | 18:34 | Captured Cade priority shift | .wolf/cerebrum.md; .planning/BUILD_PLAN.md | Fitness + Joint Ops + Ghost Ops for Cade and wife should be the first practical slice inside Level 0 | ~900 |
 | 18:36 | Installed start-day slash command and resolved command staging observation | .claude/commands/start-day.md; .wolf/skill-observations/log.md; .wolf/anatomy.md | Moved root start-day.md into .claude/commands and marked `.claude/commands` observation ACTIONED | ~700 |
 | 19:09 | Resolved OpenWolf cron daemon observation | .wolf/skill-observations/log.md; .wolf/cerebrum.md | User installed PM2 via npm; OpenWolf daemon now running with heartbeat; marked cron observation ACTIONED | ~600 |
+| 19:55 | Added approved Phase 0 tooling decisions | .planning/BUILD_PLAN.md; DEPENDENCIES.md; .wolf/cerebrum.md; Notion | Added Zustand, Reanimated 4, React Native Skia, and Supabase pgvector as intentional Level 0/Fitness/Joint/Ghost tooling | ~1200 |
+| 20:08 | Added GitHub PR and CI guardrails | .github/workflows/typecheck-lint.yml; .github/PULL_REQUEST_TEMPLATE.md; .wolf/anatomy.md | Added project-scoped typecheck/lint Actions workflow and product-law PR checklist | ~1200 |
+| 20:18 | Made new CI guardrail pass locally | src/hooks/useAvatarLoadout.ts; src/hooks/useBunkerTap.ts; src/hooks/useTetherState.ts; src/native/screens/MatSession.tsx; .wolf/buglog.json; .wolf/cerebrum.md | Fixed existing react-hooks lint errors surfaced by CI setup; typecheck and lint now pass locally | ~2200 |
+| 20:31 | Removed Gemini workspace artifacts | .gemini/; .wolf/cerebrum.md | Deleted the local `.gemini` folder; lint now has only the remaining `.claude/get-shit-done` vendored warning | ~900 |
+| 20:28 | Boot Report | — | main/13 changed paths at boot; 1 open observation | ~50 tok |
+| 20:32 | Uninstalled requested lint/spell packages | package.json; package-lock.json | `npm uninstall cspell markdownlint` found them absent/no-op; verified no repo references and no manifest/lockfile changes | ~200 |
+| 20:36 | Disabled VS Code spell/Markdown diagnostics for workspace | .vscode/settings.json; .wolf/anatomy.md | VS Code Insiders reported cSpell and markdownlint extensions not installed; added workspace settings to suppress both diagnostics in this repo | ~300 |
+| 20:48 | Tightened markdownlint workspace suppression | .vscode/settings.json; .wolf/anatomy.md | Replaced unsupported/ineffective markdownlint toggle with default=false config plus lint workspace glob exclusion | ~200 |
+
+## Session: 2026-05-13 20:30
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|
+| 21:33 | Uploaded `.planning` into GSD Phase 0 | .planning/FITNESS_PLAN.md; .planning/TETHER_ML_ARCHITECTURE.md; .planning/ROADMAP.md; .planning/STATE.md; .planning/phases/00-level-0-bunker-reconstruction/*.md; .planning/BUILD_PLAN.md; .wolf/roadmap.md | Created four executable GSD Phase 0 plans, filled empty source specs, aligned roadmap/state, validated plan structure, and verified typecheck/lint pass | ~9000 |
+| 21:37 | Locked Android as Phase 0 native target | .planning/STATE.md; .planning/phases/00-level-0-bunker-reconstruction/00-03-PLAN.md; .wolf/cerebrum.md | Removed Android/iOS decision checkpoint and made 00-03 Android-first/autonomous | ~900 |
+
+## Session: 2026-05-13 20:30
+
+| Time | Action | File(s) | Outcome | ~Tokens |
+|------|--------|---------|---------|--------|

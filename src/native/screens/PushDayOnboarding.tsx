@@ -22,7 +22,7 @@ import {
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useNavigation, useRoute, type RouteProp } from '@react-navigation/native';
 import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import type { ShimmerMode } from '../../registry/valkyrie/houses';
+import type { RootStackParamList } from '../navigation.types';
 import { supabase } from '../../lib/supabase';
 
 // ---------------------------------------------------------------------------
@@ -62,11 +62,6 @@ export function calculate1RM(weightKg: number, reps: number): number {
 // ---------------------------------------------------------------------------
 // Types
 // ---------------------------------------------------------------------------
-
-export type RootStackParamList = {
-  PushDayOnboarding: { shimmerMode?: ShimmerMode };
-  WorkoutSummary: { workoutId: string };
-};
 
 type NavProp = NativeStackNavigationProp<RootStackParamList, 'PushDayOnboarding'>;
 type PushDayRouteProp = RouteProp<RootStackParamList, 'PushDayOnboarding'>;

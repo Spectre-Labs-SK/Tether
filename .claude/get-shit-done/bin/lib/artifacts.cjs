@@ -22,6 +22,11 @@ const CANONICAL_EXACT = new Set([
   'THREADS.md',
   'config.json',
   'CLAUDE.md',
+  'BUILD_PLAN.md',
+  'FITNESS_PLAN.md',
+  'INTELLIGENCE_LAYER.md',
+  'LEVEL_0_BUNKER_RECONSTRUCTION.md',
+  'TETHER_ML_ARCHITECTURE.md',
 ]);
 
 // Pattern-match canonical file names (regex tests on the basename)

@@ -146,7 +146,17 @@ export function useTetherState(userId: string | null): TetherStateReturn {
   }, [userId]);
 
   useEffect(() => {
-    loadProfile();
+    let isActive = true;
+
+    queueMicrotask(() => {
+      if (isActive) {
+        void loadProfile();
+      }
+    });
+
+    return () => {
+      isActive = false;
+    };
   }, [loadProfile]);
 
   const sync = useCallback(async () => {

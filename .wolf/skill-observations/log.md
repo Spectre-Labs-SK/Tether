@@ -109,3 +109,18 @@
 **Suggested improvement:** Investigate why the daemon (configured for port 18790) isn't running. Likely candidates: missing autostart shortcut in Windows startup folder, missing PM2 / nssm wrapper, or the daemon script was never installed on this PC after Transfer Protocol. Once running, verify `last_heartbeat` updates every 30 minutes per `heartbeat_interval_minutes: 30` config.
 
 **Principle:** Any system with scheduled background tasks should fail loudly when the scheduler isn't running, not silently when individual jobs don't fire. The session-start hook should check `cron-state.json` and surface a stderr warning if engine_status is anything other than `running` with a recent heartbeat. This is now covered by START DAY PROTOCOL Step 2a — but the JS hook should also nag, since not every session opens with `/start-day`.
+
+### Observation 7: gsd-health workflow references stale gsd-sdk query command
+
+**Date:** 2026-05-13
+**Session context:** Running `/gsd:health` after resuming Phase 0 planning work.
+**Skill:** gsd-health
+**Type:** internal
+**Phase/Area:** Health command execution
+**Status:** OPEN
+
+**Issue:** The documented health workflow says to run `gsd-sdk query validate.health`, but the installed `gsd-sdk` only supports `run`, `auto`, and `init`. The real local command that works in this repo is `node .claude/get-shit-done/bin/gsd-tools.cjs validate health`.
+
+**Suggested improvement:** Update the gsd-health workflow/skill command runner to use the local `gsd-tools.cjs validate health` path when `gsd-sdk query` is unavailable, or teach the workflow to fall back automatically.
+
+**Principle:** Skills that wrap project-local CLIs should verify the current CLI surface before prescribing a command. A documented command can go stale even when the underlying functionality still exists.

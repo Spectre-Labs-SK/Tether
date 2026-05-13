@@ -582,6 +582,95 @@
       "related_bugs": [],
       "occurrences": 1,
       "last_seen": "2026-05-05T14:17:36.307Z"
+    },
+    {
+      "id": "bug-037",
+      "timestamp": "2026-05-13T20:12:00.000Z",
+      "error_message": "npm run lint fails with react-hooks/set-state-in-effect errors in existing hooks/screens",
+      "file": "src/hooks/useAvatarLoadout.ts; src/hooks/useBunkerTap.ts; src/hooks/useTetherState.ts; src/native/screens/MatSession.tsx",
+      "root_cause": "Existing effects call state setters synchronously or call a callback that sets state synchronously, which the current React hooks lint rule rejects.",
+      "fix": "Moved effect-triggered state updates out of synchronous effect bodies in the flagged hooks/screens; lint now exits 0 with two vendored warnings.",
+      "tags": [
+        "lint",
+        "react-hooks",
+        "pre-existing",
+        "ci"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-13T20:12:00.000Z"
+    },
+    {
+      "id": "bug-038",
+      "timestamp": "2026-05-13T08:09:30.040-06:00",
+      "error_message": "gsd-sdk query validate.health fails: Expected \"gsd-sdk run <prompt>\", \"gsd-sdk auto\", or \"gsd-sdk init [input]\"",
+      "file": ".claude/get-shit-done/workflows/health.md",
+      "root_cause": "The gsd-health workflow references a stale `gsd-sdk query validate.health` command that is not supported by the installed gsd-sdk CLI.",
+      "fix": "Used the local GSD CLI path instead: `node .claude/get-shit-done/bin/gsd-tools.cjs validate health`.",
+      "tags": [
+        "gsd",
+        "health",
+        "cli-drift",
+        "workflow"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-13T08:09:30.040-06:00"
+    },
+    {
+      "id": "bug-039",
+      "timestamp": "2026-05-13T08:17:48.716-06:00",
+      "error_message": "GSD health status broken: missing PROJECT.md, missing config.json, Phase 00 roadmap parser drift, and intentional source docs flagged as non-canonical",
+      "file": ".planning/PROJECT.md; .planning/config.json; .planning/ROADMAP.md; .planning/STATE.md; .claude/get-shit-done/bin/lib/artifacts.cjs",
+      "root_cause": "Phase 0 planning artifacts were uploaded before the canonical GSD PROJECT/config files existed, the roadmap used an em dash heading instead of the colon format parsed by GSD, STATE prose mentioned Phase 1, and the local canonical artifact registry did not include Tether source specs.",
+      "fix": "Created PROJECT.md and config.json, changed ROADMAP Phase 00 heading to colon format, removed the prose Phase 1 trigger from STATE.md, and added Tether source specs to the canonical planning artifact registry.",
+      "tags": [
+        "gsd",
+        "health",
+        "planning",
+        "phase-00"
+      ],
+      "related_bugs": [
+        "bug-038"
+      ],
+      "occurrences": 1,
+      "last_seen": "2026-05-13T08:17:48.716-06:00"
+    },
+    {
+      "id": "bug-040",
+      "timestamp": "2026-05-13T08:36:00.000-06:00",
+      "error_message": "gsd-sdk query init.execute-phase and config-set fail: Expected \"gsd-sdk run <prompt>\", \"gsd-sdk auto\", or \"gsd-sdk init [input]\"",
+      "file": "$HOME/.codex/get-shit-done/workflows/execute-phase.md",
+      "root_cause": "The execute-phase workflow still documents `gsd-sdk query` calls, but the installed gsd-sdk CLI in this workspace does not expose a query subcommand.",
+      "fix": "Executed Phase 00 from filesystem plan files and local verification commands instead of relying on the stale gsd-sdk query interface.",
+      "tags": [
+        "gsd",
+        "execute-phase",
+        "cli-drift",
+        "workflow"
+      ],
+      "related_bugs": [
+        "bug-038"
+      ],
+      "occurrences": 1,
+      "last_seen": "2026-05-13T08:36:00.000-06:00"
+    },
+    {
+      "id": "bug-041",
+      "timestamp": "2026-05-13T08:41:00.000-06:00",
+      "error_message": "npx expo start --localhost fails during background start with React Native DevTools spawn EPERM, then EADDRINUSE on retry",
+      "file": "Expo CLI / local Metro startup",
+      "root_cause": "Expo attempted to install or launch React Native DevTools from a hidden/background process and the Windows host denied the spawn; a retry then found the dev-server port already claimed transiently.",
+      "fix": "Did not treat this as implementation failure. Automated Expo config validation passed; left Android UAT documented in 00-HUMAN-UAT.md for an interactive terminal run.",
+      "tags": [
+        "expo",
+        "metro",
+        "windows",
+        "uat"
+      ],
+      "related_bugs": [],
+      "occurrences": 1,
+      "last_seen": "2026-05-13T08:41:00.000-06:00"
     }
   ]
 }

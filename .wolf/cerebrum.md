@@ -8,7 +8,17 @@
 
 <!-- How the user likes things done. Code style, tools, patterns, communication. -->
 
+- **Gemini artifacts:** Cade asked to delete all `.gemini` workspace artifacts after they showed up as lint noise. Do not recreate or preserve `.gemini/` in this repo unless explicitly requested.
+
 ## Key Learnings
+
+- **GSD Phase 0 upload (2026-05-13):** Phase 0 is now represented as executable GSD plans under `.planning/phases/00-level-0-bunker-reconstruction/`. The plan set is docs-only: 00-01 source spec consolidation, 00-02 behavior/data contracts, 00-03 native Bunker vertical slice, and 00-04 Joint Ops/Ghost Ops fitness without hardcoded workout plans.
+- **GSD Phase 0 execution (2026-05-13):** `/gsd-execute-phase 00-level-0-bunker-reconstruction` implemented the data spine, native `Level0BunkerReconstruction` screen, `useLevel0Bunker`, and `useJointFitnessPlan`. Automated checks passed; Android human UAT remains required before treating the phase as fully verified.
+- **Phase 0 migration numbering (2026-05-13):** `supabase/migrations/07_avatar_loadout.sql` already exists, so behavior/question sessions landed as migration 08 and generated plans/screenshots as migration 09. Do not create a second migration 07.
+- **Native route typing consolidated (2026-05-13):** `RootStackParamList` now lives in `src/native/navigation.types.ts`; native screens should import from there instead of exporting local duplicate route maps.
+- **Phase 0 native target decision (2026-05-13):** Android is the first native verification target for Level 0 Bunker Reconstruction. Do not pause Phase 0 execution to choose Android vs iOS unless Cade changes this decision.
+- **GitHub Actions guardrail (2026-05-13):** The web-sandbox CI should run `npm ci`, `npx tsc --project tsconfig.app.json --noEmit`, and `npm run lint`. Current lint exits 0 but reports two warnings from vendored `.claude/get-shit-done` and `.gemini/get-shit-done` files; do not treat those as app-source failures unless ESLint is later tightened to fail on warnings.
+- **React hooks lint rule (2026-05-13):** `react-hooks/set-state-in-effect` flags state setters called directly in effect bodies, including callbacks like `loadProfile()` when they synchronously set state before the first await. Use event handlers, derived initial state, or schedule work after the effect body when preserving the existing async fetch shape.
 
 ## Core Product Laws (Feu Follet Charter)
 
@@ -46,6 +56,7 @@ The SOS/modules/themes are the delivery surface. The intelligence layer is the p
 - Use silent degradation, visible locked room doors, earned Intel Drops, HUD evolution, and household base-attack events as the reward loop.
 - Three-week target: prove one fun vertical slice before scaling modules.
 - **Personal priority (Cade + wife):** Fitness, Joint Ops, and Ghost Ops are the first practical use case because Cade and his wife need to get back to it together. Level 0 should support that need, not postpone it behind cooking/finance.
+- **Approved Phase 0 tooling:** Zustand for Bunker/state/scores/degradation; Reanimated 4 for native animation/transitions; React Native Skia for GPU HUD/particles/bunker visuals; Supabase + pgvector for personalized task/workout suggestions and adaptive memory retrieval.
 
 ## OpenWolf Cron Setup Note
 
@@ -103,7 +114,7 @@ The SOS/modules/themes are the delivery surface. The intelligence layer is the p
 - **Expo 55 aligned versions (2026-05-03):** react@19.2.0, react-dom@19.2.0, typescript@~5.9.2. Do not upgrade react/react-dom above 19.2.0 or typescript above 5.9.x without checking `npx expo install --check`.
 
 - **Impeccable skill (2026-05-05):** Installed to `.agents/skills/impeccable/` with symlink to `.claude/skills/impeccable`. Use `npx skills@1.5.3 add pbakaus/impeccable --yes` for non-interactive install. Requires PRODUCT.md at project root (run `/impeccable teach` or create manually). DESIGN.md is a separate step (`/impeccable document`). Reads both files before any design task.
-- **RootStackParamList duplication:** `PushDayOnboarding.tsx` exports its own `RootStackParamList` that mirrors `FitnessOnboardingGrid.tsx`. NativeApp.tsx imports from FitnessOnboardingGrid. The PushDayOnboarding type is used locally by its own NavProp/RouteProp. This is a known drift risk — pending consolidation to a `navigation.types.ts` file.
+- **RootStackParamList consolidation:** Native route types are centralized in `src/native/navigation.types.ts`. Do not reintroduce local `RootStackParamList` exports from screen files.
 
 ## Do-Not-Repeat
 

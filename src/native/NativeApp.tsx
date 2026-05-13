@@ -1,6 +1,8 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import FitnessOnboardingGrid, { type RootStackParamList } from './screens/FitnessOnboardingGrid';
+import type { RootStackParamList } from './navigation.types';
+import FitnessOnboardingGrid from './screens/FitnessOnboardingGrid';
+import Level0BunkerReconstruction from './screens/Level0BunkerReconstruction';
 import PushDayOnboarding from './screens/PushDayOnboarding';
 import RoadSession from './screens/RoadSession';
 import MatSession from './screens/MatSession';
@@ -13,9 +15,10 @@ export default function NativeApp() {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName="FitnessOnboardingGrid"
+        initialRouteName="Level0BunkerReconstruction"
         screenOptions={{ headerShown: false }}
       >
+        <Stack.Screen name="Level0BunkerReconstruction" component={Level0BunkerReconstruction} />
         <Stack.Screen name="FitnessOnboardingGrid" component={FitnessOnboardingGrid} />
         <Stack.Screen name="PushDayOnboarding" component={PushDayOnboarding} />
         <Stack.Screen name="RoadSession" component={RoadSession} />
